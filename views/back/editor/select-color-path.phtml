@@ -1,0 +1,28 @@
+<?php
+if(empty($value)){
+    $value = $default;
+}
+?>
+<div id="lfh-select-color-<?=$post_id?>">
+    <input type="hidden"  id="attachements-<?=$post_id?>-<?=$field?>" name="attachments[<?=$post_id?>][<?=$field?>]" value="<?=$value?>"/ >
+    
+    <div class="lfh-color-option">
+    	<div class="lfh-color-chosen selected" style="background-color:<?=$value?>"></div>
+    </div>
+    
+    <div class="lfh-color-option  to-extend hidden">
+    
+      <?php for($i=0; $i<count($colors);$i++): ?>
+         <?php if($colors[$i] == $value):?>
+         <div style="background-color:<?=$colors[$i]?>;" data-value="<?=$colors[$i]?>" class="selected" >
+         </div>
+         <?php else:?>
+         <div style="background-color:<?=$colors[$i]?>;" data-value="<?=$colors[$i]?>" >
+         </div>
+         <?php endif;?>
+      <?php endfor;?>
+    </div>
+</div>
+<script type="text/javascript">
+lfh.init_dom_color("lfh-select-color-<?=$post_id?>");
+</script>';

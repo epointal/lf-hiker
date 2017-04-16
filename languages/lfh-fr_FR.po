@@ -1,0 +1,319 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: lfh\n"
+"POT-Creation-Date: 2017-04-10 00:04+0100\n"
+"PO-Revision-Date: 2017-04-10 00:15+0100\n"
+"Last-Translator: Elisabeth Pointal <elisabeth.pointal@free.fr>\n"
+"Language-Team: elisabeth\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__;_noop;esc_html\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\rancs\\blog\\wp-content\\plugins"
+"\\leaflet-hiker\n"
+"X-Poedit-SearchPath-1: C:\\wamp\\www\\rancs\\blog\\wp-content\\plugins\\lf-"
+"hiker\\views\\back\\editor\n"
+"X-Poedit-SearchPath-2: C:\\wamp\\www\\rancs\\blog\\wp-content\\plugins\\lf-"
+"hiker\\views\\admin\n"
+"X-Poedit-SearchPath-3: C:\\wamp\\www\\rancs\\blog\\wp-content\\plugins\\lf-"
+"hiker\\views\\front\n"
+"X-Poedit-SearchPath-4: C:\\wamp\\www\\rancs\\blog\\wp-content\\plugins\\lf-"
+"hiker\\Tools\n"
+"X-Poedit-SearchPath-5: C:\\wamp\\www\\rancs\\blog\\wp-content\\plugins\\lf-"
+"hiker\\Controller\n"
+"X-Poedit-SearchPath-6: C:\\wamp\\www\\rancs\\blog\\wp-content\\plugins\\lf-"
+"hiker\\Model\n"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:293
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:317
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker0.php:298
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:300
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:324
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.phtml:298
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/map-form.phtml:10
+#, fuzzy
+msgid "Edit map"
+msgstr "Editer les  marqueurs"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:296
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker0.php:301
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:303
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.phtml:301
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/script-for-tinyMCE.phtml:8
+msgid "Add marker"
+msgstr "Ajouter un marqueur"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:299
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:382
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker0.php:304
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker0.php:327
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:306
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:390
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.phtml:304
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.phtml:327
+msgid "Edit marker"
+msgstr "Editer les  marqueurs"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:302
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:469
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker0.php:307
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker0.php:413
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:309
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:476
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.phtml:307
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.phtml:413
+msgid "Delete marker"
+msgstr "Effacer des marqueurs"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:310
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker0.php:315
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:317
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.phtml:315
+msgid "Cancel"
+msgstr "Annuler"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:311
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker0.php:316
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:318
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.phtml:316
+msgid "Insert shortcode Markers"
+msgstr "Ins&eacute;rer les marqueurs"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:312
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker0.php:317
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:319
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.phtml:317
+msgid "Insert Markers & Map"
+msgstr "Ins&eacute;rer marqueurs et carte"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:322
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:330
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Map.php:56
+msgid "Position auto"
+msgstr "Position auto"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:326
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:334
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/map-form.phtml:98
+msgid "Pan and zoom until find the position, and when ready save the position"
+msgstr ""
+"D&eacute;placer et zoomer jusqu &agrave; trouver la position et la "
+"sauvegarder"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:328
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:336
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/map-form.phtml:100
+msgid "Save"
+msgstr "Sauvegarder"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:331
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:339
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Map.php:84
+msgid "Width"
+msgstr "Largeur"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:335
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:343
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Map.php:94
+msgid "Height"
+msgstr "Hauteur"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:339
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:347
+msgid "Class"
+msgstr "Class"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:348
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:356
+msgid "Fullscreen Button"
+msgstr "Bouton plein &eacute;cran"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:352
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:360
+msgid "Reset Button"
+msgstr "Bouton initialiser"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:356
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:364
+msgid "List Button"
+msgstr "Bouton Liste"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:360
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:368
+msgid "Zoom on mouse wheel"
+msgstr "Zoom sur la molette"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:364
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:372
+msgid "Tile"
+msgstr "Tuile"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:372
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:380
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Map.php:119
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/map-form.phtml:113
+msgid "Reset"
+msgstr "Initialiser"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:387
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker0.php:332
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:395
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.phtml:332
+msgid "Title"
+msgstr "Titre"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:391
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker0.php:336
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:399
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.phtml:336
+msgid "Popup"
+msgstr "Popup"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:395
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker0.php:340
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:403
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.phtml:340
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/marker.phtml:36
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:31
+msgid "Description"
+msgstr "Description"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:399
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker0.php:344
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:407
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.phtml:344
+msgid "Visibility"
+msgstr "Visible"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:401
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker0.php:346
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:409
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.phtml:346
+msgid "Always"
+msgstr "Toujours"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:402
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker0.php:347
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:410
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.phtml:347
+msgid "According to zoom"
+msgstr "Suivant le zoom"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:406
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker0.php:351
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:414
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.phtml:351
+msgid "Icon color"
+msgstr "Couleur"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:424
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker0.php:369
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:432
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.phtml:369
+msgid "Inside icon"
+msgstr "Icone"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.php:470
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker0.php:414
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker_safe.php:477
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:183
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back\editor/add-marker.phtml:414
+msgid "Add here your formated description"
+msgstr "Ins&eacute;rez votre description format&eacute; ici"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:166
+msgid "Manage gpx"
+msgstr "G&egrave;rer les GPX"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:200
+msgid "Color path"
+msgstr "Couleur du chemin"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:217
+msgid "Stroke width"
+msgstr "Epaisseur du trait"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Map.php:112
+msgid "Fullscreen"
+msgstr "Plein &eacute;"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Map.php:126
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/map.phtml:18
+msgid "List"
+msgstr "Liste"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Map.php:133
+msgid "Zoom on wheel"
+msgstr "Zoom sur la mollette"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Map.php:139
+msgid "Tiles"
+msgstr "Tuiles"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Admin.php:67
+msgid "Map"
+msgstr "Carte"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Admin.php:67
+msgid "Map Hiker"
+msgstr ""
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Admin.php:70
+msgid "Options"
+msgstr "Options"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Admin.php:70
+msgid "Configuration"
+msgstr "Configuration"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/map.phtml:33
+msgid "All tracks"
+msgstr "Tous les parcours"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/map.phtml:42
+msgid "All markers"
+msgstr "Tous les marqueurs"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/marker.phtml:23
+msgid "Latitude"
+msgstr "Latitude"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/marker.phtml:27
+msgid "Longitude"
+msgstr "Longitude"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:39
+msgid "Profile"
+msgstr "Profile"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:76
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:91
+msgid "Distance"
+msgstr "Distance"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:79
+msgid "Elevation"
+msgstr "Altitude"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:87
+msgid "Name"
+msgstr "Nom"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:95
+msgid "Elevation gain"
+msgstr "Mont&eacute;e cumul&eacute;e"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:99
+msgid "Elevation loss"
+msgstr "Descente cumul&eacute;e"
+
+#~ msgid "Manage kml"
+#~ msgstr "G&eacute;rer les KML"
+
+#~ msgid "Map's center"
+#~ msgstr "Centre de la vue"

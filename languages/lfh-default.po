@@ -1,0 +1,113 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: lfh\n"
+"POT-Creation-Date: 2017-03-26 17:35+0100\n"
+"PO-Revision-Date: 2017-03-26 17:36+0100\n"
+"Last-Translator: Elisabeth Pointal <elisabeth.pointal@free.fr>\n"
+"Language-Team: elisabeth\n"
+"Language: en_EN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__;_noop;esc_html\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: C:\\wamp\\www\\rancs\\blog\\wp-content\\plugins"
+"\\leaflet-hiker\n"
+"X-Poedit-SearchPath-1: C:\\wamp\\www\\rancs\\blog\\wp-content\\plugins"
+"\\leaflet-hiker\\views\n"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/leaflet-hiker-plugin.php:94
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/dialog/addMarker.php:177
+msgid "Add marker"
+msgstr "Add marker"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/leaflet-hiker-plugin.php:177
+msgid "Manage kml"
+msgstr "Manage kml"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/leaflet-hiker-plugin.php:178
+msgid "Manage gpx"
+msgstr "Manage gpx"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/leaflet-hiker-plugin.php:224
+msgid "Add here your formated description"
+msgstr "Add here your formated description"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/dialog/addMarker.php:180
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/dialog/addMarker.php:199
+#, fuzzy
+msgid "Edit marker"
+msgstr "Add marker"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/dialog/addMarker.php:183
+#, fuzzy
+msgid "Delete marker"
+msgstr "Add marker"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/dialog/addMarker.php:204
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/views/track.phtml:84
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker\views/track.phtml:84
+msgid "Name"
+msgstr "Name"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/dialog/addMarker.php:208
+msgid "Map's center"
+msgstr ""
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/dialog/addMarker.php:212
+msgid "Visibility"
+msgstr ""
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/dialog/addMarker.php:214
+msgid "Always"
+msgstr ""
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/dialog/addMarker.php:215
+msgid "According to zoom"
+msgstr ""
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/dialog/addMarker.php:219
+msgid "Icon color"
+msgstr ""
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/dialog/addMarker.php:237
+msgid "Inside icon"
+msgstr ""
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/views/track.phtml:28
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker\views/track.phtml:28
+msgid "Description"
+msgstr "Description"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/views/track.phtml:36
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker\views/track.phtml:36
+msgid "Profile"
+msgstr "Profile"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/views/track.phtml:73
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/views/track.phtml:88
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker\views/track.phtml:73
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker\views/track.phtml:88
+msgid "Distance"
+msgstr "Distance"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/views/track.phtml:76
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker\views/track.phtml:76
+msgid "Elevation"
+msgstr "Elevation"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/views/track.phtml:92
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker\views/track.phtml:92
+msgid "Elevation gain"
+msgstr "Elevation gain"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker/views/track.phtml:96
+#: C:\wamp\www\rancs\blog\wp-content\plugins\leaflet-hiker\views/track.phtml:96
+msgid "Elevation loss"
+msgstr "Elevation loss"
+
+#~ msgid "Cancel"
+#~ msgstr "Cancel"

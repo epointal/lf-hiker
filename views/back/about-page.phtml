@@ -1,0 +1,44 @@
+<?php
+/**
+ * Presentation page 
+ */
+?>
+<div class="wrap">
+    <h1><?=__('About', 'lfh')?> Lf Hiker</h1>
+    <div class="wrap">
+<h2 class="nav-tab-wrapper">
+        <a href="?page=lfh_info&tab=about_page" class="nav-tab<?=($active_tab=="about_page" ? " nav-tab-active" : "")?>"><?=__('About', 'lfh')?> Lf Hiker</a>
+        <a href="?page=lfh_info&tab=config_user" class="nav-tab<?=($active_tab=="config_user" ? " nav-tab-active" : "")?>"><?=__('Your personnal configuration', 'lfh')?></a>
+    </h2>
+    <!-- notifications -->
+    <?php if(!is_null($msg)):?>
+        <div id="message" class="updated notice is-dismissible">
+        <p><?=$msg?></p>
+        <button type="button" class="notice-dismiss">
+        <span class="screen-reader-text"><?=__('close', 'lfh')?></span>
+        </button>
+        </div>
+    <?php endif;?>
+
+<?php if($active_tab == 'config_user'):?>
+<div class="wrap">
+	
+	<div class="wrap">
+	<form method="post">
+	<?php include 'user.phtml';?>
+     <table class="form-table">
+    	<tr>
+        	<th></th>
+        	<td>
+        		<input type="submit" name="lfh_change_helper" class="button button-primary" value="<?=__('Save', 'lfh')?>">
+        	</td>
+    	</tr>
+     </table>
+	</form>
+	</div>
+</div>
+<?php endif;?>
+
+<?php if($active_tab == 'about_page'):?>
+about page 
+<?php endif;?>

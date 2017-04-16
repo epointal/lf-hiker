@@ -1,0 +1,15 @@
+<?php
+
+if(empty($value)){
+    $value = $default;
+}
+?>
+<select id="attachements-<?=$post_id?>-<?=$field?>" name="attachments[<?=$post_id?>][<?=$field?>]" >
+<?php foreach($options as $key => $option):?>
+      <?php if( $key == $value ):?>
+      <option  value="<?=$key?>" selected="selected"  ><?=$option?></option>
+      <?php else:?>
+      <option value="<?=$key?>" ><?=$option?></option>
+      <?php endif;?>
+<?php endforeach;?>
+</select>

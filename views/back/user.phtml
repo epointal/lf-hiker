@@ -1,0 +1,14 @@
+<?php
+?>
+<?php if(isset($title)):?>
+<h3><?=$title?></h3>
+<?php endif;?>
+ <table class="form-table">
+        <tr>
+            <th><label for="lfh_helper_unactive"><?=__('Unactive helper for markers', 'lfh')?></label></th>
+            <td>
+           <input type="checkbox" name="lfh_helper_unactive" <?=$helper_unactive? 'checked':''?>/>
+            </td>
+        </tr>
+    
+</table>

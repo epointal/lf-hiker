@@ -1,0 +1,68 @@
+<?php
+/**
+ * lf-hiker 
+ * Template for map
+ */
+?>
+<!-- -div of map -->
+<div id="lfh-<?=$map_count?>-container" class="lfh-container <?=$options['class']?>" style="height:<?=$options['height']?>px; width:<?=$options['width']?>%;">
+	<div id="lfh-<?=$map_count?>" class="lfh-map<?php echo ($is_connected>0? ' fakefull':'');?>">
+	</div>
+</div>
+<!-- div of list objets -->
+<div id="list-<?=$map_count?>" class="lfh-info-<?=$map_count?> lfh-element leaflet-control hidden"  >
+    <div>
+        <!-- header -->
+        <div >
+            <h3 >
+                 <span class="lfh-trackname"><?=_e('List', 'lfh')?>&nbsp;</span>
+                <span  class="lfh-close fa fa-close" >&nbsp;</span>
+            </h3>
+        </div>
+        <!-- end header -->
+        <div class="lfh-element-content">
+        <div  class="lfh-position">
+        <!-- control buttons -->
+            <div >
+               
+            </div>
+        </div>
+        <!-- misc info -->
+        <div class="lfh-section">
+          <div class="lfh-header">
+          <h4><?php _e('All tracks', 'lfh');?></h4>
+          </div>        
+          <div class="lfh-content" >
+          <ul>
+          </ul>
+          </div>
+        </div>
+     	<div class="lfh-section">
+          <div class="lfh-header">
+          <h4><?php _e('All markers', 'lfh');?></h4>
+          </div>        
+          <div class="lfh-content" >
+          <ul>
+          </ul>
+          </div>
+        </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+<?php if($map_count == 1): ?>
+    if( typeof lfh == "undefined"){
+        var lfh = {}
+    }
+    lfh.data = new Array();
+    lfh.ICON_URL = "<?=$images_url?>";
+    lfh.tiles = <?=json_encode(Lfh_Model_Map::$tiles, JSON_UNESCAPED_SLASHES)?>;
+    lfh.tiles['mapquest'] = { max_zoom:18};
+    lfh.SELECTED_COLOR = "<?=$selected_color?>";
+<?php endif;?>
+    lfh.data[<?=$map_count?>]= { 
+              map: <?=json_encode($options, JSON_NUMERIC_CHECK)?>,
+              markers: new Array(),
+              gpx: new Array()
+      };
+ </script>

@@ -1,0 +1,107 @@
+<?php
+
+
+?>
+	
+ <div class="wrap">
+    <h1><?=__('Configuration', 'lfh')?> Lf Hiker</h1>
+ </div>  
+ <div class="wrap"> 
+    
+    <!-- tab -->
+    <h2 class="nav-tab-wrapper">
+    <?php foreach($tabs as $tab => $atts):?>
+        <a href="?page=lfh_options_page&tab=<?=$tab?>" class="nav-tab<?=($active_tab==$tab ? " nav-tab-active" : "")?>"><?=$atts['label']?></a>
+    <?php endforeach;?>
+        </h2>
+    
+   <!-- content -->
+   <div class="wrap"><?=$tabs[ $active_tab]['comment']?></div>
+ 	<form method="post">
+ 	   <table class="form-table">
+
+    <?php foreach($options as $key=>$input):?>
+    <?php
+    $class = '';
+    $style = '';
+    $before = '';
+    $after = '';
+    $display ='';
+    if(isset($input['style'])){
+        $style = 'style="' . $input['style'] . '"';
+    }
+    if(isset($input['class'])){
+        $style = 'class="' . $input['class'] . '"';
+    }
+    if(isset($input['before'])){
+        $before = $input['before'];
+    }
+    if(isset($input['after'])){
+        $after = $input['after'];
+    }
+    if(isset($input['display'])){
+        $display = 'style="display:'.$input['display'].';"';
+    }
+    ?>
+        <tr <?=$display?> >
+            <th><label for="<?=$key?>"><?=$input['label']?></label></th>
+            <td>
+           <?=$before?>
+           <input <?=$class?> <?=$style?> type="<?=$input['type']?>" name="<?=$key?>" value="<?=$input['value']?>" />
+           <?=$after?>
+           <?php if(isset($input['helper'])):?>
+           <div style="font-style:italic;">* <?=htmlspecialchars_decode($input['helper'])?></div>
+           <?php endif;?>
+            </td>
+        </tr>
+    
+
+    <?php endforeach;?>
+    <tr>
+    <th></th>
+    <td>
+     <div class="container">
+        <input type="submit" name="lfh_config_submit" class="button button-primary" value="<?=__('Save')?>" />
+        <input type="submit" name="lfh_config_reset"  class="button button-secondary" value="<?=__('Reset')?>" />
+    </div>
+    </td>
+    </tr>
+    
+    <!-- More functions for config lfh -->
+    <?php if($active_tab == 'config_lfh'):?>
+    <tr>
+    	<th>
+        	<label for="lfh_clear_cache">
+        	</label>
+    	</th> 
+    	<td>
+    		<input class="button button-primary" name="lfh_clear_cache" value="<?=__('Clear cache', 'lfh')?>" type="submit" />
+    	</td>
+    </tr>
+    <tr> 
+    	<th>
+        	<label for="lfh_xframe_options">
+        	<?=__('Add directive for allowed x-frame same origin in .htaccess', 'lfh')?>
+        	</label>
+    	</th> 
+    	<td> 
+        	<input class="button button-primary" name="lfh_xframe_options" value="<?=__('Add in', 'lfh')?> .htaccess" type="submit" /> * 
+        	<div style="font-style:italic;">
+        	 	* <?=__('Seems resolve trouble with multiple directive x-frame-options. See ', 'lfh')?>
+               <a href="https://wordpress.org/support/topic/multiple-x-frame-options-headers-with-conflicting-values-sameorigin-deny/" target="_blank">
+                 <?=__('Wordpress support topic', 'lfh')?>
+               </a>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <th><label for="lfh_xframe_options_remove"></label></th> 
+    	<td> 
+    		<input class="button button-primary" name="lfh_xframe_options_remove" value="<?=__('Remove in', 'lfh')?> .htaccess" type="submit" /> 
+    		</td>
+    </tr>
+    <?php endif;?>
+    </table>
+    </form>
+</div>
+

@@ -1,0 +1,118 @@
+<?php
+/**
+ * @todo create by type of input
+ * data come from array Lfh_Model_Map::map_parameters()
+ */
+
+?>
+<div id="window-edit-map"  class="lfh-form-edit" style="display:none;">
+   <div class="header" >
+        <h3><?=_e('Edit map', 'lfh')?></h3>
+        <div class="fa fa-close"></div>
+    </div>
+    <form>
+    <?php $i=0;?>
+     <?php foreach( $options_map as $key => $param):?>
+     <?php $i++;
+           $default = isset($param['default'])? $param['default']: $param['options']['default'];
+           $before = isset($param['before'])? $param['before']:'';
+           $after = isset($param['after'])? $param['after']:'';
+           $class = isset($param['class'])? ' class="' . $param['class'] .'"' :'';
+           $id = "lfh-form-map-" . $key;
+           $label = $param['label'];
+     ?>
+    
+     <?php switch($param['type']):
+        case 'checkbox':?>
+            <div <?=$class?>>
+                <label for="<?=$id?>"><?=$param['label']?></label>
+                <?=$before?>
+                <?php if($default):?>
+                <input type="checkbox" name="<?=$id?>" tabindex="<?=$i?>"  checked />
+                <?php else :?>
+                 <input type="checkbox" name="<?=$id?>" tabindex="<?=$i?>" />
+                <?php endif;?>
+                <?=$after?>
+            </div>
+        <?php break;?>
+        
+        <?php case 'number':?>
+            <?php 
+            $min = isset($param['options']['min_range'])? 'min="'. $param['options']['min_range'] .'"' : '';
+            $max = isset($param['options']['max_range'])? 'min="'. $param['options']['max_range'] .'"' : '';
+            $step = isset($param['options']['step_range'])? 'min="'. $param['options']['step_range'] .'"' : '';?>
+            <div <?=$class?>>
+                 <label for="<?=$id?>"><?=$param['label']?></label>
+                 <?=$before?>
+                <input type="number" name="<?=$id?>" <?=$min?> <?=$max?> <?=$step?> tabindex="<?=$i?>" value="<?=$default?>"/>
+                <?=$after?>
+                </div>
+        <?php break; ?>
+        
+        <?php case 'select':?>
+            <div <?=$class?>>
+                <label for="<?=$id?>"><?=$param['label']?></label>
+                <?=$before?>
+                <select name="<?=$id?>"  tabindex="<?=$i?>">
+                <?php $options = $param['list']?>
+                <?php  for($j=0; $j<count($options);$j++): ?>
+                <?php 
+                  $op_key = isset($options[$j]['key'])? $options[$j]['key']:$options[$j];
+                  $op_value = isset($options[$j]['value'])? $options[$j]['value']:$options[$j];
+                 ?>
+                <?php if($default == $options[$j]):?>
+                    <option value="<?=$op_key?>" selected><?=$op_value?></option>
+                <?php else : ?>
+                    <option value="<?=$op_key?>" ><?=$op_value?></option>
+                <?php endif; ?>
+                <?php endfor;?>
+                </select>
+                <?=$after?>
+            </div>
+        <?php break;?>
+        
+        <?php case 'datalist':?>
+            <div <?=$class?>>
+                <label for="<?=$id?>"><?=$param['label']?></label>
+                <?=$before?>
+                 <input name="<?=$id?>"  type="datalist" list="map-<?=$key?>-list" tabindex="<?=$i?>" >
+                <?php $options = $param['list']?>
+                <datalist id="map-<?=$key?>-list">
+                <?php  for($j=0; $j<count($options);$j++): ?>
+                    <option value="<?=$options[$j]?>" />
+                <?php endfor;?>
+                </datalist>
+                <?=$after?>
+            </div>
+        <?php break;?>
+        
+        <?php case "hidden": ?>
+        <?php $i--;?>
+        <input type="hidden" name="<?=$id?>" value="<?=$default?>"/>
+        <?php break;?>
+        
+        <?php case 'custom':?>
+        <?php if( $key == 'lat'): ?>
+        <?php $i--;?>
+        <div id="center-map"  style="display:none;">
+            <div id="text-pan"><?=_e('Pan and zoom until find the position, and when ready save the position', 'lfh')?></div>
+            <div id="map-position" >&nbsp;</div>
+            <input type="button" name="save-center" value="<?=_e('Save', 'lfh')?>"  />
+        </div>
+        <input type="hidden" name="<?=$id?>" value="<?=$default?>"/>
+        <?php endif; ?>
+        <?php break;?>
+        
+    <?php endswitch;?>
+        
+  
+    <?php endforeach;?>
+      
+        <div>
+            <label for="reset-map"></label>
+            <input type ="reset"  name="reset-map" value="<?=_e('Reset' , 'lfh')?>" />
+            
+        </div>
+        
+    </form>
+  </div>

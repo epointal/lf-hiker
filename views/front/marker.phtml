@@ -1,0 +1,49 @@
+<?php
+/**
+ * @author epointal
+ * Template for div maker information
+ */
+?>
+<?php if(strlen($html)> 6):?>
+<div id="<?=$marker_id?>" class="lfh-info-<?=$map_count?> lfh-element leaflet-control hidden"  >
+    <div>
+        <!-- header -->
+        <div >
+            <h3 >
+                 <span class="lfh-trackname"><?=stripslashes( $options['title'] )?>&nbsp;</span>
+                <span  class="lfh-close fa fa-close" >&nbsp;</span>
+            </h3>
+        </div>
+        <!-- end header -->
+        <div class="lfh-element-content">
+        <div  class="lfh-position">
+        <!-- control buttons -->
+            <div >
+                <div>
+                    <span class="lfh-var"><?=_e('Latitude' , 'lfh')?>:</span>
+                    <span class="lfh-number"><?=Lfh_Model_Map::to_string($options['lat'])?></span>
+                </div>
+                <div>
+                    <span class="lfh-var"><?=_e('Longitude' , 'lfh')?>:</span>
+                    <span class="lfh-number"><?=Lfh_Model_Map::to_string($options['lng'])?></span>
+                </div>
+            </div>
+        </div>
+       
+        <!-- misc info -->
+        <div class="lfh-section">
+            <div class="lfh-header">
+            <h4><?php _e('Description', 'lfh');?></h4>
+            </div>    
+            <div class="lfh-content" >
+            <?php echo do_shortcode($html);?>
+            </div>
+        </div>
+     
+        </div>
+    </div>
+</div>
+<?php endif;?>
+<script type="text/javascript">
+         lfh.data[<?=$map_count?>].markers[<?=$marker_count?>] = <?=json_encode($options, JSON_NUMERIC_CHECK)?>;
+</script>
