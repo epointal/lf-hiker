@@ -44,7 +44,7 @@ For gpx track you can custom:
 
 **Lf Hiker** included an helper for edit map and add markers. 
 You can choose
-* for the map :
+#### for the map:
  * the tiles layer ( among OSM, OSM_FR , stamen watercolor, arcgis world topo, mapquest *with api key*)
  * to display the fullscreen button
  * the map's view  or let **lf Hiker** find automatically the best view
@@ -55,7 +55,7 @@ You can choose
  * zoom on mousewheel
  
  
-* for the markers
+#### for the markers:
  * color of icon marker
  * symbol in the icon
  * title
@@ -66,7 +66,7 @@ You can choose
 You can do all this with the helpers or directly using shortcodes  
 You can choose to unactive the helper.  
 
-**Lf Hiker** allows custom the css in admin configuration (colors of information window and selected path)  
+**Lf Hiker** allows you to customize the css in admin configuration (colors of information window and selected path)  
 You can record your mapquest key or choose the cache directory for the plugin here too.
 
 
@@ -82,7 +82,7 @@ If you think you found a bug in **Lf Hiker** or have any problem/question concer
  If you need language of **Lf Hiker** which is not included. You can easily translate with poedit from the file :    
     `lf-hiker/languages/lfh-default.po`.   
 	
- I will be happy, you transmit me the translation.  
+ I will be happy, to add your translation to **Lf Hiker**.  
 If you have any questions about the method, do not hesitate to [contact me](http://elisabeth.pointal.org/lf-hiker/en/contact-me).  
  If you find errors in my english translation do not hesitate to [contact me](http://elisabeth.pointal.org/lf-hiker/en/contact-me).
  
