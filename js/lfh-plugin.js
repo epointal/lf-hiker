@@ -107,9 +107,12 @@ lfh.TopControl = L.Control.extend({
     }, 
     _fullscreen: true,
     _list: true,
-    initialize: function(d){
+    _selected: null,
+    initialize: function(d, selected){
         this._fullscreen = d.fullscreen;
         this._list = d.list;
+        this._index = d.i;
+        this._selected = selected;
     },
     onAdd: function (map) {
         var container = L.DomUtil.create('div', 'lfh-container-fullscreen');
@@ -142,10 +145,12 @@ lfh.TopControl = L.Control.extend({
         if(this._list){
             var div2 =  L.DomUtil.create('div', 'leaflet-bar leaflet-control lfh-control-list');
             container.appendChild(div2);
-            
-            div2.onclick = function(){
+            //append list window to the map
+            var link = new lfh.Link( map, div2, 'list-' + this._index , this._selected, null);
+          
+           /* div2.onclick = function(){
                 console.log('show/hide list layer');
-            }
+            }*/
         }
         return container;
     },
@@ -208,7 +213,7 @@ lfh.Map = function(i){
         var _zoom = 13;                    // default value if not in data
         var _zoom_limit = lfh.ZOOM_LIMIT;              // zoom from which the markers are visible
         var _auto_center = true;           // compute center and zoom from the elements added on map
-       
+        var _list = false;                 // see button list
         //remarquables layers
         var _gpx = new Array();            // layers from file gpx
         var _move_marker = null;           // marker which move on polyline according to profile
@@ -242,7 +247,9 @@ lfh.Map = function(i){
         function _initialize( i ){
             _data = lfh.data[i];
             var d = lfh.data[i].map;
+            d.i = i;
             _auto_center = d.autocenter;
+            _list = d.list;
             _center = [d.lat, d.lng];
             _zoom = Math.min(d.zoom,lfh.tiles[d.tile].max_zoom);
             map = L.map(_map_id).setView( _center, _zoom);
@@ -277,7 +284,8 @@ lfh.Map = function(i){
             }
         }
         function _add_controls(d){
-            map.addControl(new lfh.TopControl(d));
+            map.addControl(new lfh.TopControl(d, _selected_element));
+           
             
             if(!_auto_center && d.reset){ 
                 //not have to wait all elements loaded
@@ -294,6 +302,7 @@ lfh.Map = function(i){
             for(var i in _data.markers){
               _add_marker(i);
             }
+            
         }
         
         function _add_gpx_polylines( ){
@@ -347,11 +356,36 @@ lfh.Map = function(i){
                 marker.addTo(map);
             }
             _latlngbounds.push([info.lat, info.lng]);
-          
+            
+            //add the marker in the list of markers
+            _add_marker_to_list(marker);
+
             var link = new lfh.Link( map, marker, marker_id, _selected_element);
             return link;
         }
-       
+        function _add_marker_to_list( marker){
+            if(_list){
+                var list = document.querySelector('#list-'+ _index +' ul.lfh-list-markers');
+                var node = document.createElement('li');
+                node.textContent = marker.options.title;
+                list.append(node);
+                L.DomEvent.addListener( node , 'click', function(e){
+                    marker.fire('click');
+                });
+            }
+        }
+        
+        function _add_gpx_to_list( gpx ){
+            if(_list){
+                var list = document.querySelector('#list-'+ _index +' ul.lfh-list-gpx');
+                var node = document.createElement('li');
+                node.textContent = document.querySelector('#'+gpx.options.elem_id + ' span.lfh-trackname').textContent;
+                list.append(node);
+                L.DomEvent.addListener( node , 'click', function(e){
+                    gpx.fire('click');
+                });
+            }
+        }
         function _add_loaded_listener(buttonreset){
            // turn while all files gpx aren't loaded
            var isLoaded = 1;
@@ -386,6 +420,7 @@ lfh.Map = function(i){
                 {
                     async: true,
                     isLoaded: false,
+                    elem_id: track_id,
                     marker_options: {
                         startIcon: lfh.POINT_ICON,
                         endIcon: lfh.POINT_ICON,
@@ -401,6 +436,9 @@ lfh.Map = function(i){
                           _latlngbounds.push([bounds.getNorth(),bounds.getEast()]);
                           _latlngbounds.push([bounds.getSouth(),bounds.getWest()]);
                       }
+
+                       _add_gpx_to_list(e.target);
+
                       var link = new lfh.Link(
                               map,
                               e.target,
@@ -438,6 +476,10 @@ lfh.Link = function( map, layer, elem_id, selected, move){
     var _move_marker = move;
     
     function _initialize(){
+        if( typeof _layer.options == 'undefined'){
+            //case not really layer but button list
+            _layer.options = {};
+        }
         _layer.options.elem_id = elem_id;
         if(_dom != null){
             // add dom node to map
@@ -479,11 +521,13 @@ lfh.Link = function( map, layer, elem_id, selected, move){
         }
         
     }
+     
     function _add_event( ){
        // hide show section 
        var nodes = _dom.querySelectorAll('.lfh-element .lfh-header');
        [].forEach.call(nodes, function(div) {
            L.DomEvent.addListener(div ,'click', function(e){
+               e.preventDefault();
                var parent = div.parentNode;
                var classname = parent.className;
                if(classname.indexOf('disabled')>=0){
@@ -494,8 +538,10 @@ lfh.Link = function( map, layer, elem_id, selected, move){
                }else{
                     parent.className += ' hidden';
                }
+               e.stopPropagation();
              });
          });
+       
        
        L.DomEvent.addListener( _dom, 'mousemove', function(e){
            e.stopPropagation();
@@ -510,9 +556,16 @@ lfh.Link = function( map, layer, elem_id, selected, move){
            _layer.fire('click');
        });
      
-      _layer.on('click', function(e){
-           _tooggle( );
-       });
+      if( _layer instanceof L.Layer){
+          _layer.on('click', function(e){
+              _tooggle( );
+          });
+      }else{
+          L.DomEvent.addListener( _layer, 'click', function(e){
+              _tooggle();
+          });
+      }
+      
    }
   
    _initialize();

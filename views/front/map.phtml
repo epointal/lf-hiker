@@ -10,7 +10,8 @@
 	</div>
 </div>
 <!-- div of list objets -->
-<div id="list-<?=$map_count?>" class="lfh-info-<?=$map_count?> lfh-element leaflet-control hidden"  >
+<?php if( $options['list'] ):?>
+<div id="list-<?=$map_count?>" class="lfh-info-<?=$map_count?> lfh-element lfh-list leaflet-control hidden"  >
     <div>
         <!-- header -->
         <div >
@@ -33,7 +34,7 @@
           <h4><?php _e('All tracks', 'lfh');?></h4>
           </div>        
           <div class="lfh-content" >
-          <ul>
+          <ul class="lfh-list-gpx">
           </ul>
           </div>
         </div>
@@ -42,13 +43,14 @@
           <h4><?php _e('All markers', 'lfh');?></h4>
           </div>        
           <div class="lfh-content" >
-          <ul>
+          <ul class="lfh-list-markers">
           </ul>
           </div>
         </div>
         </div>
     </div>
 </div>
+<?php endif;?>
 <script type="text/javascript">
 <?php if($map_count == 1): ?>
     if( typeof lfh == "undefined"){

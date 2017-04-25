@@ -23,17 +23,17 @@ Class Lfh_Controller_Admin
         $content[] = '</IfModule>';
         $success = insert_with_markers(get_home_path().'.htaccess', 'Lf-hiker plugin',$content);
         if($success){
-            return array('msg' => __('Add directive in .htaccess with success', 'lfh'));
+            return array('msg' => __('Directive added in .htaccess successfully', 'lfh'));
         }else{
-            return array('error' => __(' Failure. Can not write in .htaccess', 'lfh'));
+            return array('error' => __('Failure. Can not write in .htaccess', 'lfh'));
         }
     }
     private static function remove_xframe_options(){
         $success = insert_with_markers(get_home_path().'.htaccess', 'Lf-hiker plugin','');
         if($success){
-            return array('msg' => __('Remove directive in .htaccess with success', 'lfh'));
+            return array('msg' => __('Directive removed from .htaccess successfully', 'lfh'));
         }else{
-            return array('error' => __(' Failure. Can not write in .htaccess', 'lfh'));
+            return array('error' => __('Failure. Can not write in .htaccess', 'lfh'));
         }
     }
     private  function get_view($controller_name = NULL){

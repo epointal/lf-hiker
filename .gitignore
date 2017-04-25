@@ -45,3 +45,10 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# tools files from npm for building js and css
+doc
+
+/node_modules
+/js/tile_doc.txt
+/js/tinymce-lfh-hiker.js

@@ -5,7 +5,7 @@
     Description: A plugin for show gpx track with profile elevation and large description.
     Author: epointal
     Author URI: http://elisabeth.pointal.org/
-    Version: 1.0
+    Version: 0.4 beta
     License: GPL2
     Text domain: lfh
     */
@@ -24,7 +24,7 @@ if ( ! function_exists('write_log')) {
     
 class Lf_Hiker_Plugin
 {
-    const VERSION = '0.3';
+    const VERSION = '0.5';
     
     private static $_controller;
     
@@ -34,7 +34,6 @@ class Lf_Hiker_Plugin
     
     private  function __construct()
     {
-     
         add_action( 'plugins_loaded',array(&$this, 'initialize'));
         spl_autoload_register( 'Lf_Hiker_Plugin::autoloader' );
         register_activation_hook( __FILE__ , array('Lfh_Controller_Admin', 'activate'));

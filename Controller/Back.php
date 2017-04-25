@@ -49,7 +49,7 @@ Class Lfh_Controller_Back
     }
     public function editor_menu(){
         global $submenu;
-        add_menu_page( __('GPX', 'lfh'), __('GPX', 'lfh'),
+        add_menu_page( 'GPX', 'GPX',
                 'edit_posts' ,'lfh_info',array(&$this , 'about_page'), plugins_url('lf-hiker/images/icons/marker.png') ,50);
         $data = array(
                 'mode'              => 'list',
@@ -59,7 +59,7 @@ Class Lfh_Controller_Back
         );
         $slug = 'upload.php?' . http_build_query($data);
        // $slug = 'upload.php?mode=list&attachment-filter=post_mime_type%3Aapplication%2Fgpx%2Bxml&m=0&filter_action=Filtrer&s&action=-1&paged=1';
-        add_submenu_page('lfh_info',  __('GPX', 'lfh'), __('All gpx files', 'lfh'), 'edit_posts', $slug ,null);
+        add_submenu_page('lfh_info',  'GPX' , __('All gpx files', 'lfh'), 'edit_posts', $slug ,null);
         $submenu['lfh_info'][0][0] = __( 'About','lfh' );
     }
     

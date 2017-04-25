@@ -2,10 +2,12 @@
 =============
 Contributors: epointal  
 Donate link: http://elisabeth.pointal.org/lf-hiker/en/about/  
-Tags: map, gpx, waypoint, track, path, trail, polyline, markers, leaflet, profile elevation,  openstreetmap, osm, osm_fr, arcgis, mapquest  
+Tags: map, gpx, waypoint, track, path, trail, polyline, markers, leaflet, profile elevation,  openstreetmap, osm, osm_fr, arcgis, mapquest, hiker  
 Tested up to: 4.7.3  
+Stable tag: 0.4
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
+
 
 **Lf Hiker** is a wordpress plugin for quickly display your gpx tracks with their profile elevation on an interactive map. 
  
@@ -107,15 +109,17 @@ After downloading the ZIP file and unzip
 
 
 ### Browsers
- Test with
+ Tested with
 * Firefox 52.0
 * Chrome 57.0
 * Microsoft Edge
 * Internet Explorer 11
+* Safari 5 (windows)
+* Opera 44
 
 ### Use
 * [leaflet](http://leafletjs.com) an open-source JavaScript library for mobile-friendly interactive maps
-* [leaflet-gpx](https://github.com/mpetazzoni/leaflet-gpx) a plugin for the analysis and parsing of a GPX track 
+* [leaflet-gpx](https://github.com/mpetazzoni/leaflet-gpx) a leaflet plugin for the analysis and parsing of a GPX track 
 * [font-awesome-4.7.0](http://fontawesome.io/) for iconic font
 * [awesome-marker](https://github.com/lvoogdt) Colorful, iconic  markers by Lennard Voogdt
 
@@ -149,10 +153,12 @@ You can find on this site a quantity of already registered tracks.
 
 ------------------------------------------
 This trouble come from conflict with the x-frame options of your server. Look at whether the plugin succeeded in writing this following lines in the .htaccess of your wordpress appli if you can:
-	# BEGIN Lf-hiker plugin
-	<IfModule mod_headers.c>
-	Header set X-Frame-Options SAMEORIGIN
-	</IfModule>
-	# END Lf-hiker plugin 
+```	
+    # BEGIN Lf-hiker plugin
+    <IfModule mod_headers.c>
+    Header set X-Frame-Options SAMEORIGIN
+    </IfModule>
+    # END Lf-hiker plugin 
+```
 It resolve the trouble for me.   
 You can find more information about this trouble in wordpress support [Multiple 'X-Frame-Options' headers with conflicting values](https://wordpress.org/support/topic/multiple-x-frame-options-headers-with-conflicting-values-sameorigin-deny/)

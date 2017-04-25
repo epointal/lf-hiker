@@ -167,7 +167,7 @@ Class Lfh_Controller_Front
                 null,
                 true);
         self::$_lfh_mapquest_count++;
-        //deenqueue and reenqueue fh.plugin
+        //deenqueue and reenqueue lfh-plugin
          
         if(WP_DEBUG){
             wp_deregister_script('lfh_plugin');

@@ -79,8 +79,8 @@ class Lfh_Tools_Editor
     {
         
         if(WP_DEBUG){
-            wp_register_style('lfh_editor_css', Lf_Hiker_Plugin::$url .'/assets/css/lfh-post-editor.css', Array(), null, false);
-            wp_register_script('lfh_editor_js', Lf_Hiker_Plugin::$url . '/assets/js/lfh-post-editor.js', Array('jquery'), null, false);
+            wp_register_style('lfh_editor_css', Lf_Hiker_Plugin::$url .'/css/lfh-post-editor.css', Array(), null, false);
+            wp_register_script('lfh_editor_js', Lf_Hiker_Plugin::$url . '/js/lfh-post-editor.js', Array('jquery'), null, false);
             
         }else{
             $version = '.'.Lf_Hiker_Plugin::VERSION;
@@ -145,19 +145,18 @@ class Lfh_Tools_Editor
     public  function add_lfh_hiker_tinymce( $plugin_array )
     {
         if(WP_DEBUG){
-            $plugin_array['Lfh_plugin'] = Lf_Hiker_Plugin::$url . '/assets/js/tinymce-lfh-plugin.js' ;
+            $plugin_array['Lfh_plugin'] = Lf_Hiker_Plugin::$url . '/js/tinymce-lfh-plugin.js' ;
             
         }else{
             $version = '.'.Lf_Hiker_Plugin::VERSION;
-           // $plugin_array['Lfh_plugin'] = Lf_Hiker_Plugin::$url . '/dist/tinymce-lfh-plugin'.$version.'.js' ;
-            $plugin_array['Lfh_plugin'] = Lf_Hiker_Plugin::$url . '/assets/js/tinymce-lfh-plugin.js' ;
+            $plugin_array['Lfh_plugin'] = Lf_Hiker_Plugin::$url . '/dist/tinymce-lfh-plugin'.$version.'.js' ;
         }
         return $plugin_array;
     }
     //add css 
     public function  add_css_tinymce( $init_array )
     { 
-	    $init_array['content_css'] = Lf_Hiker_Plugin::$url . '/assets/css/lfh-post-editor.css'; 
+	    $init_array['content_css'] = Lf_Hiker_Plugin::$url . '/css/lfh-post-editor.css'; 
 	    return $init_array; 
 	}
     // Manage gpx file : filter for gpx in media gallery...

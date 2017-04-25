@@ -41,7 +41,7 @@ Class Lfh_Model_Map{
                         'max_zoom'      => 18,
                         'need_key'      => false),
             'stamen_water'=> array(
-                        'url'           =>  'http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg',
+                        'url'           =>  '//{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg',
                         'attribution'   => '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>Contributors & <a href="http://stamen.com">Stamen Design</a>',
                         'max_zoom'      => 13,
                         'need_key'      => false)

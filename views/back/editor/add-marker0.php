@@ -69,7 +69,7 @@ if(!function_exists('__')){
     <meta http-equiv="expires" content="0" />
     <meta http-equiv="pragma" content="no-cache" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css" />
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?=$plugin_url?>lib/awesome-marker/leaflet.awesome-markers.css">        
     <style>
     html, body{
@@ -77,6 +77,12 @@ if(!function_exists('__')){
        height:100%;
        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
        font-size:16px;
+    }
+    #map, #fade{
+        width:100%;
+        height:100%;
+        margin:0;
+        padding:0
     }
     #banner{
         position:fixed;
@@ -146,7 +152,6 @@ if(!function_exists('__')){
        z-index:1000;
        background-color:white;
        height:auto;
-       -webkit-user-drag: element;
        box-shadow: 0 1px 5px rgba(0,0,0,0.65);
        border-radius: 4px;
     }
@@ -507,6 +512,7 @@ var lfh = {
         tile: null, // the current L.tileLayer
         record: null, //record center and zoom when user want
         init_map: function(){
+          
             lfh.map = L.map('map').setView(lfh.center, lfh.zoom);
             lfh.set_tile();
             lfh.map.addControl(new LfhControl());
@@ -543,6 +549,7 @@ var lfh = {
                 lfh.tile = L.tileLayer(tileinfo.url, {
                         attribution: tileinfo.attribution
                     });
+
             }else{
                 lfh.tile =  MQ.mapLayer();
             }
