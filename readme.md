@@ -152,7 +152,7 @@ You can find on this site a quantity of already registered tracks.
 **2. I have a blank page in place of the marker editor**
 
 ------------------------------------------
-This trouble come from conflict with the x-frame options of your server. Look at whether the plugin succeeded in writing this following lines in the .htaccess of your wordpress appli if you can:
+This trouble come from conflict with the x-frame options of your server. Look at whether the plugin succeeded in writing this following lines in the .htaccess of your wordpress application if you can:
 ```	
     # BEGIN Lf-hiker plugin
     <IfModule mod_headers.c>
