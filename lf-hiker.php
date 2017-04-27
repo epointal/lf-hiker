@@ -24,7 +24,7 @@ if ( ! function_exists('write_log')) {
     
 class Lf_Hiker_Plugin
 {
-    const VERSION = '0.5';
+    const VERSION = '0.5.1';
     
     private static $_controller;
     
