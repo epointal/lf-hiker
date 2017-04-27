@@ -4,7 +4,7 @@ Contributors: [epointal](http://elisabeth.pointal.org)
 Plugin site web: [Lf Hiker](http://elisabeth.pointal.org/lf-hiker/en/about/ )  
 Tested up to: 4.7.3  
 Stable version: 1.0    
-Version: 1.0    
+Version: [1.0](https://github.com/epointal/lf-hiker/archive/v1.0.zip)    
 License: [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html ) 
 
 
