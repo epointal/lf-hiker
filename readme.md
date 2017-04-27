@@ -4,7 +4,8 @@ Contributors: epointal
 Donate link: http://elisabeth.pointal.org/lf-hiker/en/about/  
 Tags: map, gpx, waypoint, track, path, trail, polyline, markers, leaflet, profile elevation,  openstreetmap, osm, osm_fr, arcgis, mapquest, hiker  
 Tested up to: 4.7.3  
-Stable tag: 0.4
+Stable tag: 0.4  
+Version 0.5-beta.1  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
