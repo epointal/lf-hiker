@@ -5,26 +5,15 @@
     Description: A plugin for show gpx track with profile elevation and large description.
     Author: epointal
     Author URI: http://elisabeth.pointal.org/
-    Version: 0.4 beta
+    Version: 1.0
     License: GPL2
     Text domain: lfh
     */
 
     
-
-if ( ! function_exists('write_log')) {
-    function write_log ( $log )  {
-        if ( is_array( $log ) || is_object( $log ) ) {
-            error_log( print_r( $log, true ) );
-        } else {
-            error_log( $log );
-        }
-    }
-}
-    
 class Lf_Hiker_Plugin
 {
-    const VERSION = '0.5.1';
+    const VERSION = '1.0';
     
     private static $_controller;
     

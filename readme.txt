@@ -4,8 +4,8 @@ Contributors: epointal
 Donate link: http://elisabeth.pointal.org/lf-hiker/en/about/  
 Tags: map, gpx, waypoint, track, path, trail, polyline, markers, leaflet, profile elevation,  openstreetmap, osm, osm_fr, arcgis, mapquest, hiker, runner, elevation gain, elevation loss, distance, walker
 Requires at least: 4.7.3
-Tested up to: 4.7.3  
-Stable tag: 0.4
+Tested up to: 4.7.4  
+Stable tag: 1.0  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -114,12 +114,12 @@ If you have any questions about the method, do not hesitate to [contact me](http
 = Where can I create a gpx file ? =
 
 You can find a website list for do this in the page [Track drawing websites](http://wiki.openstreetmap.org/wiki/Track_drawing_websites)   
-[Openrunner](http://www.openrunner.com/) is the best one for me and the most important: this website automatically add the elevation data needed to create the profile.  
+[Openrunner](http://www.openrunner.com/) is the best one for me and, most important : this website automatically add the elevation data needed to create the profile.  
 You can find on this site a quantity of already registered tracks.
 
 = I have a blank page in place of the marker editor =
 
-This trouble come from conflict with the x-frame options of your server. Look at whether the plugin succeeded in writing this following lines in the .htaccess of your wordpress application if you can:
+This trouble come from conflict with multiple `x-frame options` directive in your server. Look at whether the plugin succeeded in writing this following lines in the `.htaccess` of your wordpress application if you can:
 ```	
     # BEGIN Lf-hiker plugin
     <IfModule mod_headers.c>

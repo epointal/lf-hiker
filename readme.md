@@ -4,8 +4,8 @@ Contributors: epointal
 Donate link: http://elisabeth.pointal.org/lf-hiker/en/about/  
 Tags: map, gpx, waypoint, track, path, trail, polyline, markers, leaflet, profile elevation,  openstreetmap, osm, osm_fr, arcgis, mapquest, hiker  
 Tested up to: 4.7.3  
-Stable tag: 0.4  
-Version 0.5-beta.1  
+Stable tag: 1.0    
+Version 1.0    
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -153,7 +153,7 @@ You can find on this site a quantity of already registered tracks.
 **2. I have a blank page in place of the marker editor**
 
 ------------------------------------------
-This trouble come from conflict with the x-frame options of your server. Look at whether the plugin succeeded in writing this following lines in the .htaccess of your wordpress application if you can:
+This trouble come from conflict with multiple `x-frame options` directive in your server. Look at whether the plugin succeeded in writing this following lines in the `.htaccess` of your wordpress application if you can:
 ```	
     # BEGIN Lf-hiker plugin
     <IfModule mod_headers.c>
