@@ -552,16 +552,20 @@ lfh.Link = function( map, layer, elem_id, selected, move){
        });
        // close button
        var nodeClose = _dom.querySelector('.lfh-close');
-       L.DomEvent.addListener(nodeClose ,'click', function(e){
-           _layer.fire('click');
-       });
+      
      
       if( _layer instanceof L.Layer){
           _layer.on('click', function(e){
               _tooggle( );
           });
+          L.DomEvent.addListener(nodeClose ,'click', function(e){
+              _layer.fire('click');
+          });
       }else{
           L.DomEvent.addListener( _layer, 'click', function(e){
+              _tooggle();
+          });
+          L.DomEvent.addListener(nodeClose ,'click', function(e){
               _tooggle();
           });
       }
