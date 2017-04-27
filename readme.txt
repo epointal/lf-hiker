@@ -6,6 +6,7 @@ Tags: map, gpx, waypoint, track, path, trail, polyline, markers, leaflet, profil
 Requires at least: 4.7.3
 Tested up to: 4.7.4  
 Stable tag: 1.0  
+Tag: 1.0
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
