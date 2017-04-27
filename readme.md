@@ -1,13 +1,12 @@
- Lf Hiker 
-=============
-Contributors: epointal  
-Donate link: http://elisabeth.pointal.org/lf-hiker/en/about/  
-Tags: map, gpx, waypoint, track, path, trail, polyline, markers, leaflet, profile elevation,  openstreetmap, osm, osm_fr, arcgis, mapquest, hiker  
+# Lf Hiker 
+
+Contributors: [epointal](http://elisabeth.pointal.org)  
+Plugin site web: [Lf Hiker](http://elisabeth.pointal.org/lf-hiker/en/about/ )  
 Tested up to: 4.7.3  
-Stable tag: 1.0    
-Tag: 1.0    
-License: GPLv2 or later  
-License URI: http://www.gnu.org/licenses/gpl-2.0.html  
+Stable version: 1.0    
+Version: 1.0    
+License: [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html ) 
+
 
 
 **Lf Hiker** is a wordpress plugin for quickly display your gpx tracks with their profile elevation on an interactive map. 
