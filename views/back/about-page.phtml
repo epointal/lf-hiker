@@ -40,5 +40,28 @@
 <?php endif;?>
 
 <?php if($active_tab == 'about_page'):?>
-about page 
+<h1><?=__('About', 'lfh')?></h1>
+
+<p><b>Lf Hiker</b> <?=__('is a wordpress plugin for quickly display your gpx tracks with their profile elevation on an interactive map.', 'lfh')?></p>
+<p style="padding:10px; border:1px solid lightgrey; background-color:#fff;font-size:1.2em;width:80%;color:#000;"><?=__('You can find informations, and tutorial on website', 'lfh')?> <a href="http://elisabeth.pointal.org/lf-hiker"  target="_blank" >Lf Hiker</a></p>
+<h2><?=__('Main Utilisation', 'lfh')?></h2>
+
+<p><?=__('Simply upload your gpx file with the wordpress media manager, complete its informations and insert  it in your post/page (shortcode).', 'lfh')?>
+<?=__('Display the post/page : you have an interactive view of your track.', 'lfh')?></p>
+<?=__('The trail is displayed on an OSM map by default, and have its own information window with:', 'lfh')?>
+<ul style="list-style: square;margin-left:20px;">
+    <li><?=__('title', 'lfh')?></li>
+    <li><?=__('description', 'lfh')?></li>
+    <li><?=__('interactive profile elevation  according to path', 'lfh')?></li>
+    <li><?=__('distance of the track', 'lfh')?></li>
+    <li><?=__('elevation loss', 'lfh')?></li>
+    <li><?=__('elevation gain', 'lfh')?></li>
+</ul>
+<img src="<?=$plugin_url?>assets/screenshot-1.png" alt='Screenshot Lf Hiker' style="max-width:100%;"/> 
+
+<h2><?=__('Other features', 'lfh')?></h2>
+<p><b>Lf Hiker <?=__('included an helper for edit map and add markers.', 'lfh')?></b></p>
+<p><?=__('See all features on Lf Hiker website', 'lfh')?>: <a href="http://elisabeth.pointal.org/lf-hiker"  target="_blank" >Lf Hiker</a></p> 
+<img src="<?=$plugin_url?>assets/screenshot-5.png" alt='Screenshot Lf Hiker' style="max-width:100%;"/> 
+
 <?php endif;?>

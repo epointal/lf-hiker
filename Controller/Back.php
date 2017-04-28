@@ -82,7 +82,8 @@ Class Lfh_Controller_Back
       echo  self::get_view()->render('about-page', array(
                 'active_tab'      => $active_tab,
                 'helper_unactive' => $mode,
-                'msg'             => $msg
+                'msg'             => $msg,
+                'plugin_url'      => Lf_Hiker_Plugin::$url
         ));
     }
     //for all users
