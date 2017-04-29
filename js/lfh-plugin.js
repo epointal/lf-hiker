@@ -368,7 +368,7 @@ lfh.Map = function(i){
                 var list = document.querySelector('#list-'+ _index +' ul.lfh-list-markers');
                 var node = document.createElement('li');
                 node.textContent = marker.options.title;
-                list.append(node);
+                list.appendChild(node);
                 L.DomEvent.addListener( node , 'click', function(e){
                     marker.fire('click');
                 });
@@ -380,7 +380,7 @@ lfh.Map = function(i){
                 var list = document.querySelector('#list-'+ _index +' ul.lfh-list-gpx');
                 var node = document.createElement('li');
                 node.textContent = document.querySelector('#'+gpx.options.elem_id + ' span.lfh-trackname').textContent;
-                list.append(node);
+                list.appendChild(node);
                 L.DomEvent.addListener( node , 'click', function(e){
                     gpx.fire('click');
                 });

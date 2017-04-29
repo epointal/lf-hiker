@@ -1,4 +1,4 @@
-var version = '1.0.1';
+var version = '1.0.2';
 var gulp = require('gulp');
 var less = require('gulp-less');
 var minify = require('gulp-minify');
