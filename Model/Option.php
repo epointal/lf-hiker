@@ -101,11 +101,13 @@ Class Lfh_Model_Option
        //try to create cache dir
        $dir = Lfh_Tools_Cache::create_cache_dir($dir);
        //Success : delete old cache dir
-       if($dir!==false && $dir !=  get_option('lfh_parent_cache')){
+
+       if($dir!=false && $dir !=  get_option('lfh_parent_cache')){
            Lfh_Tools_Cache::delete_cache_dir();
            return $dir;
        }else{
-           return get_option('lfh_parent_cache');
+           Lfh_Tools_Notice::display(__('Failed to create a new cache', 'lfh'), 'important');
+           return get_option('lfh_parent_cache')? get_otion('lfh_parent_cache'): self::get_defaults('config_lfh')['lfh_cache_parent']['default'];
        }
    }
 
@@ -122,6 +124,7 @@ Class Lfh_Model_Option
            break;
            case 'custom_css':
                self::update_inherit_color();
+           break;
        }
        
        return array('msg' => __('data updated', 'lfh'), 'error' => null);

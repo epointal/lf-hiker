@@ -25,6 +25,8 @@ Class Lfh_Tools_Cache{
        $dir = realpath($dir);
        if(!$dir){
            //can't create a directory in a inexistant directory
+           // return to default cache
+           $dir = Lfh_Model_Option::get_option('lfh_cache_parent');
            return false;
        }
        //$perms = decoct(fileperms($dir) & 0777);

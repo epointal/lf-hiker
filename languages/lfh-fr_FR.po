@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lfh\n"
-"POT-Creation-Date: 2017-04-28 10:28+0100\n"
-"PO-Revision-Date: 2017-04-28 10:45+0100\n"
+"POT-Creation-Date: 2017-05-01 19:27+0100\n"
+"PO-Revision-Date: 2017-05-01 19:28+0100\n"
 "Last-Translator: Elisabeth Pointal <elisabeth.pointal@free.fr>\n"
 "Language-Team: elisabeth\n"
 "Language: fr_FR\n"
@@ -362,11 +362,11 @@ msgstr "Ins&eacute;rer le shortcode le la carte"
 msgid "Insert markers shortcodes"
 msgstr "Ins&eacute;rer les shortcodes des marqueurs"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Cache.php:76
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Cache.php:78
 msgid "Cache clear with success"
 msgstr "Cache vid&eacute; avec succ&egrave;s"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Cache.php:81
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Cache.php:83
 msgid "Failed to clear cache"
 msgstr "&Eacute;chec lors du nettoyage du cache"
 
@@ -521,11 +521,15 @@ msgstr "ensuite entrer votre cl&acute; "
 msgid "Cache dir"
 msgstr "Dossier du cache"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:127
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:109
+msgid "Failed to create a new cache"
+msgstr "&Eacute;chec lors de la cr&eacute;ation du cache"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:130
 msgid "data updated"
 msgstr "donn&eacute;es mises &agrave; jour"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:147
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:150
 msgid "data reseted"
 msgstr "Donn&eacute;es initialis&eacute;es"
 

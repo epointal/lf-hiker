@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lfh\n"
-"POT-Creation-Date: 2017-04-28 10:28+0100\n"
-"PO-Revision-Date: 2017-04-28 10:28+0100\n"
+"POT-Creation-Date: 2017-05-01 19:28+0100\n"
+"PO-Revision-Date: 2017-05-01 19:28+0100\n"
 "Last-Translator: Elisabeth Pointal <elisabeth.pointal@free.fr>\n"
 "Language-Team: elisabeth\n"
 "Language: en_EN\n"
@@ -130,19 +130,23 @@ msgstr ""
 msgid "Cache dir"
 msgstr ""
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:127
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:109
+msgid "Failed to create a new cache"
+msgstr ""
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:130
 msgid "data updated"
 msgstr ""
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:147
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:150
 msgid "data reseted"
 msgstr ""
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Cache.php:76
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Cache.php:78
 msgid "Cache clear with success"
 msgstr ""
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Cache.php:81
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Cache.php:83
 msgid "Failed to clear cache"
 msgstr ""
 
