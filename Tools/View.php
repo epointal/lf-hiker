@@ -4,6 +4,8 @@
  * @author epointal
  *
  */
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 Class Lfh_Tools_View{
     private $_controller;
     private $_dir_view;
@@ -32,7 +34,7 @@ Class Lfh_Tools_View{
         extract($fields);
         ob_start();
         include realpath($this->_dir_view .'/'.$this->_controller. '/'.$template_name.'.phtml');
-        return new Lfh_Tools_Compress(ob_get_clean());
-        //return ob_get_clean();
+        //return new Lfh_Tools_Compress(ob_get_clean());
+        return ob_get_clean();
     }
 }

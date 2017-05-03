@@ -3,6 +3,7 @@
  * @author epointal
  * Template for div maker information
  */
+if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 <?php if(strlen($html)> 6):?>
 <div id="<?=$marker_id?>" class="lfh-info-<?=$map_count?> lfh-element leaflet-control hidden"  >
@@ -44,6 +45,3 @@
     </div>
 </div>
 <?php endif;?>
-<script type="text/javascript">
-         lfh.data[<?=$map_count?>].markers[<?=$marker_count?>] = <?=json_encode($options, JSON_NUMERIC_CHECK)?>;
-</script>

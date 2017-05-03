@@ -1,4 +1,6 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class Lfh_Tools_Notice
 {
     public static function display( $text, $mode='success'){

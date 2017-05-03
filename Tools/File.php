@@ -1,4 +1,6 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class Lfh_Tools_File
 {
     public static function rrmdir($dirname){

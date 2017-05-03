@@ -1,4 +1,4 @@
-var version = '1.0.2';
+var version = '1.0.3';
 var gulp = require('gulp');
 var less = require('gulp-less');
 var minify = require('gulp-minify');
@@ -22,6 +22,7 @@ gulp.task('versioning', function(){
 	.pipe(gulp.dest('dist'));
 	
 	gulp.src(['css/*.css', '!css/lfh-style.css'])
+	.pipe(cssmin())
 	.pipe(rename({suffix: '.'+version}))
     .pipe(gulp.dest('dist'));
 	//all js in the same file
@@ -35,7 +36,9 @@ gulp.task('versioning', function(){
 	.pipe(gulp.dest('dist'));
 	
 	gulp.src(['js/tinymce-lfh-plugin.js',
-	          'js/lfh-post-editor.js'])
+	          'js/lfh-post-editor.js',
+			  'js/helper.js'])
+	.pipe(minify())
 	.pipe(rename({suffix: '.'+version}))
     .pipe(gulp.dest('dist'));
 	

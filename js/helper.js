@@ -1,487 +1,3 @@
-<?php
-/**
- * @author epointal
- * Complete page
- * Tools for add place marker, no dependance with wordpress, it can be used like this
- * This page is called in post editor for create the shortcode, only need a directory with markers
- */
-
-
-//for dev (http://rancs.com/blog/wp-content/plugins/lf-hiker/views/back/editor/add-marker.phtml)
-if(!isset($plugin_url)){
-    if(!function_exists( 'get_option')){
-        function get_option($var){
-            switch($var){
-                case 'lfh_mapquest_key':
-                    return "7zIDDCdk1pXCTgR5cQxmZCeDcaLuxX34";
-                    break;
-                default:
-                    return '';
-            }
-        }
-    }
-    $position = strpos($_SERVER["SERVER_PROTOCOL"],"/");
-    $uri = explode('/', $_SERVER['REQUEST_URI']);
-    array_pop($uri);//add-marker
-    array_pop($uri);//editor
-    array_pop($uri);//back
-    array_pop($uri);//views
-    $plugin_url = substr(strtolower($_SERVER["SERVER_PROTOCOL"]), 0,$position).'://'.$_SERVER['SERVER_NAME'].implode('/', $uri).'/';
-   
-    $dir = __DIR__;
-
-    $dirs = explode(DIRECTORY_SEPARATOR, __DIR__);
-    array_pop($dirs);
-    array_pop($dirs);
-    array_pop($dirs);
-    
-    $plugin_dir = implode( DIRECTORY_SEPARATOR, $dirs);
-   
-    require_once  $plugin_dir.'/Model/Map.php';
-    $colors = Lfh_Model_Map::$colors_marker;
-    $icons  = Lfh_Model_Map::$icons_marker;
-    $class = Lfh_Model_Map::$class_map;
-    $default = Lfh_Model_Map::$default;
-    $tiles = Lfh_Model_Map::$tiles;
-   // $mapquest_key = get_option('lfh_mapquest_key');
-    $mapquest_key = "7zIDDCdk1pXCTgR5cQxmZCeDcaLuxX34";
-    
-    }
-if(!function_exists('_e')){
-        function _e($text, $domaine=null){
-            return stripslashes($text);
-        }
-}
-if(!function_exists('__')){
-    function __($text, $domaine=null){
-        return stripslashes($text);
-    }
-    $options_map = Lfh_Model_Map::map_parameters();
-}
-
-//-- end for dev
-
-?>
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-     <meta http-equiv="cache-control" content="no-cache" />
-    <meta http-equiv="expires" content="0" />
-    <meta http-equiv="pragma" content="no-cache" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?=$plugin_url?>lib/awesome-marker/leaflet.awesome-markers.css">        
-    <style>
-    html, body{
-       width:100%;
-       height:100%;
-       font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-       font-size:16px;
-    }
-    #map, #fade{
-        width:100%;
-        height:100%;
-        margin:0;
-        padding:0
-    }
-    #banner{
-        position:fixed;
-        z-index:1001;
-        bottom:0px;
-        right:20px;
-        height:auto;
-        text-align:right;
-        display:inline-block;
-    }
-    input[type="button"],
-    input[type="reset"]{
-        margin: 0px 7px 3px 0;
-        padding: 6px 18px;
-        height: 50px;
-        vertical-align:middle;
-        max-width:150px;
-        font-size: 14px;
-        line-height: 1.4285714;
-        white-space: normal;
-        background: #0085ba;
-        border-width:1px;
-        border-style: solid;
-        border-radius:3px;
-        border-color: #0073aa #006799 #006799;
-        color: #fff;
-        text-decoration: none;
-        text-shadow: 0 -1px 1px #006799,1px 0 1px #006799,0 1px 1px #006799,-1px 0 1px #006799;
-        vertical-align: top;
-        display: inline-block;
-        cursor: pointer;
-        box-sizing: border-box;
-        text-align:center;
-        box-shadow: 0 1px 5px rgba(0,0,0,0.65);
-    }
-    input[type="button"]:disabled{
-        background-color: lightgrey;
-    }
-    input[type="button"]:disabled:hover{
-        background-color: lightgrey;
-    }
-    input[type="button"]:hover{
-        background-color: #0089bc;
-    }
-    #fade input[type="button"],
-    form input[type="button"],
-    form input[type="reset"]{
-        margin: 7px 7px 0px 0;
-        padding: 3px 9px;
-        height: auto;
-        font-size: 12px;
-        line-height: 1.2;
-    }
-    #fade input[type="button"]{
-        font-size:14px;
-    }
-    form input[type="number"]{
-        width:50px;
-        direction: rtl;
-        padding-right: 3px;
-    }
-    .lfh-form-edit{
-       padding:0px;
-       width:350px;
-       position:fixed;
-
-       z-index:1000;
-       background-color:white;
-       height:auto;
-       box-shadow: 0 1px 5px rgba(0,0,0,0.65);
-       border-radius: 4px;
-    }
-    #window-edit-marker{
-       top:5px;
-       right:5px;
-    }
-    #window-edit-map{
-        top:5px;
-        left:60px;
-    }
-    .lfh-form-edit .header{
-        background-color: #23282d;
-        color:white;
-        padding-left:10px;
-        margin:0px;
-        cursor: move;
-    }
-    .lfh-form-edit .header h3{
-        margin:;
-        display:inline;
-        width:180px;
-        vertical-align:middle;
-    }
-    .header div.fa{
-        float:right;
-        display:inline-block;
-        vertical-align:top;
-        cursor:pointer;
-        padding : 3px;
-    }
-    form{
-        padding-top:10px;
-        overflow-y:auto;
-        height:auto;
-        max-height:395px;
-        padding-bottom:10px;
-    }
-    label{
-        text-align:right;
-        width:150px;
-        padding-right:5px;
-        color: #124964;
-    }
-    input,
-    select,
-    textarea{
-        font-size: 12px;
-        border-width: 1px;
-        border-style: solid;
-        border-color: #ddd;
-    }
-    input[type=text],
-    textarea{
-        width: 165px;
-        max-width:165px;
-        line-height:1.4;
-    }
-    label, input{
-        display:inline-block;
-        vertical-align:top;
-    }
-    input:focus,
-    select:focus,
-    textarea:focus{
-        border-color: #5b9dd9;
-    }
-    textarea{
-        height:33px;
-    }
-    #selected-icon,
-    #selected-color{
-        cursor:pointer;
-    }
-    #selected-icon{
-        margin-left:10px;
-    }
-    .to-extend{
-        margin-top: -5px;
-    }
-    .to-extend > div{
-       width:165px; 
-       margin:2px;
-       text-align:center;
-       background-color:#f3f3f3;
-       overflow:hidden;
-    }
-    #center-map,
-    #selected-color,
-    #selected-icon,
-    .to-extend div{
-        display:inline-block;
-        position:static;
-        -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
-        box-shadow: inset 0 0 0 1px rgba(0,0,0,.1);
-    }
-    #center-map{
-        background-color:#f3f3f3;
-        margin:0 6px 6px 6px;
-        padding:0 5px 5px 5px;
-        text-align: right;
-       
-    }
-    .to-extend label{
-        cursor:pointer;
-    }
-    .to-extend label:hover{
-        font-size:18px;
-    }
-    
-    .to-extend > div > div{
-        margin:0;
-        padding:0px;
-        cursor:pointer;
-    }    
-    .to-extend > div > div:hover{
-        background-color: #fff;
-        padding:1px;
-    }
-    #icon-marker div{
-        min-width:19px;
-        text-align:center;
-    }
-    .to-extend > div > div.selected{
-        background-color:#b5d0d0;
-        -webkit-box-shadow: inset 0 0 0 1px rgba(91,157,217,.9);
-        box-shadow: inset 0 0 0 1px rgba(91,157,217,.9);
-    }
-    *::-moz-placeholder {
-        color: #72777c;
-        opacity: 1;
-    }
-    .leaflet-control .fa{
-        width:22px;
-        font-size:18px;
-        text-align:center;
-        margin:0;
-        padding:2px;
-        border-radius:2px;
-     
-        cursor:pointer;
-    }
-    .leaflet-control .active{
-        background-color:rgba(240, 214, 215, 1);
-        -webkit-box-shadow: inset 0 0 0 2px rgba(231, 107, 111, 0.6);
-        box-shadow: inset 0 0 0 2px rgba(231, 107, 111, 0.6);
-    }
-    #map-position, #text-pan{
-        display:block;
-        text-align:left;
-        padding-left:9px;
-        font-size:12px;
-    }
-    #text-pan{
-        padding-left:3px;
-        font-size:14px;
-        color:#d12a2f;
-    }
-    #fade{
-        position:fixed;
-        top:0;
-        left:0;
-        background-color:rgba(25, 25, 25, 0.8);
-        width:100%;
-        height:100vh;
-        display:block;
-        text-align:center;
-        z-index:1002;
-        opacity:1;
-        transition: opacity 0.5 ease;
-    }
-    #fade.hidden{
-        display:none;
-        opacity:0;
-    }
-    #fade::before{
-        content: "";
-        display: inline-block;
-        height: 100%;
-        vertical-align: middle;
-        
-    }
-    .modal{
-        text-align:left;
-        margin:auto;
-        width:350px;
-        padding:10px;
-        vertical-align:middle;
-        background-color:#fff;
-        border-radius: 15px 15px 15px 15px;
-        -moz-border-radius: 15px 15px 15px 15px;
-        -webkit-border-radius: 15px 15px 15px 15px;
-        border: 10px solid #9e9e9e;
-        box-shadow: 0 1px 5px rgba(0,0,0,0.65);
-        display:inline-block;
-        
-    }
-    .modal label{
-        width:250px;
-    }
-    .modal h3{
-        font-size:18px;
-        margin:10px 0 18px 10px;
-    }
-    </style>
-</head>
-
-<body>
-<div id="fade" class="hidden">
-    <div class="modal">
-    <h3><?=__('Insert shortcodes', 'lfh')?></h3>
-    <div class="content">
-        <div>
-            <label for="lfh-insert-map"><?=__('Insert map shortcode' , 'lfh')?></label>
-            <input type="checkbox" name="lfh-insert-map" />
-        </div>
-         <div>
-            <label for="lfh-insert-markers"><?=__('Insert markers shortcodes' , 'lfh')?></label>
-            <input type="checkbox" name="lfh-insert-markers" checked />
-        </div>
-        <div style="text-align:right;margin:10px 5px 5px 0;">
-        	<input type="button" name="lfh-modal-cancel" value="<?=__('Cancel')?>" />
-        	<input type="button" name="lfh-modal-insert" value="<?=__('Insert shortcodes', 'lfh')?>" />
-        </div>
-    </div>
-    </div>
-</div>
-<!-- <div id="debug"  style="position:absolute;top:20px;left:400px;display:block;z-index:90000;"></div>-->
-<!-- control for marker on map -->
-<div id="lfh-control" class="leaflet-bar leaflet-control">
-  <a  id="lfh-edit-map" class="leaflet-buttons-control-button marker-control" title="<?=_e('Edit map', 'lfh')?>">
-        <div class="fa fa-map"></div>
-    </a>
-    <a id="lfh-add-marker" class="leaflet-buttons-control-button marker-control " title="<?=_e('Add marker', 'lfh')?>">
-        <div class="fa fa-map-marker"></div>
-    </a>
-    <a id="lfh-edit-marker" class="leaflet-buttons-control-button marker-control" title="<?=_e('Edit marker', 'lfh')?>">
-        <div class="fa fa-edit"></div>
-    </a>
-    <a  id="lfh-delete-marker" class="leaflet-buttons-control-button marker-control" title="<?=_e('Delete marker', 'lfh')?>">
-        <div class="fa fa-trash"></div>
-    </a>
-   
-    
-</div>
-<!-- banner buttons bottom right -->
-     <div id="banner" >
-     	<input name="lfh-cancel" type="button" value="<?=_e('Cancel')?>" />
-     	<input name="lfh-insert" type="button" value="<?=_e('Insert shortcodes', 'lfh')?>" />
-     </div>
-     
-<!-- window for edit map -->
-<?php   include 'map-form.phtml';?>
-
- 
-<!-- window for editing marker -->
-    <div id="window-edit-marker"  class="lfh-form-edit" style="display:none;">
-    <div class="header" >
-        <h3><?=_e('Edit marker', 'lfh')?></h3>
-        <div id="window-close" class="fa fa-close"></div>
-    </div>
-    <form>
-        <div>
-            <label for="title"><?=_e('Title', 'lfh')?></label>
-            <input type="text" name="title" tabindex="1" value=""/>
-        </div>
-         <div>
-            <label for="popup"><?=_e('Popup', 'lfh')?></label>
-            <textarea name="popup" tabindex="2" rows="2" value=""></textarea>
-        </div>
-        <div>
-            <label for="description"><?=_e('Description', 'lfh')?></label>
-            <input type="checkbox" name="description"  tabindex="3"/>
-        </div>
-        <div>
-            <label for="visibility"><?=_e('Visibility', 'lfh')?></label>
-            <select  name="visibility" tabindex="4">
-            <option value="always"><?=_e('Always', 'lfh')?></option>
-            <option value="zoom" selected><?=_e('According to zoom', 'lfh')?></option>
-            </select>
-        </div>
-        <div>
-            <label for="icon-color"><?=_e('Icon color', 'lfh')?></label>
-            <div id="selected-color" class="awesome-marker awesome-marker-icon-red" data-value="red" tabindex="5"></div>
-            <input name="icon-color" type="hidden" value="red" />
-        </div>
-         <div class="to-extend">
-             <label>+</label>
-             <div id="color-marker" style="display:none;">
-             <?php
-             for($i=0; $i<count($colors);$i++): ?>
-             <?php if($i==0):?>
-             <div class="awesome-marker-icon-<?=$colors[$i]?> awesome-marker selected" data-value="<?=$colors[$i]?>"></div>
-             <?php else:?>
-             <div class="awesome-marker-icon-<?=$colors[$i]?> awesome-marker" data-value="<?=$colors[$i]?>"></div>
-             <?php endif;?>
-             <?php endfor;?>
-             </div>
-         </div>
-         <div>
-            <label for="selected-icon"><?=_e('Inside icon', 'lfh')?></label>
-            <div id="selected-icon" class="fa fa-circle" data-value="circle" tabindex="6"></div>
-            <input name="selected-icon" type="hidden" value="red" />
-        </div>
-         <div class="to-extend">
-             <label>+</label>
-             <div id="icon-marker" style="display:none;padding-bottom:10px">
-        <?php for($i=0; $i<count($icons); $i++):?>
-        <?php if($i==0):?>
-             <div class="fa fa-<?=$icons[$i]?> selected"  data-value="<?=$icons[$i]?>"></div>
-        <?php else:?>
-            <div class="fa fa-<?=$icons[$i]?>" data-value="<?=$icons[$i]?>"></div>
-        <?php endif;?>
-        <?php endfor;?>
-             </div>
-         </div>
-    </form>
-    </div><!-- end edit marker -->
-    
-
-    <!-- the map -->
-    <div id="map" style="height:100vh;width:100%;"></div>
-
-<!-- all scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
-<script src="<?=$plugin_url?>lib/awesome-marker/leaflet.awesome-markers.min.js"></script>
-<?php if(!is_null($mapquest_key)):?>
-<script src="https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key=<?=$mapquest_key?>"></script>
-<?php endif;?>
-<script type="text/javascript">
 (function(){
     //For Adding button mode  on map control
 
@@ -499,9 +15,9 @@ var LfhControl = L.Control.extend({
   
 var lfh = {
         mode: "lfh-view",
-        confirm : "<?=_e('Delete marker' , 'lfh')?> ?",//when load 
-        add_description : "<?=_e('Add here your formated description', 'lfh')?>",
-        tiles : <?=json_encode($tiles)?>,
+        confirm : data_helper.confirm,
+        add_description : data_helper.add_description,
+        tiles : data_helper.tiles,
         map: null,
         center: [48.67777858405578, 2.166026472914382], //by default center = les ulis France
         zoom: 2,
@@ -526,8 +42,8 @@ var lfh = {
             lfh.map.on("mousemove", function(e){
                 switch(lfh.mode){
                     case 'lfh-add-marker':
-                    	lfh.move_marker.setLatLng(e.latlng);
-                    	break;
+                        lfh.move_marker.setLatLng(e.latlng);
+                        break;
                     default:
                 }
             });
@@ -572,14 +88,14 @@ var lfh = {
                 lfh.markers.push(lfh.current_marker);
                 lfh.current_marker.on('click', function(e){
                     switch(lfh.mode){
-                    	case 'lfh-edit-marker':
+                        case 'lfh-edit-marker':
                             lfh.current_marker = this;
                             lfh.init_window();
                             break;
-                    	case 'lfh-delete-marker':
-                        	lfh.current_marker = null;
-                        	lfh.delete_marker(this);
-                        	break;
+                        case 'lfh-delete-marker':
+                            lfh.current_marker = null;
+                            lfh.delete_marker(this);
+                            break;
                         default:
                     }
                 });
@@ -589,11 +105,11 @@ var lfh = {
         },
         
         delete_marker: function(marker){
-        	var answer = confirm( lfh.confirm);
-        	if(!answer){
-        		return;
-        	}
-        	var index = marker.options.index; 
+            var answer = confirm( lfh.confirm);
+            if(!answer){
+                return;
+            }
+            var index = marker.options.index; 
             for(var i=index;i<lfh.markers.length-1;i++){
                 lfh.markers[i] = lfh.markers[i+1];
                 lfh.markers[i].options.index = i;
@@ -605,8 +121,8 @@ var lfh = {
         set_mode: function(node){
             //unactive the active
             if(lfh.mode != 'lfh-view'){
-             	var active = document.querySelector('.marker-control.active');
-             	active.className = active.className.replace(' active', '');
+                 var active = document.querySelector('.marker-control.active');
+                 active.className = active.className.replace(' active', '');
             }
             //close window edit
             var nodes = document.querySelectorAll('.lfh-form-edit');
@@ -673,7 +189,7 @@ var lfh = {
             
            
         },
-		// close the widow "edit marker"
+        // close the widow "edit marker"
         close_window: function(id){
             switch(id){
             case 'window-edit-marker':
@@ -734,8 +250,8 @@ var lfh = {
             var shortcode = '';
             switch(name){
             case 'map':
-                	shortcode += lfh.shortcode_map();
-                	break;
+                    shortcode += lfh.shortcode_map();
+                    break;
             case 'markers':
                 for(var i=0; i<lfh.markers.length; i++){
                     var latlng = lfh.markers[i].getLatLng();
@@ -749,7 +265,7 @@ var lfh = {
                     shortcode += ' visibility=' + options.visibility;
                     shortcode += ' ]' ;
                     if(options.description){
-                    	shortcode += '<br />' + lfh.add_description + '<br />';
+                        shortcode += '<br />' + lfh.add_description + '<br />';
                     }
                     shortcode += '[/lfh-marker]<br />  ';
                 }
@@ -764,8 +280,8 @@ var lfh = {
 var nodes = document.querySelectorAll('.marker-control');
 [].forEach.call(nodes, function(button){
     L.DomEvent.addListener(button,'click', function(e){
-    	lfh.set_mode(button);
-    	e.stopPropagation();
+        lfh.set_mode(button);
+        e.stopPropagation();
     });
 });
 //no submit form
@@ -874,7 +390,7 @@ document.onmouseup = hdrg.destroy;
            }, 500);
    }
    // - for edit marker
-	var node = document.querySelector('#window-edit-marker input[name="title"]');
+    var node = document.querySelector('#window-edit-marker input[name="title"]');
     L.DomEvent.addListener(node,'change', function(e){
         lfh.current_marker.options.title = this.value.addslashes();
     });
@@ -1031,8 +547,3 @@ String.prototype.replaceAll = function(search, replacement) {
     var target = this;
     return target.replace(new RegExp(search, 'g'), replacement);
 };
-
-</script>
-
-    </body>
-</html>

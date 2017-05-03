@@ -4,6 +4,7 @@
  * and functions for edit post, and gpx file, 
  * @author epointal
  */
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 Class Lfh_Controller_Back
 {

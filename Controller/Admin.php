@@ -4,6 +4,7 @@
  * and functions for edit post, and gpx file, 
  * @author epointal
  */
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 Class Lfh_Controller_Admin
 {
@@ -64,7 +65,7 @@ Class Lfh_Controller_Admin
         $msg = null;
         $error = null;
         if( isset( $_GET[ 'tab' ] ) ) {
-            $active_tab = $_GET[ 'tab' ];
+            $active_tab = filter_var($_GET[ 'tab' ],FILTER_SANITIZE_SPECIAL_CHARS);
         }else{
             $active_tab ="custom_css";// end if
         }
@@ -124,14 +125,7 @@ Class Lfh_Controller_Admin
     public static function deactivate(){
         Lfh_Tools_Cache::delete_cache_dir();
         insert_with_markers(get_home_path().'.htaccess', 'Lf-hiker plugin','');
-        // keep option in db if admin want reactive the plugin
-        /* $tabs = Lfh_Model_Option::get_tabs();
-         foreach($tabs as $tab => $label){
-         $defaults = Lfh_Model_Option::get_defaults($tab);
-         foreach($defaults as $name=>$atts) {
-         delete_option( $name );
-         }
-         }*/
+  
     }
     public  static function uninstall () {
         //delete all lf-hiker options

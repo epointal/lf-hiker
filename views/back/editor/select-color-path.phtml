@@ -1,13 +1,15 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 if(empty($value)){
     $value = $default;
 }
 ?>
 <div id="lfh-select-color-<?=$post_id?>">
-    <input type="hidden"  id="attachements-<?=$post_id?>-<?=$field?>" name="attachments[<?=$post_id?>][<?=$field?>]" value="<?=$value?>"/ >
+    <input type="hidden"  id="attachements-<?=$post_id?>-<?=$field?>" name="attachments[<?=$post_id?>][<?=$field?>]" value="<?=$value?>" / >
     
     <div class="lfh-color-option">
-    	<div class="lfh-color-chosen selected" style="background-color:<?=$value?>"></div>
+    	<div class="lfh-color-chosen selected" style="background-color:<?=$value?>" onclick="lfh.init_dom_color('lfh-select-color-<?=$post_id?>');"></div>
     </div>
     
     <div class="lfh-color-option  to-extend hidden">
@@ -23,6 +25,3 @@ if(empty($value)){
       <?php endfor;?>
     </div>
 </div>
-<script type="text/javascript">
-lfh.init_dom_color("lfh-select-color-<?=$post_id?>");
-</script>';

@@ -1,4 +1,6 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class Lfh_Tools_Editor
 {
     private $_view = null;
@@ -38,9 +40,7 @@ class Lfh_Tools_Editor
                     //Button and helper for add marker
                     //register button marker for tinymce editor
                     add_action( 'admin_head', array( &$this, 'custom_tinymce' ));
-                    //add js data before tinyMCE
-                    add_action('edit_form_top', array( &$this,'script_for_tinyMCE'));
-                    // add action ajax  loading the helper page "add marker" ++
+           
                 }
                 // for Manage gpx file
                 //-------------------
@@ -85,30 +85,82 @@ class Lfh_Tools_Editor
         }else{
             $version = '.'.Lf_Hiker_Plugin::VERSION;
             wp_register_style('lfh_editor_css', Lf_Hiker_Plugin::$url .'/dist/lfh-post-editor'.$version.'.css', Array(), null, false);
-            wp_register_script('lfh_editor_js', Lf_Hiker_Plugin::$url . '/dist/lfh-post-editor'.$version.'.js', Array('jquery'), null, false);
+            wp_register_script('lfh_editor_js', Lf_Hiker_Plugin::$url . '/dist/lfh-post-editor-min'.$version.'.js', Array('jquery'), null, false);
         }
         wp_enqueue_style('lfh_editor_css');
         wp_enqueue_script('lfh_editor_js');
+        $this->script_for_tinyMCE();
+        
+    }
+    
+    function script_for_field_color($post_id){
+        $script = 'lfh.init_dom_color("lfh-select-color-' .$post_id. '");';
+        wp_add_inline_script('lfh_editor_jd', $script );
     }
     // for markers
     //------------
     //Add script for transmit data to tinyMCE javascript editor
     public function script_for_tinyMCE()
     {
-        
-        echo $this->get_view()->render('script-for-tinyMCE' , array(
-                'plugin_url' => Lf_Hiker_Plugin::$url,
-                'ajax_url'   => admin_url('admin-ajax.php')
-        ));
+        $data = ' var lfh_plugin = {
+            url : "'.Lf_Hiker_Plugin::$url.'",
+            ajax: "'. admin_url('admin-ajax.php').'",
+            langage: {
+                addMarker : "'. __('Add marker', 'lfh').'"
+            }
+        }';
+      
+        wp_add_inline_script('lfh_editor_js', $data, 'before');
         return;
     
     }
+    
+    // data js for helper add-marker.phtml
+    public function add_inline_script_helper(){
+        $data= 'data_helper = {
+                confirm : "'.__('Delete marker' , 'lfh').'",
+                add_description : "'.__('Add here your formated description', 'lfh').'",
+                tiles : '.json_encode(Lfh_Model_Map::$tiles).'
+                }';
+        wp_add_inline_script('helper_js', $data, 'before');
+        
+    }
+    // scripts for helper add-marker.phtml
+   public function load_scripts_helper(){
+       wp_enqueue_style( 'leaflet_css', 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css',  null, 'screen' );
+       wp_enqueue_style('font_awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', null, 'screen');
+       wp_enqueue_style('awesome_marker_css', Lf_Hiker_Plugin::$url."lib/awesome-marker/leaflet.awesome-markers.css", Array('font_awesome'), null, 'screen');
+       
+       if(WP_DEBUG){
+           wp_enqueue_style('helper_css', Lf_Hiker_Plugin::$url."css/helper.css", Array('awesome_marker_css', 'leaflet_css'), null, 'screen');
+            
+       }else{
+           wp_enqueue_style('helper_css', Lf_Hiker_Plugin::$url."css/helper".Lf_Hiker_Plugin::VERSION.".css", Array('awesome_marker_css', 'leaflet_css'), null, 'screen');
+       }
+       wp_enqueue_script('leaflet',"https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js",Array(),null, true);
+       wp_enqueue_script('awesome_marker_js',Lf_Hiker_Plugin::$url. "lib/awesome-marker/leaflet.awesome-markers.min.js", Array('leaflet'), null, true);
+      
+
+       $mapquest_key = get_option('lfh_mapquest_key');
+       $depends = array( 'leaflet', 'awesome_marker_js');
+       if(!is_null($mapquest_key)){
+           wp_enqueue_script('mapquest', 'https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key='.$mapquest_key, Array('leaflet'), null, true);
+           $depends[] = 'mapquest';
+       }
+       if(WP_DEBUG ){
+           wp_enqueue_script('helper_js',Lf_Hiker_Plugin::$url. "js/helper.js", $depends, null, true);
+       }else{
+           wp_enqueue_script('helper_js',Lf_Hiker_Plugin::$url. "js/helper-min.".Lf_Hiker_Plugin::VERSION.".js", $depends, null, true);
+       }
+       $this->add_inline_script_helper();
+   }
     //ajax for load the page add-marker in editor
     public  function add_marker_action()
     {
         if( $this->get_cache()->exist('add-marker-'. get_locale().'.html')){
             echo $this->get_cache()->read('add-marker-'. get_locale().'.html');
         }else{
+            $this->load_scripts_helper();
             load_plugin_textdomain( 'lfh', false, realpath(Lf_Hiker_Plugin::$path . '/languages' ));
             $content = $this->get_view()->render('add-marker',
                     array(  'plugin_url' => Lf_Hiker_Plugin::$url,
@@ -149,14 +201,19 @@ class Lfh_Tools_Editor
             
         }else{
             $version = '.'.Lf_Hiker_Plugin::VERSION;
-            $plugin_array['Lfh_plugin'] = Lf_Hiker_Plugin::$url . '/dist/tinymce-lfh-plugin'.$version.'.js' ;
+            $plugin_array['Lfh_plugin'] = Lf_Hiker_Plugin::$url . '/dist/tinymce-lfh-plugin-min'.$version.'.js' ;
         }
         return $plugin_array;
     }
     //add css 
     public function  add_css_tinymce( $init_array )
     { 
-	    $init_array['content_css'] = Lf_Hiker_Plugin::$url . '/css/lfh-post-editor.css'; 
+        if(WP_DEBUG){
+            $init_array['content_css'] = Lf_Hiker_Plugin::$url . '/css/lfh-post-editor.css';
+        }else{
+            $version = '.'.Lf_Hiker_Plugin::VERSION;
+    	    $init_array['content_css'] = Lf_Hiker_Plugin::$url . '/dist/lfh-post-editor'.$version.'.css'; 
+        }
 	    return $init_array; 
 	}
     // Manage gpx file : filter for gpx in media gallery...
@@ -262,11 +319,15 @@ class Lfh_Tools_Editor
        
         $post_id = $_POST['id'];
         if(isset( $_POST['attachments'][$post_id ]['lfh_stroke_color']) ){
-            $meta = $_POST['attachments'][$post_id ]['lfh_stroke_color'];
+            $meta = Lfh_Model_Map::is_path_color($_POST['attachments'][$post_id ]['lfh_stroke_color']);
             update_post_meta($post_id , 'lfh_stroke_color', $meta);
         }
         if(isset(  $_POST['attachments'][$post_id ]['lfh_stroke_width'] )){
-            $meta = $_POST['attachments'][$post_id ]['lfh_stroke_width'];
+            $meta = filter_var($_POST['attachments'][$post_id ]['lfh_stroke_width'], FILTER_VALIDATE_INT , array(
+                                'options'   => array(
+                                                'default'   => Lfh_Model_Map::$default['stroke_width'],
+                                                'min_range' => 1,
+                                                'max_range' => 10)));
             update_post_meta($post_id , 'lfh_stroke_color', $meta);
         }
        

@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 /* I'm not the author of this class
  * Minifies HTML and removes comments (except IE tags and comments within script tags)

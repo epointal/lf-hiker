@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 Class Lfh_Model_Map{
     public static $default = array(
@@ -268,6 +269,14 @@ Class Lfh_Model_Map{
         $arr = filter_var_array($arr, $args);
         return $arr;
     }
+    public static function is_path_color($var)
+    {
+        if(in_array(strtolower($var), self::$colors_path)){
+            return strtolower($var);
+        }else{
+            return self::$default['stroke_color'];
+        }
+    }
     private static function validate_boolean( $bool){
         if( is_null($bool)){
             return true;
@@ -294,14 +303,6 @@ Class Lfh_Model_Map{
         }
     }
     
-    private static function is_path_color($var)
-    {
-        if(in_array(strtolower($var), self::$colors_path)){
-            return strtolower($var);
-        }else{
-            return self::$default['stroke_width'];
-        }
-    }
     private static function clean_string($var)
     {
         return addslashes(stripslashes($var));

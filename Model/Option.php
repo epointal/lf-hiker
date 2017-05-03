@@ -2,6 +2,8 @@
 /**
  * @author epointal
  */
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 Class Lfh_Model_Option
 {
     public static function get_tabs(){

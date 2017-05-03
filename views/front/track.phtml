@@ -4,6 +4,7 @@
  * @author epointal
  * Template for div containing track informations
  */
+if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 <div id="<?=$track_id?>" class="lfh-info-<?=$map_count?> lfh-element leaflet-control hidden"  >
     <div>
@@ -105,6 +106,3 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-         lfh.data[<?=$map_count?>].gpx[<?=$track_count?>] = <?=json_encode($options, JSON_NUMERIC_CHECK)?>;
-</script>
