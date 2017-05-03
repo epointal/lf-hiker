@@ -135,7 +135,7 @@ class Lfh_Tools_Editor
            wp_enqueue_style('helper_css', Lf_Hiker_Plugin::$url."css/helper.css", Array('awesome_marker_css', 'leaflet_css'), null, 'screen');
             
        }else{
-           wp_enqueue_style('helper_css', Lf_Hiker_Plugin::$url."css/helper".Lf_Hiker_Plugin::VERSION.".css", Array('awesome_marker_css', 'leaflet_css'), null, 'screen');
+           wp_enqueue_style('helper_css', Lf_Hiker_Plugin::$url."dist/helper.".Lf_Hiker_Plugin::VERSION.".css", Array('awesome_marker_css', 'leaflet_css'), null, 'screen');
        }
        wp_enqueue_script('leaflet',"https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js",Array(),null, true);
        wp_enqueue_script('awesome_marker_js',Lf_Hiker_Plugin::$url. "lib/awesome-marker/leaflet.awesome-markers.min.js", Array('leaflet'), null, true);
@@ -150,7 +150,7 @@ class Lfh_Tools_Editor
        if(WP_DEBUG ){
            wp_enqueue_script('helper_js',Lf_Hiker_Plugin::$url. "js/helper.js", $depends, null, true);
        }else{
-           wp_enqueue_script('helper_js',Lf_Hiker_Plugin::$url. "js/helper-min.".Lf_Hiker_Plugin::VERSION.".js", $depends, null, true);
+           wp_enqueue_script('helper_js',Lf_Hiker_Plugin::$url. "dist/helper-min.".Lf_Hiker_Plugin::VERSION.".js", $depends, null, true);
        }
        $this->add_inline_script_helper();
    }
