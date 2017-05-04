@@ -39,8 +39,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         <?php case 'number':?>
             <?php 
             $min = isset($param['options']['min_range'])? 'min="'. $param['options']['min_range'] .'"' : '';
-            $max = isset($param['options']['max_range'])? 'min="'. $param['options']['max_range'] .'"' : '';
-            $step = isset($param['options']['step_range'])? 'min="'. $param['options']['step_range'] .'"' : '';?>
+            $max = isset($param['options']['max_range'])? 'max="'. $param['options']['max_range'] .'"' : '';
+            $step = isset($param['options']['step_range'])? 'step="'. $param['options']['step_range'] .'"' : '';?>
             <div <?=$class?>>
                  <label for="<?=$id?>"><?=$param['label']?></label>
                  <?=$before?>

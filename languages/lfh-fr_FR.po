@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lfh\n"
 "POT-Creation-Date: 2017-05-01 19:27+0100\n"
-"PO-Revision-Date: 2017-05-01 19:28+0100\n"
+"PO-Revision-Date: 2017-05-04 17:14+0100\n"
 "Last-Translator: Elisabeth Pointal <elisabeth.pointal@free.fr>\n"
 "Language-Team: elisabeth\n"
 "Language: fr_FR\n"
@@ -437,7 +437,7 @@ msgstr "Votre configuration a &eacute;t&eacute; mise &agrave; jour"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:113
 msgid "Fullscreen"
-msgstr "Plein &eacute;"
+msgstr "Plein &eacute;cran"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:127
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/map.phtml:19
