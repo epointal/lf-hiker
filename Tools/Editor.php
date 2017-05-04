@@ -316,8 +316,7 @@ class Lfh_Tools_Editor
    
     function fields_to_save_on_upload()
     {
-       
-        $post_id = $_POST['id'];
+        $post_id = intVal($_POST['id']);
         if(isset( $_POST['attachments'][$post_id ]['lfh_stroke_color']) ){
             $meta = Lfh_Model_Map::is_path_color($_POST['attachments'][$post_id ]['lfh_stroke_color']);
             update_post_meta($post_id , 'lfh_stroke_color', $meta);

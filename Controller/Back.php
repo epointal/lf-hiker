@@ -51,7 +51,7 @@ Class Lfh_Controller_Back
     public function editor_menu(){
         global $submenu;
         add_menu_page( 'GPX', 'GPX',
-                'edit_posts' ,'lfh_info',array(&$this , 'about_page'), plugins_url('lf-hiker/images/icons/marker.png') ,50);
+                'edit_posts' ,'lfh_info',array(&$this , 'about_page'), Lf_Hiker_Plugin::$url.'images/icons/marker.png' ,50);
         $data = array(
                 'mode'              => 'list',
                 'attachment-filter' => 'post_mime_type:application/gpx+xml',
