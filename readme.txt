@@ -98,7 +98,13 @@ If you have any questions about the method, do not hesitate to [contact me](http
 5. Click `Activate` button for activate **Lf Hiker**.    
 6. If the activation does not succeed, please [contact me](http://elisabeth.pointal.org/lf-hiker/en/contact-me).
 
+== Changelog == 
+= 1.0.3 =
+first stable version
 
+
+== Upgrade Notice ==
+For more informations see [lf Hiker](http://elisabeth.pointal.org/lf-hiker/)
 
 == Screenshots ==
 1. Lf Hiker display easily gpx file with profile elevation
@@ -111,6 +117,8 @@ If you have any questions about the method, do not hesitate to [contact me](http
 
 
 == Frequently Asked Questions ==
+
+
 
 = Where can I create a gpx file ? =
 
