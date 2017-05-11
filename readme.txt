@@ -6,7 +6,7 @@ Tags: map, gpx, waypoint, track, path, trail, polyline, markers, leaflet, profil
 Requires at least: 4.7.3
 Tested up to: 4.7.4  
 Stable tag: 1.0  
-Version: 1.0.3
+Version: 1.0.4
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -99,6 +99,11 @@ If you have any questions about the method, do not hesitate to [contact me](http
 6. If the activation does not succeed, please [contact me](http://elisabeth.pointal.org/lf-hiker/en/contact-me).
 
 == Changelog == 
+= 1.0.4 =
+ * issue when no  mapquest key. 
+ * loading asynchrone js and default intialisation for the helper
+ * readme file
+ 
 = 1.0.3 =
 first stable version
 
@@ -118,8 +123,6 @@ For more informations see [lf Hiker](http://elisabeth.pointal.org/lf-hiker/)
 
 == Frequently Asked Questions ==
 
-
-
 = Where can I create a gpx file ? =
 
 You can find a website list for do this in the page [Track drawing websites](http://wiki.openstreetmap.org/wiki/Track_drawing_websites)   
@@ -129,12 +132,10 @@ You can find on this site a quantity of already registered tracks.
 = I have a blank page in place of the marker editor =
 
 This trouble come from conflict with multiple `x-frame options` directive in your server. Look at whether the plugin succeeded in writing this following lines in the `.htaccess` of your wordpress application if you can:
-```	
-    # BEGIN Lf-hiker plugin
+```	# BEGIN Lf-hiker plugin
     <IfModule mod_headers.c>
     Header set X-Frame-Options SAMEORIGIN
     </IfModule>
-    # END Lf-hiker plugin 
-```
+    # END Lf-hiker plugin ```
 It resolve the trouble for me.   
 You can find more information about this trouble in wordpress support [Multiple 'X-Frame-Options' headers with conflicting values](https://wordpress.org/support/topic/multiple-x-frame-options-headers-with-conflicting-values-sameorigin-deny/)

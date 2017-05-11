@@ -534,8 +534,13 @@ document.onmouseup = hdrg.destroy;
             lfh.center = [arguments['lat'], arguments['lng']];
             lfh.zoom = arguments['zoom'];
         }
-        lfh.init_map();
+        if(lfh.map == null){
+            lfh.init_map(); 
+        }
       };
+      if(lfh.map == null){
+          lfh.init_map(); 
+      }
 })();
 String.prototype.addslashes = function()
 {return this.replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');};

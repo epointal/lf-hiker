@@ -127,6 +127,9 @@ class Lfh_Tools_Editor
     }
     // scripts for helper add-marker.phtml
    public function load_scripts_helper(){
+       global $wp_scripts, $wp_styles;
+       $wp_scripts->queue = array();
+       $wp_styles->queue = array();
        wp_enqueue_style( 'leaflet_css', 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css',  null, 'screen' );
        wp_enqueue_style('font_awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', null, 'screen');
        wp_enqueue_style('awesome_marker_css', Lf_Hiker_Plugin::$url."lib/awesome-marker/leaflet.awesome-markers.css", Array('font_awesome'), null, 'screen');
@@ -143,7 +146,7 @@ class Lfh_Tools_Editor
 
        $mapquest_key = get_option('lfh_mapquest_key');
        $depends = array( 'leaflet', 'awesome_marker_js');
-       if(!is_null($mapquest_key)){
+       if(!is_null($mapquest_key) && !empty($mapquest_key) && strlen($mapquest_key)>8){
            wp_enqueue_script('mapquest', 'https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key='.$mapquest_key, Array('leaflet'), null, true);
            $depends[] = 'mapquest';
        }
