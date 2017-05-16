@@ -19,28 +19,28 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 ### Main Utilisation
 Simply upload your gpx file with the wordpress media manager, complete its informations and insert  it in your post/page (shortcode).  
 Display the post/page : you have an interactive view of your track.  
-The trail is displayed on an OSM map by default, and have its own information window with: 
-* title
-* description
-* interactive **profile elevation**  according to path
-* distance of the track
-* elevation loss
-* elevation gain 
+#### The trail is displayed on an OSM map by default, and have its own information window with:  
+ * title
+ * description
+ * interactive **profile elevation**  according to path
+ * distance of the track
+ * elevation loss
+ * elevation gain 
 
-![Lf Hiker Front](http://elisabeth.pointal.org/lf-hiker/wp-content/uploads/2017/04/gpx-stevenson-3.png) 
+For more information go to [Lf Hiker site](http://elisabeth.pointal.org/lf-hiker) 
 
 ### List of Features
-**Lf Hiker** allows displaying too:
-* few gpx files in the same map
-* markers on the map
-* few maps on the same post/page
+#### **Lf Hiker** allows displaying too:  
+ * few gpx files in the same map
+ * markers on the map
+ * few maps on the same post/page
 
 
-For gpx track you can custom:
-* title
-* description
-* stroke color
-* stroke width
+#### For gpx track you can custom:  
+ * title
+ * description
+ * stroke color
+ * stroke width
 
 
 **Lf Hiker** included an helper for edit map and add markers. 
@@ -132,10 +132,11 @@ You can find on this site a quantity of already registered tracks.
 = I have a blank page in place of the marker editor =
 
 This trouble come from conflict with multiple `x-frame options` directive in your server. Look at whether the plugin succeeded in writing this following lines in the `.htaccess` of your wordpress application if you can:
-```	# BEGIN Lf-hiker plugin
-    <IfModule mod_headers.c>
-    Header set X-Frame-Options SAMEORIGIN
-    </IfModule>
-    # END Lf-hiker plugin ```
+    `# BEGIN Lf-hiker plugin`  
+    `&lt;IfModule mod_headers.c>`  
+    `Header set X-Frame-Options SAMEORIGIN` 
+    `&lt;/IfModule>`  
+    `# END Lf-hiker plugin ` 
+	
 It resolve the trouble for me.   
 You can find more information about this trouble in wordpress support [Multiple 'X-Frame-Options' headers with conflicting values](https://wordpress.org/support/topic/multiple-x-frame-options-headers-with-conflicting-values-sameorigin-deny/)
