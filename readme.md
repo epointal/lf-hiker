@@ -4,7 +4,7 @@ Contributors: [epointal](http://elisabeth.pointal.org)
 Plugin site web: [Lf Hiker](http://elisabeth.pointal.org/lf-hiker/en/about/ )  
 Tested up to: 4.7.3  
 Stable version: 1.0    
-Version: [1.0.4](https://github.com/epointal/lf-hiker/archive/v1.0.4.zip)    
+Version: [1.1](https://github.com/epointal/lf-hiker/archive/v1.1.zip)    
 License: [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html ) 
 
 
@@ -98,7 +98,7 @@ If you have any questions about the method, do not hesitate to [contact me](http
 
 ### Perform a new installation  
 
-After downloading the ZIP file [lf-hiker-1.0.4.zip](https://github.com/epointal/lf-hiker/archive/v1.0.4.zip)   
+After downloading the ZIP file [lf-hiker-1.1.zip](https://github.com/epointal/lf-hiker/archive/v1.1.zip)   
 
 1. Unzip `lf-hiker.zip` 
 2. Put the folder `lf-hiker` in directory `wp-content/plugins`
@@ -137,6 +137,20 @@ After downloading the ZIP file [lf-hiker-1.0.4.zip](https://github.com/epointal/
 
 ### Configuration screenshot
 ![Lf Hikder Admin](http://elisabeth.pointal.org/lf-hiker/wp-content/uploads/2017/04/config-lfh-3.png)
+
+## Changelog 
+### 1.1 
+ * Add picture for about page in back office
+ * Add miles distance unit for profile elevation
+ * issue when shortcode [lfh-map ] without attributes
+ 
+### 1.0.4 
+ * issue when no  mapquest key. 
+ * loading asynchrone js and default intialisation for the helper
+ * readme file
+ 
+### 1.0.3 
+first stable version
 
 
 ## Frequently Asked Questions 

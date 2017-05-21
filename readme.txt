@@ -6,7 +6,7 @@ Tags: map, gpx, waypoint, track, path, trail, polyline, markers, leaflet, profil
 Requires at least: 4.7.3
 Tested up to: 4.7.4  
 Stable tag: 1.0  
-Version: 1.0.4
+Version: 1.1
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -99,6 +99,11 @@ If you have any questions about the method, do not hesitate to [contact me](http
 6. If the activation does not succeed, please [contact me](http://elisabeth.pointal.org/lf-hiker/en/contact-me).
 
 == Changelog == 
+= 1.1 =
+ * Add picture for about page in back office
+ * Add miles distance unit for profile elevation
+ * issue when shortcode [lfh-map ] without attributes
+ 
 = 1.0.4 =
  * issue when no  mapquest key. 
  * loading asynchrone js and default intialisation for the helper
