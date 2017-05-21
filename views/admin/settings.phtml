@@ -4,7 +4,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
-	
+    
  <div class="wrap">
     <h1><?=__('Configuration', 'lfh')?> Lf Hiker</h1>
  </div>  
@@ -19,8 +19,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     
    <!-- content -->
    <div class="wrap"><?=$tabs[ $active_tab]['comment']?></div>
- 	<form method="post">
- 	   <table class="form-table">
+     <form method="post">
+        <table class="form-table">
 
     <?php foreach($options as $key=>$input):?>
     <?php
@@ -49,7 +49,19 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             <th><label for="<?=$key?>"><?=$input['label']?></label></th>
             <td>
            <?=$before?>
+           <?php if($input['type']== 'select'):?>
+            <select <?=$class?> <?=$style?>  name="<?=$key?>" value="<?=$input['value']?>" />
+            <?php for($i=0; $i<count($input['select_options']); $i++):?>
+                <?php if( $input['value'] == $input['select_options'][$i] ):?>
+                <option value="<?=$input['select_options'][$i]?>" selected><?=$input['select_options'][$i]?></option>
+                <?php else:?>
+                <option value="<?=$input['select_options'][$i]?>"><?=$input['select_options'][$i]?></option>
+                <?php endif;?>
+            <?php endfor;?>
+            </select>
+           <?php else:?>
            <input <?=$class?> <?=$style?> type="<?=$input['type']?>" name="<?=$key?>" value="<?=$input['value']?>" />
+           <?php endif;?>
            <?=$after?>
            <?php if(isset($input['helper'])):?>
            <div style="font-style:italic;">* <?=htmlspecialchars_decode($input['helper'])?></div>
@@ -72,24 +84,24 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     <!-- More functions for config lfh -->
     <?php if($active_tab == 'config_lfh'):?>
     <tr>
-    	<th>
-        	<label for="lfh_clear_cache">
-        	</label>
-    	</th> 
-    	<td>
-    		<input class="button button-primary" name="lfh_clear_cache" value="<?=__('Clear cache', 'lfh')?>" type="submit" />
-    	</td>
+        <th>
+            <label for="lfh_clear_cache">
+            </label>
+        </th> 
+        <td>
+            <input class="button button-primary" name="lfh_clear_cache" value="<?=__('Clear cache', 'lfh')?>" type="submit" />
+        </td>
     </tr>
     <tr> 
-    	<th>
-        	<label for="lfh_xframe_options">
-        	<?=__('Add directive for allowed x-frame same origin in .htaccess', 'lfh')?>
-        	</label>
-    	</th> 
-    	<td> 
-        	<input class="button button-primary" name="lfh_xframe_options" value="<?=__('Add in', 'lfh')?> .htaccess" type="submit" /> * 
-        	<div style="font-style:italic;">
-        	 	* <?=__('Seems resolve trouble with multiple directive x-frame-options. See ', 'lfh')?>
+        <th>
+            <label for="lfh_xframe_options">
+            <?=__('Add directive for allowed x-frame same origin in .htaccess', 'lfh')?>
+            </label>
+        </th> 
+        <td> 
+            <input class="button button-primary" name="lfh_xframe_options" value="<?=__('Add in', 'lfh')?> .htaccess" type="submit" /> * 
+            <div style="font-style:italic;">
+                 * <?=__('Seems resolve trouble with multiple directive x-frame-options. See ', 'lfh')?>
                <a href="https://wordpress.org/support/topic/multiple-x-frame-options-headers-with-conflicting-values-sameorigin-deny/" target="_blank">
                  <?=__('Wordpress support topic', 'lfh')?>
                </a>
@@ -98,9 +110,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     </tr>
     <tr>
         <th><label for="lfh_xframe_options_remove"></label></th> 
-    	<td> 
-    		<input class="button button-primary" name="lfh_xframe_options_remove" value="<?=__('Remove in', 'lfh')?> .htaccess" type="submit" /> 
-    		</td>
+        <td> 
+            <input class="button button-primary" name="lfh_xframe_options_remove" value="<?=__('Remove in', 'lfh')?> .htaccess" type="submit" /> 
+            </td>
     </tr>
     <?php endif;?>
     </table>

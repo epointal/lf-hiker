@@ -146,7 +146,7 @@ lfh.TopControl = L.Control.extend({
             var div2 =  L.DomUtil.create('div', 'leaflet-bar leaflet-control lfh-control-list');
             container.appendChild(div2);
             //append list window to the map
-            var link = new lfh.Link( map, div2, 'list-' + this._index , this._selected, null);
+            var link = new lfh.Link( map, div2, 'list-' + this._index , this._selected, null, null);
           
            /* div2.onclick = function(){
                 console.log('show/hide list layer');
@@ -360,7 +360,7 @@ lfh.Map = function(i){
             //add the marker in the list of markers
             _add_marker_to_list(marker);
 
-            var link = new lfh.Link( map, marker, marker_id, _selected_element);
+            var link = new lfh.Link( map, marker, marker_id, _selected_element, null);
             return link;
         }
         function _add_marker_to_list( marker){
@@ -444,7 +444,8 @@ lfh.Map = function(i){
                               e.target,
                               track_id,
                               _selected_element,
-                              _move_marker);
+                              _move_marker,
+                              _data.gpx[j].unit);
                  }).on('failed', function(){
                       e.target.options.isLoaded = true;
                       console.log("failed");
@@ -464,9 +465,10 @@ lfh.Map = function(i){
  * @param {string} elem_id the identifiant of div in DOM (ex: marker-1-2 or track-2-1)
  * @param {Object<id, dom, layer>} selected the object _selected_element on the map
  * @param {L.Marker} move the object _move_marker on the map (important only for gpx)
+ * @param {string} unit km or miles (important only for gpx)
  * @return {object <dom, layer, id >}
  */
-lfh.Link = function( map, layer, elem_id, selected, move){
+lfh.Link = function( map, layer, elem_id, selected, move, unit){
     
     var _id = elem_id;
     var _layer = layer;
@@ -474,6 +476,7 @@ lfh.Link = function( map, layer, elem_id, selected, move){
     var _map = map;
     var _selected_element = selected;
     var _move_marker = move;
+    var _unit = unit;
     
     function _initialize(){
         if( typeof _layer.options == 'undefined'){
@@ -490,7 +493,8 @@ lfh.Link = function( map, layer, elem_id, selected, move){
                         _map, 
                         _layer , 
                         _dom, 
-                        _move_marker);
+                        _move_marker,
+                        _unit );
             }
         }
     }
@@ -584,7 +588,13 @@ lfh.Link = function( map, layer, elem_id, selected, move){
  * @param {DomNode} dom the node link to the track 
  * @param {L.Marker} move, the move_marker on polyline path 
  */
-lfh.Profile = function( map, layer, dom, move){
+lfh.Profile = function( map, layer, dom, move, unit){
+     var _unit = unit;
+     if( _unit == "km"){
+        var  _coeff = 1;
+     }else{
+        var _coeff = 1.60934;
+     }
      var _move_marker = move;
      var _gpx = layer;
      var _track = dom;
@@ -597,14 +607,15 @@ lfh.Profile = function( map, layer, dom, move){
 
      var _max = _gpx.get_elevation_max();
      var _min = _gpx.get_elevation_min();
-     var _max_km = _data[ _data.length-1 ][0];
+     var _max_km = _data[ _data.length-1 ][0] / _coeff;
      var _step_h = lfh.Util.step_round((_max - _min)/3.5);
      var _max_h = Math.ceil( _max/_step_h)*(_step_h);
      var _min_h = _max_h - 5 * _step_h;
+   
      var _step_x = lfh.Util.step_round((_max_km)/4);
 
      function _x(km){
-         return km * 220 / _max_km;
+         return km * 220 / (_max_km * _coeff);
      }
      function _h(h){
          return (200 - (h - _min_h)*40/_step_h);
@@ -632,13 +643,13 @@ lfh.Profile = function( map, layer, dom, move){
          // move the vertical line and write the value
          for(var i=1; i<4;i++){
              var node = _track.querySelector( '.v'+i );
-             var tr_x = Math.round( i * _step_x * 220 / _max_km);
+             var tr_x = Math.round( i * _step_x * 220 / _max_km );
              node.setAttribute( 'transform', 'translate(' + tr_x + ', 0)');
              node.querySelector('text').textContent = i * _step_x;
          }
 
          _track.querySelector('.lfh-gpx-name').textContent = _gpx.get_name();
-         _track.querySelector('.lfh-gpx-distance').textContent = Math.round(_gpx.get_distance()) + ' m';
+         _track.querySelector('.lfh-gpx-distance').textContent = (Math.round(_gpx.get_distance()/(100*_coeff))/10).toString().replace('.' , ',') + ' ' + _unit;
          _track.querySelector('.lfh-gpx-elevation-gain').textContent = _gpx.get_elevation_gain() + ' m';
          _track.querySelector('.lfh-gpx-elevation-loss').textContent = _gpx.get_elevation_loss() + ' m';
          //ajout d'un ecouteur sur le svg
@@ -662,6 +673,7 @@ lfh.Profile = function( map, layer, dom, move){
          
      }
      function _find_position(km){
+         var km = km * _coeff;
          var find = false;  
          var id = 0; 
          var iend = _data.length-1 

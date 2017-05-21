@@ -18,6 +18,8 @@ Class Lfh_Model_Map{
     
     public static $colors_path = array('red', 'blue', 'purple', 'orange', 'darkred', 'darkblue', 'darkgreen');
     
+    public static $distance_units = array( 'km', 'miles');
+    
     public static $class_map = array('simple-border', 'thick-border',
                                     'simple-border-round', 'thick-border-round',
                                     'left', 'right', 'center'
@@ -186,8 +188,10 @@ Class Lfh_Model_Map{
                 'src'        => $src,
                 'title'       => isset($title)? $title: '',
                 'color'      => isset($color) ? $color: self::$default['stroke_color'],
-                'width'      => isset($width) ? $width: self::$default['stroke_width']
+                'width'      => isset($width) ? $width: self::$default['stroke_width'],
+                'unit'       => isset($unit)  ? $unit:  Lfh_Model_Map::is_distance_unit()
         );
+       
         $args = array(
                 'src'   => array(
                         'filter'    => FILTER_SANITIZE_URL | FILTER_VALIDATE_URL,
@@ -198,20 +202,25 @@ Class Lfh_Model_Map{
                 'color' => array(
                         'filter'    => FILTER_CALLBACK,
                         'options'   => 'Lfh_Model_Map::is_path_color'),
+               
                 'width' => array(
                         'filter'    => FILTER_VALIDATE_INT,
                         'options'   => array(
                                 'default'   => self::$default['stroke_width'],
                                 'min_range' => 1,
                                 'max_range' => 10 )
+                ),
+                'unit' => array(
+                        'filter'    => FILTER_CALLBACK,
+                        'options'   => 'Lfh_Model_Map::is_distance_unit'
+                
                 )
         );
-        $options = filter_var_array($options,$args);
-        if(is_null($options)){
-            return NULL;
-        }else{
-            return $options;
-        }
+      
+        $return = filter_var_array($options,$args);
+        
+        return $return;
+      
         
     }
     public static function filter_marker_data($atts)
@@ -277,6 +286,14 @@ Class Lfh_Model_Map{
             return self::$default['stroke_color'];
         }
     }
+    
+    public static function is_distance_unit($var = null){
+        if(in_array($var,self::$distance_units)){
+            return $var;
+        }else{
+            return  get_option('lfh_distance_unit', self::$distance_units[0]);
+        }
+    }
     private static function validate_boolean( $bool){
         if( is_null($bool)){
             return true;
@@ -336,6 +353,8 @@ Class Lfh_Model_Map{
             return 'zoom';
         }
     }
+    
+
     private static function set_default(&$value, $key ,&$args)
     {
         if(is_null($value)){

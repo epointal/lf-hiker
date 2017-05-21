@@ -74,7 +74,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                         <rect x="0" y="0" width="220" height="180"  />
                         <!-- horizontal axis x -->
                          <line class="axis" x1="0" y1="180" x2="210" y2="180"  marker-end="url(#t)"></line>
-                           <text x="110" y="210" text-anchor="middle"><?php _e('Distance','lfh');?> (km)</text>
+                           <text x="110" y="210" text-anchor="middle"><?php _e('Distance','lfh');?> (<?=$options['unit']?>)</text>
                            <!-- vertical axis y -->
                         <line class="axis" x1="0" y1="180" x2="0" y2="10" marker-end="url(#t)"></line>
                         <text x="0" y="0" transform="rotate(-90) translate(-100, -40)" text-anchor="middle"><?php _e('Elevation', 'lfh');?> (m)</text>

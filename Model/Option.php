@@ -12,8 +12,8 @@ Class Lfh_Model_Option
                         'label'  => __('Custom css'),
                         'comment'=> ''),
                 'config_tile'   => array(
-                        'label'  => __('Tiles Layers', 'lfh'),
-                        'comment'=> __('You can add tiles layers which need key here', 'lfh')),
+                        'label'  => __('Config  Map', 'lfh'),
+                        'comment'=> __('You can add tiles layers which need key here, or choose unit for distance', 'lfh')),
                 'config_lfh'    => array(
                         'label'  => __('General', 'lfh'),
                         'comment'=> ''));
@@ -57,6 +57,14 @@ Class Lfh_Model_Option
             break;
             case 'config_tile':
             return array(
+                'lfh_distance_unit'=> array(
+                    'type'   => 'select',
+                    'select_options' => Lfh_Model_Map::$distance_units,
+                    'label'  => __('Default distance unit', 'lfh'),
+                    'default'=> Lfh_Model_Map::$distance_units[0],
+                    'filter' => FILTER_CALLBACK,
+                    'options'=> 'Lfh_Model_Map::is_distance_unit'
+                ),
                 'lfh_mapquest_key' => array(
                     'type'    => 'text',
                     'label'   => __('Mapquest key', 'lfh'),
@@ -76,6 +84,7 @@ Class Lfh_Model_Option
             break;
             case 'config_lfh':
             return array(
+               
                 'lfh_cache_parent' => array(
                     'type'    => 'text',
                     'label'   => __('Cache dir', 'lfh'),
@@ -86,6 +95,7 @@ Class Lfh_Model_Option
                     'options' => 'Lfh_Model_Option::try_cache_dir')
                 );
             break;
+            
             default:
                 return array();
         }
@@ -190,5 +200,6 @@ Class Lfh_Model_Option
        }
        return $out;
    }
+  
    
 }

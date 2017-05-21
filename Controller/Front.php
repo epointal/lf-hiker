@@ -62,7 +62,9 @@ Class Lfh_Controller_Front
     }
    
     public function map_shortcode($atts, $html =null){
-        
+        if(!is_array($atts)){
+            $atts = array();
+        }
         $options = Lfh_Model_Map::filter_map_data($atts);
         
         if(self::$_lfh_map_count == 0){
