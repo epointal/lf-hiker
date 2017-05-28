@@ -156,6 +156,8 @@ Class Lfh_Controller_Front
                   lfh.tiles = '.json_encode(Lfh_Model_Map::$tiles, JSON_UNESCAPED_SLASHES).';
                   lfh.tiles["mapquest"] = { max_zoom:18 };
                   lfh.SELECTED_COLOR = "' . $selected_color .'";
+                  lfh.DISTANCE_UNIT = ' .json_encode(Lfh_Model_Map::distance_units()). ';
+                  lfh.HEIGHT_UNIT = ' .json_encode(Lfh_Model_Map::height_units());';
                 ';
         }
         $data .= '
@@ -165,6 +167,7 @@ Class Lfh_Controller_Front
               gpx: new Array()
         };
             ';
+        
         wp_add_inline_script('leaflet', $data, 'before');
     }
     

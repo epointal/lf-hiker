@@ -51,13 +51,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
            <?=$before?>
            <?php if($input['type']== 'select'):?>
             <select <?=$class?> <?=$style?>  name="<?=$key?>" value="<?=$input['value']?>" />
-            <?php for($i=0; $i<count($input['select_options']); $i++):?>
-                <?php if( $input['value'] == $input['select_options'][$i] ):?>
-                <option value="<?=$input['select_options'][$i]?>" selected><?=$input['select_options'][$i]?></option>
+            <?php foreach($input['select_options'] as $key => $option):?>
+                <?php if( $input['value'] == $key ):?>
+                <option value="<?=$key?>" selected><?=$option['label']?></option>
                 <?php else:?>
-                <option value="<?=$input['select_options'][$i]?>"><?=$input['select_options'][$i]?></option>
+                <option value="<?=$key?>"><?=$option['label']?></option>
                 <?php endif;?>
-            <?php endfor;?>
+            <?php endforeach;?>
             </select>
            <?php else:?>
            <input <?=$class?> <?=$style?> type="<?=$input['type']?>" name="<?=$key?>" value="<?=$input['value']?>" />

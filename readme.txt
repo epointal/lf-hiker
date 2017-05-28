@@ -6,7 +6,7 @@ Tags: map, gpx, waypoint, track, path, trail, polyline, markers, leaflet, profil
 Requires at least: 4.7.3
 Tested up to: 4.7.4  
 Stable tag: 1.0  
-Version: 1.1
+Version: 1.2
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -41,6 +41,8 @@ For more information go to [Lf Hiker site](http://elisabeth.pointal.org/lf-hiker
  * description
  * stroke color
  * stroke width
+ * distance unit
+ * elevation unit
 
 
 **Lf Hiker** included an helper for edit map and add markers. 
@@ -99,6 +101,10 @@ If you have any questions about the method, do not hesitate to [contact me](http
 6. If the activation does not succeed, please [contact me](http://elisabeth.pointal.org/lf-hiker/en/contact-me).
 
 == Changelog == 
+= 1.2 =
+ * Add foot for elevation unit
+ * issue for popup when click for a marker from list of elements
+ 
 = 1.1 =
  * Add picture for about page in back office
  * Add miles distance unit for profile elevation

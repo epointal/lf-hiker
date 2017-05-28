@@ -50,7 +50,28 @@ Class Lfh_Model_Map{
                         'need_key'      => false)
     );
     
-  
+    public static function distance_units(){
+        return array(
+            'km' => array(
+                'label' => __('kilometer', 'lfh'),
+                'code'  => __('km', 'lfh')
+                ),
+            'mi' => array(
+                'label' => __('milles', 'lfh'),
+                'code'  => __('mi', 'lfh')
+            ));
+    }
+    public static function height_units(){
+        return array(
+                'm' => array(
+                        'label' => __('meter', 'lfh'),
+                        'code'  => __('m', 'lfh')
+                ),
+                'ft' => array(
+                        'label' => __('foot', 'lfh'),
+                        'code'  => __('ft', 'lfh')
+                ));
+    }
    public static  function map_parameters()
    {
      return   array(
@@ -186,10 +207,11 @@ Class Lfh_Model_Map{
         }
         $options = array(
                 'src'        => $src,
-                'title'       => isset($title)? $title: '',
+                'title'      => isset($title)? $title: '',
                 'color'      => isset($color) ? $color: self::$default['stroke_color'],
                 'width'      => isset($width) ? $width: self::$default['stroke_width'],
-                'unit'       => isset($unit)  ? $unit:  Lfh_Model_Map::is_distance_unit()
+                'unit'       => isset($unit)  ? $unit:  Lfh_Model_Map::is_distance_unit(),
+                'unit_h'     => isset($unit_h)  ? $unit_h:  Lfh_Model_Map::is_height_unit()
         );
        
         $args = array(
@@ -213,6 +235,11 @@ Class Lfh_Model_Map{
                 'unit' => array(
                         'filter'    => FILTER_CALLBACK,
                         'options'   => 'Lfh_Model_Map::is_distance_unit'
+                
+                ),
+                'unit_h' => array(
+                        'filter'    => FILTER_CALLBACK,
+                        'options'   => 'Lfh_Model_Map::is_height_unit'
                 
                 )
         );
@@ -288,10 +315,19 @@ Class Lfh_Model_Map{
     }
     
     public static function is_distance_unit($var = null){
-        if(in_array($var,self::$distance_units)){
+        $units = array_keys( self::distance_units());
+        if(in_array($var, $units)){
             return $var;
         }else{
-            return  get_option('lfh_distance_unit', self::$distance_units[0]);
+            return  get_option('lfh_distance_unit', $units[0]);
+        }
+    }
+    public static function is_height_unit($var = null){
+        $units = array_keys( self::height_units());
+        if(in_array($var, $units)){
+            return $var;
+        }else{
+            return  get_option('lfh_height_unit', $units[0]);
         }
     }
     private static function validate_boolean( $bool){

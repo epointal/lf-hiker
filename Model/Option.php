@@ -59,11 +59,19 @@ Class Lfh_Model_Option
             return array(
                 'lfh_distance_unit'=> array(
                     'type'   => 'select',
-                    'select_options' => Lfh_Model_Map::$distance_units,
+                    'select_options' => Lfh_Model_Map::distance_units(),
                     'label'  => __('Default distance unit', 'lfh'),
-                    'default'=> Lfh_Model_Map::$distance_units[0],
+                    'default'=> array_keys( Lfh_Model_Map::distance_units())[0],
                     'filter' => FILTER_CALLBACK,
                     'options'=> 'Lfh_Model_Map::is_distance_unit'
+                ),
+                'lfh_height_unit'=> array(
+                        'type'   => 'select',
+                        'select_options' => Lfh_Model_Map::height_units(),
+                        'label'  => __('Default height unit', 'lfh'),
+                        'default'=> array_keys(Lfh_Model_Map::height_units())[0],
+                        'filter' => FILTER_CALLBACK,
+                        'options'=> 'Lfh_Model_Map::is_height_unit'
                 ),
                 'lfh_mapquest_key' => array(
                     'type'    => 'text',
