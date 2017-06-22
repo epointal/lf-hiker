@@ -4,7 +4,7 @@
 [![Version 1.2](http://elisabeth.pointal.org/images/svg/version.svg)](https://github.com/epointal/lf-hiker/archive/1.2.zip) 
 
 Plugin site web: [Lf Hiker](http://elisabeth.pointal.org/lf-hiker/en/about/ )  
-equires Wordpress version: 4.7.3
+Requires Wordpress version: 4.7.3  
 Tested up to: Wordpress 4.8  
 Stable version: 1.0    
 
