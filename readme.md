@@ -1,11 +1,12 @@
 # Lf Hiker 
+[![Contributor: Elisabeth Pointal](http://elisabeth.pointal.org/images/svg/contributor2.svg)](http://elisabeth.pointal.org)
+[![License GPL 2](http://elisabeth.pointal.org/images/svg/license.svg)](http://www.gnu.org/licenses/gpl-2.0.html )
+[![Version 1.2](http://elisabeth.pointal.org/images/svg/version.svg)](https://github.com/epointal/lf-hiker/archive/1.2.zip) 
 
-Contributors: [epointal](http://elisabeth.pointal.org)  
 Plugin site web: [Lf Hiker](http://elisabeth.pointal.org/lf-hiker/en/about/ )  
 Tested up to: 4.8  
 Stable version: 1.0    
-Version: [1.2](https://github.com/epointal/lf-hiker/archive/1.2.zip)    
-License: [GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html ) 
+
 
 
 
