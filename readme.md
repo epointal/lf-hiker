@@ -162,9 +162,10 @@ After downloading the ZIP file [lf-hiker-1.2.zip](https://github.com/epointal/lf
 first stable version
 
 
-## Frequently Asked Questions 
+## Frequently Asked Questions  
+ 
 
-**1. How add separate map for a second gpx file in the same post **
+**1. How add separate map for a second gpx file in the same post**
 
 ----------------------
 You can create a second map with adding shortcode `[lfh-map]` before your gpx file shortcode `[lfh-gpx src="..."][/lfh-gpx]`.
