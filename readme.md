@@ -171,11 +171,13 @@ first stable version
 ----------------------
 You can create a second map with adding shortcode `[lfh-map]` before your gpx file shortcode `[lfh-gpx src="..."][/lfh-gpx]`.
 
-Example:
-  `[lfh-map]`
-  `[lfh-gpx src=http://url_of_gpx_file1.gpx ]description[/lfh-gpx]`
-  `[lfh-map]`
-  `[lfh-gpx src=http://url_of_gpx_file2.gpx ]description[/lfh-gpx]`
+Example:  
+  `[lfh-map]`  
+  `[lfh-gpx src=http://url_of_gpx_file1.gpx ]description[/lfh-gpx]`  
+  `[lfh-map]`  
+  `[lfh-gpx src=http://url_of_gpx_file2.gpx ]description[/lfh-gpx]`  
+  
+-----------------------
 
 **2. Where can I create a gpx file ?**
 
