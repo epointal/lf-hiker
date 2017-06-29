@@ -1,7 +1,7 @@
 # Lf Hiker 
 [![Contributor: Elisabeth Pointal](http://elisabeth.pointal.org/images/svg/contributor2.svg)](http://elisabeth.pointal.org)
 [![License GPL 2](http://elisabeth.pointal.org/images/svg/license.svg)](http://www.gnu.org/licenses/gpl-2.0.html )
-[![Version 1.2](http://elisabeth.pointal.org/images/svg/version.svg)](https://github.com/epointal/lf-hiker/archive/1.2.zip) 
+[![Version 1.2.1](http://elisabeth.pointal.org/images/svg/version1.2.1.svg)](https://github.com/epointal/lf-hiker/archive/1.2.1.zip) 
 
 Plugin site web: [Lf Hiker](http://elisabeth.pointal.org/lf-hiker/en/about/ )  
 Requires Wordpress version: 4.7.3  
@@ -141,6 +141,9 @@ After downloading the ZIP file [lf-hiker-1.2.zip](https://github.com/epointal/lf
 ![Lf Hikder Admin](http://elisabeth.pointal.org/lf-hiker/wp-content/uploads/2017/04/config-lfh-3.png)
 
 ## Changelog 
+### 1.2.1
+ * issue when no title attribute in shortcode lfh-marker
+ 
 ### 1.2
  * Add foot for elevation unit
  * issue for popup when click for a marker from list of elements
@@ -160,8 +163,16 @@ first stable version
 
 
 ## Frequently Asked Questions 
+**1. How add separate map for a second gpx file in the same post **
+You can create a second map with adding shortcode `[lfh-map]` before your gpx file shortcode `[lfh-gpx src="..."][/lfh-gpx]`.
 
-**1. Where can I create a gpx file ?**
+Example:
+  `[lfh-map]`
+  `[lfh-gpx src=http://url_of_gpx_file1.gpx ]description[/lfh-gpx]`
+  `[lfh-map]`
+  `[lfh-gpx src=http://url_of_gpx_file2.gpx ]description[/lfh-gpx]`
+
+**2. Where can I create a gpx file ?**
 
 --------------------
 You can find a website list for do this in the page [Track drawing websites](http://wiki.openstreetmap.org/wiki/Track_drawing_websites)   
@@ -169,7 +180,7 @@ You can find a website list for do this in the page [Track drawing websites](htt
 You can find on this site a quantity of already registered tracks.
 
 -------------------------
-**2. I have a blank page in place of the marker editor**
+**3. I have a blank page in place of the marker editor**
 
 ------------------------------------------
 This trouble come from conflict with multiple `x-frame options` directive in your server. Look at whether the plugin succeeded in writing this following lines in the `.htaccess` of your wordpress application if you can:
