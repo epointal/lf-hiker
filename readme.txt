@@ -133,10 +133,19 @@ For more informations see [lf Hiker](http://elisabeth.pointal.org/lf-hiker/)
 
 
 == Frequently Asked Questions ==
+= How add separate map for a second gpx file in the same post =
+You can create a second map with adding shortcode `[lfh-map]` before your gpx file shortcode `[lfh-gpx src="..."][/lfh-gpx]`.
 
+Example:
+  `[lfh-map]`
+  `[lfh-gpx src=http://url_of_gpx_file1.gpx ]description[/lfh-gpx]`
+  `[lfh-map]`
+  `[lfh-gpx src=http://url_of_gpx_file2.gpx ]description[/lfh-gpx]`
+  
 = Where can I create a gpx file ? =
 
-You can find a website list for do this in the page [Track drawing websites](http://wiki.openstreetmap.org/wiki/Track_drawing_websites)   
+You can find a website list for do this in the page [Track drawing websites](http://wiki.openstreetmap.org/wiki/Track_drawing_websites).    
+
 [Openrunner](http://www.openrunner.com/) is the best one for me and, most important : this website automatically add the elevation data needed to create the profile.  
 You can find on this site a quantity of already registered tracks.
 
@@ -151,3 +160,4 @@ This trouble come from conflict with multiple `x-frame options` directive in you
 	
 It resolve the trouble for me.   
 You can find more information about this trouble in wordpress support [Multiple 'X-Frame-Options' headers with conflicting values](https://wordpress.org/support/topic/multiple-x-frame-options-headers-with-conflicting-values-sameorigin-deny/)
+

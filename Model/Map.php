@@ -262,11 +262,11 @@ Class Lfh_Model_Map{
         $options = array(
                 'lat'   => $lat,
                 'lng'   => $lng,
-                'title' => isset($title) ? $title : NULL,
+                'title' => isset($title) ? $title : "",
                 'visibility' => isset($visibility) ? $visibility : 'zoom',
                 'color' => isset($color) ? $color : 'red',
                 'icon'  => isset($icon) ? $icon : 'circle',
-                'popup' => isset($popup) ? $popup : NULL
+                'popup' => isset($popup) ? $popup : ""
         );
         
         $args = array(
@@ -293,16 +293,8 @@ Class Lfh_Model_Map{
                         'options'   => 'Lfh_Model_Map::clean_string'
                 )
         );
-        if (!function_exists('remove_null')) {
-            function remove_null ($var) {
-                return $var !== null;
-            }
-        }
         
-        $arr = array_filter($options, 'remove_null');
-        
-        $args = array_intersect_key($args, $arr);
-        $arr = filter_var_array($arr, $args);
+        $arr = filter_var_array($options, $args);
         return $arr;
     }
     public static function is_path_color($var)
