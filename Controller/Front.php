@@ -147,6 +147,7 @@ Class Lfh_Controller_Front
         $images_url = Lf_Hiker_Plugin::$url .'/images/';
         $css = Lfh_Model_Option::get_values('custom_css');
         $selected_color = $css['lfh_selected_path'];
+        $data = '';
         if($map_count == 1){
             $data = ' if( typeof lfh == "undefined"){
                         var lfh = {}

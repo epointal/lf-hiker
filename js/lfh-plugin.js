@@ -13,6 +13,7 @@
  */
 
 (function(){
+  
 // Method usefull on strings
 
 String.prototype.addslashes = function()
@@ -91,7 +92,10 @@ lfh.POINT_ICON = L.icon({
 /** Build all on the differents maps*/
 lfh.initialize = function(){
     for(var i in lfh.data){
-        var my_map = new lfh.Map(i);
+        if(typeof lfh.data[i] != 'function') // instagram conflict
+        {
+            var my_map = new lfh.Map(i);
+        }
      }
 }
 
@@ -300,14 +304,20 @@ lfh.Map = function(i){
             }
             // Add the markers
             for(var i in _data.markers){
-              _add_marker(i);
+                if( typeof _data.markers[i] != 'function')// conflict instagram
+                {
+                    _add_marker(i);
+                }
             }
             
         }
         
         function _add_gpx_polylines( ){
             for(var j in _data.gpx){
-                _add_gpx(j);
+                if( typeof _data.gpx[i] != 'function') //conflict instagram plugin
+                {
+                    _add_gpx(j);
+                }
              }
         }
         function _add_map_event(){
@@ -332,7 +342,7 @@ lfh.Map = function(i){
         }
         function _add_marker(i){
             var info = _data.markers[i];
-           
+            
             var marker_id = 'marker-' + _index +'-' +i;
            
             var marker = L.marker(
@@ -362,7 +372,7 @@ lfh.Map = function(i){
             
             //add the marker in the list of markers
             _add_marker_to_list(marker);
-
+          
             var link = new lfh.Link( map, marker, marker_id, _selected_element, null);
             return link;
         }
@@ -395,7 +405,10 @@ lfh.Map = function(i){
            // turn while all files gpx aren't loaded
            var isLoaded = 1;
            for(var j in _data.gpx){
-               isLoaded *= (typeof _gpx[j]!= 'undefined' && _gpx[j].options.isLoaded);
+               if( typeof _data.gpx[j]!= 'function') //instagram conflict
+               {
+                   isLoaded *= (typeof _gpx[j]!= 'undefined' && _gpx[j].options.isLoaded);
+               }
            }
            if(!isLoaded){
                setTimeout(function(){_add_loaded_listener( buttonreset );}, 500);

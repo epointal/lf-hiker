@@ -142,7 +142,8 @@ After downloading the ZIP file [lf-hiker-1.2.zip](https://github.com/epointal/lf
 
 ## Changelog 
 ### 1.2.1
- * issue when no title attribute in shortcode lfh-marker
+ * issue map center on Paris when no title attribute in shortcode lfh-marker
+ * issue no map or map center on Paris conflict with AccessPress Instagram Feed
  
 ### 1.2
  * Add foot for elevation unit
