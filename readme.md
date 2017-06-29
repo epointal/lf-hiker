@@ -163,7 +163,10 @@ first stable version
 
 
 ## Frequently Asked Questions 
+
 **1. How add separate map for a second gpx file in the same post **
+
+----------------------
 You can create a second map with adding shortcode `[lfh-map]` before your gpx file shortcode `[lfh-gpx src="..."][/lfh-gpx]`.
 
 Example:
