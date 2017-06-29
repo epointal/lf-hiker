@@ -100,7 +100,7 @@ If you have any questions about the method, do not hesitate to [contact me](http
 
 ### Perform a new installation  
 
-After downloading the ZIP file [lf-hiker-1.2.zip](https://github.com/epointal/lf-hiker/archive/1.2.zip)   
+After downloading the ZIP file [lf-hiker-1.2.1.zip](https://github.com/epointal/lf-hiker/archive/1.2.1.zip)   
 
 1. Unzip `lf-hiker.zip` 
 2. Put the folder `lf-hiker` in directory `wp-content/plugins`
