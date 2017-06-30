@@ -249,7 +249,28 @@ div.lfh-container.lfh-min{
    transition: transform .8s ease-in;
    
  }
- 
+ div.lfh-min .lfh-close{
+     float:none;
+ }
+ div.lfh-element div.back,
+ div.lfh-element div.next{
+     display:none;
+ }
+ div.lfh-min div.lfh-element div.back,
+  div.lfh-min div.lfh-element div.next{
+      position:absolute;
+      display:block;
+      left:0;
+      top:125px;
+      width:50px;
+      opacity:0.2;
+      font-size:50px;
+      cursor:pointer;
+ }
+ div.lfh-min div.lfh-element div.back:hover,
+  div.lfh-min div.lfh-element div.next:hover{
+     opacity:0.8;
+ }
  div.lfh-min div.lfh-element,
  div.lfh-min div.lfh-element.hidden{
  position:absolute;
@@ -262,7 +283,7 @@ div.lfh-container.lfh-min{
  
 }
  div.lfh-min div.lfh-element.hidden{
-       -ms-transform: translateY(300px);
+   -ms-transform: translateY(300px);
    -webkit-transform: translateY(300px);
    -moz-transform: translateY(300px);
    -o-transform: translateY(300px);
@@ -277,7 +298,9 @@ div.lfh-min div.lfh-section{
 div.lfh-min .lfh-content > div,
 div.lfh-min div.lfh-section  div.lfh-content  svg{
 	 max-width:290px;
+	 width:270px;
 	 float:left;
+	 height:220px;
 	 max-height:200px;
 }
 div.lfh-min div.lfh-file{
