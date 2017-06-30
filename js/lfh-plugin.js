@@ -127,22 +127,29 @@ lfh.TopControl = L.Control.extend({
                 
                 var id = map._container.getAttribute('id');
                 var fade = L.DomUtil.get('lfh-fade');
+                var container = L.DomUtil.get(id + '-fadable')
                   if( this.className.indexOf('actived') >= 0 ){
                       //reduce map
-                      L.DomUtil.get(id + '-container').appendChild(map._container);
+                      
+                      L.DomUtil.get(id + '-skin').appendChild( container);
                       this.className = this.className.replace(' actived','');
                       fade.className = '';
+                      map._container.style.height= map._container.h0;
                       if(! map.options.mousewheel){
                           map.scrollWheelZoom.disable();
                       }
                   }else{
                       //fullscreen
-                      fade.appendChild(L.DomUtil.get(id));
+                      fade.appendChild( container);
                       this.className += ' actived';
                       fade.className = 'actived';
                       map.scrollWheelZoom.enable();
+                      map._container.h0 = map._container.style.height;
+
+                      map._container.style.height = "100%";
                   }
                   map.invalidateSize();
+                  
                   lfh.resize(map._container);
             }
         }
@@ -191,10 +198,30 @@ lfh.ResetControl = L.Control.extend({
  * @param {DomNode} container the map container*/
 lfh.resize = function(container){
     // compute the size of the description fonction of the parent
-    var height = container.offsetHeight -70;
-    var elements = container.getElementsByClassName('lfh-element');//.forEach(funtion(e){
+    var node = document.querySelector('#'+ container.id + '-data');
+    var height = node.offsetHeight ;
+    if(container.parentNode.parentNode.className.indexOf('lfh-min')<0){
+        height -= 70;
+    }else{
+        height = 250;
+        //delete all section hidden
+        var nodes = node.querySelectorAll('.lfh-section.hidden');
+        [].forEach.call(nodes, function(div) {
+                var classname = div.className;
+                if(classname.indexOf('disabled')>=0){
+                    return;
+                }
+                if(classname.indexOf('hidden')>=0){
+                     div.className = classname.replaceAll(' hidden', '');
+                }
+            
+          });
+    }
+    var elements = node.getElementsByClassName('lfh-element');//.forEach(funtion(e){
+    //var elements = node.querySelectorAll('div:not(.lfh-min) .lfh-element');
+    console.log(elements);
     for(var i=0; i<elements.length;i++){
-        elements.item(i).style.maxHeight = height +'px';
+        elements.item(i).style.maxHeight = (height) +'px';
         elements.item(i).querySelector('.lfh-element-content').style.maxHeight = (height-40)+'px';
     }
 }
@@ -507,7 +534,11 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
         _layer.options.elem_id = elem_id;
         if(_dom != null){
             // add dom node to map
-            _map.getContainer().appendChild(_dom);
+           // _map.getContainer().appendChild(_dom);
+            //console.log(_map.getContainer().id);
+            //var i= 0;
+            var dom = document.querySelector("#lfh-"+_map.getContainer().id.replace("lfh-", "")+"-data");
+            dom.appendChild(_dom);
             _add_event();
             if( _layer instanceof L.GPX ){
                 var profile = new lfh.Profile(

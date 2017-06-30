@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         </div>
        
         <!-- misc info -->
-        <div class="lfh-section">
+        <div class="lfh-section hidden">
             <div class="lfh-header">
             <h4><?php _e('Description', 'lfh');?></h4>
             </div>    
@@ -35,12 +35,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             <?php echo do_shortcode($html);?>
             </div>
         </div>
-        <div class="lfh-section hidden">
+        <div class="lfh-section">
               <div class="lfh-header">
               <h4 style="margin-bottom: 2px;"><?php _e('Profile', 'lfh');?></h4>
               </div>
                <div class="lfh-content" >
-                    <svg class="lfh-profile" width="290" height="220" >
+                    <svg class="lfh-profile" width="290" height="220" viewBox="0 0 290 220">
                         <defs>
                             <marker id="t" markerWidth="4" markerHeight="4" orient="auto" refY="2" refX="3">
                               <path d="M0,0 L4,2 0,4" fill="#000"/>

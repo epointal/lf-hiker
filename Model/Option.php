@@ -195,7 +195,7 @@ Class Lfh_Model_Option
    
    private static function update_inherit_color(){
        //lighter lfh_background
-       update_option('lfh_background_sub', self::lighter_darker(get_option('lfh_background'), 25));
+       update_option('lfh_background_sub', self::lighter_darker(get_option('lfh_background'), 10));
    }
    private static function lighter_darker($hex, $pct) {
        // Steps should be between -255 and 255. Negative = darker, positive = lighter

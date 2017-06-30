@@ -6,9 +6,14 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 <!-- -div of map -->
-<div id="lfh-<?=$map_count?>-container" class="lfh-container <?=$options['class']?>" style="height:<?=$options['height']?>px; width:<?=$options['width']?>%;">
-	<div id="lfh-<?=$map_count?>" class="lfh-map<?php echo ($is_connected>0? ' fakefull':'');?>">
-	</div>
+<div  id="lfh-<?=$map_count?>-skin" class="lfh-container <?=$options['class']?> lfh-min" style="position:relative;width:<?=$options['width']?>%;">
+ <div id="lfh-<?=$map_count?>-fadable" class="lfh-fadable <?php echo ($is_connected>0? ' fakefull':'');?>">
+    <!-- <div id="lfh-<?=$map_count?>-container"  >-->
+	    <div id="lfh-<?=$map_count?>" class="lfh-map" style="height:<?=($options['height'])?>px;width:100%;">
+	    </div>
+	<!--  </div>-->
+	<div id="lfh-<?=$map_count?>-data" class="lfh-data" >aaa</div>
+</div>
 </div>
 <!-- div of list objets -->
 <?php if( $options['list'] ):?>
