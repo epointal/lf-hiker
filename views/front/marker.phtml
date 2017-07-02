@@ -6,11 +6,11 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 <?php if(strlen($html)> 2):?>
-<div id="<?=$marker_id?>" class="lfh-info-<?=$map_count?> lfh-element leaflet-control hidden"  >
+<div id="<?=$marker_id?>" class="lfh-info-<?=$map_count?> lfh-element leaflet-control hidden step0"  >
     <div>
         <!-- header -->
-        <div >
-            <h3 >
+        <div class="lfh-head">
+            <h3>
                  <span class="lfh-trackname"><?=stripslashes( $options['title'] )?>&nbsp;</span>
                 <span  class="lfh-close fa fa-close" >&nbsp;</span>
             </h3>

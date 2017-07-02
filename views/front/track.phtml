@@ -6,10 +6,10 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
-<div id="<?=$track_id?>" class="lfh-info-<?=$map_count?> lfh-element leaflet-control hidden"  >
+<div id="<?=$track_id?>" class="lfh-info-<?=$map_count?> lfh-element leaflet-control hidden step0"  >
     <div>
         <!-- header -->
-        <div >
+        <div class="lfh-head">
             <h3 >
                  <span class="lfh-trackname"><?=$options['title']?>&nbsp;</span>
                 <span  class="lfh-close fa fa-close" >&nbsp;</span>
@@ -21,18 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         <!-- control buttons -->
             <div >
                 <a  href="<?=$options['src']?>"  download="<?php echo basename($options['src']);?>" class="lfh-gpx-file"  >
-                <i class="fa fa-download fa-lg"></i> &nbsp;<?=$file_type?>
+                <span class="fa fa-download"> &nbsp;<?=$file_type?></span>
                 </a>
-            </div>
-        </div>
-       
-        <!-- misc info -->
-        <div class="lfh-section hidden">
-            <div class="lfh-header">
-            <h4><?php _e('Description', 'lfh');?></h4>
-            </div>    
-            <div class="lfh-content" >
-            <?php echo do_shortcode($html);?>
             </div>
         </div>
         <div class="lfh-section">
@@ -40,7 +30,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
               <h4 style="margin-bottom: 2px;"><?php _e('Profile', 'lfh');?></h4>
               </div>
                <div class="lfh-content" >
-                    <svg class="lfh-profile"  viewBox="0 0 290 220">
+                    <div>
+                    <svg class="lfh-profile"  viewBox="0 0 290 220" >
                         <defs>
                             <marker id="t" markerWidth="4" markerHeight="4" orient="auto" refY="2" refX="3">
                               <path d="M0,0 L4,2 0,4" fill="#000"/>
@@ -83,6 +74,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                         <line class="lfh-move-line" x1="0" y1="185" x2="0" y2="-5"/>
                     </g>
                     </svg>
+                    </div>
                     <div>
                         <div >
                             <span ><?php _e('Name' ,'lfh');?>: </span>
@@ -103,8 +95,18 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                     </div>
                </div>
           </div>
+          <!-- misc info -->
+        <?php if(strlen($html)>0):?>
+        <div class="lfh-section hidden">
+            <div class="lfh-header">
+            <h4><?php _e('Description', 'lfh');?></h4>
+            </div>    
+            <div class="lfh-content" >
+            <div><?php echo do_shortcode($html);?></div>
+            </div>
+        </div>
+        <?php endif;?>
         </div>
     </div>
-    <div  class="back fa fa-chevron-circle-left" style=""></div>
-    <div  class="next fa fa-chevron-circle-right"></div>
+   
 </div>

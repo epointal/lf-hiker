@@ -224,12 +224,13 @@ Class Lfh_Controller_Front
         
     }
     private static function add_css_inline($css){
-        $data = "#content .lfh-element h3:first-child,
+        $data = "div.lfh-min div.lfh-nav div.lfh-title,
+                 #content .lfh-element h3:first-child,
                  #lfh-fade .lfh-element h3:first-child {
                      background-color:".$css['lfh_background'].";
                      color:".$css['lfh_color'].";
                  }
-                 #content a.lfh-gpx-file,
+                 a.lfh-gpx-file,
                  #content .lfh-section .lfh-header,
                  #content .lfh-section .lfh-header h4,
                  #lfh-fade a.lfh-gpx-file,
@@ -238,9 +239,13 @@ Class Lfh_Controller_Front
                      background-color:".$css['lfh_background_sub'].";
                      color:".$css['lfh_color'].";
                  }
-                 #content a.lfh-gpx-file,
-                 #lfh-fade a.lfh-gpx-file{
+                 a.lfh-gpx-file{
                      border-color:".$css['lfh_color'].";
+                 }
+                 div.lfh-min a.lfh-gpx-file{
+                     background:none;
+                     color:inherit;
+                     border:none;
                  }
                 ";
         wp_add_inline_style('lfh_style', $data );

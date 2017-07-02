@@ -12,7 +12,49 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	    <div id="lfh-<?=$map_count?>" class="lfh-map" style="height:<?=($options['height'])?>px;width:100%;">
 	    </div>
 	<!--  </div>-->
-	<div id="lfh-<?=$map_count?>-data" class="lfh-data simple-border" >aaa</div>
+	<div id="lfh-<?=$map_count?>-data" class="lfh-data simple-border" >
+		<div id="lfh-<?=$map_count?>-nav" class="lfh-nav">
+			<div class="lfh-title" >
+    			<span class="lfh-trackname"><?=__('Information', 'lfh')?></span>
+    			<span class="lfh-close fa fa-close"></span>
+			</div>
+			
+			
+			<div  class="lfh-back fa fa-chevron-circle-left" style=""></div>
+    		<div  class="lfh-next fa fa-chevron-circle-right"></div>
+    		
+		</div>
+		 
+		 
+		 <div class="lfh-data-content">
+        <div><?=__('Click path or marker on the map to see information', 'lfh')?></div>
+        <!-- misc info -->
+        <div class="lfh-section">
+          <div class="lfh-header">
+          <h4><?php _e('All tracks', 'lfh');?></h4>
+          </div>        
+          <div class="lfh-content" >
+          <ul class="lfh-list-gpx">
+          </ul>
+          </div>
+        </div>
+     	<div class="lfh-section">
+          <div class="lfh-header">
+          <h4><?php _e('All markers', 'lfh');?></h4>
+          </div>        
+          <div class="lfh-content" >
+          <ul class="lfh-list-markers">
+          </ul>
+          </div>
+        </div>
+        <div class="lfh-contributor">
+    					<a href="https://wordpress.org/plugins/lf-hiker/" title="Plugin Lf Hiker">Lf Hiker</a>
+    					| <a href="http://elisabeth.pointal.org" title="Elisabeth Pointal">E. Pointal</a>
+    					 contributor
+    		</div>
+        </div>
+	</div>
+	
 </div>
 </div>
 <!-- div of list objets -->

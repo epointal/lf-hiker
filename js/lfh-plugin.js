@@ -133,7 +133,7 @@ lfh.TopControl = L.Control.extend({
                       
                       L.DomUtil.get(id + '-skin').appendChild( container);
                       this.className = this.className.replace(' actived','');
-                      fade.className = '';
+                      fade.className = fade.className.replace(' actived','');
                       map._container.style.height= map._container.h0;
                       if(! map.options.mousewheel){
                           map.scrollWheelZoom.disable();
@@ -142,7 +142,7 @@ lfh.TopControl = L.Control.extend({
                       //fullscreen
                       fade.appendChild( container);
                       this.className += ' actived';
-                      fade.className = 'actived';
+                      fade.className = fade.className + ' actived';
                       map.scrollWheelZoom.enable();
                       map._container.h0 = map._container.style.height;
 
@@ -203,7 +203,7 @@ lfh.resize = function(container){
     if(container.parentNode.parentNode.className.indexOf('lfh-min')<0){
         height -= 70;
     }else{
-        height = 250;
+        height = 220;
         //delete all section hidden
         var nodes = node.querySelectorAll('.lfh-section.hidden');
         [].forEach.call(nodes, function(div) {
@@ -216,6 +216,7 @@ lfh.resize = function(container){
                 }
             
           });
+        return;
     }
     var elements = node.getElementsByClassName('lfh-element');//.forEach(funtion(e){
     //var elements = node.querySelectorAll('div:not(.lfh-min) .lfh-element');
@@ -256,6 +257,7 @@ lfh.Map = function(i){
                 id: null,
                 layer:null,
                 dom: null,
+                title: document.querySelector("#"+ _map_id + "-data div.lfh-nav .lfh-trackname").textContent,
                 close: function(){
                     if(this.id != null ){
                         //close fenetre
@@ -299,6 +301,7 @@ lfh.Map = function(i){
             //Add event listener
             _add_map_event();
             _add_loaded_listener(d.reset);
+            _add_nav_event();
             // Add control button
             _add_controls(d);
             
@@ -363,7 +366,24 @@ lfh.Map = function(i){
                 lfh.resize(this.getContainer());
             });
         }
-       
+        function _add_nav_event()
+        {
+            // Close button window for min screen
+            var node = document.querySelector('#'+ _map_id + "-nav .lfh-close");
+            L.DomEvent.addListener( node , 'click', function(e){
+                _selected_element.layer.fire('click');
+            });
+            
+            var back = document.querySelector('#'+ _map_id + "-nav .lfh-back");
+            L.DomEvent.addListener( back , 'click', function(e){
+               console.log( _selected_element.dom.step);
+            });
+            var next = document.querySelector('#'+ _map_id + "-nav .lfh-next");
+            L.DomEvent.addListener( next , 'click', function(e){
+               console.log( _selected_element.dom.step);
+            });
+            
+        }
         function _add_move_marker(latlng){
             _move_marker = L.marker(latlng ,{icon: lfh.ICON_MOVE});
         }
@@ -532,13 +552,19 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
             _layer.options = {};
         }
         _layer.options.elem_id = elem_id;
+        if(_dom != null )
+        {
+            _dom.step = 0;
+            _dom.step_max = 5; // count number of div and add div in description 
+        }
         if(_dom != null){
             // add dom node to map
            // _map.getContainer().appendChild(_dom);
             //console.log(_map.getContainer().id);
             //var i= 0;
-            var dom = document.querySelector("#lfh-"+_map.getContainer().id.replace("lfh-", "")+"-data");
-            dom.appendChild(_dom);
+            var data = document.querySelector("#"+_map.getContainer().id + "-data");
+            var last_child = data.querySelector(".lfh-nav");
+            data.insertBefore(_dom,last_child);
             _add_event();
             if( _layer instanceof L.GPX ){
                 var profile = new lfh.Profile(
@@ -573,6 +599,7 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
                         id :    _id,
                         layer:  _layer,
                         dom:    _dom});
+                _add_title_nav();
         }else{
                 _selected_element.set({
                         id : null,
@@ -581,10 +608,40 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
                 if(_layer instanceof L.Marker ){
                     _layer.closePopup();
                 }
+                _reset_title_nav();
         }
         
     }
-     
+    function _add_title_nav(){
+        // replace title nav by title of selected element
+        var nav = document.querySelector("#"+_map.getContainer().id + "-data div.lfh-nav");
+        var name = nav.querySelector(".lfh-trackname");
+        name.textContent = _selected_element.dom.querySelector(".lfh-trackname").textContent;
+        
+        //remove gpx if exists
+        var link_gpx = nav.querySelector(".lfh-gpx-file");
+        if( link_gpx != null ){
+            link_gpx.parentNode.removeChild( link_gpx );
+        }
+        if(_selected_element.layer instanceof L.GPX){
+            // add link to gpx file
+            var link_gpx = _selected_element.dom.querySelector(".lfh-gpx-file").cloneNode(true);
+            nav.querySelector(".lfh-title").appendChild( link_gpx );
+        }
+        
+    }
+    function _reset_title_nav()
+    {
+        var nav = document.querySelector("#"+_map.getContainer().id + "-data div.lfh-nav"); 
+        nav.querySelector(".lfh-trackname").textContent = _selected_element.title;
+        
+        // remove link to gpx file
+        var link_gpx = nav.querySelector(".lfh-gpx-file");
+        if( link_gpx != null ){
+            link_gpx.parentNode.removeChild( link_gpx );
+        }
+        // link_gpx.remove();
+    }
     function _add_event( ){
        // hide show section 
        var nodes = _dom.querySelectorAll('.lfh-element .lfh-header');
@@ -635,7 +692,9 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
       }
       
    }
-  
+   function translate( delta ){
+       
+   }
    _initialize();
    return {dom: _dom, layer: _layer, id: _id};
 }
