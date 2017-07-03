@@ -90,83 +90,20 @@ lfh.POINT_ICON = L.icon({
 
 
 /** Build all on the differents maps*/
-lfh.initialize = function(){
-    for(var i in lfh.data){
-        if(typeof lfh.data[i] != 'function') // instagram conflict
-        {
-            var my_map = new lfh.Map(i);
-        }
+lfh.initialize_map = function(i){
+    if(typeof lfh.data[i] != 'function'){
+        var my_map = new lfh.Map(i);
+    }
+}
+lfh.initialize = function( i ){
+    if(i < lfh.data.length){
+        lfh.initialize_map( i );
+        var next = function(){ lfh.initialize( i+1);};
+        setTimeout( next,0);
      }
 }
 
-/**
- *  Add two buttons on top right : fullscreen and list of layer
- * @constructor
- * @extend {L.Control}
- */
-lfh.TopControl = L.Control.extend({
-   
-    options: {
-      position: 'topright' 
-    }, 
-    _fullscreen: true,
-    _list: true,
-    _selected: null,
-    initialize: function(d, selected){
-        this._fullscreen = d.fullscreen;
-        this._list = d.list;
-        this._index = d.i;
-        this._selected = selected;
-    },
-    onAdd: function (map) {
-        var container = L.DomUtil.create('div', 'lfh-container-fullscreen');
-        if(this._fullscreen){
-            var div1 =  L.DomUtil.create('div', 'leaflet-bar leaflet-control lfh-control-fullscreen');
-            container.appendChild(div1);
-            div1.onclick = function(){
-                
-                var id = map._container.getAttribute('id');
-                var fade = L.DomUtil.get('lfh-fade');
-                var container = L.DomUtil.get(id + '-fadable')
-                  if( this.className.indexOf('actived') >= 0 ){
-                      //reduce map
-                      
-                      L.DomUtil.get(id + '-skin').appendChild( container);
-                      this.className = this.className.replace(' actived','');
-                      fade.className = fade.className.replace(' actived','');
-                      map._container.style.height= map._container.h0;
-                      if(! map.options.mousewheel){
-                          map.scrollWheelZoom.disable();
-                      }
-                  }else{
-                      //fullscreen
-                      fade.appendChild( container);
-                      this.className += ' actived';
-                      fade.className = fade.className + ' actived';
-                      map.scrollWheelZoom.enable();
-                      map._container.h0 = map._container.style.height;
 
-                      map._container.style.height = "100%";
-                  }
-                  map.invalidateSize();
-                  
-                  lfh.resize(map._container);
-            }
-        }
-        if(this._list){
-            var div2 =  L.DomUtil.create('div', 'leaflet-bar leaflet-control lfh-control-list');
-            container.appendChild(div2);
-            //append list window to the map
-            var link = new lfh.Link( map, div2, 'list-' + this._index , this._selected, null, null,null);
-          
-           /* div2.onclick = function(){
-                console.log('show/hide list layer');
-            }*/
-        }
-        return container;
-    },
-   
-  });
 
 /**
  *  Add button reset on top left of the map under zoomin zoomout
@@ -220,7 +157,7 @@ lfh.resize = function(container){
     }
     var elements = node.getElementsByClassName('lfh-element');//.forEach(funtion(e){
     //var elements = node.querySelectorAll('div:not(.lfh-min) .lfh-element');
-    console.log(elements);
+  
     for(var i=0; i<elements.length;i++){
         elements.item(i).style.maxHeight = (height) +'px';
         elements.item(i).querySelector('.lfh-element-content').style.maxHeight = (height-40)+'px';
@@ -235,12 +172,11 @@ lfh.resize = function(container){
 lfh.Map = function(i){
         // Public only map
         var map = null;
-        
         // all Private
         var _map_id = 'lfh-'+i;
         var _index = i;
         var _data = lfh.data[i];
-        
+        var _large = true; // "big screen"
         var _center = [48.866667,2.333333];//default value Paris if not in data
         var _zoom = 13;                    // default value if not in data
         var _zoom_limit = lfh.ZOOM_LIMIT;              // zoom from which the markers are visible
@@ -274,9 +210,103 @@ lfh.Map = function(i){
                     for(var key in obj){
                         this[key] = obj[key];
                     }
+                },
+                toggle_next: function( delta){
+                    if( this.dom === null || this.layer === null){
+                        return;
+                    }
+                    var i = this.dom.step;
+                    var next = i + delta;
+                    
+                    _selected_element.dom.step = next;
+                    _selected_element.dom.className = _selected_element.dom.className.replace("step"+ i, "step" + next);
+               
+                    if( this.dom.step_max <= this.dom.step +1 ){
+                        // hide next button
+                        document.querySelector('#'+ _map_id + "-nav .lfh-next").style.display = "none";
+                    }else{
+                        // show next button
+                        document.querySelector('#'+ _map_id + "-nav .lfh-next").style.display = "block";
+                    }
                 }
         }
-
+        /**
+         *  Add two buttons on top right : fullscreen and list of layer
+         * @constructor
+         * @extend {L.Control}
+         */
+        TopControl = L.Control.extend({
+           
+            options: {
+              position: 'topright' 
+            }, 
+            _fullscreen: true,
+            _list: true,
+            _selected: null,
+            initialize: function(d, selected ){
+                this._fullscreen = d.fullscreen;
+                this._list = d.list;
+                this._index = d.i;
+                this._selected = selected;
+            },
+            onAdd: function (map) {
+                var container = L.DomUtil.create('div', 'lfh-container-fullscreen');
+                if(this._fullscreen){
+                    var div1 =  L.DomUtil.create('div', 'leaflet-bar leaflet-control lfh-control-fullscreen');
+                    container.appendChild(div1);
+                    div1.onclick = function(){
+                        
+                        var id = _map_id;
+                        var fade = L.DomUtil.get('lfh-fade');
+                        var container = L.DomUtil.get(id + '-fadable')
+                          if( this.className.indexOf('actived') >= 0 ){
+                              //reduce map
+                              
+                              L.DomUtil.get(id + '-skin').appendChild( container);
+                              this.className = this.className.replace(' actived','');
+                              fade.className = fade.className.replace(' actived','');
+                              map._container.style.height= map._container.h0;
+                              if(! map.options.mousewheel){
+                                  map.scrollWheelZoom.disable();
+                              }
+                             
+                          }else{
+                              //fullscreen
+                              fade.appendChild( container);
+                              this.className += ' actived';
+                              fade.className = fade.className + ' actived';
+                              map.scrollWheelZoom.enable();
+                              map._container.h0 = map._container.style.height;
+                              map._container.style.height = "100%";
+                              /*if(fade.className.indexOf("lfh-min")>=0){
+                                  map._container.style.height = (fade.offsetHeight -250) +"px";
+                              }else{
+                                  map._container.style.height = "100%";
+                              }*/
+                              
+                              // if lfh-min little screen:
+                          }
+                        //map.invalidateSize();
+                         
+                         map.invalidateSize();
+                         //map.fire("resize");
+                         // lfh.resize(map._container);
+                    }
+                }
+                if(this._list){
+                    var div2 =  L.DomUtil.create('div', 'leaflet-bar leaflet-control lfh-control-list');
+                    container.appendChild(div2);
+                    //append list window to the map
+                    var link = new lfh.Link( map, div2, 'list-' + this._index , this._selected, null, null,null);
+                  
+                   /* div2.onclick = function(){
+                        console.log('show/hide list layer');
+                    }*/
+                }
+                return container;
+            },
+           
+          });
         function _initialize( i ){
             _data = lfh.data[i];
             var d = lfh.data[i].map;
@@ -302,9 +332,33 @@ lfh.Map = function(i){
             _add_map_event();
             _add_loaded_listener(d.reset);
             _add_nav_event();
+           
             // Add control button
             _add_controls(d);
+            _map_resize();
             
+        }
+        function _map_resize(){
+            var width = map.getContainer().offsetWidth;
+            var global_container = map.getContainer().parentNode.parentNode;
+            if(width <= 580 && _large){
+                
+                global_container.className += ' lfh-min';
+                _large = false;
+            }else if( width > 580 && !_large){
+              
+                var classname = global_container.className;
+                global_container.className = classname.replace(' lfh-min', '');
+                _large = true;
+            }
+            
+            if( map.getContainer().parentNode.parentNode.id == "lfh-fade"){
+                if(_large){
+                    map.getContainer().style.height = "100%";
+                }else{
+                    map.getContainer().style.height = (global_container.offsetHeight -250) +"px";
+                }
+            }
         }
         function _set_tile(tile){
             if(tile == 'mapquest'){
@@ -318,7 +372,7 @@ lfh.Map = function(i){
             }
         }
         function _add_controls(d){
-            map.addControl(new lfh.TopControl(d, _selected_element));
+            map.addControl(new TopControl(d, _selected_element));
            
             
             if(!_auto_center && d.reset){ 
@@ -363,6 +417,7 @@ lfh.Map = function(i){
                 }
             });
             map.on('resize' , function(){
+                _map_resize();
                 lfh.resize(this.getContainer());
             });
         }
@@ -376,14 +431,16 @@ lfh.Map = function(i){
             
             var back = document.querySelector('#'+ _map_id + "-nav .lfh-back");
             L.DomEvent.addListener( back , 'click', function(e){
-               console.log( _selected_element.dom.step);
+              _selected_element.toggle_next( -1 );
             });
             var next = document.querySelector('#'+ _map_id + "-nav .lfh-next");
             L.DomEvent.addListener( next , 'click', function(e){
-               console.log( _selected_element.dom.step);
+              _selected_element.toggle_next( 1 );
+           
             });
             
         }
+        
         function _add_move_marker(latlng){
             _move_marker = L.marker(latlng ,{icon: lfh.ICON_MOVE});
         }
@@ -552,11 +609,8 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
             _layer.options = {};
         }
         _layer.options.elem_id = elem_id;
-        if(_dom != null )
-        {
-            _dom.step = 0;
-            _dom.step_max = 5; // count number of div and add div in description 
-        }
+       
+       
         if(_dom != null){
             // add dom node to map
            // _map.getContainer().appendChild(_dom);
@@ -565,6 +619,12 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
             var data = document.querySelector("#"+_map.getContainer().id + "-data");
             var last_child = data.querySelector(".lfh-nav");
             data.insertBefore(_dom,last_child);
+            _dom.step = 0;
+            _dom.step_max = _count_step(_dom); // count number of div and add div in description 
+            if( _layer instanceof L.GPX){
+                _dom.step_max += 2;
+            }
+            
             _add_event();
             if( _layer instanceof L.GPX ){
                 var profile = new lfh.Profile(
@@ -577,8 +637,132 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
             }
         }
     }
-    
-     function _tooggle(){
+    /**
+     * @todo clean and optimize this method
+     * count and create div node for description
+     * resize image 
+     * @param {DomNode} div lfh-element information about marker or track
+     * @return {integer} number of div in description
+     */
+     function _count_step( dom ){
+        // return 4;
+         // change dom add div 
+         //first resize image
+         var imgs = dom.querySelectorAll("img");
+         [].forEach.call(imgs, function( img ) {
+             if( img.parentNode.className.indexOf("wp-caption")>=0)
+             {
+                 img.style.maxWidth = "260px";
+                 img.style.maxHeight = "160px";
+                 img.parentNode.style.maxWidth = "270px";
+                 img.parentNode.style.maxHeight = "210px";
+                 
+                 img.parentNode.style.width = Math.min(270, img.parentNode.style.width.replace("px", ""))+"px";
+                // img.parentNode.style.width = Math.min(210, img.parentNode.style.height.replace("px", ""))+"px";
+             }else{
+                 img.style.maxWidth = "270px";
+                 img.style.maxHeight = "210px";
+             }
+             if(img.parentNode.tagName.toLowerCase() === "p"){
+                 img.parentNode.parentNode.insertBefore(img, img.parentNode)
+             }
+         });
+       
+        var description = dom.querySelector(".lfh-description");
+        if( description === null){
+            return 0;
+        }
+        var childs = description.childNodes;
+        var new_childs = new Array();
+        var col = ("scelerisque massa pretium sed. Vivamus est ").length;
+        var line = 17;
+        var div = document.createElement('div');
+        var row = 0;
+        [].forEach.call( childs , function( node) {
+            switch( node.nodeType){
+            case Node.ELEMENT_NODE:
+                switch( node.tagName.toLowerCase() ){
+                case "p":
+                case "span":
+                    if(node.textContent.trim().length > 0){
+                        var lng = 1+(node.textContent.trim().length )/col;
+                        if(row + lng > line){
+                            new_childs.push(div);
+                            div = document.createElement("div");
+                            row = 0;
+                        }
+                        div.appendChild(node);
+                        row += lng;
+                    }
+                    break;
+                case "img":
+                    if(row > 0){
+                        new_childs.push(div);
+                        div = document.createElement("div");
+                        row = 0;
+                    }
+                    var div2 = document.createElement("div");
+                    div2.appendChild(node);
+                    new_childs.push(div2);
+                   
+                    break;
+                case "ul":
+                case "ol":
+                    //count li
+                    var lng = 0;
+                    var lis = node.querySelectorAll("li");
+                    [].forEach.call( lis , function( li) {
+                        lng += 1+li.textContent.trim().length/col;
+                    });
+                    if(row + lng > line && row>0){
+                        new_childs.push(div);
+                        div = document.createElement("div");
+                        row = 0;
+                    }
+                    div.appendChild(node);
+                    row += lng;
+                    break;
+                case "div":
+                    if(row > 0){
+                        new_childs.push(div);
+                        div = document.createElement("div");
+                        row = 0;
+                    }
+                    new_childs.push(node);
+                    break;
+                case "br":
+                    break;
+               
+                }
+                break;
+            case Node.TEXT_NODE:
+                if(node.nodeValue.trim().length > 0){
+                    var p = document.createElement("p");
+                   
+                    p.textContent = node.nodeValue.trim(); 
+                    var lng = 1+(node.nodeValue.trim().length )/col;
+                    
+                    if(row + lng > line){
+                        new_childs.push(div);
+                        div = document.createElement("div");
+                        row = 0;
+                    }
+                    div.appendChild(p);
+                    row += lng;
+                }
+                break;
+            }
+           
+        });
+        if(row>0)
+            new_childs.push(div);
+        description.innerHTML ="";
+        [].forEach.call( new_childs , function( node) {
+            description.appendChild(node);
+        });
+        return new_childs.length;
+     }
+     function _toggle(){
         _selected_element.close();
         
         if(_selected_element.id == null || _selected_element.id != _id){
@@ -600,6 +784,7 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
                         layer:  _layer,
                         dom:    _dom});
                 _add_title_nav();
+                _selected_element.toggle_next( 0 );
         }else{
                 _selected_element.set({
                         id : null,
@@ -676,7 +861,7 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
     
       if( _layer instanceof L.Layer){
           _layer.on('click', function(e){
-              _tooggle( );
+              _toggle( );
           });
           L.DomEvent.addListener(nodeClose ,'click', function(e){
               _layer.fire('click');
@@ -684,10 +869,10 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
       }else{
         
           L.DomEvent.addListener( _layer, 'click', function(e){
-              _tooggle();
+              _toggle();
           });
           L.DomEvent.addListener(nodeClose ,'click', function(e){
-              _tooggle();
+              _toggle();
           });
       }
       
@@ -818,6 +1003,6 @@ lfh.Profile = function( map, layer, dom, move, unit, unit_h){
      return {draw:draw};
  }
 
-lfh.initialize();
+ lfh.initialize(1);
 })();
     
