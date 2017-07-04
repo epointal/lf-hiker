@@ -167,7 +167,11 @@ div.lfh-fadable,
 
 
 }
-
+.lfh-min .lfh-data-content input[type="button"]{
+	pointer-events:auto;
+	cursor: pointer;
+	width: 265px;
+}
 .lfh-map{
     display:inline-block;
     z-index:0;
@@ -277,11 +281,27 @@ div.lfh-min div.lfh-control-list{
 }
 div.lfh-data-content{
     display:none;
+    line-height:1em;
+}
+div.lfh-data-content > div:not(.lfh-contributor){
+	width:100%;
+	margin-top:3px;
 }
 div.lfh-min div.lfh-data-content{
     margin: 35px 5px;
     display:block;
     text-align:left;
+    vertical-align:middle;
+}
+div.lfh-min div.lfh-data-content div.lfh-section{
+
+    display:block;
+    height:100%;
+    vertical-align:middle;
+    line-height:200px;
+}
+div.lfh-min div.lfh-data-content div.lfh-section div.lfh-content{
+	margin:auto;
 }
 div.lfh-container.lfh-min,
 #fade div.lfh-container.lfh-min{

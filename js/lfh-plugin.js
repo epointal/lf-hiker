@@ -65,6 +65,7 @@ String.prototype.replaceAll = function(search, replacement) {
  * @const lfh.ICON_MOVE {L.Icon} icon for marker moving on path
  * @const lfh.POINT_ICON {L.Icon} icon for start and end points of path
  * @const lfh.SELECTED_COLOR string html color for the selected path 
+ * @const lfh.WIDTH_LIMIT interger the map width limit in pixels to change displaying
  **/
 lfh.ZOOM_LIMIT = 11;
 
@@ -95,6 +96,7 @@ lfh.initialize_map = function(i){
         var my_map = new lfh.Map(i);
     }
 }
+/** Recursivily initialize the map, if there are a lot of map*/
 lfh.initialize = function( i ){
     if(i < lfh.data.length){
         lfh.initialize_map( i );
@@ -165,6 +167,138 @@ lfh.resize = function(container){
 }
 
 /**
+ *  Add two buttons on top right : fullscreen and list of layer
+ * @constructor
+ * @extend {L.Control}
+ */
+lfh.TopControl = L.Control.extend({
+   
+    options: {
+      position: 'topright' 
+    }, 
+    _fullscreen: true,
+    _list: true,
+    _selected: null,
+    initialize: function(d, selected ){
+        this._fullscreen = d.fullscreen;
+        this._list = d.list;
+        this._index = d.i;
+        this._selected = selected;
+    },
+    onAdd: function (map) {
+        var container = L.DomUtil.create('div', 'lfh-container-fullscreen');
+        if(this._fullscreen){
+            var div1 =  L.DomUtil.create('div', 'leaflet-bar leaflet-control lfh-control-fullscreen');
+            container.appendChild(div1);
+            div1.onclick = function(){
+                var id = map._container.id;
+                var fade = L.DomUtil.get('lfh-fade');
+                var container = L.DomUtil.get(id + '-fadable')
+                  if( this.className.indexOf('actived') >= 0 ){
+                      //reduce map
+                      
+                      L.DomUtil.get(id + '-skin').appendChild( container);
+                      this.className = this.className.replace(' actived','');
+                      fade.className = fade.className.replace(' actived','');
+                      map._container.style.height= map._container.h0;
+                      if(! map.options.mousewheel){
+                          map.scrollWheelZoom.disable();
+                      }
+                      
+                  }else{
+                      //fullscreen
+                      fade.appendChild( container);
+                      this.className += ' actived';
+                      fade.className = fade.className + ' actived';
+                      map.scrollWheelZoom.enable();
+                      map._container.h0 = map._container.style.height;
+                      map._container.style.height = "100%";
+                  }
+                  // resize according to container width
+                  var classname = container.parentNode.className;
+                  if(container.parentNode.offsetWidth > lfh.WIDTH_LIMIT){
+                      _large = true;
+                      container.parentNode.className = classname.replaceAll(' lfh-min', '');
+                  }else{
+                      _large = false;
+                      if(classname.indexOf('lfh-min')<0){
+                          container.parentNode.className += ' lfh-min';
+                      }
+                  }
+                 map.invalidateSize();
+            }
+        }
+        if(this._list){
+            var div2 =  L.DomUtil.create('div', 'leaflet-bar leaflet-control lfh-control-list');
+            container.appendChild(div2);
+            //append list window to the map
+            var link = new lfh.Link( map, div2, 'list-' + this._index , this._selected, null, null,null);
+        }
+        return container;
+    },
+   
+  });
+/** the layer selected, whose description is displayed
+ * @constructor
+ * @param {string} map_id  id of map container (lfh-1, lfh-2...)
+ * @param {L.Map} map
+ * @param [L.Marker} marker, the move marker on map
+ * @return 
+ */
+
+lfh.Selected = function( map_id, map, marker){
+        this.map_id = map_id;
+        var _move_marker = marker; // move marker on map used for gpx layer
+        var map = map; 
+       // var id = null;
+        var layer=null; // the layer
+        var dom = null; // the node where is layer descritption
+        
+        // title displayed in lfh-nav by default (window under map)
+        var title = document.querySelector("#"+ map_id + "-data div.lfh-nav .lfh-trackname").textContent;
+        
+        this.close = function(){
+            // hide navigation button next
+            document.querySelector('#'+ this.map_id + "-nav .lfh-next").style.display = "none";
+            if(this.id != null ){
+                //close fenetre
+                var classname = this.dom.className;
+                this.dom.className = classname + ' hidden';
+                if( this.layer instanceof L.GPX){
+                    // path with its original color
+                    var options = this.layer.get_options();
+                    this.layer.setStyle({color:options.realColor});
+                    map.removeLayer(_move_marker);
+                }
+            }
+        }
+        this.set= function(obj){
+            for(var key in obj){
+                this[key] = obj[key];
+            }
+        }
+        // for navigation next and back in window information displayed under map 
+        // delta = -1, 0 or 1 (back, don't move, next)
+        this.toggle_next = function( delta){
+            if( this.dom === null || this.layer === null){
+                return;
+            }
+            var i = this.dom.step;
+            var next = i + delta;
+            
+            this.dom.step = next;
+            this.dom.className = this.dom.className.replace("step"+ i, "step" + next);
+       
+            if( this.dom.step_max <= this.dom.step +1 ){
+                // hide next button
+                document.querySelector('#'+ this.map_id + "-nav .lfh-next").style.display = "none";
+            }else{
+                // show next button
+                document.querySelector('#'+ this.map_id + "-nav .lfh-next").style.display = "block";
+            }
+        }
+}
+/**
  * Build the map indexed i, with its markers, its gpx path, its controls...
  * @constructor
  * @param {int} i the index of data in array lfh.data
@@ -179,7 +313,7 @@ lfh.Map = function(i){
         var _large = true; // "big screen"
         var _center = [48.866667,2.333333];//default value Paris if not in data
         var _zoom = 13;                    // default value if not in data
-        var _zoom_limit = lfh.ZOOM_LIMIT;              // zoom from which the markers are visible
+        var _zoom_limit = lfh.ZOOM_LIMIT;  // zoom from which the markers are visible
         var _auto_center = true;           // compute center and zoom from the elements added on map
         var _list = false;                 // see button list
         //remarquables layers
@@ -188,124 +322,8 @@ lfh.Map = function(i){
         var _layer_zoom = null;            // layer of elements which are displayed according to zoom
         var _latlngbounds = new Array();   // markers used for compute bounds of map if _auto_center
         
-        // the layer selected, whose description is displayed
-        var _selected_element ={
-                id: null,
-                layer:null,
-                dom: null,
-                title: document.querySelector("#"+ _map_id + "-data div.lfh-nav .lfh-trackname").textContent,
-                close: function(){
-                    if(this.id != null ){
-                        //close fenetre
-                        var classname = this.dom.className;
-                        this.dom.className = classname + ' hidden';
-                        if( this.layer instanceof L.GPX){
-                            var options = this.layer.get_options();
-                            this.layer.setStyle({color:options.realColor});
-                            map.removeLayer(_move_marker);
-                        }
-                    }
-                },
-                set: function(obj){
-                    for(var key in obj){
-                        this[key] = obj[key];
-                    }
-                },
-                toggle_next: function( delta){
-                    if( this.dom === null || this.layer === null){
-                        return;
-                    }
-                    var i = this.dom.step;
-                    var next = i + delta;
-                    
-                    _selected_element.dom.step = next;
-                    _selected_element.dom.className = _selected_element.dom.className.replace("step"+ i, "step" + next);
-               
-                    if( this.dom.step_max <= this.dom.step +1 ){
-                        // hide next button
-                        document.querySelector('#'+ _map_id + "-nav .lfh-next").style.display = "none";
-                    }else{
-                        // show next button
-                        document.querySelector('#'+ _map_id + "-nav .lfh-next").style.display = "block";
-                    }
-                }
-        }
-        /**
-         *  Add two buttons on top right : fullscreen and list of layer
-         * @constructor
-         * @extend {L.Control}
-         */
-        TopControl = L.Control.extend({
-           
-            options: {
-              position: 'topright' 
-            }, 
-            _fullscreen: true,
-            _list: true,
-            _selected: null,
-            initialize: function(d, selected ){
-                this._fullscreen = d.fullscreen;
-                this._list = d.list;
-                this._index = d.i;
-                this._selected = selected;
-            },
-            onAdd: function (map) {
-                var container = L.DomUtil.create('div', 'lfh-container-fullscreen');
-                if(this._fullscreen){
-                    var div1 =  L.DomUtil.create('div', 'leaflet-bar leaflet-control lfh-control-fullscreen');
-                    container.appendChild(div1);
-                    div1.onclick = function(){
-                        //_on_fullscreen();
-                        var id = _map_id;
-                        var fade = L.DomUtil.get('lfh-fade');
-                        var container = L.DomUtil.get(id + '-fadable')
-                          if( this.className.indexOf('actived') >= 0 ){
-                              //reduce map
-                              
-                              L.DomUtil.get(id + '-skin').appendChild( container);
-                              this.className = this.className.replace(' actived','');
-                              fade.className = fade.className.replace(' actived','');
-                              map._container.style.height= map._container.h0;
-                              if(! map.options.mousewheel){
-                                  map.scrollWheelZoom.disable();
-                              }
-                              
-                          }else{
-                              //fullscreen
-                              fade.appendChild( container);
-                              this.className += ' actived';
-                              fade.className = fade.className + ' actived';
-                              map.scrollWheelZoom.enable();
-                              map._container.h0 = map._container.style.height;
-                              map._container.style.height = "100%";
-                          }
-                          var classname = container.parentNode.className;
-                          if(container.parentNode.offsetWidth > lfh.WIDTH_LIMIT){
-                              _large = true;
-                              container.parentNode.className = classname.replaceAll(' lfh-min', '');
-                          }else{
-                              _large = false;
-                              if(classname.indexOf('lfh-min')<0){
-                                  container.parentNode.className += ' lfh-min';
-                              }
-                          }
-                         map.invalidateSize();
-                    }
-                }
-                if(this._list){
-                    var div2 =  L.DomUtil.create('div', 'leaflet-bar leaflet-control lfh-control-list');
-                    container.appendChild(div2);
-                    //append list window to the map
-                    var link = new lfh.Link( map, div2, 'list-' + this._index , this._selected, null, null,null);
-                  
-                   /* div2.onclick = function(){
-                        console.log('show/hide list layer');
-                    }*/
-                }
-                return container;
-            },
-           
-          });
+        var _selected_element = null; 
+       
         function _initialize( i ){
             _data = lfh.data[i];
             var d = lfh.data[i].map;
@@ -316,14 +334,16 @@ lfh.Map = function(i){
             _zoom = Math.min(d.zoom,lfh.tiles[d.tile].max_zoom);
             map = L.map(_map_id).setView( _center, _zoom);
             _set_tile(d.tile);
- 
+       
             map.options.mousewheel = d.mousewheel;
             if(!d.mousewheel){
                 map.scrollWheelZoom.disable();
             }
-           
+            
             // Add layers
             _add_move_marker(_center);
+            //Create the selected element after the move marker
+            _selected_element = new lfh.Selected(_map_id, map, _move_marker);
             _add_markers( );
             _add_gpx_polylines( );
             
@@ -371,7 +391,7 @@ lfh.Map = function(i){
             }
         }
         function _add_controls(d){
-            map.addControl(new TopControl(d, _selected_element));
+            map.addControl(new lfh.TopControl(d, _selected_element));
            
             
             if(!_auto_center && d.reset){ 
@@ -392,7 +412,6 @@ lfh.Map = function(i){
                     _add_marker(i);
                 }
             }
-            
         }
         
         function _add_gpx_polylines( ){
@@ -435,9 +454,7 @@ lfh.Map = function(i){
             var next = document.querySelector('#'+ _map_id + "-nav .lfh-next");
             L.DomEvent.addListener( next , 'click', function(e){
               _selected_element.toggle_next( 1 );
-           
             });
-            
         }
         
         function _add_move_marker(latlng){
@@ -480,6 +497,21 @@ lfh.Map = function(i){
             return link;
         }
         function _add_marker_to_list( marker){
+            var nav = document.querySelector('#' + _map_id +'-data .lfh-data-content .lfh-content');
+            var node = document.createElement("input");
+            node.setAttribute("type", "button");
+            if(marker.options.title.length == 0){
+                node.value = "NO NAMED MARKER";
+            }else{
+                node.value = marker.options.title;
+            }
+            
+            nav.appendChild(node);
+            
+            L.DomEvent.addListener( node , 'click', function(e){
+                marker.fire('click');
+                e.stopPropagation();
+            });
             if(_list){
                 var list = document.querySelector('#list-'+ _index +' ul.lfh-list-markers');
                 var node = document.createElement('li');
@@ -494,6 +526,21 @@ lfh.Map = function(i){
         }
         
         function _add_gpx_to_list( gpx ){
+            var nav = document.querySelector('#' + _map_id +'-data .lfh-data-content .lfh-content');
+            var node = document.createElement("input");
+            node.setAttribute("type", "button");
+            
+            node.value = document.querySelector('#'+gpx.options.elem_id + ' span.lfh-trackname').textContent;
+            
+            if( node.value.length == 0){
+                node.value = "NO NAMED GPX";
+            }
+            nav.insertBefore(node, nav.firstChild); //appendChild(node);
+            
+            L.DomEvent.addListener( node , 'click', function(e){
+                gpx.fire('click');
+                e.stopPropagation();
+            });
             if(_list){
                 var list = document.querySelector('#list-'+ _index +' ul.lfh-list-gpx');
                 var node = document.createElement('li');
@@ -760,7 +807,8 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
             description.appendChild(node);
         });
         return new_childs.length;
-     }
+     } // end _count_step 
+     
      function _toggle(){
         _selected_element.close();
         
@@ -876,9 +924,7 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
       }
       
    }
-   function translate( delta ){
-       
-   }
+  
    _initialize();
    return {dom: _dom, layer: _layer, id: _id};
 }
