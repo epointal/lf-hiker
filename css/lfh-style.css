@@ -196,7 +196,6 @@ div.lfh-fadable,
     background-color:white;
     box-shadow: 1px 1px 5px rgba(0,0,0,0.65);
     -webkit-transition:-webkit-transform .8s ease-out;
-    transition: all .8s ease-out;
   
  }
  .lfh-element-content{
@@ -233,7 +232,6 @@ div.lfh-fadable,
    -moz-transition: -moz-transform .8s ease-in;
    -o-transition: -o-transform .8s ease-in;
    transition: transform .8s ease-in;
-   transition:max-height .8s ease-in;
    
  }
   .lfh-data{

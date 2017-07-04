@@ -86,7 +86,7 @@ lfh.POINT_ICON = L.icon({
         popupAnchor:  [5, 5]
     });
 
-
+lfh.WIDTH_LIMIT = 620;
 
 
 /** Build all on the differents maps*/
@@ -255,7 +255,7 @@ lfh.Map = function(i){
                     var div1 =  L.DomUtil.create('div', 'leaflet-bar leaflet-control lfh-control-fullscreen');
                     container.appendChild(div1);
                     div1.onclick = function(){
-                        
+                        //_on_fullscreen();
                         var id = _map_id;
                         var fade = L.DomUtil.get('lfh-fade');
                         var container = L.DomUtil.get(id + '-fadable')
@@ -269,7 +269,7 @@ lfh.Map = function(i){
                               if(! map.options.mousewheel){
                                   map.scrollWheelZoom.disable();
                               }
-                             
+                              
                           }else{
                               //fullscreen
                               fade.appendChild( container);
@@ -278,19 +278,18 @@ lfh.Map = function(i){
                               map.scrollWheelZoom.enable();
                               map._container.h0 = map._container.style.height;
                               map._container.style.height = "100%";
-                              /*if(fade.className.indexOf("lfh-min")>=0){
-                                  map._container.style.height = (fade.offsetHeight -250) +"px";
-                              }else{
-                                  map._container.style.height = "100%";
-                              }*/
-                              
-                              // if lfh-min little screen:
                           }
-                        //map.invalidateSize();
-                         
+                          var classname = container.parentNode.className;
+                          if(container.parentNode.offsetWidth > lfh.WIDTH_LIMIT){
+                              _large = true;
+                              container.parentNode.className = classname.replaceAll(' lfh-min', '');
+                          }else{
+                              _large = false;
+                              if(classname.indexOf('lfh-min')<0){
+                                  container.parentNode.className += ' lfh-min';
+                              }
+                          }
                          map.invalidateSize();
-                         //map.fire("resize");
-                         // lfh.resize(map._container);
                     }
                 }
                 if(this._list){
@@ -341,11 +340,11 @@ lfh.Map = function(i){
         function _map_resize(){
             var width = map.getContainer().offsetWidth;
             var global_container = map.getContainer().parentNode.parentNode;
-            if(width <= 580 && _large){
+            if(width <= lfh.WIDTH_LIMIT && _large){
                 
                 global_container.className += ' lfh-min';
                 _large = false;
-            }else if( width > 580 && !_large){
+            }else if( width > lfh.WIDTH_LIMIT && !_large){
               
                 var classname = global_container.className;
                 global_container.className = classname.replace(' lfh-min', '');
