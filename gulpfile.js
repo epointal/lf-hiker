@@ -11,6 +11,12 @@ gulp.task('default', function() {
   console.log("Ne fait rien");
 });
 
+gulp.task('lessify', function(){
+    return gulp.src('css/lfh-style.less')
+    .pipe(less())
+    .pipe(gulp.dest('css'));
+});
+
 gulp.task('versioning', function(){
 	//all my editing css
 	gulp.src([

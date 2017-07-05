@@ -37,7 +37,7 @@ Class Lfh_Model_Option
                     'display' => 'none',
                     'options' => array( 
                         'regexp'    => "/^#[0-9a-f-A-F]{6}$/",
-                        'default'   => '#ddddee')),
+                        'default'   => '#707070')),
                 'lfh_color'      => array(
                     'type'    => 'color',
                     'label'   => __('Title color', 'lfh'),
@@ -46,6 +46,14 @@ Class Lfh_Model_Option
                     'options' => array( 
                         'regexp'    => "/^#[0-9a-f-A-F]{6}$/",
                         'default'   => '#ffffff')),
+                'lfh_button_color'      => array(
+                        'type'    => 'color',
+                        'label'   => __('Button color', 'lfh'),
+                        'helper'  => esc_html__('Button color for list of elements' , 'lfh'),
+                        'filter'  => FILTER_VALIDATE_REGEXP,
+                        'options' => array(
+                                'regexp'    => "/^#[0-9a-f-A-F]{6}$/",
+                                'default'   => '#e95325')),
                 'lfh_selected_path'      => array(
                     'type'    => 'color',
                     'label'   => __('Selected path color', 'lfh'),
@@ -195,19 +203,9 @@ Class Lfh_Model_Option
    
    private static function update_inherit_color(){
        //lighter lfh_background
-       update_option('lfh_background_sub', self::lighter_darker(get_option('lfh_background'), 10));
+       update_option('lfh_background_sub', Lfh_Tools_Color::lighter_darker(get_option('lfh_background'), 10));
    }
-   private static function lighter_darker($hex, $pct) {
-       // Steps should be between -255 and 255. Negative = darker, positive = lighter
-       preg_match('/^#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i', $hex, $parts);
-       $out = "#"; // Prepare to fill with the results
-       for($i = 1; $i <= 3; $i++) {
-           $parts[$i] = hexdec($parts[$i]);
-           $parts[$i] = min(255 ,round($parts[$i] * (1 + $pct/100)));
-           $out .= str_pad(dechex($parts[$i]), 2, '0', STR_PAD_LEFT);
-       }
-       return $out;
-   }
+  
   
    
 }

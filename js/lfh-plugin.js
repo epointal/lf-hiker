@@ -232,7 +232,7 @@ lfh.TopControl = L.Control.extend({
             var div2 =  L.DomUtil.create('div', 'leaflet-bar leaflet-control lfh-control-list');
             container.appendChild(div2);
             //append list window to the map
-            var link = new lfh.Link( map, div2, 'list-' + this._index , this._selected, null, null,null);
+            var link = new lfh.Link( map, div2, 'lfh-list-' + this._index , this._selected, null, null,null);
         }
         return container;
     },
@@ -513,7 +513,7 @@ lfh.Map = function(i){
                 e.stopPropagation();
             });
             if(_list){
-                var list = document.querySelector('#list-'+ _index +' ul.lfh-list-markers');
+                var list = document.querySelector('#lfh-list-'+ _index +' div.lfh-list-markers');
                 var node = document.createElement('li');
                 node.textContent = marker.options.title;
                 list.appendChild(node);
@@ -542,9 +542,14 @@ lfh.Map = function(i){
                 e.stopPropagation();
             });
             if(_list){
-                var list = document.querySelector('#list-'+ _index +' ul.lfh-list-gpx');
-                var node = document.createElement('li');
-                node.textContent = document.querySelector('#'+gpx.options.elem_id + ' span.lfh-trackname').textContent;
+                var list = document.querySelector('#lfh-list-'+ _index +' div.lfh-list-gpx');
+                var node = document.createElement('input');
+                node.setAttribute("type", "button");
+                node.value = document.querySelector('#'+gpx.options.elem_id + ' span.lfh-trackname').textContent;
+                
+                if( node.value.length == 0){
+                    node.value = "NO NAMED GPX";
+                }
                 list.appendChild(node);
                 L.DomEvent.addListener( node , 'click', function(e){
                     gpx.fire('click');

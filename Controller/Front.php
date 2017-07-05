@@ -78,6 +78,7 @@ Class Lfh_Controller_Front
             $this->get_view()->assign('images_url', Lf_Hiker_Plugin::$url .'/images/');
             $this->get_view()->assign('selected_color' , $css['lfh_selected_path']);
         }
+        
         //mapquest case 
         if( self::$_lfh_mapquest_count == 0 && $options['tile']== 'mapquest'){
                 self::enqueue_mapquest();
@@ -88,7 +89,9 @@ Class Lfh_Controller_Front
         self::$_lfh_track_count = 0;
         // assign the value of map_count for the templates
         $this->get_view()->assign( 'map_count', self::$_lfh_map_count);
+ 
         $this->add_map_scripts( $options );
+        
         return $this->get_view()->render('map', array(
                 'options' => $options,
                 'is_connected' => wp_get_current_user()->ID
@@ -224,11 +227,12 @@ Class Lfh_Controller_Front
         
     }
     private static function add_css_inline($css){
-        $data = "div.lfh-min div.lfh-nav div.lfh-title,
+   
+        $data = 'div.lfh-min div.lfh-nav div.lfh-title,
                  #content .lfh-element h3:first-child,
                  #lfh-fade .lfh-element h3:first-child {
-                     background-color:".$css['lfh_background'].";
-                     color:".$css['lfh_color'].";
+                     background-color:'.$css['lfh_background'].';
+                     color:'.$css['lfh_color'].';
                  }
                  a.lfh-gpx-file,
                  #content .lfh-section .lfh-header,
@@ -236,18 +240,36 @@ Class Lfh_Controller_Front
                  #lfh-fade a.lfh-gpx-file,
                  #lfh-fade .lfh-section .lfh-header,
                  #lfh-fade .lfh-section .lfh-header h4{
-                     background-color:".$css['lfh_background_sub'].";
-                     color:".$css['lfh_color'].";
+                     background-color:'.$css['lfh_background_sub'].';
+                     color:'.$css['lfh_color'].';
                  }
                  a.lfh-gpx-file{
-                     border-color:".$css['lfh_color'].";
+                     border-color:'.$css['lfh_color'].';
                  }
                  div.lfh-min a.lfh-gpx-file{
                      background:none;
                      color:inherit;
                      border:none;
                  }
-                ";
+                 #content .lfh-container input[type="button"],
+                 .main .lfh-container input[type="button"],
+                 .lfh-container input[type="button"]{
+                       background-color:' .$css['lfh_button_color'].';
+                       border-color: ' . Lfh_Tools_Color::lighter_darker( $css['lfh_button_color'], 10) . ' ';
+        $data .= Lfh_Tools_Color::lighter_darker( $css['lfh_button_color'], -10) .' ';
+        $data .= Lfh_Tools_Color::lighter_darker( $css['lfh_button_color'], -10) .';
+                 text-shadow: 0 -1px 1px ' . Lfh_Tools_Color::lighter_darker( $css['lfh_button_color'], -20) .', ';
+        $data .= '1px 0 1px '. Lfh_Tools_Color::lighter_darker( $css['lfh_button_color'], -10).', ';
+        $data .= '0 1px 1px '. Lfh_Tools_Color::lighter_darker( $css['lfh_button_color'], -10).', ';
+        $data .= '-1px 0 1px '. Lfh_Tools_Color::lighter_darker( $css['lfh_button_color'], -20).';
+   
+                 }
+                 #content .lfh-container input[type="button"]:hover,
+                 .main .lfh-container input[type="button"]:hover,
+                 .lfh-container input[type="button"]:hover{
+                       background-color:' . Lfh_Tools_Color::saturate( $css['lfh_button_color'], 20) .';
+                 }
+                ';
         wp_add_inline_style('lfh_style', $data );
         
     }
