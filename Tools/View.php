@@ -34,7 +34,7 @@ Class Lfh_Tools_View{
         extract($fields);
         ob_start();
         include realpath($this->_dir_view .'/'.$this->_controller. '/'.$template_name.'.phtml');
-        //return new Lfh_Tools_Compress(ob_get_clean());
+        //return (new Lfh_Tools_Compress(ob_get_clean()))->toString();
         return ob_get_clean();
     }
 }

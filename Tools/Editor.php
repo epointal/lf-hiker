@@ -160,9 +160,10 @@ class Lfh_Tools_Editor
     //ajax for load the page add-marker in editor
     public  function add_marker_action()
     {
-        if( $this->get_cache()->exist('add-marker-'. get_locale().'.html')){
-            echo $this->get_cache()->read('add-marker-'. get_locale().'.html');
-        }else{
+      // Commment for the moment cache for helper :
+      // if( $this->get_cache()->exist('add-marker-'. get_locale().'.html')){
+      //     echo $this->get_cache()->read('add-marker-'. get_locale().'.html');
+      //  }else{
             $this->load_scripts_helper();
             load_plugin_textdomain( 'lfh', false, realpath(Lf_Hiker_Plugin::$path . '/languages' ));
             $content = $this->get_view()->render('add-marker',
@@ -174,9 +175,9 @@ class Lfh_Tools_Editor
                             'mapquest_key'=> get_option('lfh_mapquest_key'),
                             'options_map' => Lfh_Model_Map::map_parameters()
                     ));
-                    $this->get_cache()->write('add-marker-'. get_locale().'.html', $content);
+            //        $this->get_cache()->write('add-marker-'. get_locale().'.html', $content);
                     echo $content;
-        }
+       // }
         wp_die(); // this is required to terminate immediately and return a proper response
     }
     //register and add button and plugin in tinyMCE editor

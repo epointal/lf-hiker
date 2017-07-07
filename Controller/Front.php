@@ -230,11 +230,13 @@ Class Lfh_Controller_Front
    
         $data = 'div.lfh-min div.lfh-nav div.lfh-title,
                  #content .lfh-element h3:first-child,
-                 #lfh-fade .lfh-element h3:first-child {
+                 #lfh-fade .lfh-element h3:first-child,
+                 .lfh-element h3:first-child {
                      background-color:'.$css['lfh_background'].';
                      color:'.$css['lfh_color'].';
                  }
                  a.lfh-gpx-file,
+                 .lfh-section .lfh-header,
                  #content .lfh-section .lfh-header,
                  #content .lfh-section .lfh-header h4,
                  #lfh-fade a.lfh-gpx-file,
@@ -251,9 +253,9 @@ Class Lfh_Controller_Front
                      color:inherit;
                      border:none;
                  }
-                 #content .lfh-container input[type="button"],
-                 .main .lfh-container input[type="button"],
-                 .lfh-container input[type="button"]{
+                 input.lfh-button,
+                 #content input.lfh-button,
+                 .main input.lfh-button{
                        background-color:' .$css['lfh_button_color'].';
                        border-color: ' . Lfh_Tools_Color::lighter_darker( $css['lfh_button_color'], 10) . ' ';
         $data .= Lfh_Tools_Color::lighter_darker( $css['lfh_button_color'], -10) .' ';
@@ -264,9 +266,9 @@ Class Lfh_Controller_Front
         $data .= '-1px 0 1px '. Lfh_Tools_Color::lighter_darker( $css['lfh_button_color'], -20).';
    
                  }
-                 #content .lfh-container input[type="button"]:hover,
-                 .main .lfh-container input[type="button"]:hover,
-                 .lfh-container input[type="button"]:hover{
+                 input.lfh-button:hover,
+                 #content input.lfh-button:hover,
+                 .main input.lfh-button:hover{
                        background-color:' . Lfh_Tools_Color::saturate( $css['lfh_button_color'], 20) .';
                  }
                 ';

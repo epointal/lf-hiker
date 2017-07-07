@@ -1,5 +1,6 @@
 <?php
 /**
+ * @author epointal
  * lf-hiker 
  * Template for map
  */
@@ -7,62 +8,43 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 <!-- -div of map -->
 <div  id="lfh-<?=$map_count?>-skin" class="lfh-container <?=$options['class']?>" style="position:relative;width:<?=$options['width']?>%;">
- <div id="lfh-<?=$map_count?>-fadable" class="lfh-fadable <?php echo ($is_connected>0? ' fakefull':'');?>">
-    <!-- <div id="lfh-<?=$map_count?>-container"  >-->
-	    <div id="lfh-<?=$map_count?>" class="lfh-map" style="height:<?=($options['height'])?>px;width:100%;">
-	    </div>
-	<!--  </div>-->
-	<div id="lfh-<?=$map_count?>-data" class="lfh-data simple-border" >
-		<div id="lfh-<?=$map_count?>-nav" class="lfh-nav">
-			<div class="lfh-title" >
-    			<span class="lfh-trackname"><?=__('Information', 'lfh')?></span>
-    			<span class="lfh-close fa fa-close"></span>
-			</div>
-			
-			
-			<div  class="lfh-back fa fa-chevron-circle-left" style=""></div>
-    		<div  class="lfh-next fa fa-chevron-circle-right"></div>
-    		
-		</div>
-		 
-		 
-		<div class="lfh-data-content" >
-        <div ><?=__('Click following button or element on the map to see information about it', 'lfh')?></div>
-        <!-- misc info -->
-        <div class="lfh-section" style="text-align:center;">       
-          <div class="lfh-content" >
-          
-          </div>
+<div id="lfh-<?=$map_count?>-fadable" class="lfh-fadable <?php echo ($is_connected>0? ' fakefull':'');?>">
+    <div id="lfh-<?=$map_count?>" class="lfh-map" style="height:<?=($options['height'])?>px;width:100%;">
+    </div>
+    <div id="lfh-<?=$map_count?>-data" class="lfh-data simple-border" >
+        <div id="lfh-<?=$map_count?>-nav" class="lfh-nav">
+            <div class="lfh-title" >
+                <span class="lfh-trackname"><?=__('Information', 'lfh')?></span>
+                <span class="lfh-close fa fa-close"></span>
+            </div>
+            <div  class="lfh-back fa fa-chevron-circle-left" style=""></div>
+            <div  class="lfh-next fa fa-chevron-circle-right"></div>
         </div>
-        <div class="lfh-contributor">
-    					<a href="https://wordpress.org/plugins/lf-hiker/" title="Plugin Lf Hiker">Lf Hiker</a>
-    					| <a href="http://elisabeth.pointal.org" title="Elisabeth Pointal">E. Pointal</a>
-    					 contributor
-    		</div>
+        <div class="lfh-data-content" >
+            <div ><?=__('Click following button or element on the map to see information about it', 'lfh')?></div>
+            <div class="lfh-section" style="text-align:center;">
+                <div class="lfh-content" ></div>
+            </div>
+            <div class="lfh-contributor">
+                <a href="https://wordpress.org/plugins/lf-hiker/" title="Plugin Lf Hiker">Lf Hiker</a>
+                | <a href="http://elisabeth.pointal.org" title="Elisabeth Pointal">E. Pointal</a>
+                contributor
+            </div>
         </div>
-	</div>
-	
+    </div>
 </div>
 </div>
 <!-- div of list objets -->
 <?php if( $options['list'] ):?>
 <div id="lfh-list-<?=$map_count?>" class="lfh-info-<?=$map_count?> lfh-element lfh-list leaflet-control hidden"  >
     <div>
-        <!-- header -->
         <div >
             <h3 >
-                 <span class="lfh-trackname"><?=_e('List', 'lfh')?>&nbsp;</span>
+                <span class="lfh-trackname"><?=_e('List', 'lfh')?>&nbsp;</span>
                 <span  class="lfh-close fa fa-close" >&nbsp;</span>
             </h3>
         </div>
-        <!-- end header -->
         <div class="lfh-element-content">
-        <div  class="lfh-position">
-        <!-- control buttons -->
-            <div >
-               
-            </div>
-        </div>
         <!-- misc info -->
         <div class="lfh-section">
           <div class="lfh-header">
@@ -73,7 +55,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
           </div>
           </div>
         </div>
-     	<div class="lfh-section">
+         <div class="lfh-section">
           <div class="lfh-header">
           <h4><?php _e('All markers', 'lfh');?></h4>
           </div>        

@@ -1,7 +1,7 @@
 # Lf Hiker 
 [![Contributor: Elisabeth Pointal](http://elisabeth.pointal.org/images/svg/contributor2.svg)](http://elisabeth.pointal.org)
 [![License GPL 2](http://elisabeth.pointal.org/images/svg/license.svg)](http://www.gnu.org/licenses/gpl-2.0.html )
-[![Version 1.2.1](http://elisabeth.pointal.org/images/svg/version1.2.1.svg)](https://github.com/epointal/lf-hiker/archive/1.2.1.zip) 
+[![Version 1.3](http://elisabeth.pointal.org/images/svg/version1.3.svg)](https://github.com/epointal/lf-hiker/archive/1.3.zip) 
 
 Plugin site web: [Lf Hiker](http://elisabeth.pointal.org/lf-hiker/en/about/ )  
 Requires Wordpress version: 4.7.3  
@@ -11,8 +11,10 @@ Stable version: 1.0
 
 
 
-**Lf Hiker** is a wordpress plugin for quickly display your gpx tracks with their profile elevation on an interactive map. 
+**Lf Hiker** is a wordpress plugin for quickly display your gpx tracks with their profile elevation on an interactive map.
+**Lf Hiker** is responsive, mobile friendly and customizable.
  
+
 
 Description
 -------------
@@ -67,7 +69,7 @@ You can choose
 You can do all this with the helpers or directly using shortcodes  
 You can choose to unactive the helper.  
 
-**Lf Hiker** allows you to customize the css in admin configuration (colors of information window and selected path)  
+**Lf Hiker** allows you to customize the css in admin configuration (colors of information window, button and selected path)  
 You can record your mapquest key or choose the cache directory for the plugin here too.
 
 
@@ -90,7 +92,6 @@ If you have any questions about the method, do not hesitate to [contact me](http
 
 ## Installation   
 
-  
 
 ### Minimum requirements.  
 *   Wordpress 4.7  
@@ -100,7 +101,7 @@ If you have any questions about the method, do not hesitate to [contact me](http
 
 ### Perform a new installation  
 
-After downloading the ZIP file [lf-hiker-1.2.1.zip](https://github.com/epointal/lf-hiker/archive/1.2.1.zip)   
+After downloading the ZIP file [lf-hiker-1.3.zip](https://github.com/epointal/lf-hiker/archive/1.3.zip)   
 
 1. Unzip `lf-hiker.zip` 
 2. Put the folder `lf-hiker` in directory `wp-content/plugins`
@@ -141,6 +142,11 @@ After downloading the ZIP file [lf-hiker-1.2.1.zip](https://github.com/epointal/
 ![Lf Hikder Admin](http://elisabeth.pointal.org/lf-hiker/wp-content/uploads/2017/04/config-lfh-3.png)
 
 ## Changelog 
+### 1.3
+ * More responsive
+ * Mobile friendly
+ * More customizable
+ 
 ### 1.2.1
  * issue map center on Paris when no title attribute in shortcode lfh-marker
  * issue no map or map center on Paris conflict with AccessPress Instagram Feed

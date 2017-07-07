@@ -27,6 +27,8 @@ String.prototype.replaceAll = function(search, replacement) {
      return target.replace(new RegExp(search, 'g'), replacement);
  };
 
+
+ 
  /**
   * @namespace lfh is declared some where else when shorcode executed
   * @param lfh.data array of object{ map, markers, gpx } data for build map
@@ -89,14 +91,18 @@ lfh.POINT_ICON = L.icon({
 
 lfh.WIDTH_LIMIT = 620;
 
-
+// height of window under the map (without the title)
+lfh.HEIGHT = 170;
+// width of part of description under the map (without margin)
+lfh.WIDTH = 280;
 /** Build all on the differents maps*/
 lfh.initialize_map = function(i){
     if(typeof lfh.data[i] != 'function'){
-        var my_map = new lfh.Map(i);
+        lfh.all[i] = new lfh.Map(i);
     }
 }
 /** Recursivily initialize the map, if there are a lot of map*/
+lfh.all = new Array();
 lfh.initialize = function( i ){
     if(i < lfh.data.length){
         lfh.initialize_map( i );
@@ -165,7 +171,31 @@ lfh.resize = function(container){
         elements.item(i).querySelector('.lfh-element-content').style.maxHeight = (height-40)+'px';
     }
 }
-
+lfh.map_resize = function(map){
+    console.log("resize");
+    var width = map.getContainer().offsetWidth;
+    var global_container = map.getContainer().parentNode.parentNode;
+    if(width <= lfh.WIDTH_LIMIT ){
+        
+        global_container.className += ' lfh-min';
+        _large = false;
+    }else if( width > lfh.WIDTH_LIMIT ){
+      
+        var classname = global_container.className;
+        global_container.className = classname.replaceAll(' lfh-min', '');
+        _large = true;
+    }
+    
+    if( map.getContainer().parentNode.parentNode.id == "lfh-fade"){
+        if(_large){
+            map.getContainer().style.height = "100%";
+        }else{
+            var nav = document.querySelector(".lfh-nav");
+            map.getContainer().style.height = (global_container.offsetHeight - nav.offsetHeight+2) +"px";
+        }
+    }
+    map.invalidateSize()
+}
 /**
  *  Add two buttons on top right : fullscreen and list of layer
  * @constructor
@@ -214,18 +244,13 @@ lfh.TopControl = L.Control.extend({
                       map._container.h0 = map._container.style.height;
                       map._container.style.height = "100%";
                   }
-                  // resize according to container width
-                  var classname = container.parentNode.className;
-                  if(container.parentNode.offsetWidth > lfh.WIDTH_LIMIT){
-                      _large = true;
-                      container.parentNode.className = classname.replaceAll(' lfh-min', '');
-                  }else{
-                      _large = false;
-                      if(classname.indexOf('lfh-min')<0){
-                          container.parentNode.className += ' lfh-min';
-                      }
-                  }
-                 map.invalidateSize();
+                  
+                  // do it for all maps on dom
+                  [].forEach.call(lfh.all , function( mapi ) {
+                   // resize according to container width
+                      lfh.map_resize( mapi );
+                    
+                  });
             }
         }
         if(this._list){
@@ -236,6 +261,7 @@ lfh.TopControl = L.Control.extend({
         }
         return container;
     },
+  
    
   });
 /** the layer selected, whose description is displayed
@@ -255,7 +281,7 @@ lfh.Selected = function( map_id, map, marker){
         var dom = null; // the node where is layer descritption
         
         // title displayed in lfh-nav by default (window under map)
-        var title = document.querySelector("#"+ map_id + "-data div.lfh-nav .lfh-trackname").textContent;
+        this.title = document.querySelector("#"+ map_id + "-data div.lfh-nav .lfh-trackname").textContent;
         
         this.close = function(){
             // hide navigation button next
@@ -311,7 +337,7 @@ lfh.Map = function(i){
         var _index = i;
         var _data = lfh.data[i];
         var _large = true; // "big screen"
-        var _center = [48.866667,2.333333];//default value Paris if not in data
+        var _center = [0,0];//[48.866667,2.333333];//default value Paris if not in data
         var _zoom = 13;                    // default value if not in data
         var _zoom_limit = lfh.ZOOM_LIMIT;  // zoom from which the markers are visible
         var _auto_center = true;           // compute center and zoom from the elements added on map
@@ -339,7 +365,7 @@ lfh.Map = function(i){
             if(!d.mousewheel){
                 map.scrollWheelZoom.disable();
             }
-            
+           // map.touchZoom.disable();
             // Add layers
             _add_move_marker(_center);
             //Create the selected element after the move marker
@@ -354,31 +380,11 @@ lfh.Map = function(i){
            
             // Add control button
             _add_controls(d);
-            _map_resize();
+            lfh.map_resize( map);
             
         }
-        function _map_resize(){
-            var width = map.getContainer().offsetWidth;
-            var global_container = map.getContainer().parentNode.parentNode;
-            if(width <= lfh.WIDTH_LIMIT && _large){
-                
-                global_container.className += ' lfh-min';
-                _large = false;
-            }else if( width > lfh.WIDTH_LIMIT && !_large){
-              
-                var classname = global_container.className;
-                global_container.className = classname.replace(' lfh-min', '');
-                _large = true;
-            }
-            
-            if( map.getContainer().parentNode.parentNode.id == "lfh-fade"){
-                if(_large){
-                    map.getContainer().style.height = "100%";
-                }else{
-                    map.getContainer().style.height = (global_container.offsetHeight -250) +"px";
-                }
-            }
-        }
+        
+      
         function _set_tile(tile){
             if(tile == 'mapquest'){
                 MQ.mapLayer().addTo(map);
@@ -435,7 +441,7 @@ lfh.Map = function(i){
                 }
             });
             map.on('resize' , function(){
-                _map_resize();
+                lfh.map_resize( this);
                 lfh.resize(this.getContainer());
             });
         }
@@ -498,6 +504,13 @@ lfh.Map = function(i){
         }
         function _add_marker_to_list( marker){
             var nav = document.querySelector('#' + _map_id +'-data .lfh-data-content .lfh-content');
+            _add_marker_to_node( marker, nav);
+            if(_list){
+                var list = document.querySelector('#lfh-list-'+ _index +' div.lfh-list-markers');
+                _add_marker_to_node( marker, list);
+            }
+        }
+        function _add_marker_to_node(marker, container){
             var node = document.createElement("input");
             node.setAttribute("type", "button");
             if(marker.options.title.length == 0){
@@ -505,56 +518,39 @@ lfh.Map = function(i){
             }else{
                 node.value = marker.options.title;
             }
-            
-            nav.appendChild(node);
+            node.className = 'lfh-button';
+            container.appendChild(node);
             
             L.DomEvent.addListener( node , 'click', function(e){
                 marker.fire('click');
                 e.stopPropagation();
             });
-            if(_list){
-                var list = document.querySelector('#lfh-list-'+ _index +' div.lfh-list-markers');
-                var node = document.createElement('li');
-                node.textContent = marker.options.title;
-                list.appendChild(node);
-                
-                L.DomEvent.addListener( node , 'click', function(e){
-                    marker.fire('click');
-                    e.stopPropagation();
-                });
-            }
         }
-        
         function _add_gpx_to_list( gpx ){
             var nav = document.querySelector('#' + _map_id +'-data .lfh-data-content .lfh-content');
+            _add_gpx_to_node( gpx, nav );
+            if(_list){
+                var list = document.querySelector('#lfh-list-'+ _index +' div.lfh-list-gpx');
+                _add_gpx_to_node( gpx, list );
+            }
+        }
+       
+        function _add_gpx_to_node( gpx, container )
+        {
             var node = document.createElement("input");
             node.setAttribute("type", "button");
-            
+            node.className = 'lfh-button';
             node.value = document.querySelector('#'+gpx.options.elem_id + ' span.lfh-trackname').textContent;
             
             if( node.value.length == 0){
                 node.value = "NO NAMED GPX";
             }
-            nav.insertBefore(node, nav.firstChild); //appendChild(node);
+            container.insertBefore(node, container.firstChild); //appendChild(node);
             
             L.DomEvent.addListener( node , 'click', function(e){
                 gpx.fire('click');
                 e.stopPropagation();
             });
-            if(_list){
-                var list = document.querySelector('#lfh-list-'+ _index +' div.lfh-list-gpx');
-                var node = document.createElement('input');
-                node.setAttribute("type", "button");
-                node.value = document.querySelector('#'+gpx.options.elem_id + ' span.lfh-trackname').textContent;
-                
-                if( node.value.length == 0){
-                    node.value = "NO NAMED GPX";
-                }
-                list.appendChild(node);
-                L.DomEvent.addListener( node , 'click', function(e){
-                    gpx.fire('click');
-                });
-            }
         }
         function _add_loaded_listener(buttonreset){
            // turn while all files gpx aren't loaded
@@ -703,16 +699,19 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
          [].forEach.call(imgs, function( img ) {
              if( img.parentNode.className.indexOf("wp-caption")>=0)
              {
-                 img.style.maxWidth = "260px";
-                 img.style.maxHeight = "160px";
-                 img.parentNode.style.maxWidth = "270px";
-                 img.parentNode.style.maxHeight = "210px";
+                 img.style.maxWidth = (lfh.WIDTH -10) + "px";
+                 img.style.maxHeight = (lfh.HEIGHT - 60) +"px";
+                 img.parentNode.style.maxWidth = lfh.WIDTH + "px";
+                 img.parentNode.style.maxHeight = lfh.HEIGHT + "px";
                  
-                 img.parentNode.style.width = Math.min(270, img.parentNode.style.width.replace("px", ""))+"px";
-                // img.parentNode.style.width = Math.min(210, img.parentNode.style.height.replace("px", ""))+"px";
+                 console.log(img.parentNode.style.maxWidth);
+                 console.log(img.parentNode.style.maxWidth.replace("px", ""));
+                 img.parentNode.style.width = (lfh.WIDTH  ) + "px";
+                        
+                 img.parentNode.style.height = lfh.HEIGHT + "px";
              }else{
-                 img.style.maxWidth = "270px";
-                 img.style.maxHeight = "210px";
+                // img.style.maxWidth = "270px";
+                 //img.style.maxHeight = "210px";
              }
              if(img.parentNode.tagName.toLowerCase() === "p"){
                  img.parentNode.parentNode.insertBefore(img, img.parentNode)
@@ -1012,25 +1011,35 @@ lfh.Profile = function( map, layer, dom, move, unit, unit_h){
          _track.querySelector('.lfh-gpx-distance').textContent = (Math.round(_gpx.get_distance()/(100*_coeff))/10).toString().replace('.' , ',')  + ' ' + lfh.DISTANCE_UNIT[_unit].code;
          _track.querySelector('.lfh-gpx-elevation-gain').textContent = Math.round(_gpx.get_elevation_gain()/_coeff_elevation) + ' ' + lfh.HEIGHT_UNIT[_unit_h].code;
          _track.querySelector('.lfh-gpx-elevation-loss').textContent =  Math.round(_gpx.get_elevation_loss()/_coeff_elevation) + ' ' + lfh.HEIGHT_UNIT[_unit_h].code;
-         //ajout d'un ecouteur sur le svg
-         _track.querySelector('svg').addEventListener('mousemove', function(e){
-            var position = this.getBoundingClientRect();
-            // var x = e.layerX - 40;
-            var x = e.pageX - position.left - 50 ;
-            if(x<0){
-                 x = 0;
-            }
-            if(x>220){
-                 x = 220;
-            }
-             
-            _track.querySelector('.lfh-move-line').setAttribute('transform','translate(' + x + ',0)');
-            
-            var km = x * _max_km/220;
-            var position = _find_position(km);
-            _move_marker.setLatLng(_coords[ position]);
-         },false);
+         //ajout d'un ecouteur sur le 
          
+         L.DomEvent.addListener( _track.querySelector('svg') ,'click mousemove', function(e){
+            _on_move(e );
+         },false);
+         _track.querySelector('svg').addEventListener('touchmove', function(e){
+             _on_move( e.touches[0]);
+         })
+     }
+     function _on_move( e){
+         
+         var svg =  _track.querySelector('svg');
+         var position = svg.getBoundingClientRect();
+         console.log(position);
+         var scale = 290 / position.width;
+         var x = e.pageX - position.left - window.pageXOffset;
+         x = x*scale - 50;
+         if(x<0){
+              x = 0;
+         }
+         if(x>220){
+              x = 220;
+         }
+          
+         _track.querySelector('.lfh-move-line').setAttribute('transform','translate(' + x + ',0)');
+         
+         var km = x * _max_km/220;
+         var position = _find_position(km);
+         _move_marker.setLatLng(_coords[ position]);
      }
      function _find_position(km){
          var km = km * _coeff;

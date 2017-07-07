@@ -149,9 +149,9 @@ Class Lfh_Model_Map{
             'list' => array(
                 'type'      => 'checkbox',
                 'label'     => __('List' , 'lfh'),
-                'default'   => false,
-                'filter'    => FILTER_VALIDATE_BOOLEAN,
-                'flags'     => FILTER_NULL_ON_FAILURE,
+                'default'   => true,
+                'filter'    => FILTER_CALLBACK,
+                'options'   => 'Lfh_Model_Map::validate_boolean'
                 ),
             'mousewheel' => array(
                 'type'      => 'checkbox',

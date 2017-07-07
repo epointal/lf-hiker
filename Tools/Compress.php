@@ -26,9 +26,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             {
                 $this->parseHTML($html);
             }
+           // return $this->html;
         }
     
-        public function __toString()
+        public function toString()
         {
             return $this->html;
         }

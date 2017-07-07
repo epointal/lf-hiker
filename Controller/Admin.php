@@ -101,21 +101,34 @@ Class Lfh_Controller_Admin
         ));
     }
     
+    public static function update(){
+        //add default value in db if not exists
+        $tabs = Lfh_Model_Option::get_tabs();
+        foreach($tabs as $tab => $label){
+            $defaults = Lfh_Model_Option::get_options($tab);
+            foreach($defaults as $name=>$atts) {
+                update_option( $name, get_option( $name, $atts['value']) );
+            }
+        }
+        // clear cache
+       // Lfh_Tools_Cache::clear_cache_dir();
+    }
     public  static function activate () {
        //add default value in db if not exists
        $tabs = Lfh_Model_Option::get_tabs();
         foreach($tabs as $tab => $label){
             $defaults = Lfh_Model_Option::get_options($tab);
             foreach($defaults as $name=>$atts) {
-                update_option( $name, $atts['value'] );
+                update_option( $name, get_option( $name, $atts['value']) );
             }
         }
-        //create cache dir if not exists
-        $success = Lfh_Tools_Cache::create_cache_dir(Lfh_Model_Option::get_option('lfh_cache_parent'));
+        // comment cache for the moment too much trouble
+        // create cache dir if not exists
+        // $success = Lfh_Tools_Cache::create_cache_dir(Lfh_Model_Option::get_option('lfh_cache_parent'));
         
-        if(!$success){
-            Lfh_Tools_Notice::display(__('Failed to create Cache directory', 'lfh'), 'important');
-        }
+        //if(!$success){
+        //    Lfh_Tools_Notice::display(__('Failed to create Cache directory', 'lfh'), 'important');
+        //}
         //set x-frame options in htaccess
         $success = self::set_xframe_options();
         if(!$success){
@@ -139,7 +152,7 @@ Class Lfh_Controller_Admin
         // remove cache dir lf-hiker : done when deactivate
         //Lfh_Tools_Cache::delete_cache_dir();
         // remove x-frame options in htaccess: done when deactivate
-        //self::remove_xframe_options();
+        self::remove_xframe_options();
     }
    
 }
