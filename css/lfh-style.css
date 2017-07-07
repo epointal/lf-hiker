@@ -129,6 +129,26 @@ h3,
 .lfh-control-list {
   background: white url(../images/icons/glyphicons-158-show-thumbnails-with-lines.png) no-repeat center center;
 }
+.lfh-warning {
+  font-style: italic;
+}
+div.lfh-no-data {
+  text-align: center;
+  color: red;
+  height: 20px;
+  line-height: 20px;
+  border: 1px dotted red;
+  margin: 5px;
+}
+div.lfh-min div.lfh-no-data {
+  display: block;
+  margin-top: 2px;
+  height: 153px;
+  line-height: 153px;
+}
+.lfh-element svg + div.lfh-no-data {
+  display: none;
+}
 #lfh-fade {
   position: fixed;
   top: 0;
@@ -301,7 +321,7 @@ div.lfh-min div.lfh-data-content div.lfh-section {
   display: block;
   height: 100%;
   vertical-align: middle;
-  line-height: 173px;
+  line-height: 113px;
 }
 div.lfh-min div.lfh-data-content div.lfh-section div.lfh-content {
   margin: auto;
@@ -556,7 +576,7 @@ div.lfh-min div.lfh-element.hidden.step10 {
 div.lfh-min div.lfh-section {
   float: left;
   display: inline-block;
-  max-height: 173px;
+  max-height: 168px;
 }
 div.lfh-section div.lfh-content,
 div.lfh-section div.lfh-content > div {
@@ -566,8 +586,8 @@ div.lfh-min .lfh-content > div {
   max-width: 280px;
   width: 280px;
   float: left;
-  height: 173px;
-  max-height: 173px;
+  height: 168px;
+  max-height: 168px;
   vertical-align: bottom;
   margin-top: 5px;
   padding: 0 5px;

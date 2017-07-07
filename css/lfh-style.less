@@ -145,7 +145,27 @@ h1, h2, h3,
      background:white url(../images/icons/glyphicons-158-show-thumbnails-with-lines.png) no-repeat center center;
   
 }
-
+.lfh-warning{
+    font-style:italic;
+}
+div.lfh-no-data{
+    text-align:center;
+    color:red;
+    height: 20px;
+    line-height: 20px;
+    border: 1px dotted red;
+    margin: 5px;
+}
+div.lfh-min div.lfh-no-data{
+    display:block;
+    margin-top:2px;
+    height:@height - @height_title - 20px;
+    line-height:@height - @height_title - 20px;
+  
+}
+.lfh-element svg + div.lfh-no-data{
+    display:none;
+}
 #lfh-fade{
     position:fixed;
     top:0;
@@ -330,7 +350,7 @@ div.lfh-min div.lfh-data-content div.lfh-section{
     display:block;
     height:100%;
     vertical-align:middle;
-    line-height:@height - @height_title;
+    line-height:@height - @height_title - 60px;
 }
  
 div.lfh-min div.lfh-data-content div.lfh-section div.lfh-content{
@@ -504,7 +524,7 @@ div.lfh-min div.lfh-element.hidden{
 div.lfh-min div.lfh-section{
     float:left;
     display:inline-block;
-    max-height:@height - @height_title;
+    max-height:@height - @height_title - 5px;
 
 }
 div.lfh-section div.lfh-content,
@@ -516,8 +536,8 @@ div.lfh-min .lfh-content > div
      max-width:@width;
      width:@width;
      float:left;
-     height:@height - @height_title;
-     max-height:@height - @height_title;
+     height:@height - @height_title - 5px;
+     max-height:@height - @height_title - 5px;
      vertical-align: bottom;
      margin-top: 5px;
      padding:0 5px;

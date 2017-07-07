@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         <!-- header -->
         <div class="lfh-head">
             <h3 >
-                 <span class="lfh-trackname"><?=$options['title']?>&nbsp;</span>
+                 <span class="lfh-trackname"><?=ucfirst($options['title'])?>&nbsp;</span>
                 <span  class="lfh-close fa fa-close" >&nbsp;</span>
             </h3>
         </div>
@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                     <svg class="lfh-profile"  viewBox="0 0 290 220" >
                         <defs>
                             <marker id="t" markerWidth="4" markerHeight="4" orient="auto" refY="2" refX="3">
-                              <path d="M0,0 L4,2 0,4" fill="#000"/>
+                              <path d="M0,0 L4,2 0,4" fill="#000"></path>
                             </marker>
                         </defs>
                         <g transform="translate(50,10)">
@@ -62,35 +62,40 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                             <text id="v3" class="line" x="0" y="193" text-anchor="middle">15</text>
                         </g>
                         <!-- cadre  -->
-                        <rect x="0" y="0" width="220" height="180"  />
+                        <rect x="0" y="0" width="220" height="180" ></rect>
                         <!-- horizontal axis x -->
                          <line class="axis" x1="0" y1="180" x2="210" y2="180"  marker-end="url(#t)"></line>
                            <text x="110" y="210" text-anchor="middle"><?php _e('Distance','lfh');?> (<?=Lfh_Model_Map::distance_units()[$options['unit']]['code']?>)</text>
                            <!-- vertical axis y -->
                         <line class="axis" x1="0" y1="180" x2="0" y2="10" marker-end="url(#t)"></line>
                         <text x="0" y="0" transform="rotate(-90) translate(-100, -40)" text-anchor="middle"><?php _e('Elevation', 'lfh');?> (<?=Lfh_Model_Map::height_units()[$options['unit_h']]['code']?>)</text>
-                        <path class="lfh-profile-line" d=""/>
+                        <path class="lfh-profile-line" d=""></path>
                        
-                        <line class="lfh-move-line" x1="0" y1="185" x2="0" y2="-5"/>
+                        <line class="lfh-move-line" x1="0" y1="185" x2="0" y2="-5"></line>
                     </g>
                     </svg>
+                    <div class="lfh-no-data"><?php _e('No data elevation', 'lfh')?></div>
                     </div>
                     <div>
                         <div >
                             <span ><?php _e('Name' ,'lfh');?>: </span>
-                            <span class="lfh-gpx-name" class="dl-value" data-db-type="text"></span>
+                            <span class="lfh-gpx-name"><em><?php _e('No data', 'lfh')?></em></span>
                         </div>
                         <div >
                             <span><?php _e('Distance', 'lfh');?>: </span>
-                            <span class="lfh-gpx-distance"></span>
+                            <span class="lfh-gpx-distance"><em><?php _e('No data', 'lfh')?></em></span>
                         </div>
                         <div>
                             <span><?php _e('Elevation gain', 'lfh');?>: </span>
-                            <span  class="lfh-gpx-elevation-gain" >0 m</span>
+                            <span  class="lfh-gpx-elevation-gain" ><em><?php _e('No data', 'lfh')?></em></span>
                         </div>
                         <div >
                             <span><?php _e('Elevation loss', 'lfh');?>: </span>
-                            <span class="lfh-gpx-elevation-loss" >0 m</span>
+                            <span class="lfh-gpx-elevation-loss" ><em><?php _e('No data', 'lfh')?></em></span>
+                        </div>
+                            <span><?php _e('Duration', 'lfh');?>: </span>
+                            <span class="lfh-gpx-duration" ><em><?php _e('No data', 'lfh')?></em></span>
+                        <div>
                         </div>
                     </div>
                </div>

@@ -6,19 +6,23 @@ Tags: map, gpx, waypoint, track, path, trail, polyline, markers, leaflet, profil
 Requires at least: 4.7.3
 Tested up to: 4.8  
 Stable tag: 1.0  
-Version: 1.2
+Version: 1.3
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
 
-**Lf Hiker** is a wordpress plugin for quickly display your gpx tracks with their profile elevation on an interactive map. 
+**Lf Hiker** is a wordpress plugin for quickly display your gpx tracks with their profile elevation on an interactive map. **Lf Hiker is responsive and mobile friendly.
  
 
 == Description ==
 
 ### Main Utilisation
 Simply upload your gpx file with the wordpress media manager, complete its informations and insert  it in your post/page (shortcode).  
-Display the post/page : you have an interactive view of your track.  
+
+`[lfh-gpx src=url_to_file.gpx  color=darkgreen width=6]A trail in Cevennes[/lfh-gpx]`  
+
+Display the post/page : you have an interactive view of your track.
+ 
 #### The trail is displayed on an OSM map by default, and have its own information window with:  
  * title
  * description
@@ -26,6 +30,7 @@ Display the post/page : you have an interactive view of your track.
  * distance of the track
  * elevation loss
  * elevation gain 
+ * trail duration
 
 For more information go to [Lf Hiker site](http://elisabeth.pointal.org/lf-hiker) 
 
@@ -69,7 +74,7 @@ You can choose
 You can do all this with the helpers or directly using shortcodes  
 You can choose to unactive the helper.  
 
-**Lf Hiker** allows you to customize the css in admin configuration (colors of information window and selected path)  
+**Lf Hiker** allows you to customize the css in admin configuration (colors of information window, buttons and selected path)  
 You can record your mapquest key or choose the cache directory for the plugin here too.
 
 
@@ -91,16 +96,39 @@ If you have any questions about the method, do not hesitate to [contact me](http
  
 
 == Installation  == 
+From Plugins Page
 
+1. Log in to the administrator panel.  
+2. Go to Plugins Tab  
+3. Click on Add New button  
+4. Type hiker in the search field  
+5. When you found lf-hiker click Install button for upload the plugin on your server  
+6. Click Activate button for activate Lf Hiker.  
+7. You can change the default configuration in tab: `Settings → Lf-hiker`   
+
+If installation failed, do not hesitate to [contact me](http://elisabeth.pointal.org/lf-hiker/en/contact-me). 
+
+From zip archive
 
 1. Unzip `lf-hiker.zip` 
 2. Put the folder `lf-hiker` in directory `wp-content/plugins`
 3. Log in to the administrator panel.   
 4. Go to Plugins Tab: **Lf Hiker** is among the plugins     
 5. Click `Activate` button for activate **Lf Hiker**.    
-6. If the activation does not succeed, please [contact me](http://elisabeth.pointal.org/lf-hiker/en/contact-me).
+6. If the activation does not succeed, please [contact me](http://elisabeth.pointal.org/lf-hiker/en/contact-me).  
+7. You can change the default configuration in tab: `Settings → Lf-hiker` 
 
-== Changelog == 
+== Changelog ==  
+
+= 1.3 =
+ * More responsive
+ * Mobile friendly
+ * Display track duration
+ 
+= 1.2.1 =
+ * issue map center on Paris when no title attribute in shortcode lfh-marker
+ * issue no map or map center on Paris conflict with AccessPress Instagram Feed
+ 
 = 1.2 =
  * Add foot for elevation unit
  * issue for popup when click for a marker from list of elements
@@ -130,6 +158,7 @@ For more informations see [lf Hiker](http://elisabeth.pointal.org/lf-hiker/)
 5. Lf Hiker has an helper for add marker
 6. Lf Hiker has an helper for edit map
 7. You can change some parmaters in administration
+8. Lf Hiker is mobile friendly
 
 
 == Frequently Asked Questions ==
@@ -137,10 +166,10 @@ For more informations see [lf Hiker](http://elisabeth.pointal.org/lf-hiker/)
 You can create a second map with adding shortcode `[lfh-map]` before your gpx file shortcode `[lfh-gpx src="..."][/lfh-gpx]`.
 
 Example:
-  `[lfh-map]`
-  `[lfh-gpx src=http://url_of_gpx_file1.gpx ]description[/lfh-gpx]`
-  `[lfh-map]`
-  `[lfh-gpx src=http://url_of_gpx_file2.gpx ]description[/lfh-gpx]`
+`[lfh-map]  
+[lfh-gpx src=http://url_of_gpx_file1.gpx ]description[/lfh-gpx]  
+[lfh-map]  
+[lfh-gpx src=http://url_of_gpx_file2.gpx ]description[/lfh-gpx]`  
   
 = Where can I create a gpx file ? =
 
@@ -151,12 +180,14 @@ You can find on this site a quantity of already registered tracks.
 
 = I have a blank page in place of the marker editor =
 
-This trouble come from conflict with multiple `x-frame options` directive in your server. Look at whether the plugin succeeded in writing this following lines in the `.htaccess` of your wordpress application if you can:
-    `# BEGIN Lf-hiker plugin`  
-    `&lt;IfModule mod_headers.c>`  
-    `Header set X-Frame-Options SAMEORIGIN` 
-    `&lt;/IfModule>`  
-    `# END Lf-hiker plugin ` 
+This trouble come from conflict with multiple `x-frame options` directive in your server.   
+Look at whether the plugin succeeded in writing this following lines in the `.htaccess` of your wordpress application if you can:  
+
+`# BEGIN Lf-hiker plugin`  
+`<IfModule mod_headers.c>`  
+`Header set X-Frame-Options SAMEORIGIN` 
+`</IfModule>`  
+`# END Lf-hiker plugin ` 
 	
 It resolve the trouble for me.   
 You can find more information about this trouble in wordpress support [Multiple 'X-Frame-Options' headers with conflicting values](https://wordpress.org/support/topic/multiple-x-frame-options-headers-with-conflicting-values-sameorigin-deny/)

@@ -127,6 +127,12 @@ Class Lfh_Controller_Front
         if(is_null($options)){
             return '';
         }
+        if( strlen($options['popup']) == 0 && strlen( $html)== 0 ){
+            if(strlen( $options['title']) == 0){
+                $options['title'] = strtoupper( __('No named marker', 'lfh'));
+            }
+            $options['popup'] = $options['title'];
+        }
         $content = '';
         if(self::$_lfh_map_count == 0){
             $content = self::map_shortcode(array());

@@ -139,63 +139,6 @@ lfh.ResetControl = L.Control.extend({
         return container;
     }
 })
-/** Resize the DOM div lfh-element for their container
- * @param {DomNode} container the map container*/
-lfh.resize = function(container){
-    // compute the size of the description fonction of the parent
-    var node = document.querySelector('#'+ container.id + '-data');
-    var height = node.offsetHeight ;
-    if(container.parentNode.parentNode.className.indexOf('lfh-min')<0){
-        height -= 70;
-    }else{
-        height = 220;
-        //delete all section hidden
-        var nodes = node.querySelectorAll('.lfh-section.hidden');
-        [].forEach.call(nodes, function(div) {
-                var classname = div.className;
-                if(classname.indexOf('disabled')>=0){
-                    return;
-                }
-                if(classname.indexOf('hidden')>=0){
-                     div.className = classname.replaceAll(' hidden', '');
-                }
-            
-          });
-        return;
-    }
-    var elements = node.getElementsByClassName('lfh-element');//.forEach(funtion(e){
-    //var elements = node.querySelectorAll('div:not(.lfh-min) .lfh-element');
-  
-    for(var i=0; i<elements.length;i++){
-        elements.item(i).style.maxHeight = (height) +'px';
-        elements.item(i).querySelector('.lfh-element-content').style.maxHeight = (height-40)+'px';
-    }
-}
-lfh.map_resize = function(map){
-    console.log("resize");
-    var width = map.getContainer().offsetWidth;
-    var global_container = map.getContainer().parentNode.parentNode;
-    if(width <= lfh.WIDTH_LIMIT ){
-        
-        global_container.className += ' lfh-min';
-        _large = false;
-    }else if( width > lfh.WIDTH_LIMIT ){
-      
-        var classname = global_container.className;
-        global_container.className = classname.replaceAll(' lfh-min', '');
-        _large = true;
-    }
-    
-    if( map.getContainer().parentNode.parentNode.id == "lfh-fade"){
-        if(_large){
-            map.getContainer().style.height = "100%";
-        }else{
-            var nav = document.querySelector(".lfh-nav");
-            map.getContainer().style.height = (global_container.offsetHeight - nav.offsetHeight+2) +"px";
-        }
-    }
-    map.invalidateSize()
-}
 /**
  *  Add two buttons on top right : fullscreen and list of layer
  * @constructor
@@ -245,12 +188,7 @@ lfh.TopControl = L.Control.extend({
                       map._container.style.height = "100%";
                   }
                   
-                  // do it for all maps on dom
-                  [].forEach.call(lfh.all , function( mapi ) {
-                   // resize according to container width
-                      lfh.map_resize( mapi );
-                    
-                  });
+                  lfh.resize_all_map();
             }
         }
         if(this._list){
@@ -264,6 +202,76 @@ lfh.TopControl = L.Control.extend({
   
    
   });
+
+/** Resize the DOM div lfh-element for their container
+ * @param {DomNode} container the map container*/
+lfh.resize_content = function(container){
+    // compute the size of the description fonction of the parent
+    var node = document.querySelector('#'+ container.id + '-data');
+    var height = node.offsetHeight ;
+    if(container.parentNode.parentNode.className.indexOf('lfh-min')<0){
+        height -= 70;
+    }else{
+        height = 220;
+        //delete all section hidden
+        var nodes = node.querySelectorAll('.lfh-section.hidden');
+        [].forEach.call(nodes, function(div) {
+                var classname = div.className;
+                if(classname.indexOf('disabled')>=0){
+                    return;
+                }
+                if(classname.indexOf('hidden')>=0){
+                     div.className = classname.replaceAll(' hidden', '');
+                }
+            
+          });
+        return;
+    }
+    var elements = node.getElementsByClassName('lfh-element');//.forEach(funtion(e){
+    //var elements = node.querySelectorAll('div:not(.lfh-min) .lfh-element');
+  
+    for(var i=0; i<elements.length;i++){
+        elements.item(i).style.maxHeight = (height) +'px';
+        elements.item(i).querySelector('.lfh-element-content').style.maxHeight = (height-40)+'px';
+    }
+}
+lfh.map_resize = function(map){
+    var width = map.getContainer().offsetWidth;
+    var global_container = map.getContainer().parentNode.parentNode;
+    if(width <= lfh.WIDTH_LIMIT ){
+        
+        global_container.className += ' lfh-min';
+        _large = false;
+    }else if( width > lfh.WIDTH_LIMIT ){
+      
+        var classname = global_container.className;
+        global_container.className = classname.replaceAll(' lfh-min', '');
+        _large = true;
+    }
+    
+    if( map.getContainer().parentNode.parentNode.id == "lfh-fade"){
+        if(_large){
+            map.getContainer().style.height = "100%";
+        }else{
+            var nav = document.querySelector(".lfh-nav");
+            map.getContainer().style.height = (global_container.offsetHeight - nav.offsetHeight+2) +"px";
+        }
+    }
+    map.invalidateSize()
+}
+lfh.resize_all_map = function(){
+    // do it for all maps on dom
+    [].forEach.call(lfh.all , function( mapi ) {
+     // resize according to container width
+        lfh.map_resize( mapi );
+      
+    });
+}
+L.DomEvent.addListener( window, 'resize', function(e){
+   lfh.resize_all_map();
+});
+
+
 /** the layer selected, whose description is displayed
  * @constructor
  * @param {string} map_id  id of map container (lfh-1, lfh-2...)
@@ -442,7 +450,7 @@ lfh.Map = function(i){
             });
             map.on('resize' , function(){
                 lfh.map_resize( this);
-                lfh.resize(this.getContainer());
+                lfh.resize_content(this.getContainer());
             });
         }
         function _add_nav_event()
@@ -513,11 +521,8 @@ lfh.Map = function(i){
         function _add_marker_to_node(marker, container){
             var node = document.createElement("input");
             node.setAttribute("type", "button");
-            if(marker.options.title.length == 0){
-                node.value = "NO NAMED MARKER";
-            }else{
-                node.value = marker.options.title;
-            }
+            node.value = marker.options.title;
+
             node.className = 'lfh-button';
             container.appendChild(node);
             
@@ -541,10 +546,7 @@ lfh.Map = function(i){
             node.setAttribute("type", "button");
             node.className = 'lfh-button';
             node.value = document.querySelector('#'+gpx.options.elem_id + ' span.lfh-trackname').textContent;
-            
-            if( node.value.length == 0){
-                node.value = "NO NAMED GPX";
-            }
+
             container.insertBefore(node, container.firstChild); //appendChild(node);
             
             L.DomEvent.addListener( node , 'click', function(e){
@@ -577,7 +579,7 @@ lfh.Map = function(i){
                if(buttonreset){
                    map.addControl(new lfh.ResetControl(_center, _zoom));
                }
-               lfh.resize(map.getContainer());
+               lfh.resize_content(map.getContainer());
                _auto_center = true;
            }
        }
@@ -701,19 +703,14 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
              {
                  img.style.maxWidth = (lfh.WIDTH -10) + "px";
                  img.style.maxHeight = (lfh.HEIGHT - 60) +"px";
+                 img.setAttribute("srcset","");
                  img.parentNode.style.maxWidth = lfh.WIDTH + "px";
                  img.parentNode.style.maxHeight = lfh.HEIGHT + "px";
-                 
-                 console.log(img.parentNode.style.maxWidth);
-                 console.log(img.parentNode.style.maxWidth.replace("px", ""));
-                 img.parentNode.style.width = (lfh.WIDTH  ) + "px";
-                        
+
+                 img.parentNode.style.width = lfh.WIDTH + "px";
                  img.parentNode.style.height = lfh.HEIGHT + "px";
-             }else{
-                // img.style.maxWidth = "270px";
-                 //img.style.maxHeight = "210px";
              }
-             if(img.parentNode.tagName.toLowerCase() === "p"){
+             if( img.parentNode.tagName.toLowerCase() === "p"){
                  img.parentNode.parentNode.insertBefore(img, img.parentNode)
              }
          });
@@ -775,10 +772,13 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
                 case "div":
                     if(row > 0){
                         new_childs.push(div);
-                        div = document.createElement("div");
-                        row = 0;
                     }
-                    new_childs.push(node);
+                    // for ie
+                    div = node.cloneNode(true);
+                    new_childs.push(div);
+                    div = document.createElement("div");
+                    row = 0;
+                   
                     break;
                 case "br":
                     break;
@@ -804,10 +804,12 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
             }
            
         });
-        if(row>0)
+        if(row>0){
             new_childs.push(div);
+        }
         description.innerHTML ="";
         [].forEach.call( new_childs , function( node) {
+           
             description.appendChild(node);
         });
         return new_childs.length;
@@ -960,19 +962,21 @@ lfh.Profile = function( map, layer, dom, move, unit, unit_h){
      var _coords = _gpx.getLayers()[0].getLayers()[0].getLatLngs();
      var _data = _gpx.get_elevation_data();
      //@todo quand pas de données d'élévation on a tout de même la distance totale
-     if(_data[0][1]==null){
-         return null;
-      }
-
-     var _max = _gpx.get_elevation_max() / _coeff_elevation;
-     var _min = _gpx.get_elevation_min() / _coeff_elevation;
-     var _max_km = _data[ _data.length-1 ][0] / _coeff;
-     var _step_h = lfh.Util.step_round((_max - _min)/3.5);
-     var _max_h = Math.ceil( _max/_step_h)*(_step_h);
-     var _min_h = _max_h - 5 * _step_h;
-   
-     var _step_x = lfh.Util.step_round((_max_km)/4);
-
+     //if(_data[0][1]==null){
+      //   return null;
+     // }
+     if( _data[0][1] !=  null){
+         var _has_elevation = true;
+         var _max = _gpx.get_elevation_max() / _coeff_elevation;
+         var _min = _gpx.get_elevation_min() / _coeff_elevation;
+         var _max_km = _data[ _data.length-1 ][0] / _coeff;
+         var _step_h = lfh.Util.step_round((_max - _min)/3.5);
+         var _max_h = Math.ceil( _max/_step_h)*(_step_h);
+         var _min_h = _max_h - 5 * _step_h;
+         var _step_x = lfh.Util.step_round((_max_km)/4);
+     }else{
+         var _has_elevation = false;
+     }
      function _x(km){
          return km * 220 / (_max_km * _coeff);
      }
@@ -991,40 +995,51 @@ lfh.Profile = function( map, layer, dom, move, unit, unit_h){
      }
      
      function draw(){
-         // draw the curve
-         var _d = _compute();
-         _track.querySelector('.lfh-profile-line').setAttribute( 'd', _d);
-         
-         // write the value for elevation line
-         for(var i=1;i<5; i++){
-             _track.querySelector('.h'+i).textContent = _min_h+i * _step_h;
+         if( _has_elevation){
+             // draw the curve
+             var _d = _compute();
+             _track.querySelector('.lfh-profile-line').setAttribute( 'd', _d);
+             
+             // write the value for elevation line
+             for(var i=1;i<5; i++){
+                 _track.querySelector('.h'+i).textContent = _min_h+i * _step_h;
+             }
+             // move the vertical line and write the value
+             for(var i=1; i<4;i++){
+                 var node = _track.querySelector( '.v'+i );
+                 var tr_x = Math.round( i * _step_x * 220 / _max_km );
+                 node.setAttribute( 'transform', 'translate(' + tr_x + ', 0)');
+                 node.querySelector('text').textContent = i * _step_x;
+             }
+    
+             //if()
+             _track.querySelector('.lfh-gpx-elevation-gain').textContent = Math.round(_gpx.get_elevation_gain()/_coeff_elevation) + ' ' + lfh.HEIGHT_UNIT[_unit_h].code;
+             _track.querySelector('.lfh-gpx-elevation-loss').textContent =  Math.round(_gpx.get_elevation_loss()/_coeff_elevation) + ' ' + lfh.HEIGHT_UNIT[_unit_h].code;
+             var _duration = _gpx.get_total_time();
+             if( _duration )
+             {
+                 _track.querySelector('.lfh-gpx-duration').textContent = _gpx.get_duration_string(_duration);
+             }
+             //ajout d'un ecouteur sur le 
+             L.DomEvent.addListener( _track.querySelector('svg') ,'click mousemove', function(e){
+                _on_move(e );
+             },false);
+             _track.querySelector('svg').addEventListener('touchmove', function(e){
+                 _on_move( e.touches[0]);
+             })
+         }else{
+             // No data elevation : remove svg
+             _track.querySelector('svg').parentNode.removeChild( _track.querySelector('svg'));
          }
-         // move the vertical line and write the value
-         for(var i=1; i<4;i++){
-             var node = _track.querySelector( '.v'+i );
-             var tr_x = Math.round( i * _step_x * 220 / _max_km );
-             node.setAttribute( 'transform', 'translate(' + tr_x + ', 0)');
-             node.querySelector('text').textContent = i * _step_x;
-         }
-
          _track.querySelector('.lfh-gpx-name').textContent = _gpx.get_name();
          _track.querySelector('.lfh-gpx-distance').textContent = (Math.round(_gpx.get_distance()/(100*_coeff))/10).toString().replace('.' , ',')  + ' ' + lfh.DISTANCE_UNIT[_unit].code;
-         _track.querySelector('.lfh-gpx-elevation-gain').textContent = Math.round(_gpx.get_elevation_gain()/_coeff_elevation) + ' ' + lfh.HEIGHT_UNIT[_unit_h].code;
-         _track.querySelector('.lfh-gpx-elevation-loss').textContent =  Math.round(_gpx.get_elevation_loss()/_coeff_elevation) + ' ' + lfh.HEIGHT_UNIT[_unit_h].code;
-         //ajout d'un ecouteur sur le 
-         
-         L.DomEvent.addListener( _track.querySelector('svg') ,'click mousemove', function(e){
-            _on_move(e );
-         },false);
-         _track.querySelector('svg').addEventListener('touchmove', function(e){
-             _on_move( e.touches[0]);
-         })
+        
      }
      function _on_move( e){
          
          var svg =  _track.querySelector('svg');
          var position = svg.getBoundingClientRect();
-         console.log(position);
+         // compute if svg is scaled
          var scale = 290 / position.width;
          var x = e.pageX - position.left - window.pageXOffset;
          x = x*scale - 50;

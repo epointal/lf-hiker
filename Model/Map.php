@@ -207,7 +207,7 @@ Class Lfh_Model_Map{
         }
         $options = array(
                 'src'        => $src,
-                'title'      => isset($title)? $title: '',
+                'title'      => isset($title)? $title:  strtoupper(__('no named gpx', 'lfh')),
                 'color'      => isset($color) ? $color: self::$default['stroke_color'],
                 'width'      => isset($width) ? $width: self::$default['stroke_width'],
                 'unit'       => isset($unit)  ? $unit:  Lfh_Model_Map::is_distance_unit(),
@@ -220,7 +220,7 @@ Class Lfh_Model_Map{
                         'default'   => NULL),
                 'title'   => array(
                         'filter'    => FILTER_SANITIZE_STRING,
-                        'default'   => ''),
+                        'default'   => strtoupper(__('no named gpx', 'lfh'))),
                 'color' => array(
                         'filter'    => FILTER_CALLBACK,
                         'options'   => 'Lfh_Model_Map::is_path_color'),
@@ -262,7 +262,7 @@ Class Lfh_Model_Map{
         $options = array(
                 'lat'   => $lat,
                 'lng'   => $lng,
-                'title' => isset($title) ? $title : "",
+                'title' => isset($title) ? $title : strtoupper( __('no named marker', 'lfh')),
                 'visibility' => isset($visibility) ? $visibility : 'zoom',
                 'color' => isset($color) ? $color : 'red',
                 'icon'  => isset($icon) ? $icon : 'circle',
