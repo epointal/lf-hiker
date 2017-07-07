@@ -26,7 +26,7 @@ Class Lfh_Model_Option
                     'type'    => 'color',
                     'label'   => __('Background color', 'lfh'),
                     'filter'  => FILTER_VALIDATE_REGEXP,
-                    'helper'  => esc_html__('Background for title in track\'s window on map' , 'lfh'),
+                    'helper'  => esc_html__('Background color for track title' , 'lfh'),
                     'options' => array( 
                         'regexp'    => "/^#[0-9a-f-A-F]{6}$/",
                         'default'   => '#808080')),
@@ -41,7 +41,7 @@ Class Lfh_Model_Option
                 'lfh_color'      => array(
                     'type'    => 'color',
                     'label'   => __('Title color', 'lfh'),
-                    'helper'  => esc_html__('Font color for title in track\'s window on map' , 'lfh'),
+                    'helper'  => esc_html__('Font color for track title' , 'lfh'),
                     'filter'  => FILTER_VALIDATE_REGEXP,
                     'options' => array( 
                         'regexp'    => "/^#[0-9a-f-A-F]{6}$/",
@@ -49,7 +49,7 @@ Class Lfh_Model_Option
                 'lfh_button_color'      => array(
                         'type'    => 'color',
                         'label'   => __('Button color', 'lfh'),
-                        'helper'  => esc_html__('Button color for list of elements' , 'lfh'),
+                        'helper'  => esc_html__('Button color for elements list' , 'lfh'),
                         'filter'  => FILTER_VALIDATE_REGEXP,
                         'options' => array(
                                 'regexp'    => "/^#[0-9a-f-A-F]{6}$/",
