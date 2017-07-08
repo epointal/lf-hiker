@@ -152,13 +152,13 @@ For more informations see [lf Hiker](http://elisabeth.pointal.org/lf-hiker/)
 
 == Screenshots ==
 1. Lf Hiker display easily gpx file with profile elevation
-2. Lf Hiker allows to display markers with large description
-3. Lf Hiker is cutomisable
+2. Lf Hiker is cutomisable
+3. Lf Hiker allows to display markers with formated description
 4. Lf Hiker manage gpx file
 5. Lf Hiker has an helper for add marker
 6. Lf Hiker has an helper for edit map
-7. You can change some parmaters in administration
-8. Lf Hiker is mobile friendly
+7. You can change some paramaters in administration
+8. Lf Hiker is responsive and mobile friendly
 
 
 == Frequently Asked Questions ==

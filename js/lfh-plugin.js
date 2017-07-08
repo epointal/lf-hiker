@@ -168,8 +168,8 @@ lfh.TopControl = L.Control.extend({
                 var fade = L.DomUtil.get('lfh-fade');
                 var container = L.DomUtil.get(id + '-fadable')
                   if( this.className.indexOf('actived') >= 0 ){
-                      //reduce map
                       
+                      // reduce map
                       L.DomUtil.get(id + '-skin').appendChild( container);
                       this.className = this.className.replace(' actived','');
                       fade.className = fade.className.replace(' actived','');
@@ -177,9 +177,8 @@ lfh.TopControl = L.Control.extend({
                       if(! map.options.mousewheel){
                           map.scrollWheelZoom.disable();
                       }
-                      
                   }else{
-                      //fullscreen
+                      // go to fullscreen
                       fade.appendChild( container);
                       this.className += ' actived';
                       fade.className = fade.className + ' actived';
@@ -257,7 +256,8 @@ lfh.map_resize = function(map){
             map.getContainer().style.height = (global_container.offsetHeight - nav.offsetHeight+2) +"px";
         }
     }
-    map.invalidateSize()
+    map.invalidateSize();
+    return _large;
 }
 lfh.resize_all_map = function(){
     // do it for all maps on dom
@@ -284,10 +284,9 @@ lfh.Selected = function( map_id, map, marker){
         this.map_id = map_id;
         var _move_marker = marker; // move marker on map used for gpx layer
         var map = map; 
-       // var id = null;
-        var layer=null; // the layer
-        var dom = null; // the node where is layer descritption
-        
+        this.id = null; 
+        this.ayer=null; // the layer
+        this.dom = null; // the node where is layer descritption
         // title displayed in lfh-nav by default (window under map)
         this.title = document.querySelector("#"+ map_id + "-data div.lfh-nav .lfh-trackname").textContent;
         
@@ -449,10 +448,21 @@ lfh.Map = function(i){
                 }
             });
             map.on('resize' , function(){
-                lfh.map_resize( this);
+                 var _large = lfh.map_resize( this );
                 lfh.resize_content(this.getContainer());
+                // close window if little map and list is displayes
+                if(!_large &&
+                    _selected_element.id &&
+                    _selected_element.id.indexOf('lfh-list')>= 0 ){
+                        var button = _selected_element.layer;
+                        var event = document.createEvent('MouseEvents');
+                        event.initEvent("click", true, true);
+                        // Dispatch/Trigger/Fire the event
+                        button.dispatchEvent(event);
+                }
             });
         }
+        // add event on button in lfh-nav : close, next and back
         function _add_nav_event()
         {
             // Close button window for min screen
@@ -662,14 +672,15 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
        
         if(_dom != null){
             // add dom node to map
-           // _map.getContainer().appendChild(_dom);
-            //console.log(_map.getContainer().id);
-            //var i= 0;
+
             var data = document.querySelector("#"+_map.getContainer().id + "-data");
             var last_child = data.querySelector(".lfh-nav");
             data.insertBefore(_dom,last_child);
+            
+            // count length of description
             _dom.step = 0;
-            _dom.step_max = _count_step(_dom); // count number of div and add div in description 
+            _dom.step_max = _count_step( _dom );
+            
             if( _layer instanceof L.GPX){
                 _dom.step_max += 2;
             }
@@ -687,13 +698,30 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
         }
     }
     /**
-     * @todo clean and optimize this method
+     * @todo clean and optimize this 3 methods, put it out of object lfh.Link
      * count and create div node for description
-     * resize image 
+     * resize image, cut paragraphe if lengthy
      * @param {DomNode} div lfh-element information about marker or track
-     * @return {integer} number of div in description
+     * @return {integer} number of div in description and modify the node
      */
-     function _count_step( dom ){
+     function _count_step( dom )
+     {
+         var _dom_childs = _treatment_description( dom );
+         var description = dom.querySelector(".lfh-description");
+         if( description ){
+             description.innerHTML ="";
+             [].forEach.call( _dom_childs , function( node) {
+                
+                 description.appendChild(node);
+             });
+             return _dom_childs.length; // count number of div and add div in description 
+         }else{
+             return 0;
+         }
+     }
+     
+     function _treatment_description( dom )
+     {
          // change dom add div 
          //first resize image
          var imgs = dom.querySelectorAll("img");
@@ -713,11 +741,19 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
                  img.parentNode.parentNode.insertBefore(img, img.parentNode)
              }
          });
-       
-        var description = dom.querySelector(".lfh-description");
-        if( description === null){
-            return 0;
-        }
+        // second cut with good size
+         var description = dom.querySelector(".lfh-description");
+         if( description === null){
+             return [];
+         }
+        return _treatment_node( description);
+     }
+     
+     /** function recursive, for all child nodes cut it and organize
+      * @parameter {DOMNode} description
+      * @return array of DOMNOde
+      */
+     function _treatment_node( description ){
         var childs = description.childNodes;
         var new_childs = new Array();
         var col = ("scelerisque massa pretium sed. Vivamus est ").length;
@@ -730,9 +766,11 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
                 switch( node.tagName.toLowerCase() ){
                 case "p":
                 case "span":
+                    
                     if(node.textContent.trim().length > 0){
                         var lng = 1+(node.textContent.trim().length )/col;
                         if(row + lng > line){
+                            
                             new_childs.push(div);
                             div = document.createElement("div");
                             row = 0;
@@ -769,14 +807,19 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
                     row += lng;
                     break;
                 case "div":
-                    if(row > 0){
+                    if(node.className.indexOf('wp-caption')>=0 ){
+                        if(row > 0){
+                            new_childs.push(div);
+                        }
+                        div = node.cloneNode(true);
                         new_childs.push(div);
+                        div = document.createElement("div");
+                        row = 0;
+                    }else{
+                        
                     }
-                    // for ie
-                    div = node.cloneNode(true);
-                    new_childs.push(div);
-                    div = document.createElement("div");
-                    row = 0;
+                   
+                   
                    
                     break;
                 case "br":
@@ -806,14 +849,13 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
         if(row>0){
             new_childs.push(div);
         }
-        description.innerHTML ="";
-        [].forEach.call( new_childs , function( node) {
-           
-            description.appendChild(node);
-        });
-        return new_childs.length;
-     } // end _count_step 
-     
+       
+        return new_childs;
+     } 
+      function _cut_text( text, lng ){
+          
+          
+      }
      function _toggle(){
         _selected_element.close();
         
@@ -1075,7 +1117,14 @@ lfh.Profile = function( map, layer, dom, move, unit, unit_h){
      draw();
      return {draw:draw};
  }
-
+ /**
+  * treatment of dom description
+  * cut and reorganize node for well display in length
+  * @return array of node well form
+  */
+ function _count_div ( node ){
+    return childs; 
+ }
  lfh.initialize(1);
 })();
     

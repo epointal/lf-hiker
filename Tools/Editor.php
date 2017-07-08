@@ -63,17 +63,19 @@ class Lfh_Tools_Editor
             return new Lfh_Tools_View($controller_name);
         }
     }
-    public  function get_cache($controller_name = NULL)
-    {
-        if(is_null($controller_name)){
-            if(is_null($this->_cache)){
-                $this->_cache = new Lfh_Tools_Cache('Back');
-            }
-            return $this->_cache;
-        }else{
-            return new Lfh_Tools_Cache($controller_name);
-        }
-    }
+//  No more use cache for the moment, too much issue
+//
+//  public  function get_cache($controller_name = NULL)
+//     {
+//         if(is_null($controller_name)){
+//             if(is_null($this->_cache)){
+//                 $this->_cache = new Lfh_Tools_Cache('Back');
+//             }
+//             return $this->_cache;
+//         }else{
+//             return new Lfh_Tools_Cache($controller_name);
+//         }
+//     }
     // scripts only for edit post page
     public function load_editor_scripts()
     {
@@ -250,7 +252,10 @@ class Lfh_Tools_Editor
         if (isset($attachment['url']) && preg_match( "/\.gpx$/i", $attachment['url'])) {
           
             $color = get_post_meta($id, 'lfh_stroke_color', true);
+            $color = empty($color)? Lfh_Model_Map::$default['stroke_color'] :  $color;
             $width = get_post_meta($id, 'lfh_stroke_width', true);
+            $width = empty($width)? Lfh_Model_Map::$default['stroke_width'] : $width;
+            
             $filter = '';
             $filter .= '[lfh-gpx src=' . $attachment['url'] .' title="' . $attachment['post_title'] .'"';
             $filter .= ' color='. $color . ' width=' .$width . ' ]';
