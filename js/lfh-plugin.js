@@ -694,7 +694,6 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
      * @return {integer} number of div in description
      */
      function _count_step( dom ){
-        // return 4;
          // change dom add div 
          //first resize image
          var imgs = dom.querySelectorAll("img");
