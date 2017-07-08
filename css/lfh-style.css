@@ -231,12 +231,11 @@ div.lfh-fadable,
   width: 90px;
   display: inline-block;
 }
-/*  @color: #e95325;*/
+/* @color: #191970;*/
 input.lfh-button,
 #content input.lfh-button,
 .main input.lfh-button,
-#fade input.lfh-button,
-#fade input + input.lfh-button {
+input.lfh-button + input[type="button"] {
   display: inline-block;
   margin: 0px 7px 3px 0;
   padding: 3px 12px;
@@ -245,14 +244,14 @@ input.lfh-button,
   line-height: 1.43;
   white-space: normal;
   text-align: center;
-  background: #191970;
+  background: #e95325;
   border-width: 1px;
   border-style: solid;
   border-radius: 3px;
-  border-color: #22229a #101046 #101046;
+  border-color: #ee7853 #c73e14 #c73e14;
   color: #fff;
   text-decoration: none;
-  text-shadow: 0 -1px 1px #06061d, 1px 0 1px #101046, 0 1px 1px #101046, -1px 0 1px #06061d;
+  text-shadow: 0 -1px 1px #99300f, 1px 0 1px #c73e14, 0 1px 1px #c73e14, -1px 0 1px #99300f;
   vertical-align: top;
   cursor: pointer;
   pointer-events: auto;
@@ -262,7 +261,7 @@ input.lfh-button,
 input.lfh-button:hover,
 #content input.lfh-button:hover,
 .main input.lfh-button:hover {
-  background: #0b0b7e;
+  background: #ff470f;
   text-decoration: none;
 }
 .lfh-element.hidden {
