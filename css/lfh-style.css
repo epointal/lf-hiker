@@ -615,6 +615,7 @@ div.lfh-min div.lfh-section {
   float: left;
   display: inline-block;
   max-height: 168px;
+  margin-top: 0;
 }
 div.lfh-section div.lfh-content,
 div.lfh-section div.lfh-content > div {

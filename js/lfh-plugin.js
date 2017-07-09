@@ -757,25 +757,51 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
         var childs = description.childNodes;
         var new_childs = new Array();
         var col = ("scelerisque massa pretium sed. Vivamus est ").length;
-        var line = 17;
+        var line = 13;
         var div = document.createElement('div');
         var row = 0;
         [].forEach.call( childs , function( node) {
             switch( node.nodeType){
             case Node.ELEMENT_NODE:
                 switch( node.tagName.toLowerCase() ){
-                case "p":
+                case "h1":
+                case "h2":
+                case "h3":
+                case "h4":
+                case "h5":
+                    var h = document.createElement("h5");
+                    h.innerHTML = node.textContent;
+                    if(row + 3 > line){
+                        new_childs.push(div);
+                        div = document.createElement("div");
+                        row = 0; 
+                    }
+                    div.appendChild(h);
+                    row += 2;
+                    break;
+                case "a":
                 case "span":
-                    
                     if(node.textContent.trim().length > 0){
-                        var lng = 1+(node.textContent.trim().length )/col;
+                        var h = (node.textContent.trim().length )/col;
                         if(row + lng > line){
-                            
                             new_childs.push(div);
                             div = document.createElement("div");
                             row = 0;
                         }
-                        div.appendChild(node);
+                        div.appendChild( node.cloneNode(true) );
+                        row += lng;
+                    }
+                    break;
+                case "p":
+                    
+                    if(node.textContent.trim().length > 0){
+                        var lng = 4 +(node.textContent.trim().length )/col;
+                        if(row + lng > line){
+                            new_childs.push(div);
+                            div = document.createElement("div");
+                            row = 0;
+                        }
+                        div.appendChild( node.cloneNode(true) );
                         row += lng;
                     }
                     break;
@@ -786,9 +812,8 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
                         row = 0;
                     }
                     var div2 = document.createElement("div");
-                    div2.appendChild(node);
+                    div2.appendChild(node.cloneNode(true));
                     new_childs.push(div2);
-                   
                     break;
                 case "ul":
                 case "ol":
@@ -803,24 +828,19 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
                         div = document.createElement("div");
                         row = 0;
                     }
-                    div.appendChild(node);
+                    div.appendChild(node.cloneNode(true));
                     row += lng;
                     break;
                 case "div":
-                    if(node.className.indexOf('wp-caption')>=0 ){
+                   //if(node.className.indexOf('wp-caption')>=0 ){
                         if(row > 0){
                             new_childs.push(div);
                         }
-                        div = node.cloneNode(true);
-                        new_childs.push(div);
+                        var div2 = node.cloneNode(true);
+                        new_childs.push(div2);
                         div = document.createElement("div");
                         row = 0;
-                    }else{
-                        
-                    }
-                   
-                   
-                   
+                   // }else{
                     break;
                 case "br":
                     break;
@@ -829,17 +849,15 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
                 break;
             case Node.TEXT_NODE:
                 if(node.nodeValue.trim().length > 0){
-                    var p = document.createElement("p");
-                   
-                    p.textContent = node.nodeValue.trim(); 
-                    var lng = 1+(node.nodeValue.trim().length )/col;
+                    
+                    var lng = (node.nodeValue.trim().length )/col;
                     
                     if(row + lng > line){
                         new_childs.push(div);
                         div = document.createElement("div");
                         row = 0;
                     }
-                    div.appendChild(p);
+                    div.appendChild(node.cloneNode( true));
                     row += lng;
                 }
                 break;

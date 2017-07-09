@@ -127,10 +127,7 @@ Class Lfh_Controller_Front
         if(is_null($options)){
             return '';
         }
-        if( strlen($options['popup']) == 0 && strlen( $html)== 0 ){
-            if(strlen( $options['title']) == 0){
-                $options['title'] = strtoupper( __('no named marker', 'lfh'));
-            }
+        if( empty($options['popup'])){
             $options['popup'] = $options['title'];
         }
         $content = '';
