@@ -61,7 +61,7 @@ Class Lfh_Controller_Back
         $slug = 'upload.php?' . http_build_query($data);
        // $slug = 'upload.php?mode=list&attachment-filter=post_mime_type%3Aapplication%2Fgpx%2Bxml&m=0&filter_action=Filtrer&s&action=-1&paged=1';
         add_submenu_page('lfh_info',  'GPX' , __('All gpx files', 'lfh'), 'edit_posts', $slug ,null);
-        $submenu['lfh_info'][0][0] = __( 'About','lfh' );
+        $submenu['lfh_info'][0][0] = ucfirst(__( 'about','lfh' ));
     }
     
     public function about_page(){

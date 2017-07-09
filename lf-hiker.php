@@ -2,7 +2,7 @@
     /*
     Plugin Name: LF Hiker
     Plugin URI: http://elisabeth.pointal.org/lf-hiker
-    Description: A plugin for show gpx track with profile elevation and large description.
+    Description: A responsive and mobile friendly plugin for show gpx track with profile elevation.
     Author: epointal
     Author URI: http://elisabeth.pointal.org/
     Version: 1.3

@@ -21,11 +21,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         <!-- control buttons -->
             <div >
                 <div>
-                    <span class="lfh-var"><?=_e('Latitude' , 'lfh')?>:</span>
+                    <span class="lfh-var"><?=ucfirst(__('latitude' , 'lfh'))?>:</span>
                     <span class="lfh-number"><?=Lfh_Model_Map::to_string($options['lat'])?></span>
                 </div>
                 <div>
-                    <span class="lfh-var"><?=_e('Longitude' , 'lfh')?>:</span>
+                    <span class="lfh-var"><?=ucfirst(__('longitude' , 'lfh'))?>:</span>
                     <span class="lfh-number"><?=Lfh_Model_Map::to_string($options['lng'])?></span>
                 </div>
             </div>
@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         <!-- misc info -->
         <div class="lfh-section">
             <div class="lfh-header">
-            <h4><?php _e('Description', 'lfh');?></h4>
+            <h4><?=ucfirst(__('description', 'lfh'))?></h4>
             </div>    
             <div class="lfh-content lfh-description" >
             <?php echo do_shortcode($html);?>

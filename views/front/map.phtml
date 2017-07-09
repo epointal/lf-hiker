@@ -14,14 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     <div id="lfh-<?=$map_count?>-data" class="lfh-data simple-border" >
         <div id="lfh-<?=$map_count?>-nav" class="lfh-nav">
             <div class="lfh-title" >
-                <span class="lfh-trackname"><?=__('Information', 'lfh')?></span>
+                <span class="lfh-trackname"><?=ucfirst(__('information', 'lfh'))?></span>
                 <span class="lfh-close fa fa-close"></span>
             </div>
             <div  class="lfh-back fa fa-chevron-circle-left" style=""></div>
             <div  class="lfh-next fa fa-chevron-circle-right"></div>
         </div>
         <div class="lfh-data-content" >
-            <div ><?=__('Click following button or element on the map to see information about it', 'lfh')?></div>
+            <div ><?=__('Click following button or element on the map to see information about it.', 'lfh')?></div>
             <div class="lfh-section" style="text-align:center;">
                 <div class="lfh-content" ></div>
             </div>
@@ -40,7 +40,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     <div>
         <div >
             <h3 >
-                <span class="lfh-trackname"><?=_e('List', 'lfh')?>&nbsp;</span>
+                <span class="lfh-trackname"><?=ucfirst(__('list', 'lfh'))?>&nbsp;</span>
                 <span  class="lfh-close fa fa-close" >&nbsp;</span>
             </h3>
         </div>
@@ -48,7 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         <!-- misc info -->
         <div class="lfh-section">
           <div class="lfh-header">
-          <h4><?php _e('All tracks', 'lfh');?></h4>
+          <h4><?=ucfirst(__('all tracks', 'lfh'))?></h4>
           </div>        
           <div class="lfh-content" >
           <div class="lfh-list-gpx">
@@ -57,7 +57,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         </div>
          <div class="lfh-section">
           <div class="lfh-header">
-          <h4><?php _e('All markers', 'lfh');?></h4>
+          <h4><?=ucfirst(__('all markers', 'lfh'))?></h4>
           </div>        
           <div class="lfh-content" >
           <div class="lfh-list-markers">

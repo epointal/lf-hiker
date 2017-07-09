@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         </div>
         <div class="lfh-section">
               <div class="lfh-header">
-              <h4 style="margin-bottom: 2px;"><?php _e('Profile', 'lfh');?></h4>
+              <h4 style="margin-bottom: 2px;"><?=ucfirst(__('profile', 'lfh'));?></h4>
               </div>
                <div class="lfh-content" >
                     <div>
@@ -65,36 +65,36 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                         <rect x="0" y="0" width="220" height="180" ></rect>
                         <!-- horizontal axis x -->
                          <line class="axis" x1="0" y1="180" x2="210" y2="180"  marker-end="url(#t)"></line>
-                           <text x="110" y="210" text-anchor="middle"><?php _e('Distance','lfh');?> (<?=Lfh_Model_Map::distance_units()[$options['unit']]['code']?>)</text>
+                           <text x="110" y="210" text-anchor="middle"><?=ucfirst(__('distance','lfh'))?> (<?=Lfh_Model_Map::distance_units()[$options['unit']]['code']?>)</text>
                            <!-- vertical axis y -->
                         <line class="axis" x1="0" y1="180" x2="0" y2="10" marker-end="url(#t)"></line>
-                        <text x="0" y="0" transform="rotate(-90) translate(-100, -40)" text-anchor="middle"><?php _e('Elevation', 'lfh');?> (<?=Lfh_Model_Map::height_units()[$options['unit_h']]['code']?>)</text>
+                        <text x="0" y="0" transform="rotate(-90) translate(-100, -40)" text-anchor="middle"><?=ucfirst( __('elevation', 'lfh'))?> (<?=Lfh_Model_Map::height_units()[$options['unit_h']]['code']?>)</text>
                         <path class="lfh-profile-line" d=""></path>
                        
                         <line class="lfh-move-line" x1="0" y1="185" x2="0" y2="-5"></line>
                     </g>
                     </svg>
-                    <div class="lfh-no-data"><?php _e('No data elevation', 'lfh')?></div>
+                    <div class="lfh-no-data"><?=ucfirst(__('no data elevation', 'lfh'))?></div>
                     </div>
                     <div>
                         <div >
-                            <span ><?php _e('Name' ,'lfh');?>: </span>
-                            <span class="lfh-gpx-name"><em><?php _e('No data', 'lfh')?></em></span>
+                            <span ><?=ucfirst(__('name' ,'lfh'))?>: </span>
+                            <span class="lfh-gpx-name"><em><?=ucfirst(__('no data', 'lfh'))?></em></span>
                         </div>
                         <div >
-                            <span><?php _e('Distance', 'lfh');?>: </span>
-                            <span class="lfh-gpx-distance"><em><?php _e('No data', 'lfh')?></em></span>
+                            <span><?=ucfirst(__('distance', 'lfh'))?>: </span>
+                            <span class="lfh-gpx-distance"><em><?=ucfirst(__('no data', 'lfh'))?></em></span>
                         </div>
                         <div>
-                            <span><?php _e('Elevation gain', 'lfh');?>: </span>
-                            <span  class="lfh-gpx-elevation-gain" ><em><?php _e('No data', 'lfh')?></em></span>
+                            <span><?=ucfirst(__('elevation gain', 'lfh'))?>: </span>
+                            <span  class="lfh-gpx-elevation-gain" ><em><?=ucfirst(__('no data', 'lfh'))?></em></span>
                         </div>
                         <div >
-                            <span><?php _e('Elevation loss', 'lfh');?>: </span>
-                            <span class="lfh-gpx-elevation-loss" ><em><?php _e('No data', 'lfh')?></em></span>
+                            <span><?=ucfirst(__('elevation loss', 'lfh'))?>: </span>
+                            <span class="lfh-gpx-elevation-loss" ><em><?=ucfirst(__('no data', 'lfh'))?></em></span>
                         </div>
-                            <span><?php _e('Duration', 'lfh');?>: </span>
-                            <span class="lfh-gpx-duration" ><em><?php _e('No data', 'lfh')?></em></span>
+                            <span><?=ucfirst(__('duration', 'lfh'))?>: </span>
+                            <span class="lfh-gpx-duration" ><em><?=ucfirst(__('no data', 'lfh'))?></em></span>
                         <div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         <?php if(strlen($html)>0):?>
         <div class="lfh-section hidden">
             <div class="lfh-header">
-            <h4><?php _e('Description', 'lfh');?></h4>
+            <h4><?=ucfirst( __('description', 'lfh'))?></h4>
             </div>    
             <div class="lfh-content lfh-description" >
             <?php echo do_shortcode($html);?>

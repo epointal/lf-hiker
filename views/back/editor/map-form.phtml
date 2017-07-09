@@ -97,7 +97,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         <div id="center-map"  style="display:none;">
             <div id="text-pan"><?=_e('Pan and zoom until find the position, and when ready save the position', 'lfh')?></div>
             <div id="map-position" >&nbsp;</div>
-            <input type="button" name="save-center" value="<?=_e('Save', 'lfh')?>"  />
+            <input type="button" name="save-center" value="<?=ucfirst(__('save', 'lfh'))?>"  />
         </div>
         <input type="hidden" name="<?=$id?>" value="<?=$default?>"/>
         <?php endif; ?>
@@ -110,7 +110,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
       
         <div>
             <label for="reset-map"></label>
-            <input type ="reset"  name="reset-map" value="<?=_e('Reset' , 'lfh')?>" />
+            <input type ="reset"  name="reset-map" value="<?=ucfirst(__('reset' , 'lfh'))?>" />
             
         </div>
         

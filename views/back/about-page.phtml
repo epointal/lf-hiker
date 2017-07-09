@@ -5,10 +5,10 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
 <div class="wrap">
-    <h1><?=__('About', 'lfh')?> Lf Hiker</h1>
+    <h1><?=ucfirst(__('about', 'lfh'))?> Lf Hiker</h1>
     <div class="wrap">
 <h2 class="nav-tab-wrapper">
-        <a href="?page=lfh_info&tab=about_page" class="nav-tab<?=($active_tab=="about_page" ? " nav-tab-active" : "")?>"><?=__('About', 'lfh')?> Lf Hiker</a>
+        <a href="?page=lfh_info&tab=about_page" class="nav-tab<?=($active_tab=="about_page" ? " nav-tab-active" : "")?>"><?=ucfirst(__('about', 'lfh'))?> Lf Hiker</a>
         <a href="?page=lfh_info&tab=config_user" class="nav-tab<?=($active_tab=="config_user" ? " nav-tab-active" : "")?>"><?=__('Your personnal configuration', 'lfh')?></a>
     </h2>
     <!-- notifications -->
@@ -31,7 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     	<tr>
         	<th></th>
         	<td>
-        		<input type="submit" name="lfh_change_helper" class="button button-primary" value="<?=__('Save', 'lfh')?>">
+        		<input type="submit" name="lfh_change_helper" class="button button-primary" value="<?=ucfirst(__('save', 'lfh'))?>">
         	</td>
     	</tr>
      </table>
@@ -41,13 +41,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 <?php endif;?>
 
 <?php if($active_tab == 'about_page'):?>
-<h1><?=__('About', 'lfh')?></h1>
+<h1><?=ucfirst(__('about', 'lfh'))?></h1>
 
 <p><b>Lf Hiker</b> <?=__('is a wordpress plugin for quickly display your gpx tracks with their profile elevation on an interactive map.', 'lfh')?></p>
 <p style="padding:10px; border:1px solid lightgrey; background-color:#fff;font-size:1.2em;width:80%;color:#000;"><?=__('You can find informations, and tutorial on website', 'lfh')?> <a href="http://elisabeth.pointal.org/lf-hiker"  target="_blank" >Lf Hiker</a></p>
 <h2><?=__('Main Utilisation', 'lfh')?></h2>
 
-<p><?=__('Simply upload your gpx file with the wordpress media manager, complete its informations and insert  it in your post/page (shortcode).', 'lfh')?>
+<p><?=__('Simply upload your gpx file with the wordpress media manager, complete its informations and insert it in your post/page (shortcode).', 'lfh')?>
 <?=__('Display the post/page : you have an interactive view of your track.', 'lfh')?></p>
 <?=__('The trail is displayed on an OSM map by default, and have its own information window with:', 'lfh')?>
 <ul style="list-style: square;margin-left:20px;">
@@ -60,7 +60,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 </ul>
 <img src="<?=$plugin_url?>images/screenshot-1.png" alt='Screenshot Lf Hiker' style="max-width:100%;"/> 
 
-<h2><?=__('Other features', 'lfh')?></h2>
+<h2><?=ucfirst(__('other features', 'lfh'))?></h2>
 <p><b>Lf Hiker <?=__('included an helper for edit map and add markers.', 'lfh')?></b></p>
 <p><?=__('See all features on Lf Hiker website', 'lfh')?>: <a href="http://elisabeth.pointal.org/lf-hiker"  target="_blank" >Lf Hiker</a></p> 
 <img src="<?=$plugin_url?>images/screenshot-5.png" alt='Screenshot Lf Hiker' style="max-width:100%;"/> 

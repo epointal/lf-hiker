@@ -141,14 +141,14 @@ Class Lfh_Model_Map{
                 ),
             'reset' => array(
                 'type'      => 'checkbox',
-                'label'     => __('Reset', 'lfh'),
+                'label'     => ucfirst(__('reset', 'lfh')),
                 'default'   => true,
                 'filter'    => FILTER_CALLBACK,
                 'options'   => 'Lfh_Model_Map::validate_boolean'
                 ),
             'list' => array(
                 'type'      => 'checkbox',
-                'label'     => __('List' , 'lfh'),
+                'label'     => ucfirst(__('list' , 'lfh')),
                 'default'   => true,
                 'filter'    => FILTER_CALLBACK,
                 'options'   => 'Lfh_Model_Map::validate_boolean'
