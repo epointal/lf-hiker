@@ -87,7 +87,8 @@ Class Lfh_Model_Option
                     'filter'  => FILTER_VALIDATE_REGEXP,
                     'after'   => '*',
                     'style'   => 'width:300px;',
-                    'helper'  => __('If you want MapQuest, you must provide an app key.', 'lfh'). 
+                    'attributes' =>'disabled',
+                    'helper'  => __('This option is deactived (mapquest using deprecated method).','lfh'). ' '.__('If you want MapQuest, you must provide an app key.', 'lfh'). 
                             '<a href="https://developer.mapquest.com/plan_purchase/steps/business_edition/business_edition_free/register" target="_blank">'.
                             __('Sign up' , 'lfh').
                             '</a>, '. __('then', 'lfh').' <a href="https://developer.mapquest.com/user/me/apps" target="_blank">'.
@@ -108,6 +109,7 @@ Class Lfh_Model_Option
                     'after'   => DIRECTORY_SEPARATOR.'cache',
                     'filter'  => FILTER_CALLBACK,
                     'style'   => 'width:500px;',
+                    'attributes' => 'disabled',
                     'options' => 'Lfh_Model_Option::try_cache_dir')
                 );
             break;

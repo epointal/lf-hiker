@@ -360,9 +360,10 @@ Class Lfh_Model_Map{
     private static function get_valide_tiles()
     {
         $tiles = array_keys(self::$tiles);
-        if( !empty(get_option('lfh_mapquest_key'))){
-            $tiles[] = 'mapquest';
-        }
+        //unactive mapquest
+       // if( !empty(get_option('lfh_mapquest_key'))){
+        //    $tiles[] = 'mapquest';
+       // }
         return $tiles;
     }
     private static function valid_tile($var)

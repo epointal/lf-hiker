@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lfh\n"
-"POT-Creation-Date: 2017-07-09 11:15+0100\n"
-"PO-Revision-Date: 2017-07-09 11:16+0100\n"
+"POT-Creation-Date: 2017-07-09 15:35+0100\n"
+"PO-Revision-Date: 2017-07-09 15:36+0100\n"
 "Last-Translator: Elisabeth Pointal <elisabeth.pointal@free.fr>\n"
 "Language-Team: elisabeth\n"
 "Language: en_EN\n"
@@ -72,7 +72,7 @@ msgid "Fullscreen"
 msgstr "Fullscreen"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:144
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:79
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:89
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/map-form.phtml:113
 msgid "reset"
 msgstr "reset"
@@ -158,39 +158,43 @@ msgstr "Default height unit"
 msgid "Mapquest key"
 msgstr "Mapquest key"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:90
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:91
+msgid "This option is deactived (mapquest using deprecated method)."
+msgstr "This option is deactived (mapquest using deprecated method)."
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:91
 msgid "If you want MapQuest, you must provide an app key."
 msgstr "If you want MapQuest, you must provide an app key."
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:92
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:93
 msgid "Sign up"
 msgstr "Sign up"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:93
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:94
 msgid "then"
 msgstr "then"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:94
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:95
 msgid "Create a new app"
 msgstr "Create a new app"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:95
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:96
 msgid "then supply the &laquo;Consumer Key&raquo; here."
 msgstr "then supply the &laquo;Consumer Key&raquo; here."
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:106
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:107
 msgid "Cache dir"
 msgstr "Cache dir"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:137
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:139
 msgid "Failed to create a new cache"
 msgstr "Failed to create a new cache"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:158
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:160
 msgid "data updated"
 msgstr "data updated"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:178
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:180
 msgid "data reseted"
 msgstr "data reseted"
 
@@ -274,33 +278,33 @@ msgstr "Your configuration has been updated"
 msgid "Configuration"
 msgstr "Configuration"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:78
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:88
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:34
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/map-form.phtml:100
 msgid "save"
 msgstr "save"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:92
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:102
 msgid "Clear cache"
 msgstr "Clear cache"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:98
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:108
 msgid "Add directive for allowed x-frame same origin in .htaccess"
 msgstr "Add directive for allowed x-frame same origin in .htaccess"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:102
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:112
 msgid "Add in"
 msgstr "Add in"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:104
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:114
 msgid "Seems resolve trouble with multiple directive x-frame-options. See "
 msgstr "Seems resolve trouble with multiple directive x-frame-options. See "
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:106
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:116
 msgid "Wordpress support topic"
 msgstr "Wordpress support topic"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:114
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:124
 msgid "Remove in"
 msgstr "Remove in"
 

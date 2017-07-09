@@ -132,7 +132,7 @@ class Lfh_Tools_Editor
        global $wp_scripts, $wp_styles;
        $wp_scripts->queue = array();
        $wp_styles->queue = array();
-       wp_enqueue_style( 'leaflet_css', 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css',  null, 'screen' );
+       wp_enqueue_style( 'leaflet_css', 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.1.0/leaflet.css',  null, 'screen' );
        wp_enqueue_style('font_awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css', null, 'screen');
        wp_enqueue_style('awesome_marker_css', Lf_Hiker_Plugin::$url."lib/awesome-marker/leaflet.awesome-markers.css", Array('font_awesome'), null, 'screen');
        
@@ -142,7 +142,7 @@ class Lfh_Tools_Editor
        }else{
            wp_enqueue_style('helper_css', Lf_Hiker_Plugin::$url."dist/helper.".Lf_Hiker_Plugin::VERSION.".css", Array('awesome_marker_css', 'leaflet_css'), null, 'screen');
        }
-       wp_enqueue_script('leaflet',"https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js",Array(),null, true);
+       wp_enqueue_script('leaflet',"https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.1.0/leaflet.js",Array(),null, true);
        wp_enqueue_script('awesome_marker_js',Lf_Hiker_Plugin::$url. "lib/awesome-marker/leaflet.awesome-markers.min.js", Array('leaflet'), null, true);
       
 

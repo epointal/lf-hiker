@@ -42,8 +42,8 @@ Class Lfh_Controller_Front
     }
     public  function register_scripts () {
     
-        wp_register_style('leaflet_stylesheet', "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css", Array(), null, false);
-        wp_register_script('leaflet',"https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js",Array(),null, true);
+        wp_register_style('leaflet_stylesheet', "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.1.0/leaflet.css", Array(), null, false);
+        wp_register_script('leaflet',"https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.1.0/leaflet.js",Array(),null, true);
         wp_register_style('font_awesome', "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css", Array(), null, false);
         
         

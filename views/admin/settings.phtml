@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
    <div class="wrap"><?=$tabs[ $active_tab]['comment']?></div>
      <form method="post">
         <table class="form-table">
-
+ 
     <?php foreach($options as $key=>$input):?>
     <?php
     $class = '';
@@ -29,6 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     $before = '';
     $after = '';
     $display ='';
+    $attributes = '';
     if(isset($input['style'])){
         $style = 'style="' . $input['style'] . '"';
     }
@@ -44,13 +45,16 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     if(isset($input['display'])){
         $display = 'style="display:'.$input['display'].';"';
     }
+    if(isset($input['attributes'])){
+        $attributes = $input['attributes'];
+    }
     ?>
         <tr <?=$display?> >
             <th><label for="<?=$key?>"><?=$input['label']?></label></th>
             <td>
            <?=$before?>
            <?php if($input['type']== 'select'):?>
-            <select <?=$class?> <?=$style?>  name="<?=$key?>" value="<?=$input['value']?>" />
+            <select <?=$class?> <?=$style?>  name="<?=$key?>" value="<?=$input['value']?>" <?=$attributes?>/>
             <?php foreach($input['select_options'] as $key => $option):?>
                 <?php if( $input['value'] == $key ):?>
                 <option value="<?=$key?>" selected><?=$option['label']?></option>
@@ -60,7 +64,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             <?php endforeach;?>
             </select>
            <?php else:?>
-           <input <?=$class?> <?=$style?> type="<?=$input['type']?>" name="<?=$key?>" value="<?=$input['value']?>" />
+           <input <?=$class?> <?=$style?> type="<?=$input['type']?>" name="<?=$key?>" value="<?=$input['value']?>" <?=$attributes?>/>
            <?php endif;?>
            <?=$after?>
            <?php if(isset($input['helper'])):?>
@@ -71,12 +75,18 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     
 
     <?php endforeach;?>
+    <?php //unactive cache 
+    $disabled ='';
+    if($active_tab == 'config_lfh'){
+        $disabled = 'disabled';
+    }
+    ?>
     <tr>
     <th></th>
     <td>
      <div class="container">
-        <input type="submit" name="lfh_config_submit" class="button button-primary" value="<?=ucfirst(__('save'))?>" />
-        <input type="submit" name="lfh_config_reset"  class="button button-secondary" value="<?=ucfirst(__('reset'))?>" />
+        <input type="submit" name="lfh_config_submit" class="button button-primary" value="<?=ucfirst(__('save', 'lfh'))?>" <?=$disabled?>/>
+        <input type="submit" name="lfh_config_reset"  class="button button-secondary" value="<?=ucfirst(__('reset', 'lfh'))?>" <?=$disabled?>/>
     </div>
     </td>
     </tr>
@@ -89,7 +99,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             </label>
         </th> 
         <td>
-            <input class="button button-primary" name="lfh_clear_cache" value="<?=__('Clear cache', 'lfh')?>" type="submit" />
+            <input class="button button-primary" name="lfh_clear_cache" value="<?=__('Clear cache', 'lfh')?>" type="submit" disabled/>
         </td>
     </tr>
     <tr> 
