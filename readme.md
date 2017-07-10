@@ -50,7 +50,7 @@ For gpx track you can custom:
 **Lf Hiker** included an helper for edit map and add markers. 
 You can choose
 #### for the map:
- * the tiles layer ( among OSM, OSM_FR , stamen watercolor, arcgis world topo, mapquest *with api key*)
+ * the tiles layer ( among OSM, OSM_FR , stamen watercolor, arcgis world topo)
  * fullscreen button or not
  * map's view  or let **lf Hiker** find automatically the best view
  * reset button  or not
@@ -66,14 +66,14 @@ You can choose
  * title
  * popup
  * visibility according to zoom or not
- * independant window with large description
+ * independant window with formated description
 
 You can do all this with the helpers or directly using shortcodes  
 You can choose to unactive the helper.  
 
 **Lf Hiker** allows you to customize the css in admin configuration (colors of information window, button and selected path)  
 
-
+For more information see [Lf Hiker site](http://elisabeth.pointal.org/lf-hiker/ ) 
 
 ----------------------------------------  
 #### IMPORTANT    
