@@ -129,19 +129,6 @@ After downloading the ZIP file [lf-hiker-1.3.zip](https://github.com/epointal/lf
 * [awesome-marker](https://github.com/lvoogdt) Colorful, iconic  markers by Lennard Voogdt
 
 
-## Screenshots 
-### Front screenshots
-![Lf Hiker Front gpx](https://ps.w.org/lf-hiker/assets/screenshot-1.png?rev=1693296) 
-![Lf Hiker Front Marker](https://ps.w.org/lf-hiker/assets/screenshot-2.png?rev=1693296) 
-![Lf Hiker Front customise](https://ps.w.org/lf-hiker/assets/screenshot-3.png?rev=1693296)
-
-### Post editing screenshots
-![Lf Hiker Manage gpx files](https://ps.w.org/lf-hiker/assets/screenshot-4.png?rev=1693296)  
-![Lf Hiker Helper editor for markers](https://ps.w.org/lf-hiker/assets/screenshot-5.png?rev=1693296)  
-![Lf Hiker Helper editor for map](https://ps.w.org/lf-hiker/assets/screenshot-6.png?rev=1693296)  
-
-### Configuration screenshot
-![Lf Hikder Admin](https://ps.w.org/lf-hiker/assets/screenshot-7.png?rev=1693296)
 
 ## Changelog 
 ### 1.3
