@@ -2,7 +2,7 @@
 =============
 Contributors: epointal  
 Donate link: http://elisabeth.pointal.org/lf-hiker/en/about/  
-Tags: map, gpx, waypoint, track, path, trail, polyline, markers, leaflet, profile elevation,  openstreetmap, osm, osm_fr, arcgis, mapquest, hiker, runner, elevation gain, elevation loss, distance, walker
+Tags: map, GPX, hiker, runner, track, path, trail, leaflet, profile, openstreetmap,
 Requires at least: 4.7.3
 Tested up to: 4.8  
 Stable tag: 1.0  
@@ -11,10 +11,13 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
 
-**Lf Hiker** is a wordpress plugin for quickly display your gpx tracks with their profile elevation on an interactive map. **Lf Hiker is responsive and mobile friendly.
+**Lf Hiker** is a plugin for quickly display your gpx tracks with their profile elevation on an interactive map. 
  
 
 == Description ==
+
+**Lf Hiker** is a plugin for quickly display your gpx tracks with their profile elevation on an interactive map.  
+**Lf Hiker** is responsive and mobile friendly.
 
 ### Main Utilisation
 Simply upload your gpx file with the wordpress media manager, complete its informations and insert  it in your post/page (shortcode).  
@@ -31,6 +34,7 @@ Display the post/page : you have an interactive view of your track.
  * elevation loss
  * elevation gain 
  * trail duration
+ * download link of gpx file
 
 For more information go to [Lf Hiker site](http://elisabeth.pointal.org/lf-hiker) 
 
@@ -75,7 +79,7 @@ You can do all this with the helpers or directly using shortcodes
 You can choose to unactive the helper.  
 
 **Lf Hiker** allows you to customize the css in admin configuration (colors of information window, buttons and selected path)  
-You can record your mapquest key or choose the cache directory for the plugin here too.
+
 
 
 ----------------------------------------  
@@ -151,6 +155,7 @@ first stable version
 For more informations see [lf Hiker](http://elisabeth.pointal.org/lf-hiker/)
 
 == Screenshots ==
+8. Lf Hiker is responsive and mobile friendly
 1. Lf Hiker display easily gpx file with profile elevation
 2. Lf Hiker is cutomisable
 3. Lf Hiker allows to display markers with formated description
@@ -158,7 +163,7 @@ For more informations see [lf Hiker](http://elisabeth.pointal.org/lf-hiker/)
 5. Lf Hiker has an helper for add marker
 6. Lf Hiker has an helper for edit map
 7. You can change some paramaters in administration
-8. Lf Hiker is responsive and mobile friendly
+
 
 
 == Frequently Asked Questions ==

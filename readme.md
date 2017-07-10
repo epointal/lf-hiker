@@ -28,8 +28,10 @@ The trail is displayed on an OSM map by default, and have its own information wi
 * distance of the track
 * elevation loss
 * elevation gain 
+* duration
+* download link to gpx file
 
-![Lf Hiker Front](http://elisabeth.pointal.org/lf-hiker/wp-content/uploads/2017/04/gpx-stevenson-3.png) 
+![Lf Hiker Front](http://elisabeth.pointal.org/lf-hiker/wp-content/uploads/2017/04/screenshot-8.png) 
 
 ### List of Features
 **Lf Hiker** allows displaying too:
@@ -70,7 +72,7 @@ You can do all this with the helpers or directly using shortcodes
 You can choose to unactive the helper.  
 
 **Lf Hiker** allows you to customize the css in admin configuration (colors of information window, button and selected path)  
-You can record your mapquest key or choose the cache directory for the plugin here too.
+
 
 
 ----------------------------------------  
@@ -129,17 +131,17 @@ After downloading the ZIP file [lf-hiker-1.3.zip](https://github.com/epointal/lf
 
 ## Screenshots 
 ### Front screenshots
-![Lf Hiker Front gpx](http://elisabeth.pointal.org/lf-hiker/wp-content/uploads/2017/04/gpx-stevenson-3.png) 
-![Lf Hiker Front Marker](http://elisabeth.pointal.org/lf-hiker/wp-content/uploads/2017/04/notre_dame.png) 
-![Lf Hiker Front customise](http://elisabeth.pointal.org/lf-hiker/wp-content/uploads/2017/04/notre_dame_cutom.png)
+![Lf Hiker Front gpx](https://ps.w.org/lf-hiker/assets/screenshot-1.png?rev=1693296) 
+![Lf Hiker Front Marker](https://ps.w.org/lf-hiker/assets/screenshot-2.png?rev=1693296) 
+![Lf Hiker Front customise](https://ps.w.org/lf-hiker/assets/screenshot-3.png?rev=1693296)
 
 ### Post editing screenshots
-![Lf Hiker Manage gpx files](http://elisabeth.pointal.org/lf-hiker/wp-content/uploads/2017/04/manage-gpx-3.png)  
-![Lf Hiker Helper editor for markers](http://elisabeth.pointal.org/lf-hiker/wp-content/uploads/2017/04/add-marker-3.png)  
-![Lf Hiker Helper editor for map](http://elisabeth.pointal.org/lf-hiker/wp-content/uploads/2017/04/edit-map-2.png)  
+![Lf Hiker Manage gpx files](https://ps.w.org/lf-hiker/assets/screenshot-4.png?rev=1693296)  
+![Lf Hiker Helper editor for markers](https://ps.w.org/lf-hiker/assets/screenshot-5.png?rev=1693296)  
+![Lf Hiker Helper editor for map](https://ps.w.org/lf-hiker/assets/screenshot-6.png?rev=1693296)  
 
 ### Configuration screenshot
-![Lf Hikder Admin](http://elisabeth.pointal.org/lf-hiker/wp-content/uploads/2017/04/config-lfh-3.png)
+![Lf Hikder Admin](https://ps.w.org/lf-hiker/assets/screenshot-7.png?rev=1693296)
 
 ## Changelog 
 ### 1.3
