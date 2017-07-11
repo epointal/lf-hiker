@@ -3,9 +3,6 @@
   font-size: 12px;
   border-bottom-left-radius: 6px;
 }
-h1,
-h2,
-h3,
 .main .lfh-element h1,
 .main .lfh-element h2,
 .main .lfh-element h3,
@@ -436,10 +433,11 @@ div.lfh-min div.lfh-contributor {
   pointer-events: auto;
 }
 div.lfh-min div.lfh-nav div.lfh-title {
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: 600;
   padding: 3px;
   min-height: 27px;
+  max-height: 27px;
 }
 #lfh-fade.lfh-min div.lfh-nav div.lfh-title {
   font-size: 1em;
