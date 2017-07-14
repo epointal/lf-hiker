@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lfh\n"
-"POT-Creation-Date: 2017-07-09 15:36+0100\n"
-"PO-Revision-Date: 2017-07-09 15:40+0100\n"
+"POT-Creation-Date: 2017-07-14 23:02+0100\n"
+"PO-Revision-Date: 2017-07-14 23:05+0100\n"
 "Last-Translator: Elisabeth Pointal <elisabeth.pointal@free.fr>\n"
 "Language-Team: elisabeth\n"
 "Language: fr_FR\n"
@@ -116,11 +116,6 @@ msgstr "&agrave; propos"
 msgid "Your configuration has been updated"
 msgstr "Votre configuration a &eacute;t&eacute; mise &agrave; jour"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Front.php:132
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:265
-msgid "no named marker"
-msgstr "marqueur sans nom"
-
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:56
 msgid "kilometer"
 msgstr "kilom&egrave;tre"
@@ -178,8 +173,8 @@ msgid "reset"
 msgstr "initialiser"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:151
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/map.phtml:43
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/map.phtml:43
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/map.phtml:19
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/map.phtml:19
 msgid "list"
 msgstr "liste"
 
@@ -195,6 +190,10 @@ msgstr "Tuiles"
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:223
 msgid "no named gpx"
 msgstr "gpx sans nom"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:265
+msgid "no named marker"
+msgstr "marqueur sans nom"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:12
 msgid "Custom css"
@@ -534,28 +533,18 @@ msgstr ""
 "D&eacute;placer et zoomer jusqu &agrave; trouver la position et la "
 "sauvegarder"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/map.phtml:17
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/map.phtml:17
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/map.phtml:38
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/map.phtml:38
 msgid "information"
 msgstr "information"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/map.phtml:24
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/map.phtml:24
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/map.phtml:47
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/map.phtml:47
 msgid ""
 "Click following button or element on the map to see information about it."
 msgstr ""
-"Cliquer sur le bouton suivant ou l &eacute;l&eacute;ment sur la carte pour "
-"voir ses informations"
-
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/map.phtml:51
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/map.phtml:51
-msgid "all tracks"
-msgstr "tous les parcours"
-
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/map.phtml:60
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/map.phtml:60
-msgid "all markers"
-msgstr "tous les marqueurs"
+"Cliquez sur le bouton suivant ou l&prime;&eacute;l&eacute;ment sur la carte "
+"pour voir ses informations"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/marker.phtml:24
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/marker.phtml:24
@@ -611,6 +600,12 @@ msgstr "aucune donn&eacute;e"
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:96
 msgid "duration"
 msgstr "dur&eacute;e"
+
+#~ msgid "all tracks"
+#~ msgstr "tous les parcours"
+
+#~ msgid "all markers"
+#~ msgstr "tous les marqueurs"
 
 #~ msgid "Insert shortcode Markers"
 #~ msgstr "Ins&eacute;rer les marqueurs"

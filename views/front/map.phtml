@@ -12,6 +12,27 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     <div id="lfh-<?=$map_count?>" class="lfh-map" style="height:<?=($options['height'])?>px;width:100%;">
     </div>
     <div id="lfh-<?=$map_count?>-data" class="lfh-data simple-border" >
+        <div id="lfh-list-<?=$map_count?>" class="lfh-info-<?=$map_count?> lfh-element lfh-list leaflet-control hidden step0"  >
+            <div>
+                <div class="lfh-head">
+                    <h3 >
+                        <span class="lfh-trackname"><?=ucfirst(__('list', 'lfh'))?>&nbsp;</span>
+                        <span  class="lfh-close fa fa-close" >&nbsp;</span>
+                    </h3>
+                </div>
+                
+                <!-- misc info -->
+                <div class="lfh-element-content">
+                <div class="lfh-section">
+                        
+                  <div class="lfh-content lfh-description" >
+                 
+                  </div>
+                </div>
+                 
+                </div>
+            </div>
+        </div>
         <div id="lfh-<?=$map_count?>-nav" class="lfh-nav">
             <div class="lfh-title" >
                 <span class="lfh-trackname"><?=ucfirst(__('information', 'lfh'))?></span>
@@ -22,6 +43,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         </div>
          
         <div class="lfh-data-content" >
+            <div >
+                <?=__('Click following button or element on the map to see information about it.', 'lfh')?>
+            </div>
             <div class="lfh-contributor">
                 <a href="https://wordpress.org/plugins/lf-hiker/" title="Plugin Lf Hiker">Lf Hiker</a>
                 | <a href="http://elisabeth.pointal.org" title="Elisabeth Pointal">E.Pointal</a>
@@ -33,26 +57,5 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 </div>
 <!-- div of list objets -->
 
-<div id="lfh-list-<?=$map_count?>" class="lfh-info-<?=$map_count?> lfh-element lfh-list leaflet-control hidden"  >
-    <div>
-        <div class="lfh-head">
-            <h3 >
-                <span class="lfh-trackname"><?=ucfirst(__('list', 'lfh'))?>&nbsp;</span>
-                <span  class="lfh-close fa fa-close" >&nbsp;</span>
-            </h3>
-        </div>
-        
-        <!-- misc info -->
-        <div ><?=__('Click following button or element on the map to see information about it.', 'lfh')?></div>
-        <div class="lfh-element-content">
-        <div class="lfh-section">
-                
-          <div class="lfh-content lfh-description" >
-         
-          </div>
-        </div>
-         
-        </div>
-    </div>
-</div>
+
 

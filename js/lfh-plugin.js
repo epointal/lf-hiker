@@ -111,6 +111,179 @@ lfh.initialize = function( i ){
      }
 }
 
+/**
+ * @todo clean and optimize this 3 methods, put it out of object lfh.Link
+ * count and create div node for description
+ * resize image, cut paragraphe if lengthy
+ * @param {DomNode} div lfh-element information about marker or track
+ * @return {integer} number of div in description and modify the node
+ */
+lfh.count_step = function( dom )
+ {
+     var _dom_childs = lfh.treatment_description( dom );
+     var description = dom.querySelector(".lfh-description");
+    
+     if( description ){
+         description.innerHTML ="";
+         [].forEach.call( _dom_childs , function( node) {
+            
+             description.appendChild(node);
+         });
+         return _dom_childs.length; // count number of div and add div in description 
+     }else{
+         return 0;
+     }
+ }
+lfh.treatment_description = function( dom )
+{
+    // change dom add div 
+    //first resize image
+    var imgs = dom.querySelectorAll("img");
+    [].forEach.call(imgs, function( img ) {
+        if( img.parentNode.className.indexOf("wp-caption")>=0)
+        {
+            img.style.maxWidth = (lfh.WIDTH -10) + "px";
+            img.style.maxHeight = (lfh.HEIGHT - 60) +"px";
+            img.setAttribute("srcset","");
+            img.parentNode.style.maxWidth = lfh.WIDTH + "px";
+            img.parentNode.style.maxHeight = lfh.HEIGHT + "px";
+
+            img.parentNode.style.width = lfh.WIDTH + "px";
+            img.parentNode.style.height = lfh.HEIGHT + "px";
+        }
+        if( img.parentNode.tagName.toLowerCase() === "p"){
+            img.parentNode.parentNode.insertBefore(img, img.parentNode)
+        }
+    });
+   // second cut with good size
+    var description = dom.querySelector(".lfh-description");
+    if( description === null){
+        return [];
+    }
+   return lfh.treatment_node( description);
+}
+
+/** function recursive, for all child nodes cut it and organize
+ * @parameter {DOMNode} description
+ * @return array of DOMNOde
+ */
+lfh.treatment_node = function( description ){
+   var childs = description.childNodes;
+   var new_childs = new Array();
+   var col = ("scelerisque massa pretium sed. Vivamus est ").length;
+   var line = 13;
+   var div = document.createElement('div');
+   var row = 0;
+   [].forEach.call( childs , function( node) {
+       switch( node.nodeType){
+       case Node.ELEMENT_NODE:
+           switch( node.tagName.toLowerCase() ){
+           case "h1":
+           case "h2":
+           case "h3":
+           case "h4":
+           case "h5":
+               var h = document.createElement("h5");
+               h.innerHTML = node.textContent;
+               if(row + 3 > line){
+                   new_childs.push(div);
+                   div = document.createElement("div");
+                   row = 0; 
+               }
+               div.appendChild(h);
+               row += 2;
+               break;
+           case "a":
+           case "span":
+               if(node.textContent.trim().length > 0){
+                   var h = (node.textContent.trim().length )/col;
+                   if(row + lng > line){
+                       new_childs.push(div);
+                       div = document.createElement("div");
+                       row = 0;
+                   }
+                   div.appendChild( node.cloneNode(true) );
+                   row += lng;
+               }
+               break;
+           case "p":
+               
+               if(node.textContent.trim().length > 0){
+                   var lng = 4 +(node.textContent.trim().length )/col;
+                   if(row + lng > line){
+                       new_childs.push(div);
+                       div = document.createElement("div");
+                       row = 0;
+                   }
+                   div.appendChild( node.cloneNode(true) );
+                   row += lng;
+               }
+               break;
+           case "img":
+               if(row > 0){
+                   new_childs.push(div);
+                   div = document.createElement("div");
+                   row = 0;
+               }
+               var div2 = document.createElement("div");
+               div2.appendChild(node.cloneNode(true));
+               new_childs.push(div2);
+               break;
+           case "ul":
+           case "ol":
+               //count li
+               var lng = 0;
+               var lis = node.querySelectorAll("li");
+               [].forEach.call( lis , function( li) {
+                   lng += 1+li.textContent.trim().length/col;
+               });
+               if(row + lng > line && row>0){
+                   new_childs.push(div);
+                   div = document.createElement("div");
+                   row = 0;
+               }
+               div.appendChild(node.cloneNode(true));
+               row += lng;
+               break;
+           case "div":
+              //if(node.className.indexOf('wp-caption')>=0 ){
+                   if(row > 0){
+                       new_childs.push(div);
+                   }
+                   var div2 = node.cloneNode(true);
+                   new_childs.push(div2);
+                   div = document.createElement("div");
+                   row = 0;
+              // }else{
+               break;
+           case "br":
+               break;
+          
+           }
+           break;
+       case Node.TEXT_NODE:
+           if(node.nodeValue.trim().length > 0){
+               
+               var lng = (node.nodeValue.trim().length )/col;
+               
+               if(row + lng > line){
+                   new_childs.push(div);
+                   div = document.createElement("div");
+                   row = 0;
+               }
+               div.appendChild(node.cloneNode( true));
+               row += lng;
+           }
+           break;
+       }
+      
+   });
+   if(row>0){
+       new_childs.push(div);
+   }
+  
+   return new_childs;
+} 
 
 
 /**
@@ -275,6 +448,28 @@ L.DomEvent.addListener( window, 'resize', function(e){
    lfh.resize_all_map();
 });
 
+lfh.toggle_next = function( node, delta, map_id){
+    console.log(node);
+    if( !node ){
+        return;
+    }
+    console.log(node.className);
+    console.log(node.step);
+    console.log(node.step_max);
+    var i = node.step;
+    var next = i + delta;
+    
+    node.step = next;
+    node.className = node.className.replace("step"+ i, "step" + next);
+
+    if( node.step_max <= node.step +1 ){
+        // hide next button
+        document.querySelector('#'+ map_id + "-nav .lfh-next").style.display = "none";
+    }else{
+        // show next button
+        document.querySelector('#'+ map_id + "-nav .lfh-next").style.display = "block";
+    }
+}
 
 /** the layer selected, whose description is displayed
  * @constructor
@@ -308,33 +503,19 @@ lfh.Selected = function( map_id, map, marker){
                     map.removeLayer(_move_marker);
                 }
             }
+            //display navigation for list
+            var list = document.querySelector("#"+ map_id + "-fadable .lfh-list");
+            lfh.toggle_next( list, 0, this.map_id);
         }
         this.set= function(obj){
             for(var key in obj){
                 this[key] = obj[key];
             }
         }
-        // for navigation next and back in window information displayed under map 
-        // delta = -1, 0 or 1 (back, don't move, next)
-        this.toggle_next = function( delta){
-            if( this.dom === null ){
-                return;
-            }
-            var i = this.dom.step;
-            var next = i + delta;
-            
-            this.dom.step = next;
-            this.dom.className = this.dom.className.replace("step"+ i, "step" + next);
        
-            if( this.dom.step_max <= this.dom.step +1 ){
-                // hide next button
-                document.querySelector('#'+ this.map_id + "-nav .lfh-next").style.display = "none";
-            }else{
-                // show next button
-                document.querySelector('#'+ this.map_id + "-nav .lfh-next").style.display = "block";
-            }
-        }
 }
+
+
 /**
  * Build the map indexed i, with its markers, its gpx path, its controls...
  * @constructor
@@ -460,11 +641,17 @@ lfh.Map = function(i){
                 if(!_large &&
                     _selected_element.id &&
                     _selected_element.id.indexOf('lfh-list')>= 0 ){
+                       
                         var button = _selected_element.layer;
                         var event = document.createEvent('MouseEvents');
                         event.initEvent("click", true, true);
                         // Dispatch/Trigger/Fire the event
                         button.dispatchEvent(event);
+                }
+              //display navigation for list
+                if( _selected_element.dom == null && !_large){
+                    var list = document.querySelector("#"+ _map_id + "-fadable .lfh-list");
+                    lfh.toggle_next( list, 0,_map_id);
                 }
             });
         }
@@ -479,11 +666,23 @@ lfh.Map = function(i){
             
             var back = document.querySelector('#'+ _map_id + "-nav .lfh-back");
             L.DomEvent.addListener( back , 'click', function(e){
-              _selected_element.toggle_next( -1 );
+                if(_selected_element.dom){
+                    lfh.toggle_next(_selected_element.dom, -1, _map_id);
+                }else{
+                    var list = map.getContainer().parentNode.querySelector('.lfh-list');
+                    console.log(list);
+                    lfh.toggle_next( list, -1, _map_id);
+                }
             });
             var next = document.querySelector('#'+ _map_id + "-nav .lfh-next");
             L.DomEvent.addListener( next , 'click', function(e){
-              _selected_element.toggle_next( 1 );
+                if(_selected_element.dom){
+                    lfh.toggle_next(_selected_element.dom, 1, _map_id);
+                }else{
+                    var list = map.getContainer().parentNode.querySelector('.lfh-list');
+                    console.log(list);
+                    lfh.toggle_next( list, 1, _map_id);
+                }
             });
         }
         
@@ -542,7 +741,7 @@ lfh.Map = function(i){
             var node = document.createElement("input");
             node.setAttribute("type", "button");
             node.className = 'lfh-button fa';
-            node.value = "\uf0a4  " + document.querySelector('#'+gpx.options.elem_id + ' span.lfh-trackname').textContent;
+            node.value = "\uf018  " + document.querySelector('#'+gpx.options.elem_id + ' span.lfh-trackname').textContent;
 
             container.insertBefore(node, container.firstChild); //appendChild(node);
             
@@ -579,8 +778,8 @@ lfh.Map = function(i){
                lfh.resize_content(map.getContainer());
                _auto_center = true;
                
+               //wait all is loaded
                setTimeout(_create_buttons, 0);
-              // _create_buttons();
            }
        }
       
@@ -623,10 +822,12 @@ lfh.Map = function(i){
         }
         function _create_buttons(){
             var count = 0;
-            var nav = document.querySelector('#lfh-list-' + _index +' div.lfh-description');
-            
+            var count_div = 0;
+            var list = document.querySelector('#lfh-list-' + _index );
+            var nav = list.querySelector('div.lfh-description');
             var div = document.createElement("div");
             nav.appendChild(div);
+            count_div++;
             div.className = "lfh-content";
             //begin by gpx
             [].forEach.call(_gpx, function( one_gpx){
@@ -634,9 +835,11 @@ lfh.Map = function(i){
                 _add_gpx_to_node( one_gpx, div );
                 count++;
                 if( count%3 == 0){
-                    nav.appendChild(div);
                     div = document.createElement("div");
                     div.className = "lfh-content";
+                    nav.appendChild(div);
+                    count_div++;
+                   
                 }
             });
           
@@ -645,13 +848,16 @@ lfh.Map = function(i){
                 _add_marker_to_node( marker, div );
                 count++;
                 if( count%3 == 0){
-                    nav.appendChild(div);
                     div = document.createElement("div");
                     div.className = "lfh-content";
+                    nav.appendChild(div);
+                    count_div++;
+                   
                 }
             })
-            nav.appendChild(div);
-            
+            list.step = 0;
+            list.step_max = count_div;
+            lfh.toggle_next( list, 0,_map_id);
         }
         _initialize( i );
         return map;
@@ -691,14 +897,15 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
        
         if(_dom != null){
             // add dom node to map
-
-            var data = document.querySelector("#"+_map.getContainer().id + "-data");
-            var last_child = data.querySelector(".lfh-nav");
-            data.insertBefore(_dom,last_child);
-            
+            //insert before nav and after list
+            if(_dom.className.indexOf('lfh-list')<0){
+                var data = document.querySelector("#"+_map.getContainer().id + "-data");
+                var last_child = data.querySelector(".lfh-nav");
+                data.insertBefore(_dom,last_child);
+            }
             // count length of description
             _dom.step = 0;
-            _dom.step_max = _count_step( _dom );
+            _dom.step_max = lfh.count_step( _dom );
             
             if( _layer instanceof L.GPX){
                 _dom.step_max += 2;
@@ -716,183 +923,9 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
             }
         }
     }
-    /**
-     * @todo clean and optimize this 3 methods, put it out of object lfh.Link
-     * count and create div node for description
-     * resize image, cut paragraphe if lengthy
-     * @param {DomNode} div lfh-element information about marker or track
-     * @return {integer} number of div in description and modify the node
-     */
-     function _count_step( dom )
-     {
-         var _dom_childs = _treatment_description( dom );
-         var description = dom.querySelector(".lfh-description");
-         if( description ){
-             description.innerHTML ="";
-             [].forEach.call( _dom_childs , function( node) {
-                
-                 description.appendChild(node);
-             });
-             return _dom_childs.length; // count number of div and add div in description 
-         }else{
-             return 0;
-         }
-     }
+   
      
-     function _treatment_description( dom )
-     {
-         // change dom add div 
-         //first resize image
-         var imgs = dom.querySelectorAll("img");
-         [].forEach.call(imgs, function( img ) {
-             if( img.parentNode.className.indexOf("wp-caption")>=0)
-             {
-                 img.style.maxWidth = (lfh.WIDTH -10) + "px";
-                 img.style.maxHeight = (lfh.HEIGHT - 60) +"px";
-                 img.setAttribute("srcset","");
-                 img.parentNode.style.maxWidth = lfh.WIDTH + "px";
-                 img.parentNode.style.maxHeight = lfh.HEIGHT + "px";
-
-                 img.parentNode.style.width = lfh.WIDTH + "px";
-                 img.parentNode.style.height = lfh.HEIGHT + "px";
-             }
-             if( img.parentNode.tagName.toLowerCase() === "p"){
-                 img.parentNode.parentNode.insertBefore(img, img.parentNode)
-             }
-         });
-        // second cut with good size
-         var description = dom.querySelector(".lfh-description");
-         if( description === null){
-             return [];
-         }
-        return _treatment_node( description);
-     }
-     
-     /** function recursive, for all child nodes cut it and organize
-      * @parameter {DOMNode} description
-      * @return array of DOMNOde
-      */
-     function _treatment_node( description ){
-        var childs = description.childNodes;
-        var new_childs = new Array();
-        var col = ("scelerisque massa pretium sed. Vivamus est ").length;
-        var line = 13;
-        var div = document.createElement('div');
-        var row = 0;
-        [].forEach.call( childs , function( node) {
-            switch( node.nodeType){
-            case Node.ELEMENT_NODE:
-                switch( node.tagName.toLowerCase() ){
-                case "h1":
-                case "h2":
-                case "h3":
-                case "h4":
-                case "h5":
-                    var h = document.createElement("h5");
-                    h.innerHTML = node.textContent;
-                    if(row + 3 > line){
-                        new_childs.push(div);
-                        div = document.createElement("div");
-                        row = 0; 
-                    }
-                    div.appendChild(h);
-                    row += 2;
-                    break;
-                case "a":
-                case "span":
-                    if(node.textContent.trim().length > 0){
-                        var h = (node.textContent.trim().length )/col;
-                        if(row + lng > line){
-                            new_childs.push(div);
-                            div = document.createElement("div");
-                            row = 0;
-                        }
-                        div.appendChild( node.cloneNode(true) );
-                        row += lng;
-                    }
-                    break;
-                case "p":
-                    
-                    if(node.textContent.trim().length > 0){
-                        var lng = 4 +(node.textContent.trim().length )/col;
-                        if(row + lng > line){
-                            new_childs.push(div);
-                            div = document.createElement("div");
-                            row = 0;
-                        }
-                        div.appendChild( node.cloneNode(true) );
-                        row += lng;
-                    }
-                    break;
-                case "img":
-                    if(row > 0){
-                        new_childs.push(div);
-                        div = document.createElement("div");
-                        row = 0;
-                    }
-                    var div2 = document.createElement("div");
-                    div2.appendChild(node.cloneNode(true));
-                    new_childs.push(div2);
-                    break;
-                case "ul":
-                case "ol":
-                    //count li
-                    var lng = 0;
-                    var lis = node.querySelectorAll("li");
-                    [].forEach.call( lis , function( li) {
-                        lng += 1+li.textContent.trim().length/col;
-                    });
-                    if(row + lng > line && row>0){
-                        new_childs.push(div);
-                        div = document.createElement("div");
-                        row = 0;
-                    }
-                    div.appendChild(node.cloneNode(true));
-                    row += lng;
-                    break;
-                case "div":
-                   //if(node.className.indexOf('wp-caption')>=0 ){
-                        if(row > 0){
-                            new_childs.push(div);
-                        }
-                        var div2 = node.cloneNode(true);
-                        new_childs.push(div2);
-                        div = document.createElement("div");
-                        row = 0;
-                   // }else{
-                    break;
-                case "br":
-                    break;
-               
-                }
-                break;
-            case Node.TEXT_NODE:
-                if(node.nodeValue.trim().length > 0){
-                    
-                    var lng = (node.nodeValue.trim().length )/col;
-                    
-                    if(row + lng > line){
-                        new_childs.push(div);
-                        div = document.createElement("div");
-                        row = 0;
-                    }
-                    div.appendChild(node.cloneNode( true));
-                    row += lng;
-                }
-                break;
-            }
-           
-        });
-        if(row>0){
-            new_childs.push(div);
-        }
-       
-        return new_childs;
-     } 
-      function _cut_text( text, lng ){
-          
-          
-      }
+  
      function _toggle( bool){
         _selected_element.close(bool);
         
@@ -915,7 +948,7 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
                         layer:  _layer,
                         dom:    _dom});
                 _add_title_nav();
-                _selected_element.toggle_next( 0 );
+                lfh.toggle_next(_selected_element.dom, 0, _map.getContainer().id );
         }else{
                 _selected_element.set({
                         id : null,
@@ -984,7 +1017,7 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
        });
        L.DomEvent.addListener( _dom, 'mousewheel', function(e){
            e.stopPropagation();
-           e.preventDefault();
+          // e.preventDefault();
        });
        // close button
        var nodeClose = _dom.querySelector('.lfh-close');

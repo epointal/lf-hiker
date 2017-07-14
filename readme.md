@@ -1,7 +1,7 @@
 # Lf Hiker 
 [![Contributor: Elisabeth Pointal](http://elisabeth.pointal.org/images/svg/contributor2.svg)](http://elisabeth.pointal.org)
 [![License GPL 2](http://elisabeth.pointal.org/images/svg/license.svg)](http://www.gnu.org/licenses/gpl-2.0.html )
-[![Version 1.3.1](http://elisabeth.pointal.org/images/svg/version1.3.1.svg)](https://github.com/epointal/lf-hiker/archive/1.3.1.zip) 
+[![Version 1.3.2](http://elisabeth.pointal.org/images/svg/version1.3.1.svg)](https://github.com/epointal/lf-hiker/archive/1.3.1.zip) 
 
 Plugin site web: [Lf Hiker](http://elisabeth.pointal.org/lf-hiker/en/about/ )  
 Requires Wordpress version: 4.7.3  
@@ -103,7 +103,7 @@ If you have any questions about the method, do not hesitate to [contact me](http
 
 ### Perform a new installation  
 
-After downloading the ZIP file [lf-hiker-1.3.1.zip](https://github.com/epointal/lf-hiker/archive/1.3.1.zip)   
+After downloading the ZIP file [lf-hiker-1.3.2.zip](https://github.com/epointal/lf-hiker/archive/1.3.2.zip)   
 
 1. Unzip `lf-hiker.zip` 
 2. Put the folder `lf-hiker` in directory `wp-content/plugins`
@@ -127,12 +127,22 @@ After downloading the ZIP file [lf-hiker-1.3.1.zip](https://github.com/epointal/
 * [leaflet-gpx](https://github.com/mpetazzoni/leaflet-gpx) a leaflet plugin for the analysis and parsing of a GPX track 
 * [font-awesome-4.7.0](http://fontawesome.io/) for iconic font
 * [awesome-marker](https://github.com/lvoogdt) Colorful, iconic  markers by Lennard Voogdt
+* [Shortcode Empty Paragraph](https://wordpress.org/plugins/shortcode-empty-paragraph-fix/) little worpress plugin fix issue shortcode by [Johann Heyne](http://www.johannheyne.de/)
 
 
 
 ## Changelog 
+### 1.3.2
+ * fixed : color of the buttons is applied only to the first one on the large screens
+ * fixed : added unwanted tag p arround shortcode
+ * fixed : no event on button marker when only markers elements
+ * fixed : title height issue with some theme
+ * fixed : only four buttons visible on small sreens
+ * fixed : mousewheel disabled on element window
+ * default value attribute visibility set to always for marker
+ 
 ### 1.3.1
- * issue color title h1 h2 h3 overwrite general style
+ * fixed : issue color title h1 h2 h3 overwrite general style
  
 ### 1.3
  * More responsive
