@@ -579,7 +579,8 @@ lfh.Map = function(i){
                lfh.resize_content(map.getContainer());
                _auto_center = true;
                
-               _create_buttons();
+               setTimeout(_create_buttons, 0);
+              // _create_buttons();
            }
        }
       
@@ -638,6 +639,7 @@ lfh.Map = function(i){
                     div.className = "lfh-content";
                 }
             });
+          
             [].forEach.call(_markers, function( marker){
                 
                 _add_marker_to_node( marker, div );
