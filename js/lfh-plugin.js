@@ -511,8 +511,7 @@ lfh.Map = function(i){
             
             if(info.popup.length>0){
                 _markers[i].bindPopup(info.popup.stripslashes());
-
-            <}
+            }
             if(info.visibility == 'zoom'){
                 _layer_zoom.addLayer( _markers[i] );
             }else{
