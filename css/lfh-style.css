@@ -1,4 +1,7 @@
-.lfh-element {
+.lfh-element,
+#content .lfh-element,
+#lfh-fade .lfh-element,
+.main .lfh-element {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 12px;
   border-bottom-left-radius: 6px;
@@ -433,26 +436,26 @@ div.lfh-min div.lfh-contributor {
   pointer-events: auto;
 }
 div.lfh-min div.lfh-nav div.lfh-title {
-  font-size: 1em;
-  font-weight: 600;
-  padding: 3px;
-  min-height: 27px;
-  max-height: 27px;
-}
-#lfh-fade.lfh-min div.lfh-nav div.lfh-title {
-  font-size: 1em;
+  font-size: 1rem;
   font-weight: 600;
   padding: 3px 5px;
+  min-height: 27px;
+  max-height: 27px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+#lfh-fade.lfh-min div.lfh-nav div.lfh-title {
   text-align: left;
 }
 div.lfh-min div.lfh-element {
   position: absolute;
-  top: 32px;
+  top: 33px;
   left: 0;
   min-width: 100%;
   width: 5000px;
-  height: 173px;
-  max-height: 173px;
+  height: 167px;
+  max-height: 167px;
 }
 div.lfh-min div.lfh-element.hidden {
   -ms-transform: translateY(300px);
@@ -609,10 +612,20 @@ div.lfh-min div.lfh-element.hidden.step10 {
   -o-transform: translate(-2800px, 250px);
   transform: translate(-2800px, 250px);
 }
+div.lfh-min div.lfh-list.lfh-element.hidden {
+  opacity: 1;
+  max-height: 167px;
+  -ms-transform: translate(0, 0);
+  -webkit-transform: translate(0, 0);
+  -moz-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+  z-index: 0;
+}
 div.lfh-min div.lfh-section {
   float: left;
   display: inline-block;
-  max-height: 168px;
+  max-height: 167px;
   margin-top: 0;
 }
 div.lfh-section div.lfh-content,
@@ -623,8 +636,8 @@ div.lfh-min .lfh-content > div {
   max-width: 280px;
   width: 280px;
   float: left;
-  height: 168px;
-  max-height: 168px;
+  height: 167px;
+  max-height: 167px;
   vertical-align: bottom;
   margin-top: 5px;
   padding: 0 5px;
@@ -664,27 +677,46 @@ div.lfh-min div.lfh-content svg,
 div.lfh-min div.lfh-content ~ div {
   display: inline-block;
 }
+div.lfh-content-buttons {
+  position: absolute;
+  top: 68px;
+  left: 0;
+  padding: 10px ;
+  line-height: 1;
+  max-height: 139px;
+  width: 5000px;
+  min-width: 265px;
+  display: none;
+}
+div.lfh-content-buttons > div.lfh-content {
+  width: 280px;
+  max-width: 280px;
+  height: 139px;
+}
+div.lfh-min div.lfh-content-buttons {
+  display: inline-block;
+}
 div.lfh-min div.lfh-content ~ div {
   max-width: 280px;
 }
 div.lfh-min div.lfh-content > div {
   width: 280px;
-  height: 173px;
+  height: 167px;
   max-width: 280px;
-  max-height: 173px;
+  max-height: 167px;
 }
 div.lfh-min div.lfh-content div.wp-caption {
   max-width: 280px;
-  max-height: 173px;
+  max-height: 167px;
 }
 div.lfh-min div.lfh-content img {
   max-width: 270px;
-  max-height: 173px;
+  max-height: 167px;
 }
 div.lfh-min .lfh-element-content {
   float: left;
-  height: 173px;
-  max-height: 173px;
+  height: 167px;
+  max-height: 167px;
   min-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;

@@ -22,6 +22,9 @@ Class Lfh_Controller_Front
         add_shortcode('lfh-marker', array(&$this, 'marker_shortcode'));
         add_shortcode('lfh-gpx', array(&$this, 'gpx_shortcode'));
         add_shortcode('lfh-kml', array(&$this, 'kml_shortcode'));
+        if(!function_exists('shortcode_empty_paragraph_fix')){
+            add_filter( 'the_content', array(&$this,'shortcode_empty_paragraph_fix' ));
+        }
     }
     public static function get_instance() {
         if(is_null(self::$_instance)) {
@@ -80,9 +83,9 @@ Class Lfh_Controller_Front
         }
         
         //mapquest case 
-        if( self::$_lfh_mapquest_count == 0 && $options['tile']== 'mapquest'){
-                self::enqueue_mapquest();
-        }
+        //if( self::$_lfh_mapquest_count == 0 && $options['tile']== 'mapquest'){
+         //       self::enqueue_mapquest();
+        //}
         //initialize value for a new map
         self::$_lfh_map_count++;
         self::$_lfh_marker_count = 0;
@@ -178,6 +181,27 @@ Class Lfh_Controller_Front
         wp_add_inline_script('leaflet', $data, 'before');
     }
     
+    /**
+     * this function come from the plugin
+     * https://wordpress.org/plugins/shortcode-empty-paragraph-fix/
+     * it delete the <p> add arround shortcode
+     * I load it but add only for page with lfh shortcode
+     * and only if the plugin is not active
+     * @param {string} $content the post content
+     * @return {string} the post content filtered
+     */
+    public function shortcode_empty_paragraph_fix( $content ) {
+    
+        $array = array (
+                '<p>[' => '[',
+                ']</p>' => ']',
+                //  ']<br />' => ']',
+        );
+    
+        $content = strtr( $content, $array );
+    
+        return $content;
+    }
     private function add_marker_script( $options ){
         $map_count = self::$_lfh_map_count;
         $marker_count = self::$_lfh_marker_count;
@@ -258,7 +282,8 @@ Class Lfh_Controller_Front
                  }
                  input.lfh-button,
                  #content input.lfh-button,
-                 .main input.lfh-button{
+                 .main input.lfh-button,
+                 input.lfh-button + input[type="button"]{
                        background-color:' .$css['lfh_button_color'].';
                        border-color: ' . Lfh_Tools_Color::lighter_darker( $css['lfh_button_color'], 10) . ' ';
         $data .= Lfh_Tools_Color::lighter_darker( $css['lfh_button_color'], -10) .' ';
@@ -278,4 +303,7 @@ Class Lfh_Controller_Front
         wp_add_inline_style('lfh_style', $data );
         
     }
+   
+    
+   
 }

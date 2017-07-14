@@ -190,12 +190,16 @@ lfh.TopControl = L.Control.extend({
                   lfh.resize_all_map();
             }
         }
+        
         if(this._list){
             var div2 =  L.DomUtil.create('div', 'leaflet-bar leaflet-control lfh-control-list');
-            container.appendChild(div2);
-            //append list window to the map
-            var link = new lfh.Link( map, div2, 'lfh-list-' + this._index , this._selected, null, null,null);
+        }else{
+            var div2 =  L.DomUtil.create('div', 'leaflet-bar leaflet-control lfh-control-list hidden');
         }
+        container.appendChild(div2);
+        //append list window to the map
+        var link = new lfh.Link( map, div2, 'lfh-list-' + this._index , this._selected, null, null,null);
+       
         return container;
     },
   
@@ -285,12 +289,12 @@ lfh.Selected = function( map_id, map, marker){
         var _move_marker = marker; // move marker on map used for gpx layer
         var map = map; 
         this.id = null; 
-        this.ayer=null; // the layer
+        this.layer=null; // the layer
         this.dom = null; // the node where is layer descritption
         // title displayed in lfh-nav by default (window under map)
         this.title = document.querySelector("#"+ map_id + "-data div.lfh-nav .lfh-trackname").textContent;
         
-        this.close = function(){
+        this.close = function(bool){
             // hide navigation button next
             document.querySelector('#'+ this.map_id + "-nav .lfh-next").style.display = "none";
             if(this.id != null ){
@@ -313,7 +317,7 @@ lfh.Selected = function( map_id, map, marker){
         // for navigation next and back in window information displayed under map 
         // delta = -1, 0 or 1 (back, don't move, next)
         this.toggle_next = function( delta){
-            if( this.dom === null || this.layer === null){
+            if( this.dom === null ){
                 return;
             }
             var i = this.dom.step;
@@ -339,6 +343,7 @@ lfh.Selected = function( map_id, map, marker){
 lfh.Map = function(i){
         // Public only map
         var map = null;
+        
         // all Private
         var _map_id = 'lfh-'+i;
         var _index = i;
@@ -351,6 +356,7 @@ lfh.Map = function(i){
         var _list = false;                 // see button list
         //remarquables layers
         var _gpx = new Array();            // layers from file gpx
+        var _markers = new Array();
         var _move_marker = null;           // marker which move on polyline according to profile
         var _layer_zoom = null;            // layer of elements which are displayed according to zoom
         var _latlngbounds = new Array();   // markers used for compute bounds of map if _auto_center
@@ -489,7 +495,7 @@ lfh.Map = function(i){
             
             var marker_id = 'marker-' + _index +'-' +i;
            
-            var marker = L.marker(
+            _markers[i] = L.marker(
                     [info.lat, info.lng],
                     {
                         elem_id: marker_id,
@@ -504,36 +510,26 @@ lfh.Map = function(i){
             info.popup = info.popup + "";
             
             if(info.popup.length>0){
-                marker.bindPopup(info.popup.stripslashes());
+                _markers[i].bindPopup(info.popup.stripslashes());
 
-            }
+            <}
             if(info.visibility == 'zoom'){
-                _layer_zoom.addLayer(marker);
+                _layer_zoom.addLayer( _markers[i] );
             }else{
-                marker.addTo(map);
+                _markers[i].addTo(map);
             }
             _latlngbounds.push([info.lat, info.lng]);
             
-            //add the marker in the list of markers
-            _add_marker_to_list(marker);
-          
-            var link = new lfh.Link( map, marker, marker_id, _selected_element, null);
+            var link = new lfh.Link( map, _markers[i], marker_id, _selected_element, null);
             return link;
         }
-        function _add_marker_to_list( marker){
-            var nav = document.querySelector('#' + _map_id +'-data .lfh-data-content .lfh-content');
-            _add_marker_to_node( marker, nav);
-            if(_list){
-                var list = document.querySelector('#lfh-list-'+ _index +' div.lfh-list-markers');
-                _add_marker_to_node( marker, list);
-            }
-        }
+ 
         function _add_marker_to_node(marker, container){
             var node = document.createElement("input");
             node.setAttribute("type", "button");
-            node.value = marker.options.title;
+            node.value = "\uf041  "+ marker.options.title;
 
-            node.className = 'lfh-button';
+            node.className = 'lfh-button fa';
             container.appendChild(node);
             
             L.DomEvent.addListener( node , 'click', function(e){
@@ -541,21 +537,13 @@ lfh.Map = function(i){
                 e.stopPropagation();
             });
         }
-        function _add_gpx_to_list( gpx ){
-            var nav = document.querySelector('#' + _map_id +'-data .lfh-data-content .lfh-content');
-            _add_gpx_to_node( gpx, nav );
-            if(_list){
-                var list = document.querySelector('#lfh-list-'+ _index +' div.lfh-list-gpx');
-                _add_gpx_to_node( gpx, list );
-            }
-        }
-       
+ 
         function _add_gpx_to_node( gpx, container )
         {
             var node = document.createElement("input");
             node.setAttribute("type", "button");
-            node.className = 'lfh-button';
-            node.value = document.querySelector('#'+gpx.options.elem_id + ' span.lfh-trackname').textContent;
+            node.className = 'lfh-button fa';
+            node.value = "\uf0a4  " + document.querySelector('#'+gpx.options.elem_id + ' span.lfh-trackname').textContent;
 
             container.insertBefore(node, container.firstChild); //appendChild(node);
             
@@ -591,6 +579,8 @@ lfh.Map = function(i){
                }
                lfh.resize_content(map.getContainer());
                _auto_center = true;
+               
+               _create_buttons();
            }
        }
       
@@ -617,9 +607,6 @@ lfh.Map = function(i){
                           _latlngbounds.push([bounds.getNorth(),bounds.getEast()]);
                           _latlngbounds.push([bounds.getSouth(),bounds.getWest()]);
                       }
-
-                       _add_gpx_to_list(e.target);
-
                       var link = new lfh.Link(
                               map,
                               e.target,
@@ -633,6 +620,37 @@ lfh.Map = function(i){
                       console.log("failed");
                  })
                  .addTo(map);
+        }
+        function _create_buttons(){
+            var count = 0;
+            var nav = document.querySelector('#lfh-list-' + _index +' div.lfh-description');
+            
+            var div = document.createElement("div");
+            nav.appendChild(div);
+            div.className = "lfh-content";
+            //begin by gpx
+            [].forEach.call(_gpx, function( one_gpx){
+                
+                _add_gpx_to_node( one_gpx, div );
+                count++;
+                if( count%3 == 0){
+                    nav.appendChild(div);
+                    div = document.createElement("div");
+                    div.className = "lfh-content";
+                }
+            });
+            [].forEach.call(_markers, function( marker){
+                
+                _add_marker_to_node( marker, div );
+                count++;
+                if( count%3 == 0){
+                    nav.appendChild(div);
+                    div = document.createElement("div");
+                    div.className = "lfh-content";
+                }
+            })
+            nav.appendChild(div);
+            
         }
         _initialize( i );
         return map;
@@ -874,8 +892,8 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
           
           
       }
-     function _toggle(){
-        _selected_element.close();
+     function _toggle( bool){
+        _selected_element.close(bool);
         
         if(_selected_element.id == null || _selected_element.id != _id){
                 _dom.className = _dom.className.replaceAll(' hidden', '');
@@ -973,7 +991,7 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
     
       if( _layer instanceof L.Layer){
           _layer.on('click', function(e){
-              _toggle( );
+              _toggle(false );
           });
           L.DomEvent.addListener(nodeClose ,'click', function(e){
               _layer.fire('click');
@@ -981,10 +999,10 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
       }else{
         
           L.DomEvent.addListener( _layer, 'click', function(e){
-              _toggle();
+              _toggle(false);
           });
           L.DomEvent.addListener(nodeClose ,'click', function(e){
-              _toggle();
+              _toggle(true);
           });
       }
       

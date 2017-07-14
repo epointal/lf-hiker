@@ -20,14 +20,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             <div  class="lfh-back fa fa-chevron-circle-left" style=""></div>
             <div  class="lfh-next fa fa-chevron-circle-right"></div>
         </div>
+         
         <div class="lfh-data-content" >
-            <div ><?=__('Click following button or element on the map to see information about it.', 'lfh')?></div>
-            <div class="lfh-section" style="text-align:center;">
-                <div class="lfh-content" ></div>
-            </div>
             <div class="lfh-contributor">
                 <a href="https://wordpress.org/plugins/lf-hiker/" title="Plugin Lf Hiker">Lf Hiker</a>
-                | <a href="http://elisabeth.pointal.org" title="Elisabeth Pointal">E. Pointal</a>
+                | <a href="http://elisabeth.pointal.org" title="Elisabeth Pointal">E.Pointal</a>
                 contributor
             </div>
         </div>
@@ -35,36 +32,27 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 </div>
 </div>
 <!-- div of list objets -->
-<?php if( $options['list'] ):?>
+
 <div id="lfh-list-<?=$map_count?>" class="lfh-info-<?=$map_count?> lfh-element lfh-list leaflet-control hidden"  >
     <div>
-        <div >
+        <div class="lfh-head">
             <h3 >
                 <span class="lfh-trackname"><?=ucfirst(__('list', 'lfh'))?>&nbsp;</span>
                 <span  class="lfh-close fa fa-close" >&nbsp;</span>
             </h3>
         </div>
-        <div class="lfh-element-content">
+        
         <!-- misc info -->
+        <div ><?=__('Click following button or element on the map to see information about it.', 'lfh')?></div>
+        <div class="lfh-element-content">
         <div class="lfh-section">
-          <div class="lfh-header">
-          <h4><?=ucfirst(__('all tracks', 'lfh'))?></h4>
-          </div>        
-          <div class="lfh-content" >
-          <div class="lfh-list-gpx">
-          </div>
+                
+          <div class="lfh-content lfh-description" >
+         
           </div>
         </div>
-         <div class="lfh-section">
-          <div class="lfh-header">
-          <h4><?=ucfirst(__('all markers', 'lfh'))?></h4>
-          </div>        
-          <div class="lfh-content" >
-          <div class="lfh-list-markers">
-          </div>
-          </div>
-        </div>
+         
         </div>
     </div>
 </div>
-<?php endif;?>
+
