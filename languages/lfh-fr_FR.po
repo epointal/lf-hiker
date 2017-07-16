@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lfh\n"
 "POT-Creation-Date: 2017-07-14 23:02+0100\n"
-"PO-Revision-Date: 2017-07-14 23:05+0100\n"
+"PO-Revision-Date: 2017-07-16 20:17+0100\n"
 "Last-Translator: Elisabeth Pointal <elisabeth.pointal@free.fr>\n"
 "Language-Team: elisabeth\n"
 "Language: fr_FR\n"
@@ -82,7 +82,7 @@ msgstr ""
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Admin.php:29
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Admin.php:37
 msgid "Failure. Can not write in .htaccess"
-msgstr "Echec. Impossible d &eacute;crire dans le .htaccess"
+msgstr "Echec. Impossible d&prime;&eacute;crire dans le .htaccess"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Admin.php:35
 msgid "Directive removed from .htaccess successfully"
@@ -95,8 +95,8 @@ msgid ""
 "Failed to write directive in .htaccess. It can blocked the helper editor for "
 "markers"
 msgstr ""
-"Impossible d &eacute;crire la directive dans le .htaccess. Cela peut bloquer "
-"la page d &eacute;dition des marqueurs."
+"Impossible d&prime;&eacute;crire la directive dans le .htaccess. Cela peut "
+"bloquer la page d &eacute;dition des marqueurs."
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Back.php:63
 msgid "All gpx files"
@@ -358,7 +358,7 @@ msgstr ""
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:47
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back/about-page.phtml:47
 msgid "You can find informations, and tutorial on website"
-msgstr "Vous trouverez plus d&rsquo;informations et des tutoriels sur le site"
+msgstr "Vous trouverez plus d&prime;informations et des tutoriels sur le site"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:48
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back/about-page.phtml:48
@@ -379,7 +379,7 @@ msgstr ""
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back/about-page.phtml:51
 msgid "Display the post/page : you have an interactive view of your track."
 msgstr ""
-"Afficher l&rsquo;article/page: vous avez une vue interactive de votre "
+"Afficher l&prime;article/page: vous avez une vue interactive de votre "
 "parcours."
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:52
@@ -412,7 +412,7 @@ msgstr "description"
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:56
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back/about-page.phtml:56
 msgid "interactive profile elevation  according to path"
-msgstr "profile d&rsquo;altitude interactif synchronis&eacute; avec le chemin"
+msgstr "profile d&prime;altitude interactif synchronis&eacute; avec le chemin"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:57
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back/about-page.phtml:57

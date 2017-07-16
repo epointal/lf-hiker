@@ -122,9 +122,21 @@ From zip archive
 6. If the activation does not succeed, please [contact me](http://elisabeth.pointal.org/lf-hiker/en/contact-me).  
 7. You can change the default configuration in tab: `Settings → Lf-hiker` 
 
-== Changelog ==  
+== Changelog == 
+= 1.3.2 =
+ * default value attribute visibility set to always for marker
+ * update modules for gulp
+ * add icons and create files only with used icons
+ * fixed : color of the buttons is applied only to the first one on the large screens
+ * fixed : added unwanted tag p arround shortcode
+ * fixed : no event on button marker when only markers elements
+ * fixed : helper, button add marker no event (same issue than previous)
+ * fixed : title height issue with some theme
+ * fixed : only four buttons visible on small sreens
+ * fixed : mousewheel disabled on element window 
+ 
 = 1.3.1 =
- * Issue color general h1, h2 h3 white 
+ * fixed : Issue color and margin general h1, h2 h3 
  
 = 1.3 =
  * More responsive
