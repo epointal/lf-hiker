@@ -449,13 +449,9 @@ L.DomEvent.addListener( window, 'resize', function(e){
 });
 
 lfh.toggle_next = function( node, delta, map_id){
-    console.log(node);
     if( !node ){
         return;
     }
-    console.log(node.className);
-    console.log(node.step);
-    console.log(node.step_max);
     var i = node.step;
     var next = i + delta;
     
@@ -670,7 +666,6 @@ lfh.Map = function(i){
                     lfh.toggle_next(_selected_element.dom, -1, _map_id);
                 }else{
                     var list = map.getContainer().parentNode.querySelector('.lfh-list');
-                    console.log(list);
                     lfh.toggle_next( list, -1, _map_id);
                 }
             });
@@ -680,7 +675,6 @@ lfh.Map = function(i){
                     lfh.toggle_next(_selected_element.dom, 1, _map_id);
                 }else{
                     var list = map.getContainer().parentNode.querySelector('.lfh-list');
-                    console.log(list);
                     lfh.toggle_next( list, 1, _map_id);
                 }
             });
