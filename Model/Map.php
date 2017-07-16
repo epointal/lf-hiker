@@ -263,7 +263,7 @@ Class Lfh_Model_Map{
                 'lat'   => $lat,
                 'lng'   => $lng,
                 'title' => isset($title) && !empty( $title ) ? $title : strtoupper( __('no named marker', 'lfh')),
-                'visibility' => isset($visibility) ? $visibility : 'zoom',
+                'visibility' => isset($visibility) ? $visibility : 'always',
                 'color' => isset($color) ? $color : 'red',
                 'icon'  => isset($icon) ? $icon : 'circle',
                 'popup' => isset($popup) ? $popup : ""
@@ -376,10 +376,10 @@ Class Lfh_Model_Map{
     }
     private static function is_visibility($var)
     {
-        if(strtolower($var) === 'always'){
-            return 'always';
-        }else{
+        if(strtolower($var) === 'zoom'){
             return 'zoom';
+        }else{
+            return 'always';
         }
     }
     

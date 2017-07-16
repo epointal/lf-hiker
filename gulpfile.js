@@ -1,4 +1,8 @@
-var version = '1.3.1';
+//need to be very carefull with the replace version number
+//there are in files readme others version numbers: for releases, tested browsers, and the most important wordpress
+
+var old_version = '1.3.1';
+var version = '1.3.2';
 var gulp = require('gulp');
 var less = require('gulp-less');
 var minify = require('gulp-minify');
@@ -6,6 +10,7 @@ var cssmin = require('gulp-cssmin');
 var rename = require('gulp-rename');
 var concat = require('gulp-concat');
 var uncss = require('gulp-uncss');
+var replace = require('gulp-replace');
 
 gulp.task('default', function() {
   console.log("Ne fait rien");
@@ -25,7 +30,49 @@ gulp.task('lessify', function(){
     .pipe(gulp.dest('css'));
 });
 
+gulp.task('rename', function(){
+	gulp.src([ 'readme.txt', 'readme.md', 'lf-hiker.php'])
+	.pipe(rename({suffix: '-back'}))
+	    .pipe(gulp.dest(''));
+});
+gulp.task('new', /*['rename'],*/ function(){
+	if(old_version){
+		//replace version by the new version in files
+		//readme.txt
+		// javascript does not supported negative lookahead
+		//rename the old file
+		
+		var pattern = new RegExp( old_version+'(?! +\=)', 'g');
+		gulp.src(['readme-back.txt'])
+		.pipe(replace(pattern,  version))
+		.pipe(rename({basename: 'readme'}))
+		.pipe(gulp.dest(''));
+		
+		//readme (add "###" after version number for the release not be changed)
+		var pattern = new RegExp( old_version+'(?! +###)', 'g');
+		gulp.src(['readme.md'])
+		.pipe(replace(pattern,  version))
+		.pipe(rename({basename: 'readme'}))
+		.pipe(gulp.dest(''));
+		
+		//lf-hiker.php
+		var pattern = new RegExp( old_version, 'g');
+		gulp.src(['lf-hiker.php'])
+		.pipe(replace(pattern,  version))
+		.pipe(rename({basename: 'lf-hiker'}))
+		.pipe(gulp.dest(''));
+		
+		//svg file
+		var pattern = new RegExp( old_version, 'g');
+		gulp.src(['assets/svg/version'+old_version+'.svg'])
+		.pipe(replace(pattern,  version))
+		.pipe(rename({basename: 'version'+version}))
+	    .pipe(gulp.dest('assets/svg/'));
+	
+	}
+});
 gulp.task('versioning', ['lessify'], function(){
+	
 	//all my editing css
 	gulp.src([
 	'lib/awesome-marker/leaflet.awesome-markers.css',

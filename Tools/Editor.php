@@ -146,12 +146,12 @@ class Lfh_Tools_Editor
        wp_enqueue_script('awesome_marker_js',Lf_Hiker_Plugin::$url. "lib/awesome-marker/leaflet.awesome-markers.min.js", Array('leaflet'), null, true);
       
 
-       $mapquest_key = get_option('lfh_mapquest_key');
+     /*  $mapquest_key = get_option('lfh_mapquest_key');
        $depends = array( 'leaflet', 'awesome_marker_js');
        if(!is_null($mapquest_key) && !empty($mapquest_key) && strlen($mapquest_key)>8){
            wp_enqueue_script('mapquest', 'https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key='.$mapquest_key, Array('leaflet'), null, true);
            $depends[] = 'mapquest';
-       }
+       }*/
        if(WP_DEBUG ){
            wp_enqueue_script('helper_js',Lf_Hiker_Plugin::$url. "js/helper.js", $depends, null, true);
        }else{

@@ -852,11 +852,13 @@ lfh.Map = function(i){
                     div.className = "lfh-content";
                     nav.appendChild(div);
                     count_div++;
-                   
                 }
             })
             list.step = 0;
             list.step_max = count_div;
+            if(list.step_max == 1){
+                list.className = list.className + " lfh-small-content";
+            }
             lfh.toggle_next( list, 0,_map_id);
         }
         _initialize( i );
@@ -898,19 +900,25 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
         if(_dom != null){
             // add dom node to map
             //insert before nav and after list
+            _dom.step = 0;
             if(_dom.className.indexOf('lfh-list')<0){
                 var data = document.querySelector("#"+_map.getContainer().id + "-data");
                 var last_child = data.querySelector(".lfh-nav");
                 data.insertBefore(_dom,last_child);
+                // count length of description
+                _dom.step_max = lfh.count_step( _dom );
+            }else{
+                _dom.step_max = 0;
             }
-            // count length of description
-            _dom.step = 0;
-            _dom.step_max = lfh.count_step( _dom );
+           
             
+           
             if( _layer instanceof L.GPX){
                 _dom.step_max += 2;
             }
-            
+            if( _dom.step_max == 1 && _dom.className.indexOf('lfh-list')<0){
+                _dom.className = _dom.className + " lfh-small-content";
+            }
             _add_event();
             if( _layer instanceof L.GPX ){
                 var profile = new lfh.Profile(

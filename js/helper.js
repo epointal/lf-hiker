@@ -1,5 +1,6 @@
 (function(){
-    //For Adding button mode  on map control
+ 
+//For Adding button mode  on map control
 
 var LfhControl = L.Control.extend({
     options: {
@@ -83,7 +84,7 @@ var lfh = {
                         title: '',
                         popup: '',
                         description: false,
-                        visibility: 'zoom'
+                        visibility: 'always'
                     }).addTo(lfh.map);
                 lfh.markers.push(lfh.current_marker);
                 lfh.current_marker.on('click', function(e){
