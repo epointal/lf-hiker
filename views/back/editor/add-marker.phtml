@@ -37,16 +37,16 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 <!-- control for marker on map -->
 <div id="lfh-control" class="leaflet-bar leaflet-control">
   <a  id="lfh-edit-map" class="leaflet-buttons-control-button marker-control" title="<?=_e('Edit map', 'lfh')?>">
-        <div class="fa fa-map"></div>
+        <div class="lfhicon lfhicon-map"></div>
     </a>
     <a id="lfh-add-marker" class="leaflet-buttons-control-button marker-control " title="<?=_e('Add marker', 'lfh')?>">
-        <div class="fa fa-map-marker"></div>
+        <div class="lfhicon lfhicon-map-marker"></div>
     </a>
     <a id="lfh-edit-marker" class="leaflet-buttons-control-button marker-control" title="<?=_e('Edit marker', 'lfh')?>">
-        <div class="fa fa-edit"></div>
+        <div class="lfhicon lfhicon-edit"></div>
     </a>
     <a  id="lfh-delete-marker" class="leaflet-buttons-control-button marker-control" title="<?=_e('Delete marker', 'lfh')?>">
-        <div class="fa fa-trash"></div>
+        <div class="lfhicon lfhicon-trash"></div>
     </a>
    
     
@@ -65,7 +65,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     <div id="window-edit-marker"  class="lfh-form-edit" style="display:none;">
     <div class="header" >
         <h3><?=_e('Edit marker', 'lfh')?></h3>
-        <div id="window-close" class="fa fa-close"></div>
+        <div id="window-close" class="lfhicon lfhicon-close"></div>
     </div>
     <form>
         <div>
@@ -107,7 +107,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
          </div>
          <div>
             <label for="selected-icon"><?=_e('Inside icon', 'lfh')?></label>
-            <div id="selected-icon" class="fa fa-circle" data-value="circle" tabindex="6"></div>
+            <div id="selected-icon" class="lfhicon lfhicon-circle" data-value="circle" tabindex="6"></div>
             <input name="selected-icon" type="hidden" value="red" />
         </div>
          <div class="to-extend">
@@ -115,9 +115,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
              <div id="icon-marker" style="display:none;padding-bottom:10px">
         <?php for($i=0; $i<count($icons); $i++):?>
         <?php if($i==0):?>
-             <div class="fa fa-<?=$icons[$i]?> selected"  data-value="<?=$icons[$i]?>"></div>
+             <div class="lfhicon lfhicon-<?=$icons[$i]?> selected"  data-value="<?=$icons[$i]?>"></div>
         <?php else:?>
-            <div class="fa fa-<?=$icons[$i]?>" data-value="<?=$icons[$i]?>"></div>
+            <div class="lfhicon lfhicon-<?=$icons[$i]?>" data-value="<?=$icons[$i]?>"></div>
         <?php endif;?>
         <?php endfor;?>
              </div>

@@ -16,7 +16,7 @@
      }
      lfh_plugin.html=function( cls, data ) {
         // data = window.encodeURIComponent( data );
-         return '<div class="lfh-hiker fa fa-map ' + cls + '" >'+data+'</div>';
+         return '<div class="lfh-hiker lfhicon lfhicon-map ' + cls + '" >'+data+'</div>';
      }
      
      lfh_plugin.restoreShortcodes= function( nodes) {
@@ -74,7 +74,7 @@
                         );*/
 
                         tinymce.activeEditor.windowManager.open({
-                            url: lfh_plugin.ajax+ '?action=add_marker_action',
+                            url: lfh_plugin.ajax+ '?action=add_marker_action&ver=1.3.2',
                             width: window.innerWidth-50,
                             height: window.innerHeight-50,
                             resizable:true,

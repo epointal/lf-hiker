@@ -303,7 +303,7 @@ lfh.ResetControl = L.Control.extend({
         this._zoom = zoom;
     },
     onAdd : function(map){
-        var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control lfh-control-refresh');
+        var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control lfh-control-refresh lfhicon lfhicon-reset');
         var center = this._center;
         var zoom = this._zoom;
         container.onclick = function(){
@@ -700,7 +700,7 @@ lfh.Map = function(i){
                         elem_id: marker_id,
                         icon:  L.AwesomeMarkers.icon({
                             icon: info.icon,
-                            prefix: 'fa',
+                            prefix: 'lfhicon',
                             markerColor: info.color
                         }),
                         title: info.title.stripslashes(),
@@ -725,9 +725,9 @@ lfh.Map = function(i){
         function _add_marker_to_node(marker, container){
             var node = document.createElement("input");
             node.setAttribute("type", "button");
-            node.value = "\uf041  "+ marker.options.title;
+            node.value = "\ue80f  "+ marker.options.title;
 
-            node.className = 'lfh-button fa';
+            node.className = 'lfh-button lfhicon';
             container.appendChild(node);
             
             L.DomEvent.addListener( node , 'click', function(e){
@@ -740,8 +740,8 @@ lfh.Map = function(i){
         {
             var node = document.createElement("input");
             node.setAttribute("type", "button");
-            node.className = 'lfh-button fa';
-            node.value = "\uf018  " + document.querySelector('#'+gpx.options.elem_id + ' span.lfh-trackname').textContent;
+            node.className = 'lfh-button lfhicon';
+            node.value = "\ue80e  " + document.querySelector('#'+gpx.options.elem_id + ' span.lfh-trackname').textContent;
 
             container.insertBefore(node, container.firstChild); //appendChild(node);
             

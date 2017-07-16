@@ -25,9 +25,13 @@ gulp.task('cleancss', function(){
       .pipe(gulp.dest('clean'));
 });
 gulp.task('lessify', function(){
+	 gulp.src('css/helper.less')
+    .pipe(less())
+    .pipe(gulp.dest('css'));
     return gulp.src('css/lfh-style.less')
     .pipe(less())
     .pipe(gulp.dest('css'));
+	
 });
 
 gulp.task('rename', function(){
@@ -35,7 +39,7 @@ gulp.task('rename', function(){
 	.pipe(rename({suffix: '-back'}))
 	    .pipe(gulp.dest(''));
 });
-gulp.task('new', /*['rename'],*/ function(){
+gulp.task('new', ['rename'], function(){
 	if(old_version){
 		//replace version by the new version in files
 		//readme.txt
@@ -73,19 +77,17 @@ gulp.task('new', /*['rename'],*/ function(){
 });
 gulp.task('versioning', ['lessify'], function(){
 	
-	//all my editing css
-	gulp.src([
-	'lib/awesome-marker/leaflet.awesome-markers.css',
-	'css/lfh-style.css'])
-	.pipe(concat('lfh-style.css'))
+	//front my editing css
+	gulp.src(['css/lfh-style.css'])
 	.pipe(cssmin())
 	.pipe(rename({suffix: '-min.'+version}))
 	.pipe(gulp.dest('dist'));
 	
-	gulp.src(['css/*.css', '!css/lfh-style.css'])
+	gulp.src(['css/helper.css', 'css/lfh-post-editor.css'])
 	.pipe(cssmin())
 	.pipe(rename({suffix: '.'+version}))
     .pipe(gulp.dest('dist'));
+	
 	//all js in the same file
 	gulp.src([
 	'lib/awesome-marker/leaflet.awesome-markers.js',
@@ -108,6 +110,9 @@ gulp.task('versioning', ['lessify'], function(){
 	//from awesome-marker
 	gulp.src('lib/awesome-marker/images/*')
 	.pipe(gulp.dest('dist/images'));
+	
+	gulp.src('lib/awesome-marker/images/*')
+	.pipe(gulp.dest('css/images'));
 	//copy images
 	
 

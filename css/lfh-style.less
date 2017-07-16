@@ -1,4 +1,15 @@
+@import (inline)  "lfh-font.css";
+@import (inline)  "../lib/awesome-marker/leaflet.awesome-markers.css";
 
+.lfhicon() {
+    display: inline-block;
+    font: normal normal normal 14px/1 "lfhiker";
+        font-size: 14px;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+} 
 .lfh-element,
 #content .lfh-element,
 #lfh-fade .lfh-element,
@@ -105,21 +116,16 @@
 .lfh-container-fullscreen .leaflet-control{
     margin-top:0;
 }
-.lfh-control-fullscreen{
-    background:white url(../images/icons/glyphicons-216-resize-full.png) no-repeat center center;
-}
-.lfh-control-fullscreen,
-.lfh-control-list{
-    width:30px;
-    height:30px;
-    background-color:white;
-    
-    cursor:pointer;
-    clear:none;
-    
-}
+
 .leaflet-control .lfh-control-fullscreen,
 .leaflet-control .lfh-control-list{
+   .lfhicon;
+   width:30px;
+    height:30px;
+    background-color:white;
+    font-size:24px;
+	line-height:30px;
+    cursor:pointer;
     clear:none;
 }
 .lfh-control-fullscreen:hover,
@@ -127,28 +133,38 @@
 .lfh-control-list:hover{
    background-color:#f4f4f4;
 }
-.lfh-control-fullscreen.actived{
-    width:30px;
-    height:30px;
+.lfh-control-fullscreen::before{
+   content:"\e819";
+   margin-left:4px;
+}
+.lfh-control-fullscreen.actived::before{
+   content:"\e818";
+   margin-left:0;
+}
+
+.lfh-control-refresh{
     background-color:white;
-    background:white url(../images/icons/glyphicons-215-resize-small.png) no-repeat center center;
     cursor:pointer;
-    
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+  border-radius:3px;
 }
-.lfh-control-refresh{
-    width:25px;
+.lfh-control-refresh.lfhicon-reset::before{
     height:25px;
-    background-color:white;
-     cursor:pointer;
+	width:25px;
+	line-height: 25px;
+	margin:0;
+    font-size:20px;
+
     
 }
-.lfh-control-refresh{
-     background:white url(../images/icons/refresh.png) no-repeat center center;
-  
+
+.lfh-control-list::before{
+ content:"\e812";
+ margin-left:4px;
 }
-.lfh-control-list{
-     background:white url(../images/icons/glyphicons-158-show-thumbnails-with-lines.png) no-repeat center center;
-  
+#lfh-fade .lfh-control-list::before{
+ margin-left:0px;
 }
 .lfh-warning{
     font-style:italic;
@@ -413,14 +429,14 @@ div.lfh-container.lfh-min,
    
  }
  div.lfh-min div.lfh-nav div.lfh-back{
-      left:1px;
+      left:-1px;
  }
  div.lfh-min div.lfh-nav div.lfh-next{
      right:0px;
  }
  div.lfh-nav div.lfh-next::before,
 div.lfh-nav div.lfh-back::before{
-    padding-left:2px;
+    margin-left:-3px;
 }
  div.lfh-min div.lfh-nav div.lfh-back:hover,
  div.lfh-min div.lfh-nav div.lfh-next:hover{
@@ -691,7 +707,7 @@ div.lfh-nav div.lfh-back::before{
     padding: 5px;
     margin-bottom: 2px;
 }
-span.lfh-close:before{
+span.lfh-close::before{
     display: inline-block;
 }
 span.lfh-close{
@@ -699,9 +715,12 @@ span.lfh-close{
     color:white;
     width:20px;
     height:20px;
+	margin-right:10px;
     box-shadow:none;
-    
     pointer-events:auto;
+}
+div.lfh-min span.lfh-close{
+	margin-right:0px;
 }
 span.lfh-close:hover{
     cursor:pointer;
@@ -831,6 +850,9 @@ div.lfh-list h4,
 #lfh-fade div.lfh-list h4{
     margin-bottom:2px;
 }
+
+
+
 @media screen and (max-width: 768px)
 
 {

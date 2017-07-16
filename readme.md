@@ -133,14 +133,16 @@ After downloading the ZIP file [lf-hiker-1.3.2.zip](https://github.com/epointal/
 
 ## Changelog 
 ### 1.3.2 ###
+ * default value attribute visibility set to always for marker
+ * update modules for gulp
+ * add icons and create files only with used icons
  * fixed : color of the buttons is applied only to the first one on the large screens
  * fixed : added unwanted tag p arround shortcode
  * fixed : no event on button marker when only markers elements
+ * fixed : helper, button add marker no event (same issue than previous)
  * fixed : title height issue with some theme
  * fixed : only four buttons visible on small sreens
  * fixed : mousewheel disabled on element window
- * default value attribute visibility set to always for marker
- * update modules for gulp
  
 ### 1.3.1 ###
  * fixed : issue color title h1 h2 h3 overwrite general style

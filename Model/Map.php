@@ -11,10 +11,10 @@ Class Lfh_Model_Map{
         'darkblue', 'darkgreen', 'cadetblue', 'darkpurple',   'lightblue', 'lightgreen',
         'gray', 'black', 'lightgray');
     
-    public static $icons_marker =  array('circle', 'square', 'dot-circle-o', 'circle-o', 'asterisk', 'star', 'bolt', 'sun-o', 'cube', 'bullseye', 'eye', 'heart','flag','leaf',
-        'key','music', 'cloud', 'close', 'tree', 'smile-o', 'snowflake-o', 'binoculars', 'shopping-basket', 'plane', 'cab',
-        'bicycle', 'bed', 'shower', 'cutlery', 'coffee', 'beer', 'glass', 'spoon', 'bell',
-        'home', 'wheelchair', 'child', 'female', 'male',   'bank', 'industry');
+    public static $icons_marker =  array('circle', 'square', 'dot-circle-o', 'circle-o', 'record', 'asterisk', 'star', 'first-order', 'bolt', 'sun-o', 'sun-inv', 'cube', 'bullseye', 'eye', 'heart','flag','leaf',
+        'paw', 'key','music', 'cloud', 'close', 'tree', 'smile-o', 'snowflake-o', 'diamond', 'binoculars', 'shopping-basket', 'plane', 'cab',
+        'bicycle', 'train', 'bed', 'shower', 'cutlery', 'coffee', 'beer', 'glass', 'spoon', 'bell',
+        'home', 'wheelchair', 'school', 'child', 'female', 'male',   'bank', 'industry');
     
     public static $colors_path = array('red', 'blue', 'purple', 'orange', 'darkred', 'darkblue', 'darkgreen');
     

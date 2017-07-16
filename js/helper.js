@@ -33,9 +33,17 @@ var lfh = {
             lfh.map = L.map('map').setView(lfh.center, lfh.zoom);
             lfh.set_tile();
             lfh.map.addControl(new LfhControl());
+          //handler init event when control is added
+            var nodes = document.querySelectorAll('.marker-control');
+            [].forEach.call(nodes, function(button){
+                L.DomEvent.addListener(button,'click', function(e){
+                    lfh.set_mode(button);
+                    e.stopPropagation();
+                });
+            });
             lfh.default_icon = L.AwesomeMarkers.icon({
                 icon: 'circle',
-                prefix: 'fa',
+                prefix: 'lfhicon',
                 markerColor: 'red'});
             lfh.move_marker = L.marker(lfh.center).addTo(lfh.map);
             lfh.move_marker.setOpacity(0);
@@ -182,7 +190,7 @@ var lfh = {
                 var evt = document.createEvent('MouseEvents');
                 evt.initEvent("click", true, true);
                 document.querySelector('#color-marker div.awesome-marker-icon-'+color).dispatchEvent(evt);
-                document.querySelector('#icon-marker div.fa-'+icon).dispatchEvent(evt); 
+                document.querySelector('#icon-marker div.lfhicon-'+icon).dispatchEvent(evt); 
                 document.querySelector('#window-edit-marker').style.display = 'block';
                 break;
             }
@@ -277,14 +285,14 @@ var lfh = {
 
 
 
-//handler
-var nodes = document.querySelectorAll('.marker-control');
+//handler add when buttons control are placed on map
+/*var nodes = document.querySelectorAll('.marker-control');
 [].forEach.call(nodes, function(button){
     L.DomEvent.addListener(button,'click', function(e){
         lfh.set_mode(button);
         e.stopPropagation();
     });
-});
+});*/
 //no submit form
 L.DomEvent.addListener(
         document.querySelector('form'),
@@ -343,7 +351,7 @@ document.onmouseup = hdrg.destroy;
  });
 //- end drag
 // event on elements of window edit marker and edit map
-   var nodes = document.querySelectorAll('.fa-close');
+   var nodes = document.querySelectorAll('.lfhicon-close');
    [].forEach.call(nodes, function(node){
        L.DomEvent.addListener(node, 'click', function(e){
            var id = node.parentNode.parentNode.id;
@@ -446,13 +454,13 @@ document.onmouseup = hdrg.destroy;
 
             lfh.current_marker.setIcon(L.AwesomeMarkers.icon({
                 icon: icon,
-                prefix: 'fa',
+                prefix: 'lfhicon',
                 markerColor: color
               }));
             
         });
     });
-    var nodes = document.querySelectorAll('#icon-marker div.fa');
+    var nodes = document.querySelectorAll('#icon-marker div.lfhicon');
     [].forEach.call(nodes, function(div){
         L.DomEvent.addListener(div,'click', function(e){
             var div = this;
@@ -472,7 +480,7 @@ document.onmouseup = hdrg.destroy;
 
             lfh.current_marker.setIcon(L.AwesomeMarkers.icon({
                 icon: icon,
-                prefix: 'fa',
+                prefix: 'lfhicon',
                 markerColor: color
               }));
             
