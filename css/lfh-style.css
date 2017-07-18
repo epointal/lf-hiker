@@ -328,14 +328,14 @@ Version: 1.0
   font-style: normal;
   font-size: 18px;
 }
-.lfh-section.hidden .lfh-header h4:before {
+.lfh-section.lfh-hidden .lfh-header h4:before {
   content: "\0025B6  ";
   font-style: normal;
   font-size: 18px;
 }
-.lfh-section.hidden .lfh-header h4,
-#content .lfh-section.hidden .lfh-header h4,
-#lfh-fade .lfh-section.hidden .lfh-header h4 {
+.lfh-section.lfh-hidden .lfh-header h4,
+#content .lfh-section.lfh-hidden .lfh-header h4,
+#lfh-fade .lfh-section.lfh-hidden .lfh-header h4 {
   margin-bottom: 1px;
 }
 .lfh-section .lfh-content {
@@ -349,7 +349,7 @@ Version: 1.0
   -o-transition: -o-transform 0.8s ease-in;
   transition: transform 0.8s ease-in;
 }
-.lfh-section.hidden .lfh-content {
+.lfh-section.lfh-hidden .lfh-content {
   line-height: 0;
   height: 0;
   max-height: 0px;
@@ -369,7 +369,6 @@ Version: 1.0
 .leaflet-control .lfh-control-list {
   display: inline-block;
   font: normal normal normal 14px/1 "lfhiker";
-  font-size: 14px;
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
@@ -411,7 +410,8 @@ Version: 1.0
 }
 .lfh-control-list::before {
   content: "\e812";
-  margin-left: 4px;
+  margin-left: 5px;
+  font-size: 20px;
 }
 #lfh-fade .lfh-control-list::before {
   margin-left: 0px;
@@ -548,7 +548,7 @@ input.lfh-button:hover,
   background: #ff470f;
   text-decoration: none;
 }
-.lfh-element.hidden {
+.lfh-element.lfh-hidden {
   max-height: 0;
   -ms-transform: translateX(400px);
   -webkit-transform: translateX(400px);
@@ -757,14 +757,14 @@ div.lfh-min div.lfh-element.lfh-small-content div.lfh-section {
   float: none;
   margin: auto;
 }
-div.lfh-min div.lfh-element.hidden {
+div.lfh-min div.lfh-element.lfh-hidden {
   -ms-transform: translateY(300px);
   -webkit-transform: translateY(300px);
   -moz-transform: translateY(300px);
   -o-transform: translateY(300px);
   transform: translateY(300px);
 }
-div.lfh-min div.lfh-list.lfh-element.hidden {
+div.lfh-min div.lfh-list.lfh-element.lfh-hidden {
   opacity: 1;
   max-height: 167px;
   -ms-transform: translate(0, 0);
@@ -775,11 +775,11 @@ div.lfh-min div.lfh-list.lfh-element.hidden {
   z-index: 0;
   background: transparent;
 }
-div.lfh-min div.lfh-list.lfh-element.hidden div.lfh-description {
+div.lfh-min div.lfh-list.lfh-element.lfh-hidden div.lfh-description {
   margin-top: 40px;
 }
 div.lfh-min div.lfh-element.step1,
-div.lfh-min div.lfh-list.hidden.step1 {
+div.lfh-min div.lfh-list.lfh-hidden.step1 {
   -ms-transform: translateX(-280px);
   -webkit-transform: translateX(-280px);
   -moz-transform: translateX(-280px);
@@ -787,7 +787,7 @@ div.lfh-min div.lfh-list.hidden.step1 {
   transform: translateX(-280px);
 }
 div.lfh-min div.lfh-element.step2,
-div.lfh-min div.lfh-list.hidden.step2 {
+div.lfh-min div.lfh-list.lfh-hidden.step2 {
   -ms-transform: translateX(-560px);
   -webkit-transform: translateX(-560px);
   -moz-transform: translateX(-560px);
@@ -795,7 +795,7 @@ div.lfh-min div.lfh-list.hidden.step2 {
   transform: translateX(-560px);
 }
 div.lfh-min div.lfh-element.step3,
-div.lfh-min div.lfh-list.hidden.step3 {
+div.lfh-min div.lfh-list.lfh-hidden.step3 {
   -ms-transform: translateX(-840px);
   -webkit-transform: translateX(-840px);
   -moz-transform: translateX(-840px);
@@ -803,7 +803,7 @@ div.lfh-min div.lfh-list.hidden.step3 {
   transform: translateX(-840px);
 }
 div.lfh-min div.lfh-element.step4,
-div.lfh-min div.lfh-list.hidden.step4 {
+div.lfh-min div.lfh-list.lfh-hidden.step4 {
   -ms-transform: translateX(-1120px);
   -webkit-transform: translateX(-1120px);
   -moz-transform: translateX(-1120px);
@@ -811,7 +811,7 @@ div.lfh-min div.lfh-list.hidden.step4 {
   transform: translateX(-1120px);
 }
 div.lfh-min div.lfh-element.step5,
-div.lfh-min div.lfh-list.hidden.step5 {
+div.lfh-min div.lfh-list.lfh-hidden.step5 {
   -ms-transform: translateX(-1400px);
   -webkit-transform: translateX(-1400px);
   -moz-transform: translateX(-1400px);
@@ -819,7 +819,7 @@ div.lfh-min div.lfh-list.hidden.step5 {
   transform: translateX(-1400px);
 }
 div.lfh-min div.lfh-element.step6,
-div.lfh-min div.lfh-list.hidden.step6 {
+div.lfh-min div.lfh-list.lfh-hidden.step6 {
   -ms-transform: translateX(-1680px);
   -webkit-transform: translateX(-1680px);
   -moz-transform: translateX(-1680px);
@@ -827,7 +827,7 @@ div.lfh-min div.lfh-list.hidden.step6 {
   transform: translateX(-1680px);
 }
 div.lfh-min div.lfh-element.step7,
-div.lfh-min div.lfh-list.hidden.step7 {
+div.lfh-min div.lfh-list.lfh-hidden.step7 {
   -ms-transform: translateX(-1960px);
   -webkit-transform: translateX(-1960px);
   -moz-transform: translateX(-1960px);
@@ -835,7 +835,7 @@ div.lfh-min div.lfh-list.hidden.step7 {
   transform: translateX(-1960px);
 }
 div.lfh-min div.lfh-element.step8,
-div.lfh-min div.lfh-list.hidden.step8 {
+div.lfh-min div.lfh-list.lfh-hidden.step8 {
   -ms-transform: translateX(-2240px);
   -webkit-transform: translateX(-2240px);
   -moz-transform: translateX(-2240px);
@@ -843,7 +843,7 @@ div.lfh-min div.lfh-list.hidden.step8 {
   transform: translateX(-2240px);
 }
 div.lfh-min div.lfh-element.step9,
-div.lfh-min div.lfh-list.hidden.step9 {
+div.lfh-min div.lfh-list.lfh-hidden.step9 {
   -ms-transform: translateX(-2520px);
   -webkit-transform: translateX(-2520px);
   -moz-transform: translateX(-2520px);
@@ -851,85 +851,85 @@ div.lfh-min div.lfh-list.hidden.step9 {
   transform: translateX(-2520px);
 }
 div.lfh-min div.lfh-element.step10,
-div.lfh-min div.lfh-list.hidden.step10 {
+div.lfh-min div.lfh-list.lfh-hidden.step10 {
   -ms-transform: translateX(-2800px);
   -webkit-transform: translateX(-2800px);
   -moz-transform: translateX(-2800px);
   -o-transform: translateX(-2800px);
   transform: translateX(-2800px);
 }
-div.lfh-min div.lfh-element.hidden:not(.lfh-list),
-div.lfh-min div.lfh-element.hidden.step0:not(.lfh-list) {
+div.lfh-min div.lfh-element.lfh-hidden:not(.lfh-list),
+div.lfh-min div.lfh-element.lfh-hidden.step0:not(.lfh-list) {
   -ms-transform: translateY(250px);
   -webkit-transform: translateY(250px);
   -moz-transform: translateY(250px);
   -o-transform: translateY(250px);
   transform: translateY(250px);
 }
-div.lfh-min div.lfh-element.hidden.step1:not(.lfh-list) {
+div.lfh-min div.lfh-element.lfh-hidden.step1:not(.lfh-list) {
   -ms-transform: translate(-280px, 250px);
   -webkit-transform: translate(-280px, 250px);
   -moz-transform: translate(-280px, 250px);
   -o-transform: translate(-280px, 250px);
   transform: translate(-280px, 250px);
 }
-div.lfh-min div.lfh-element.hidden.step2:not(.lfh-list) {
+div.lfh-min div.lfh-element.lfh-hidden.step2:not(.lfh-list) {
   -ms-transform: translate(-560px, 250px);
   -webkit-transform: translate(-560px, 250px);
   -moz-transform: translate(-560px, 250px);
   -o-transform: translate(-560px, 250px);
   transform: translate(-560px, 250px);
 }
-div.lfh-min div.lfh-element.hidden.step3:not(.lfh-list) {
+div.lfh-min div.lfh-element.lfh-hidden.step3:not(.lfh-list) {
   -ms-transform: translate(-840px, 250px);
   -webkit-transform: translate(-840px, 250px);
   -moz-transform: translate(-840px, 250px);
   -o-transform: translate(-840px, 250px);
   transform: translate(-840px, 250px);
 }
-div.lfh-min div.lfh-element.hidden.step4:not(.lfh-list) {
+div.lfh-min div.lfh-element.lfh-hidden.step4:not(.lfh-list) {
   -ms-transform: translate(-1120px, 250px);
   -webkit-transform: translate(-1120px, 250px);
   -moz-transform: translate(-1120px, 250px);
   -o-transform: translate(-1120px, 250px);
   transform: translate(-1120px, 250px);
 }
-div.lfh-min div.lfh-element.hidden.step5:not(.lfh-list) {
+div.lfh-min div.lfh-element.lfh-hidden.step5:not(.lfh-list) {
   -ms-transform: translate(-1400px, 250px);
   -webkit-transform: translate(-1400px, 250px);
   -moz-transform: translate(-1400px, 250px);
   -o-transform: translate(-1400px, 250px);
   transform: translate(-1400px, 250px);
 }
-div.lfh-min div.lfh-element.hidden.step6:not(.lfh-list) {
+div.lfh-min div.lfh-element.lfh-hidden.step6:not(.lfh-list) {
   -ms-transform: translate(-1680px, 250px);
   -webkit-transform: translate(-1680px, 250px);
   -moz-transform: translate(-1680px, 250px);
   -o-transform: translate(-1680px, 250px);
   transform: translate(-1680px, 250px);
 }
-div.lfh-min div.lfh-element.hidden.step7:not(.lfh-list) {
+div.lfh-min div.lfh-element.lfh-hidden.step7:not(.lfh-list) {
   -ms-transform: translate(-1960px, 250px);
   -webkit-transform: translate(-1960px, 250px);
   -moz-transform: translate(-1960px, 250px);
   -o-transform: translate(-1960px, 250px);
   transform: translate(-1960px, 250px);
 }
-div.lfh-min div.lfh-element.hidden.step8:not(.lfh-list) {
+div.lfh-min div.lfh-element.lfh-hidden.step8:not(.lfh-list) {
   -ms-transform: translate(-2240px, 250px);
   -webkit-transform: translate(-2240px, 250px);
   -moz-transform: translate(-2240px, 250px);
   -o-transform: translate(-2240px, 250px);
   transform: translate(-2240px, 250px);
 }
-div.lfh-min div.lfh-element.hidden.step9:not(.lfh-list) {
+div.lfh-min div.lfh-element.lfh-hidden.step9:not(.lfh-list) {
   -ms-transform: translate(-2520px, 250px);
   -webkit-transform: translate(-2520px, 250px);
   -moz-transform: translate(-2520px, 250px);
   -o-transform: translate(-2520px, 250px);
   transform: translate(-2520px, 250px);
 }
-div.lfh-min div.lfh-element.hidden.step10:not(.lfh-list) {
+div.lfh-min div.lfh-element.lfh-hidden.step10:not(.lfh-list) {
   -ms-transform: translate(-2800px, 250px);
   -webkit-transform: translate(-2800px, 250px);
   -moz-transform: translate(-2800px, 250px);
@@ -983,7 +983,7 @@ div.lfh-min div.lfh-data-content .lfh-section .lfh-header h4 {
   display: block;
 }
 div.lfh-min .lfh-section .lfh-header h4::before,
-div.lfh-min .lfh-section.hidden .lfh-header h4::before {
+div.lfh-min .lfh-section.lfh-hidden .lfh-header h4::before {
   content: none;
 }
 div.lfh-min div.lfh-content,
@@ -1046,7 +1046,6 @@ span.lfh-close::before {
 }
 span.lfh-close {
   float: right;
-  color: white;
   width: 20px;
   height: 20px;
   margin-right: 10px;
@@ -1066,12 +1065,12 @@ div.lfh-min div.lfh-data span.lfh-close {
 div.lfh-min div.lfh-data div.lfh-list:not(.step0) ~ div.lfh-nav div.lfh-back {
   display: inline;
 }
-div.lfh-min div.lfh-data div.lfh-element:not(.hidden) ~ div.lfh-nav span.lfh-close,
-div.lfh-min div.lfh-data div.lfh-element:not(.hidden) ~ div.lfh-nav div.lfh-back,
-div.lfh-min div.lfh-data div.lfh-element:not(.hidden) ~ div.lfh-nav div.lfh-next {
+div.lfh-min div.lfh-data div.lfh-element:not(.lfh-hidden) ~ div.lfh-nav span.lfh-close,
+div.lfh-min div.lfh-data div.lfh-element:not(.lfh-hidden) ~ div.lfh-nav div.lfh-back,
+div.lfh-min div.lfh-data div.lfh-element:not(.lfh-hidden) ~ div.lfh-nav div.lfh-next {
   display: inline;
 }
-div.lfh-min div.lfh-data div.lfh-element.step0:not(.hidden) ~ div.lfh-nav div.lfh-back {
+div.lfh-min div.lfh-data div.lfh-element.step0:not(.lfh-hidden) ~ div.lfh-nav div.lfh-back {
   display: none;
 }
 .fakefull .lfh-map-container {
@@ -1124,7 +1123,7 @@ div.lfh-min div.lfh-data div.lfh-element.step0:not(.hidden) ~ div.lfh-nav div.lf
 .markerbounds {
   display: block;
 }
-.markerbounds .hidden {
+.markerbounds .lfh-hidden {
   display: none;
 }
 /**

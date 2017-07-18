@@ -367,7 +367,7 @@ lfh.TopControl = L.Control.extend({
         if(this._list){
             var div2 =  L.DomUtil.create('div', 'leaflet-bar leaflet-control lfh-control-list');
         }else{
-            var div2 =  L.DomUtil.create('div', 'leaflet-bar leaflet-control lfh-control-list hidden');
+            var div2 =  L.DomUtil.create('div', 'leaflet-bar leaflet-control lfh-control-list lfh-hidden');
         }
         container.appendChild(div2);
         //append list window to the map
@@ -390,14 +390,14 @@ lfh.resize_content = function(container){
     }else{
         height = 220;
         //delete all section hidden
-        var nodes = node.querySelectorAll('.lfh-section.hidden');
+        var nodes = node.querySelectorAll('.lfh-section.lfh-hidden');
         [].forEach.call(nodes, function(div) {
                 var classname = div.className;
                 if(classname.indexOf('disabled')>=0){
                     return;
                 }
-                if(classname.indexOf('hidden')>=0){
-                     div.className = classname.replaceAll(' hidden', '');
+                if(classname.indexOf('lfh-hidden')>=0){
+                     div.className = classname.replaceAll(' lfh-hidden', '');
                 }
             
           });
@@ -491,7 +491,7 @@ lfh.Selected = function( map_id, map, marker){
             if(this.id != null ){
                 //close fenetre
                 var classname = this.dom.className;
-                this.dom.className = classname + ' hidden';
+                this.dom.className = classname + ' lfh-hidden';
                 if( this.layer instanceof L.GPX){
                     // path with its original color
                     var options = this.layer.get_options();
@@ -819,34 +819,33 @@ lfh.Map = function(i){
             var count_div = 0;
             var list = document.querySelector('#lfh-list-' + _index );
             var nav = list.querySelector('div.lfh-description');
-            var div = document.createElement("div");
+            var div = null;
+           /* var div = document.createElement("div");
             nav.appendChild(div);
             count_div++;
-            div.className = "lfh-content";
+            div.className = "lfh-content";*/
             //begin by gpx
             [].forEach.call(_gpx, function( one_gpx){
-                
-                _add_gpx_to_node( one_gpx, div );
-                count++;
                 if( count%3 == 0){
                     div = document.createElement("div");
                     div.className = "lfh-content";
                     nav.appendChild(div);
                     count_div++;
-                   
                 }
+                _add_gpx_to_node( one_gpx, div );
+                count++;
             });
           
             [].forEach.call(_markers, function( marker){
-                
-                _add_marker_to_node( marker, div );
-                count++;
                 if( count%3 == 0){
                     div = document.createElement("div");
                     div.className = "lfh-content";
                     nav.appendChild(div);
                     count_div++;
                 }
+                _add_marker_to_node( marker, div );
+                count++;
+               
             })
             list.step = 0;
             list.step_max = count_div;
@@ -932,7 +931,7 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
         _selected_element.close(bool);
         
         if(_selected_element.id == null || _selected_element.id != _id){
-                _dom.className = _dom.className.replaceAll(' hidden', '');
+                _dom.className = _dom.className.replaceAll(' lfh-hidden', '');
                 if(_layer instanceof L.GPX){
                     var options = _layer.get_options();
                     _layer.setStyle({ 
@@ -1004,10 +1003,10 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
                if(classname.indexOf('disabled')>=0){
                    return;
                }
-               if(classname.indexOf('hidden')>=0){
-                    parent.className = classname.replaceAll(' hidden', '');
+               if(classname.indexOf('lfh-hidden')>=0){
+                    parent.className = classname.replaceAll(' lfh-hidden', '');
                }else{
-                    parent.className += ' hidden';
+                    parent.className += ' lfh-hidden';
                }
                e.stopPropagation();
              });

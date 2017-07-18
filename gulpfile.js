@@ -1,8 +1,8 @@
 //need to be very carefull with the replace version number
 //there are in files readme others version numbers: for releases, tested browsers, and the most important wordpress
 
-var old_version = '1.3.1';
-var version = '1.3.2';
+var old_version = '1.3.2';
+var version = '1.3.3';
 var gulp = require('gulp');
 var less = require('gulp-less');
 var minify = require('gulp-minify');
@@ -39,7 +39,7 @@ gulp.task('rename', function(){
 	.pipe(rename({suffix: '-back'}))
 	    .pipe(gulp.dest(''));
 });
-gulp.task('new', ['rename'], function(){
+gulp.task('new', /* ['rename'] ,*/ function(){
 	if(old_version){
 		//replace version by the new version in files
 		//readme.txt
@@ -54,14 +54,14 @@ gulp.task('new', ['rename'], function(){
 		
 		//readme (add "###" after version number for the release not be changed)
 		var pattern = new RegExp( old_version+'(?! +###)', 'g');
-		gulp.src(['readme.md'])
+		gulp.src(['readme-back.md'])
 		.pipe(replace(pattern,  version))
 		.pipe(rename({basename: 'readme'}))
 		.pipe(gulp.dest(''));
 		
 		//lf-hiker.php
 		var pattern = new RegExp( old_version, 'g');
-		gulp.src(['lf-hiker.php'])
+		gulp.src(['lf-hiker-back.php'])
 		.pipe(replace(pattern,  version))
 		.pipe(rename({basename: 'lf-hiker'}))
 		.pipe(gulp.dest(''));
