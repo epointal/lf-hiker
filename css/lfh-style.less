@@ -1,10 +1,9 @@
-@import (inline)  "lfh-font.css";
-@import (inline)  "../lib/awesome-marker/leaflet.awesome-markers.css";
+@import (inline, css)  "lfh-font.css";
+@import (inline, css)  "../lib/awesome-marker/leaflet.awesome-markers.css";
 
 .lfhicon() {
     display: inline-block;
     font: normal normal normal 14px/1 "lfhiker";
-        font-size: 14px;
     font-size: inherit;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
@@ -77,14 +76,14 @@
     font-size:18px;
     
 }
-.lfh-section.hidden .lfh-header h4:before{
+.lfh-section.lfh-hidden .lfh-header h4:before{
     content:"\0025B6  ";
     font-style:normal;
     font-size:18px;
 }
-.lfh-section.hidden .lfh-header h4,
-#content .lfh-section.hidden .lfh-header h4,
-#lfh-fade .lfh-section.hidden .lfh-header h4{
+.lfh-section.lfh-hidden .lfh-header h4,
+#content .lfh-section.lfh-hidden .lfh-header h4,
+#lfh-fade .lfh-section.lfh-hidden .lfh-header h4{
     margin-bottom:1px;
 }
 .lfh-section .lfh-content{
@@ -98,7 +97,7 @@
     -o-transition: -o-transform .8s ease-in;
     transition: transform .8s ease-in;
 }
-.lfh-section.hidden .lfh-content{
+.lfh-section.lfh-hidden .lfh-content{
     line-height:0;
     height: 0;
     max-height:0px;
@@ -161,7 +160,8 @@
 
 .lfh-control-list::before{
  content:"\e812";
- margin-left:4px;
+ margin-left: 5px;
+font-size: 20px;
 }
 #lfh-fade .lfh-control-list::before{
  margin-left:0px;
@@ -307,7 +307,7 @@ input.lfh-button:hover,
     background: saturate(@color, 20%);
     text-decoration:none; 
  }
- .lfh-element.hidden{
+ .lfh-element.lfh-hidden{
     max-height:0;
    -ms-transform: translateX(400px);
    -webkit-transform: translateX(400px);
@@ -535,7 +535,7 @@ div.lfh-min div.lfh-element.lfh-small-content div.lfh-section{
     float:none;
     margin:auto;
 }
-div.lfh-min div.lfh-element.hidden{
+div.lfh-min div.lfh-element.lfh-hidden{
    -ms-transform: translateY(300px);
    -webkit-transform: translateY(300px);
    -moz-transform: translateY(300px);
@@ -543,7 +543,7 @@ div.lfh-min div.lfh-element.hidden{
    transform: translateY(300px);
 
  }
-div.lfh-min div.lfh-list.lfh-element.hidden{
+div.lfh-min div.lfh-list.lfh-element.lfh-hidden{
    opacity:1;
    max-height:@height - @height_title - 2* @padding_title;
    -ms-transform: translate(0, 0);
@@ -554,12 +554,12 @@ div.lfh-min div.lfh-list.lfh-element.hidden{
    z-index:0;
    background: transparent;
 }
-div.lfh-min div.lfh-list.lfh-element.hidden div.lfh-description{
+div.lfh-min div.lfh-list.lfh-element.lfh-hidden div.lfh-description{
     margin-top:40px;
 }
 .loopingClass (@i) when (@i < 11) {
     div.lfh-min div.lfh-element.step@{i},
-    div.lfh-min div.lfh-list.hidden.step@{i} {
+    div.lfh-min div.lfh-list.lfh-hidden.step@{i} {
         -ms-transform: translateX(-(@i * @width));
         -webkit-transform: translateX(-(@i * @width));
         -moz-transform: translateX(-(@i * @width));
@@ -570,8 +570,8 @@ div.lfh-min div.lfh-list.lfh-element.hidden div.lfh-description{
 }
 .loopingClass (1);
 
- div.lfh-min div.lfh-element.hidden:not(.lfh-list),
- div.lfh-min div.lfh-element.hidden.step0:not(.lfh-list){
+ div.lfh-min div.lfh-element.lfh-hidden:not(.lfh-list),
+ div.lfh-min div.lfh-element.lfh-hidden.step0:not(.lfh-list){
    -ms-transform: translateY( @height + 50px);
    -webkit-transform: translateY( @height + 50px );
    -moz-transform: translateY( @height + 50px );
@@ -579,7 +579,7 @@ div.lfh-min div.lfh-list.lfh-element.hidden div.lfh-description{
    transform: translateY( @height + 50px );
  }
 .loopHidden (@k) when (@k < 11) {
-    div.lfh-min div.lfh-element.hidden.step@{k}:not(.lfh-list) {
+    div.lfh-min div.lfh-element.lfh-hidden.step@{k}:not(.lfh-list) {
         -ms-transform: translate(-(@k * @width), @height + 50);
         -webkit-transform: translate(-(@k * @width),@height + 50);
         -moz-transform: translate(-(@k * @width), @height + 50);
@@ -641,7 +641,7 @@ div.lfh-min div.lfh-data-content .lfh-section .lfh-header h4{
     display: block;
 }
 div.lfh-min .lfh-section .lfh-header h4::before,
-div.lfh-min .lfh-section.hidden .lfh-header h4::before
+div.lfh-min .lfh-section.lfh-hidden .lfh-header h4::before
 {
     content:none;
 }
@@ -712,7 +712,6 @@ span.lfh-close::before{
 }
 span.lfh-close{
     float:right;
-    color:white;
     width:20px;
     height:20px;
 	margin-right:10px;
@@ -734,13 +733,13 @@ div.lfh-min div.lfh-data span.lfh-close{
 div.lfh-min div.lfh-data div.lfh-list:not(.step0) ~ div.lfh-nav div.lfh-back{
     display:inline;
 }
-div.lfh-min div.lfh-data div.lfh-element:not(.hidden) ~ div.lfh-nav span.lfh-close,
-div.lfh-min div.lfh-data div.lfh-element:not(.hidden) ~ div.lfh-nav div.lfh-back,
-div.lfh-min div.lfh-data div.lfh-element:not(.hidden) ~ div.lfh-nav div.lfh-next{
+div.lfh-min div.lfh-data div.lfh-element:not(.lfh-hidden) ~ div.lfh-nav span.lfh-close,
+div.lfh-min div.lfh-data div.lfh-element:not(.lfh-hidden) ~ div.lfh-nav div.lfh-back,
+div.lfh-min div.lfh-data div.lfh-element:not(.lfh-hidden) ~ div.lfh-nav div.lfh-next{
 	display:inline;
 }
 
-div.lfh-min div.lfh-data div.lfh-element.step0:not(.hidden) ~ div.lfh-nav div.lfh-back{
+div.lfh-min div.lfh-data div.lfh-element.step0:not(.lfh-hidden) ~ div.lfh-nav div.lfh-back{
     display:none;
 }
 .fakefull .lfh-map-container{
@@ -796,7 +795,7 @@ div.lfh-min div.lfh-data div.lfh-element.step0:not(.hidden) ~ div.lfh-nav div.lf
 .markerbounds{
     display:block;
 }
-.markerbounds .hidden{
+.markerbounds .lfh-hidden{
     display:none;
 }
 

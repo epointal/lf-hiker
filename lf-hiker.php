@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Lf_Hiker_Plugin
 {
-    const VERSION = '1.3.2';
+    const VERSION = '1.3.3';
     
     private static $_controller;
     

@@ -6,7 +6,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 ?>
-<div id="<?=$track_id?>" class="lfh-info-<?=$map_count?> lfh-element leaflet-control hidden step0"  >
+<div id="<?=$track_id?>" class="lfh-info-<?=$map_count?> lfh-element leaflet-control lfh-hidden step0"  >
     <div>
         <!-- header -->
         <div class="lfh-head">
@@ -102,7 +102,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
           </div>
           <!-- misc info -->
         <?php if(strlen($html)>0):?>
-        <div class="lfh-section hidden">
+        <div class="lfh-section lfh-hidden">
             <div class="lfh-header">
             <h4><?=ucfirst( __('description', 'lfh'))?></h4>
             </div>    

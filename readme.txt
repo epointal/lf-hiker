@@ -6,7 +6,7 @@ Tags: map, GPX, hiker, runner, track, path, trail, leaflet, profile, openstreetm
 Requires at least: 4.7.3
 Tested up to: 4.8  
 Stable tag: 1.0  
-Version: 1.3.2
+Version: 1.3.3
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -123,6 +123,11 @@ From zip archive
 7. You can change the default configuration in tab: `Settings → Lf-hiker` 
 
 == Changelog == 
+= 1.3.3 =
+ * fixed : On small screens, for three buttons, the elements are not centered
+ * fixed : Conflict with the bootstrap themes on hidden elements
+ * fixed : list button too big
+ 
 = 1.3.2 =
  * default value attribute visibility set to always for marker
  * update modules for gulp
