@@ -123,6 +123,10 @@ From zip archive
 7. You can change the default configuration in tab: `Settings → Lf-hiker` 
 
 == Changelog == 
+= 1.3.4 =
+ * fixed : https for tiles
+ * fixed : gpx url for https
+ 
 = 1.3.3 =
  * fixed : On small screens, for three buttons, the elements are not centered
  * fixed : Conflict with the bootstrap themes on hidden elements
