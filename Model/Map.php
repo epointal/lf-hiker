@@ -27,25 +27,25 @@ Class Lfh_Model_Map{
     
     public static $tiles = array(
             'osm'         => array( 
-                        'url'           => 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                        'url'           => '//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
                         'attribution'   => ' &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
                         'min_zoom'      => 1, 
                         'max_zoom'      => 18,
                         'need_key'      => false),
             'osm_fr'      => array(
-                        'url'           => 'https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
+                        'url'           => '//{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
                         'attribution'   => 'donn&eacute;es &copy; <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
                         'min_zoom'      => 1,
                         'max_zoom'      => 20,
                         'need_key'      => false),
             'arcgis_topo' => array(
-                        'url'           => 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
+                        'url'           => '//server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
                         'attribution'   => 'Tiles © <a href="https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer">ArcGIS</a>',
                         'max_zoom'      => 18,
                         'need_key'      => false),
             'stamen_water'=> array(
                        // 'url'           =>  'https://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg',
-                        'url'           => 'https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg',
+                        'url'           => '//stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg',
                         'attribution'   => '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>Contributors & <a href="http://stamen.com">Stamen Design</a>',
                         'max_zoom'      => 13,
                         'need_key'      => false)
