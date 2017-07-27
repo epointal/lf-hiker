@@ -27,13 +27,13 @@ Class Lfh_Model_Map{
     
     public static $tiles = array(
             'osm'         => array( 
-                        'url'           => '//{s}.tile.osm.org/{z}/{x}/{y}.png',
+                        'url'           => 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
                         'attribution'   => ' &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
                         'min_zoom'      => 1, 
                         'max_zoom'      => 18,
                         'need_key'      => false),
             'osm_fr'      => array(
-                        'url'           => '//{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
+                        'url'           => 'https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
                         'attribution'   => 'donn&eacute;es &copy; <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
                         'min_zoom'      => 1,
                         'max_zoom'      => 20,
@@ -44,7 +44,8 @@ Class Lfh_Model_Map{
                         'max_zoom'      => 18,
                         'need_key'      => false),
             'stamen_water'=> array(
-                        'url'           =>  '//{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg',
+                       // 'url'           =>  'https://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg',
+                        'url'           => 'https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg',
                         'attribution'   => '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>Contributors & <a href="http://stamen.com">Stamen Design</a>',
                         'max_zoom'      => 13,
                         'need_key'      => false)
@@ -216,8 +217,8 @@ Class Lfh_Model_Map{
        
         $args = array(
                 'src'   => array(
-                        'filter'    => FILTER_SANITIZE_URL | FILTER_VALIDATE_URL,
-                        'default'   => NULL),
+                        'filter'    => FILTER_CALLBACK,
+                        'options'   => 'Lfh_Model_Map::is_url'),
                 'title'   => array(
                         'filter'    => FILTER_SANITIZE_STRING,
                         'default'   => strtoupper(__('no named gpx', 'lfh'))),
@@ -321,6 +322,15 @@ Class Lfh_Model_Map{
         }else{
             return  get_option('lfh_height_unit', $units[0]);
         }
+    }
+    private static function is_url($url){
+        $url = filter_var( $url, FILTER_SANITIZE_URL );
+        if( $url !== false ){
+            //pour les changements de http à https et inversement
+            $url = str_replace( "http:", "", $url);
+            $url = str_replace( "https:", "", $url);
+        }
+        return $url;
     }
     private static function validate_boolean( $bool){
         if( is_null($bool)){

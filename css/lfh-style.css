@@ -65,83 +65,83 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 } 
-.lfhicon-close:before { content: '\e800'; } /* '' */
-.lfhicon-asterisk:before { content: '\e801'; } /* '' */
-.lfhicon-star:before { content: '\e802'; } /* '' */
-.lfhicon-bolt:before { content: '\e803'; } /* '' */
-.lfhicon-eye:before { content: '\e804'; } /* '' */
-.lfhicon-heart:before { content: '\e805'; } /* '' */
-.lfhicon-flag:before { content: '\e806'; } /* '' */
-.lfhicon-leaf:before { content: '\e807'; } /* '' */
-.lfhicon-key:before { content: '\e808'; } /* '' */
-.lfhicon-music:before { content: '\e809'; } /* '' */
-.lfhicon-cloud:before { content: '\e80a'; } /* '' */
-.lfhicon-plane:before { content: '\e80b'; } /* '' */
-.lfhicon-glass:before { content: '\e80c'; } /* '' */
-.lfhicon-home:before { content: '\e80d'; } /* '' */
-.lfhicon-road:before { content: '\e80e'; } /* '' */
-.lfhicon-map-marker:before { content: '\e80f'; } /* '' */
-.lfhicon-edit:before { content: '\e810'; } /* '' */
-.lfhicon-download:before { content: '\e811'; } /* '' */
-.lfhicon-th-list:before { content: '\e812'; } /* '' */
-.lfhicon-resize-full-1:before { content: '\e813'; } /* '' */
-.lfhicon-reset:before { content: '\e814'; } /* '' */
-.lfhicon-resize-small:before { content: '\e815'; } /* '' */
-.lfhicon-resize-full:before { content: '\f0b2'; } /* '' */
-.lfhicon-square:before { content: '\f0c8'; } /* '' */
-.lfhicon-menu:before { content: '\f0c9'; } /* '' */
-.lfhicon-bell:before { content: '\f0f3'; } /* '' */
-.lfhicon-coffee:before { content: '\f0f4'; } /* '' */
-.lfhicon-cutlery:before { content: '\f0f5'; } /* '' */
-.lfhicon-beer:before { content: '\f0fc'; } /* '' */
-.lfhicon-circle-o:before { content: '\f10c'; } /* '' */
-.lfhicon-circle:before { content: '\f111'; } /* '' */
-.lfhicon-smile-o:before { content: '\f118'; } /* '' */
-.lfhicon-chevron-circle-left:before { content: '\f137'; } /* '' */
-.lfhicon-chevron-circle-right:before { content: '\f138'; } /* '' */
-.lfhicon-bullseye:before { content: '\f140'; } /* '' */
-.lfhicon-female:before { content: '\f182'; } /* '' */
-.lfhicon-male:before { content: '\f183'; } /* '' */
-.lfhicon-sun-o:before { content: '\f185'; } /* '' */
-.lfhicon-dot-circle-o:before { content: '\f192'; } /* '' */
-.lfhicon-wheelchair:before { content: '\f193'; } /* '' */
-.lfhicon-wordpress:before { content: '\f19a'; } /* '' */
-.lfhicon-bank:before { content: '\f19c'; } /* '' */
-.lfhicon-child:before { content: '\f1ae'; } /* '' */
-.lfhicon-paw:before { content: '\f1b0'; } /* '' */
-.lfhicon-spoon:before { content: '\f1b1'; } /* '' */
-.lfhicon-cube:before { content: '\f1b2'; } /* '' */
-.lfhicon-cab:before { content: '\f1b9'; } /* '' */
-.lfhicon-tree:before { content: '\f1bb'; } /* '' */
-.lfhicon-binoculars:before { content: '\f1e5'; } /* '' */
-.lfhicon-trash:before { content: '\f1f8'; } /* '' */
-.lfhicon-bicycle:before { content: '\f206 '; margin-left: -.5px;} /* '' */
-.lfhicon-bed:before { content: '\f236'; } /* '' */
-.lfhicon-train:before { content: '\f238'; } /* '' */
-.lfhicon-industry:before { content: '\f275'; } /* '' */
-.lfhicon-map:before { content: '\f279'; } /* '' */
-.lfhicon-shopping-basket:before { content: '\f291'; } /* '' */
-.lfhicon-envira:before { content: '\f299'; } /* '' */
-.lfhicon-shower:before { content: '\f2cc'; } /* '' */
-.lfhicon-snowflake-o:before { content: '\f2dc'; } /* '' */
-.lfhicon-pin:before { content: '\e816'; } /* '' */
-.lfhicon-globe:before { content: '\e817'; } /* '' */
-.lfhicon-resize-small-1:before { content: '\e818'; } /* '' */
-.lfhicon-resize-full-2:before { content: '\e819'; } /* '' */
-.lfhicon-sun-inv:before { content: '\e81a'; } /* '' */
-.lfhicon-record:before { content: '\e81b'; } /* '' */
-.lfhicon-religious-christian:before { content: '\e82f'; } /* '' */
-.lfhicon-school:before { content: '\e834'; } /* '' */
-.lfhicon-skiing:before { content: '\e836'; } /* '' */
-.lfhicon-swimming:before { content: '\e838'; } /* '' */
+.lfhicon-close:before { content: '\e800'; } 
+.lfhicon-asterisk:before { content: '\e801'; } 
+.lfhicon-star:before { content: '\e802'; } 
+.lfhicon-bolt:before { content: '\e803'; } 
+.lfhicon-eye:before { content: '\e804'; } 
+.lfhicon-heart:before { content: '\e805'; }
+.lfhicon-flag:before { content: '\e806'; } 
+.lfhicon-leaf:before { content: '\e807'; } 
+.lfhicon-key:before { content: '\e808'; } 
+.lfhicon-music:before { content: '\e809'; }
+.lfhicon-cloud:before { content: '\e80a'; }
+.lfhicon-plane:before { content: '\e80b'; }
+.lfhicon-glass:before { content: '\e80c'; }
+.lfhicon-home:before { content: '\e80d'; } 
+.lfhicon-road:before { content: '\e80e'; } 
+.lfhicon-map-marker:before { content: '\e80f'; } 
+.lfhicon-edit:before { content: '\e810'; } 
+.lfhicon-download:before { content: '\e811'; }
+.lfhicon-th-list:before { content: '\e812'; } 
+.lfhicon-resize-full-1:before { content: '\e813'; } 
+.lfhicon-reset:before { content: '\e814'; } 
+.lfhicon-resize-small:before { content: '\e815'; }
+.lfhicon-resize-full:before { content: '\f0b2'; } 
+.lfhicon-square:before { content: '\f0c8'; } 
+.lfhicon-menu:before { content: '\f0c9'; } 
+.lfhicon-bell:before { content: '\f0f3'; } 
+.lfhicon-coffee:before { content: '\f0f4'; } 
+.lfhicon-cutlery:before { content: '\f0f5'; }
+.lfhicon-beer:before { content: '\f0fc'; } 
+.lfhicon-circle-o:before { content: '\f10c'; } 
+.lfhicon-circle:before { content: '\f111'; } 
+.lfhicon-smile-o:before { content: '\f118'; } 
+.lfhicon-chevron-circle-left:before { content: '\f137'; } 
+.lfhicon-chevron-circle-right:before { content: '\f138'; }
+.lfhicon-bullseye:before { content: '\f140'; } 
+.lfhicon-female:before { content: '\f182'; } 
+.lfhicon-male:before { content: '\f183'; } 
+.lfhicon-sun-o:before { content: '\f185'; } 
+.lfhicon-dot-circle-o:before { content: '\f192'; } 
+.lfhicon-wheelchair:before { content: '\f193'; }
+.lfhicon-wordpress:before { content: '\f19a'; } 
+.lfhicon-bank:before { content: '\f19c'; } 
+.lfhicon-child:before { content: '\f1ae'; }
+.lfhicon-paw:before { content: '\f1b0'; }
+.lfhicon-spoon:before { content: '\f1b1'; }
+.lfhicon-cube:before { content: '\f1b2'; } 
+.lfhicon-cab:before { content: '\f1b9'; } 
+.lfhicon-tree:before { content: '\f1bb'; } 
+.lfhicon-binoculars:before { content: '\f1e5'; } 
+.lfhicon-trash:before { content: '\f1f8'; } 
+.lfhicon-bicycle:before { content: '\f206 '; margin-left: -.5px;} 
+.lfhicon-bed:before { content: '\f236'; } 
+.lfhicon-train:before { content: '\f238'; } 
+.lfhicon-industry:before { content: '\f275'; } 
+.lfhicon-map:before { content: '\f279'; } 
+.lfhicon-shopping-basket:before { content: '\f291'; } 
+.lfhicon-envira:before { content: '\f299'; } 
+.lfhicon-shower:before { content: '\f2cc'; } 
+.lfhicon-snowflake-o:before { content: '\f2dc'; } 
+.lfhicon-pin:before { content: '\e816'; } 
+.lfhicon-globe:before { content: '\e817'; } 
+.lfhicon-resize-small-1:before { content: '\e818'; } 
+.lfhicon-resize-full-2:before { content: '\e819'; } 
+.lfhicon-sun-inv:before { content: '\e81a'; } 
+.lfhicon-record:before { content: '\e81b'; } 
+.lfhicon-religious-christian:before { content: '\e82f'; } 
+.lfhicon-school:before { content: '\e834'; } 
+.lfhicon-skiing:before { content: '\e836'; } 
+.lfhicon-swimming:before { content: '\e838'; } 
 
 .lfhicon-cubes:before { content: '\f1b3'; } 
-.lfhicon-bus:before { content: '\f207'; } /* '' */
-.lfhicon-diamond:before { content: '\f219'; } /* '' */
-.lfhicon-motorcycle:before { content: '\f21c'; } /* '' */
-.lfhicon-fort-awesome:before { content: '\f286'; } /* '' */
-.lfhicon-shopping-bag:before { content: '\f290'; } /* '' */
-.lfhicon-first-order:before { content: '\f2b0'; } /* '' */
+.lfhicon-bus:before { content: '\f207'; } 
+.lfhicon-diamond:before { content: '\f219'; } 
+.lfhicon-motorcycle:before { content: '\f21c'; } 
+.lfhicon-fort-awesome:before { content: '\f286'; } 
+.lfhicon-shopping-bag:before { content: '\f290'; } 
+.lfhicon-first-order:before { content: '\f2b0'; } 
 /*
 Author: L. Voogdt
 License: MIT

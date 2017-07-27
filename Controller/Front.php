@@ -108,11 +108,10 @@ Class Lfh_Controller_Front
             return '';
         }
         $content = '';
-        if(self::$_lfh_map_count==0){
+        if( self::$_lfh_map_count==0){
             $content = self::map_shortcode(array());
         }
-       
-        self::$_lfh_track_count++;
+        self::$_lfh_track_count++;;
         $this->add_gpx_script($options);
         $content .= $this->get_view()->render('track' ,
                         array(

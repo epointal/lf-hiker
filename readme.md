@@ -1,7 +1,7 @@
 # Lf Hiker 
 [![Contributor: Elisabeth Pointal](http://elisabeth.pointal.org/images/svg/contributor2.svg)](http://elisabeth.pointal.org)
 [![License GPL 2](http://elisabeth.pointal.org/images/svg/license.svg)](http://www.gnu.org/licenses/gpl-2.0.html )
-[![Version 1.3.3](http://elisabeth.pointal.org/images/svg/version1.3.3.svg)](https://github.com/epointal/lf-hiker/archive/1.3.3.zip) 
+[![Version 1.3.4](http://elisabeth.pointal.org/images/svg/version1.3.4.svg)](https://github.com/epointal/lf-hiker/archive/1.3.4.zip) 
 
 Plugin site web: [Lf Hiker](http://elisabeth.pointal.org/lf-hiker/en/about/ )  
 Requires Wordpress version: 4.7.3  
@@ -103,7 +103,7 @@ If you have any questions about the method, do not hesitate to [contact me](http
 
 ### Perform a new installation  
 
-After downloading the ZIP file [lf-hiker-1.3.3.zip](https://github.com/epointal/lf-hiker/archive/1.3.3.zip)   
+After downloading the ZIP file [lf-hiker-1.3.4.zip](https://github.com/epointal/lf-hiker/archive/1.3.4.zip)   
 
 1. Unzip `lf-hiker.zip` 
 2. Put the folder `lf-hiker` in directory `wp-content/plugins`
@@ -132,6 +132,10 @@ After downloading the ZIP file [lf-hiker-1.3.3.zip](https://github.com/epointal/
 
 
 ## Changelog 
+### 1.3.4 ###
+ * fixed : https for tiles
+ * fixed : gpx url for https
+ 
 ### 1.3.3 ###
  * fixed : On small screens, for three buttons, the elements are not centered
  * fixed : Conflict with the bootstrap themes on hidden elements

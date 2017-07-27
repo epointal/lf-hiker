@@ -2,10 +2,10 @@
     /*
     Plugin Name: LF Hiker
     Plugin URI: http://elisabeth.pointal.org/lf-hiker
-    Description: A responsive and mobile friendly plugin for show gpx track with profile elevation.
+    Description: A responsive and mobile friendly plugin to display gpx track with profile elevation.
     Author: epointal
     Author URI: http://elisabeth.pointal.org/
-    Version: 1.3.3
+    Version: 1.3.4
     License: GPL2
     Text domain: lfh
     */
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Lf_Hiker_Plugin
 {
-    const VERSION = '1.3.3';
+    const VERSION = '1.3.4';
     
     private static $_controller;
     
