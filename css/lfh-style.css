@@ -731,6 +731,8 @@ div.lfh-min div.lfh-nav div.lfh-title {
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 #lfh-fade.lfh-min div.lfh-nav div.lfh-title {
   text-align: left;
@@ -1040,6 +1042,14 @@ div.lfh-nav div.lfh-back::before {
   width: 100%;
   padding: 5px;
   margin-bottom: 2px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+span.lfh-trackname {
+  max-width: 250px;
+  height: 25px;
+  display: inline-block;
+  line-height: 1;
 }
 span.lfh-close::before {
   display: inline-block;

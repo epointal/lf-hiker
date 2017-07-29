@@ -124,6 +124,7 @@ From zip archive
 
 == Changelog == 
 = 1.3.5 =
+ * too long title for gpx or marker
  * fixed : url gpx with special character trigger file not found error
  * disabled : map first center on Paris
  

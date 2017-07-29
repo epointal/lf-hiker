@@ -133,6 +133,7 @@ After downloading the ZIP file [lf-hiker-1.3.5.zip](https://github.com/epointal/
 
 ## Changelog 
 ### 1.3.5 ###
+ * fixed : too long gpx title
  * fixed : url gpx with special character trigger file not found error
  * disabled : map first center on Paris
  
