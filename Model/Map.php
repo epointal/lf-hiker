@@ -246,7 +246,10 @@ Class Lfh_Model_Map{
         );
       
         $return = filter_var_array($options,$args);
-        
+
+        if( $return['src'] === false){
+            return null;
+        }
         return $return;
       
         
@@ -323,13 +326,16 @@ Class Lfh_Model_Map{
             return  get_option('lfh_height_unit', $units[0]);
         }
     }
-    private static function is_url($url){
-        $url = filter_var( $url, FILTER_SANITIZE_URL );
-        if( $url !== false ){
-            //pour les changements de http à https et inversement
-            $url = str_replace( "http:", "", $url);
-            $url = str_replace( "https:", "", $url);
-        }
+    private static function is_url( $url ){
+       if( (strpos( $url, '.gpx') === false && strpos($url, '.GPX') === false)){
+           return false;
+       }
+       //$url = utf8_encode($url);
+       
+       //pour les changements de http à https et inversement
+       $url = str_replace( "http:", "", $url);
+       $url = str_replace( "https:", "", $url);
+
         return $url;
     }
     private static function validate_boolean( $bool){

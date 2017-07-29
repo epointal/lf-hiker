@@ -548,7 +548,10 @@ lfh.Map = function(i){
             _list = d.list;
             _center = [d.lat, d.lng];
             _zoom = Math.min(d.zoom,lfh.tiles[d.tile].max_zoom);
-            map = L.map(_map_id).setView( _center, _zoom);
+            map = L.map(_map_id);
+            if( !_auto_center ){
+                map.setView( _center, _zoom);
+            }
             _set_tile(d.tile);
        
             map.options.mousewheel = d.mousewheel;

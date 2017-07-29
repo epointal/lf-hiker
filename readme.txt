@@ -6,7 +6,7 @@ Tags: map, GPX, hiker, runner, track, path, trail, leaflet, profile, openstreetm
 Requires at least: 4.7.3
 Tested up to: 4.8  
 Stable tag: 1.0  
-Version: 1.3.4
+Version: 1.3.5
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -123,6 +123,10 @@ From zip archive
 7. You can change the default configuration in tab: `Settings → Lf-hiker` 
 
 == Changelog == 
+= 1.3.5 =
+ * fixed : url gpx with special character trigger file not found error
+ * disabled : map first center on Paris
+ 
 = 1.3.4 =
  * fixed : https for tiles
  * fixed : gpx url for https
