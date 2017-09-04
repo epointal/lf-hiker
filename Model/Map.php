@@ -241,7 +241,6 @@ Class Lfh_Model_Map{
                 'unit_h' => array(
                         'filter'    => FILTER_CALLBACK,
                         'options'   => 'Lfh_Model_Map::is_height_unit'
-                
                 )
         );
       

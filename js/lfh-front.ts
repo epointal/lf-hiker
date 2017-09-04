@@ -12,20 +12,36 @@
  * @use L.GPX
  */
 
-(function(){
-  
-// Method usefull on strings
+declare var L: any; //leaflet
+declare var MQ:any;  // Maquest
+declare var lfh: any; // my space name some come from page
+declare var data_helper: any; // data coming from php
+
+interface HTMLElement {
+    step: number; 
+    step_max: number;//
+}
+
+//Method usefull on strings
 
 String.prototype.addslashes = function()
- {return this.replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');};
+{return this.replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');};
 
 String.prototype.stripslashes = function()
- {return this.replace(/\\(.?)/g, function (s, n1){switch (n1){case '\\':return '\\';case '0':return '\u0000';case '':return '';default:return n1;}});};
+{return this.replace(/\\(.?)/g, function (s, n1){switch (n1){case '\\':return '\\';case '0':return '\u0000';case '':return '';default:return n1;}});};
 
 String.prototype.replaceAll = function(search, replacement) {
-     var target = this;
-     return target.replace(new RegExp(search, 'g'), replacement);
- };
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+interface String {
+    addslashes() : string;
+    stripslashes(): string;
+    replaceAll(search : string, replacement:string) : string;
+}
+(function(){
+  
+
 
 
  
@@ -196,7 +212,8 @@ lfh.treatment_node = function( description ){
            case "a":
            case "span":
                if(node.textContent.trim().length > 0){
-                   var h = (node.textContent.trim().length )/col;
+                   
+                   var lng = (node.textContent.trim().length )/col;
                    if(row + lng > line){
                        new_childs.push(div);
                        div = document.createElement("div");
@@ -250,8 +267,8 @@ lfh.treatment_node = function( description ){
                    if(row > 0){
                        new_childs.push(div);
                    }
-                   var div2 = node.cloneNode(true);
-                   new_childs.push(div2);
+                   var div3 = node.cloneNode(true);
+                   new_childs.push(div3);
                    div = document.createElement("div");
                    row = 0;
               // }else{
@@ -384,7 +401,7 @@ lfh.TopControl = L.Control.extend({
 lfh.resize_content = function(container){
     // compute the size of the description fonction of the parent
     var node = document.querySelector('#'+ container.id + '-data');
-    var height = node.offsetHeight ;
+    var height = (<HTMLElement>node).offsetHeight ;
     if(container.parentNode.parentNode.className.indexOf('lfh-min')<0){
         height -= 70;
     }else{
@@ -407,13 +424,14 @@ lfh.resize_content = function(container){
     //var elements = node.querySelectorAll('div:not(.lfh-min) .lfh-element');
   
     for(var i=0; i<elements.length;i++){
-        elements.item(i).style.maxHeight = (height) +'px';
-        elements.item(i).querySelector('.lfh-element-content').style.maxHeight = (height-40)+'px';
+        (<HTMLElement>elements.item(i)).style.maxHeight = (height) +'px';
+        (<HTMLElement>elements.item(i).querySelector('.lfh-element-content')).style.maxHeight = (height-40)+'px';
     }
 }
 lfh.map_resize = function(map){
     var width = map.getContainer().offsetWidth;
     var global_container = map.getContainer().parentNode.parentNode;
+    var _large = false;
     if(width <= lfh.WIDTH_LIMIT ){
         
         global_container.className += ' lfh-min';
@@ -430,7 +448,7 @@ lfh.map_resize = function(map){
             map.getContainer().style.height = "100%";
         }else{
             var nav = document.querySelector(".lfh-nav");
-            map.getContainer().style.height = (global_container.offsetHeight - nav.offsetHeight+2) +"px";
+            (<HTMLElement>map.getContainer()).style.height = ((<HTMLElement>global_container).offsetHeight - (<HTMLElement>nav).offsetHeight+2) +"px";
         }
     }
     map.invalidateSize();
@@ -460,10 +478,10 @@ lfh.toggle_next = function( node, delta, map_id){
 
     if( node.step_max <= node.step +1 ){
         // hide next button
-        document.querySelector('#'+ map_id + "-nav .lfh-next").style.display = "none";
+        (<HTMLElement>document.querySelector('#'+ map_id + "-nav .lfh-next")).style.display = "none";
     }else{
         // show next button
-        document.querySelector('#'+ map_id + "-nav .lfh-next").style.display = "block";
+        (<HTMLElement>document.querySelector('#'+ map_id + "-nav .lfh-next")).style.display = "block";
     }
 }
 
@@ -487,7 +505,7 @@ lfh.Selected = function( map_id, map, marker){
         
         this.close = function(bool){
             // hide navigation button next
-            document.querySelector('#'+ this.map_id + "-nav .lfh-next").style.display = "none";
+            (<HTMLElement>document.querySelector('#'+ this.map_id + "-nav .lfh-next")).style.display = "none";
             if(this.id != null ){
                 //close fenetre
                 var classname = this.dom.className;
@@ -811,7 +829,7 @@ lfh.Map = function(i){
                               _move_marker,
                               _data.gpx[j].unit,
                               _data.gpx[j].unit_h);
-                 }).on('failed', function(){
+                 }).on('failed', function( e ){
                       e.target.options.isLoaded = true;
                       console.log("failed");
                  })
@@ -1085,20 +1103,9 @@ lfh.Profile = function( map, layer, dom, move, unit, unit_h){
          var _max = _gpx.get_elevation_max() / _coeff_elevation;
          var _min = _gpx.get_elevation_min() / _coeff_elevation;
          var _max_km = _data[ _data.length-1 ][0] / _coeff;
-         var _step_h =  lfh.Util.step_round((_max - _min)/3.5);
-         if( _step_h < 10 / _coeff_elevation ){
-            
-             _step_h = _coeff_elevation==1? 10 : 25 ;
-             if(_min -5 < 0){
-                 _max = _coeff_elevation==1? 40 : 100 ;
-             }else{
-                 _middle = lfh.Util.step_round((_max + _min)/2);
-                 _max = _middle + 30;
-             }
-         }
-        var _max_h = Math.ceil( _max/_step_h)*(_step_h);
-        var _min_h = _max_h - 5 * _step_h;
-
+         var _step_h = lfh.Util.step_round((_max - _min)/3.5);
+         var _max_h = Math.ceil( _max/_step_h)*(_step_h);
+         var _min_h = _max_h - 5 * _step_h;
          var _step_x = lfh.Util.step_round((_max_km)/4);
      }else{
          var _has_elevation = false;
@@ -1111,18 +1118,9 @@ lfh.Profile = function( map, layer, dom, move, unit, unit_h){
      }
      function _compute(){
          var d= 'M ';
-         var add = Math.round(_data.length /100)+1;
-         console.log( add );
-         for(var i=0; i < _data.length - add ; i = i + add){
-             var x = _x(_data[i][0]);
-             var h = _h(_data[i][1]);
-             for(var j=1; j <add & i+j< _data.length; j++){
-                 x += _x(_data[i + j][0]);
-                 h += _h(_data[i + j][1]);
-             }
-             d += Math.round( x/add) + ','+ Math.round(h/add);
-             //d += Math.round(_x(_data[i][0])) + ','+Math.round(_h(_data[i][1]));
-             if(i+j!=_data.length-1){
+         for(var i=0; i < _data.length ; i++){
+             d += Math.round(_x(_data[i][0])) + ','+Math.round(_h(_data[i][1]));
+             if(i!=_data.length-1){
                  d += ' L ';
              }
          }
@@ -1130,8 +1128,6 @@ lfh.Profile = function( map, layer, dom, move, unit, unit_h){
      }
      
      function draw(){
-         console.log( _data.length);
-        
          if( _has_elevation){
              // draw the curve
              var _d = _compute();
