@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         <!-- header -->
         <div class="lfh-head">
             <h3 >
-                 <span class="lfh-trackname"><?=ucfirst($options['title'])?>&nbsp;</span>
+                 <span class="lfh-trackname"><?=ucfirst( stripslashes ($options['title']))?>&nbsp;</span>
                 <span  class="lfh-close lfhicon lfhicon-close" >&nbsp;</span>
             </h3>
         </div>

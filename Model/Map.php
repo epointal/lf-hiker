@@ -218,10 +218,12 @@ Class Lfh_Model_Map{
         $args = array(
                 'src'   => array(
                         'filter'    => FILTER_CALLBACK,
-                        'options'   => 'Lfh_Model_Map::is_url'),
-                'title'   => array(
-                        'filter'    => FILTER_SANITIZE_STRING,
-                        'default'   => strtoupper(__('no named gpx', 'lfh'))),
+                        'options'   => 'Lfh_Model_Map::is_url'
+                ),
+                'title' => array(
+                        'filter'    => FILTER_CALLBACK,
+                        'options'   => 'Lfh_Model_Map::clean_string'
+                ),
                 'color' => array(
                         'filter'    => FILTER_CALLBACK,
                         'options'   => 'Lfh_Model_Map::is_path_color'),

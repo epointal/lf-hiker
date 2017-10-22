@@ -1111,27 +1111,27 @@ lfh.Profile = function( map, layer, dom, move, unit, unit_h){
      }
      function _compute(){
          var d= 'M ';
-         var add = Math.round(_data.length /100)+1;
-         console.log( add );
-         for(var i=0; i < _data.length - add ; i = i + add){
-             var x = _x(_data[i][0]);
-             var h = _h(_data[i][1]);
-             for(var j=1; j <add & i+j< _data.length; j++){
+         var add = parseInt(_data.length /150)+1;
+         var ln = _data.length;
+         //first point
+         d += _x(_data[0][0]) + ','+ _h(_data[0][1]) + ' L ';
+         for(var i=0; i < ln -add ; i = i + add){
+             console.log( "i="+i);
+             var x = 0;
+             var h = 0;
+             for(var j=0;  j <add && i+j< ln ; j++){
                  x += _x(_data[i + j][0]);
                  h += _h(_data[i + j][1]);
              }
-             d += Math.round( x/add) + ','+ Math.round(h/add);
-             //d += Math.round(_x(_data[i][0])) + ','+Math.round(_h(_data[i][1]));
-             if(i+j!=_data.length-1){
-                 d += ' L ';
-             }
+             d += Math.round( x/add) + ','+ Math.round(h/add) + ' L ';
+            
          }
+         // last point
+         d += _x(_data[ln-1][0]) + ','+ _h(_data[ln-1][1]);
          return d;
      }
      
      function draw(){
-         console.log( _data.length);
-        
          if( _has_elevation){
              // draw the curve
              var _d = _compute();

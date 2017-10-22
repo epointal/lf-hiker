@@ -1,7 +1,7 @@
 # Lf Hiker 
 [![Contributor: Elisabeth Pointal](http://elisabeth.pointal.org/images/svg/contributor2.svg)](http://elisabeth.pointal.org)
 [![License GPL 2](http://elisabeth.pointal.org/images/svg/license.svg)](http://www.gnu.org/licenses/gpl-2.0.html )
-[![Version 1.3.5](http://elisabeth.pointal.org/images/svg/version1.3.5.svg)](https://github.com/epointal/lf-hiker/archive/1.3.5.zip) 
+[![Version 1.3.6](http://elisabeth.pointal.org/images/svg/version1.3.6.svg)](https://github.com/epointal/lf-hiker/archive/1.3.6.zip) 
 
 Plugin site web: [Lf Hiker](http://elisabeth.pointal.org/lf-hiker/en/about/ )  
 Requires Wordpress version: 4.7.3  
@@ -103,7 +103,7 @@ If you have any questions about the method, do not hesitate to [contact me](http
 
 ### Perform a new installation  
 
-After downloading the ZIP file [lf-hiker-1.3.5.zip](https://github.com/epointal/lf-hiker/archive/1.3.5.zip)   
+After downloading the ZIP file [lf-hiker-1.3.6.zip](https://github.com/epointal/lf-hiker/archive/1.3.6.zip)   
 
 1. Unzip `lf-hiker.zip` 
 2. Put the folder `lf-hiker` in directory `wp-content/plugins`
@@ -132,6 +132,12 @@ After downloading the ZIP file [lf-hiker-1.3.5.zip](https://github.com/epointal/
 
 
 ## Changelog 
+### 1.3.6 ###
+ * smooth profile when lot of points
+ * profile with height difference minimum 40 meters 
+ * fixed:  characters not center in buttons list and fullscreen
+ * modify track name filter
+ 
 ### 1.3.5 ###
  * fixed : too long gpx title
  * fixed : url gpx with special character trigger file not found error
