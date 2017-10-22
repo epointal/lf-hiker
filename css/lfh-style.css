@@ -379,6 +379,7 @@ Version: 1.0
   font-size: 24px;
   line-height: 30px;
   cursor: pointer;
+  text-align: center;
   clear: none;
 }
 .lfh-control-fullscreen:hover,
@@ -388,11 +389,13 @@ Version: 1.0
 }
 .lfh-control-fullscreen::before {
   content: "\e819";
-  margin-left: 4px;
+  margin-left: 0px;
+  vertical-align: top;
 }
 .lfh-control-fullscreen.actived::before {
   content: "\e818";
   margin-left: 0;
+  vertical-align: top;
 }
 .lfh-control-refresh {
   background-color: white;
@@ -410,8 +413,9 @@ Version: 1.0
 }
 .lfh-control-list::before {
   content: "\e812";
-  margin-left: 5px;
+  margin-left: 0px;
   font-size: 20px;
+  vertical-align: top;
 }
 #lfh-fade .lfh-control-list::before {
   margin-left: 0px;
