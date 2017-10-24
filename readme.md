@@ -1,7 +1,7 @@
 # Lf Hiker 
 [![Contributor: Elisabeth Pointal](https://github.com/epointal/lf-hiker/blob/master/assets/svg/contributor2.svg)](http://elisabeth.pointal.org)
 [![License GPL 2](https://github.com/epointal/lf-hiker/blob/master/assets/svg/license.svg)](http://www.gnu.org/licenses/gpl-2.0.html )
-[![Version 1.3.6](https://github.com/epointal/lf-hiker/blob/master/assets/svg/version1.3.6.svg)](https://github.com/epointal/lf-hiker/archive/1.3.6.zip) 
+[![Version 1.3.7](https://github.com/epointal/lf-hiker/blob/master/assets/svg/version1.3.7.svg)](https://github.com/epointal/lf-hiker/archive/1.3.7.zip) 
 
 Plugin site web: [Lf Hiker](http://elisabeth.pointal.org/lf-hiker/en/about/ )  
 Requires Wordpress version: 4.7.3  
@@ -97,13 +97,13 @@ If you have any questions about the method, do not hesitate to [contact me](http
 
 ### Minimum requirements.  
 *   Wordpress 4.7.x  
-*   PHP 5.x  
+*   PHP 5.6  
 *   MySQL 5.x  
 
 
 ### Perform a new installation  
 
-After downloading the ZIP file [lf-hiker-1.3.6.zip](https://github.com/epointal/lf-hiker/archive/1.3.6.zip)   
+After downloading the ZIP file [lf-hiker-1.3.7.zip](https://github.com/epointal/lf-hiker/archive/1.3.7.zip)   
 
 1. Unzip `lf-hiker.zip` 
 2. Put the folder `lf-hiker` in directory `wp-content/plugins`
@@ -132,6 +132,9 @@ After downloading the ZIP file [lf-hiker-1.3.6.zip](https://github.com/epointal/
 
 
 ## Changelog 
+### 1.3.7 ###
+ * fixed error on activation with PHP5.5
+ 
 ### 1.3.6 ###
  * smooth profile when lot of points
  * profile with height difference minimum 40 meters 

@@ -90,7 +90,8 @@ Class Lfh_Controller_Back
     //for all users
     public static function add_infos_user( $user )
     {
-        $mode = empty(get_user_meta( $user->ID, 'lfh_helper_unactive', $user->ID, true))? false:true;
+        $value = get_user_meta( $user->ID, 'lfh_helper_unactive', $user->ID, true);
+        $mode = empty( $value )? false:true;
     	echo  self::get_view()->render('user', array(
     		    'title'           => 'Lf Hiker',
                 'helper_unactive' => $mode
