@@ -6,7 +6,7 @@ Tags: map, GPX, hiker, runner, track, path, trail, leaflet, profile, openstreetm
 Requires at least: 4.7.3
 Tested up to: 4.8  
 Stable tag: 1.0  
-Version: 1.3.7
+Version: 1.3.8
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -123,6 +123,9 @@ From zip archive
 7. You can change the default configuration in tab: `Settings → Lf-hiker` 
 
 == Changelog == 
+= 1.3.8 =
+ * fixed display button add marker in event editor
+ 
 = 1.3.7 =
  * fixed error on activation with PHP5.5
  

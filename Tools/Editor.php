@@ -129,9 +129,6 @@ class Lfh_Tools_Editor
     }
     // scripts for helper add-marker.phtml
    public function load_scripts_helper(){
-       global $wp_scripts, $wp_styles;
-       $wp_scripts->queue = array();
-       $wp_styles->queue = array();
        wp_enqueue_style( 'leaflet_css', 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.1.0/leaflet.css',  null, null );
        
        if(WP_DEBUG){
@@ -184,12 +181,14 @@ class Lfh_Tools_Editor
     public  function custom_tinymce()
     {
         global $typenow;
-        // Only on Post Type: post and page
-        if( ! in_array( $typenow, array( 'post', 'page' ) ) )
+        // Only on Post Type: post, tribe_events, event and page
+        if( ! in_array( $typenow, array( 'post', 'page', 'tribe_events', 'event' ) ) )
+        {
             return ;
-            add_filter( 'mce_buttons', array(&$this,'register_tinymce_button' ));
-            add_filter( 'mce_external_plugins', array(&$this,'add_lfh_hiker_tinymce' ));
-            add_filter( 'tiny_mce_before_init', array(&$this,'add_css_tinymce' ) );
+        }
+        add_filter( 'mce_buttons', array(&$this,'register_tinymce_button' ));
+        add_filter( 'mce_external_plugins', array(&$this,'add_lfh_hiker_tinymce' ));
+        add_filter( 'tiny_mce_before_init', array(&$this,'add_css_tinymce' ) );
     }
     // add button in list
     public   function register_tinymce_button( $buttons )

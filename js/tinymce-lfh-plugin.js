@@ -74,9 +74,9 @@
                         );*/
 
                         tinymce.activeEditor.windowManager.open({
-                            url: lfh_plugin.ajax+ '?action=add_marker_action&ver=1.3.2',
+                            url: lfh_plugin.ajax+ '?action=add_marker_action&ver=1.3.8',
                             width: window.innerWidth-50,
-                            height: window.innerHeight-50,
+                            height: window.innerHeight-60,
                             resizable:true,
                             maximizable:true,
                             scrollbars:true,
@@ -110,7 +110,6 @@
           createControl : function(n, cm) {
                return null;
           },
-         //content_css:lfh_plugin.url + 'assets/css/lfh-post-editor.css',
 
     
      });
