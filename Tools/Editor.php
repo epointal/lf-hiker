@@ -181,8 +181,9 @@ class Lfh_Tools_Editor
     public  function custom_tinymce()
     {
         global $typenow;
+
         // Only on Post Type: post,  event (events manager)  and page
-        if( ! in_array( $typenow, array( 'post', 'page',  'event' ) ) )
+        if( ! in_array( $typenow, array( 'post', 'page',  'event', 'tribe_events', 'ai1ec_event' ) ) )
         {
             return ;
         }
