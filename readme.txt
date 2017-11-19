@@ -4,7 +4,7 @@ Contributors: epointal
 Donate link: http://elisabeth.pointal.org/lf-hiker/en/about/  
 Tags: map, GPX, hiker, runner, track, path, trail, leaflet, profile, openstreetmap,
 Requires at least: 4.7.3
-Tested up to: 4.8  
+Tested up to: 4.9  
 Stable tag: 1.0  
 Version: 1.3.8
 License: GPLv2 or later  
@@ -97,7 +97,11 @@ If you think you found a bug in **Lf Hiker** or have any problem/question concer
  I will be happy, to add your translation to **Lf Hiker**.  
 If you have any questions about the method, do not hesitate to [contact me](http://elisabeth.pointal.org/lf-hiker/en/contact-me).  
  If you find errors in my english translation do not hesitate to [contact me](http://elisabeth.pointal.org/lf-hiker/en/contact-me).
- 
+
+### Minimum requirements  
+ *   Wordpress 4.7.x  
+ *   PHP 5.6  
+ *   MySQL 5.x 
 
 == Installation  == 
 From Plugins Page

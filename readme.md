@@ -5,7 +5,7 @@
 
 Plugin site web: [Lf Hiker](http://elisabeth.pointal.org/lf-hiker/en/about/ )  
 Requires Wordpress version: 4.7.3  
-Tested up to: Wordpress 4.8  
+Tested up to: Wordpress 4.9  
 Stable version: 1.0    
 
 
