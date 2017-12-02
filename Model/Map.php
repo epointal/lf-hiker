@@ -267,7 +267,7 @@ Class Lfh_Model_Map{
         $options = array(
                 'lat'   => $lat,
                 'lng'   => $lng,
-                'title' => isset($title) && !empty( $title ) ? $title : strtoupper( __('no named marker', 'lfh')),
+                'title' => (isset($title) && !empty( $title )) ? $title : strtoupper( __('no named marker', 'lfh')),
                 'visibility' => isset($visibility) ? $visibility : 'always',
                 'color' => isset($color) ? $color : 'red',
                 'icon'  => isset($icon) ? $icon : 'circle',
@@ -342,6 +342,8 @@ Class Lfh_Model_Map{
     private static function validate_boolean( $bool){
         if( is_null($bool)){
             return true;
+        }else if( strtolower( $bool) == "false"){
+            return false;
         }else{
             return boolval($bool);
         }

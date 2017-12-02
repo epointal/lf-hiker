@@ -326,6 +326,7 @@ lfh.TopControl = L.Control.extend({
     _list: true,
     _selected: null,
     initialize: function(d, selected ){
+        console.log(d);
         this._fullscreen = d.fullscreen;
         this._list = d.list;
         this._index = d.i;
@@ -1116,7 +1117,7 @@ lfh.Profile = function( map, layer, dom, move, unit, unit_h){
          //first point
          d += _x(_data[0][0]) + ','+ _h(_data[0][1]) + ' L ';
          for(var i=0; i < ln -add ; i = i + add){
-             console.log( "i="+i);
+           
              var x = 0;
              var h = 0;
              for(var j=0;  j <add && i+j< ln ; j++){

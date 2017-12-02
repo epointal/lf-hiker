@@ -1,7 +1,7 @@
 # Lf Hiker 
 [![Contributor: Elisabeth Pointal](https://github.com/epointal/lf-hiker/blob/master/assets/svg/contributor2.svg)](http://elisabeth.pointal.org)
 [![License GPL 2](https://github.com/epointal/lf-hiker/blob/master/assets/svg/license.svg)](http://www.gnu.org/licenses/gpl-2.0.html )
-[![Version 1.3.8](https://github.com/epointal/lf-hiker/blob/master/assets/svg/version1.3.8.svg)](https://github.com/epointal/lf-hiker/archive/1.3.8.zip) 
+[![Version 1.3.9](https://github.com/epointal/lf-hiker/blob/master/assets/svg/version1.3.9.svg)](https://github.com/epointal/lf-hiker/archive/1.3.9.zip) 
 
 Plugin site web: [Lf Hiker](http://elisabeth.pointal.org/lf-hiker/en/about/ )  
 Requires Wordpress version: 4.7.3  
@@ -103,7 +103,7 @@ If you have any questions about the method, do not hesitate to [contact me](http
 
 ### Perform a new installation  
 
-After downloading the ZIP file [lf-hiker-1.3.8.zip](https://github.com/epointal/lf-hiker/archive/1.3.8.zip)   
+After downloading the ZIP file [lf-hiker-1.3.9.zip](https://github.com/epointal/lf-hiker/archive/1.3.9.zip)   
 
 1. Unzip `lf-hiker.zip` 
 2. Put the folder `lf-hiker` in directory `wp-content/plugins`
@@ -132,6 +132,9 @@ After downloading the ZIP file [lf-hiker-1.3.8.zip](https://github.com/epointal/
 
 
 ## Changelog 
+### 1.3.9 ###
+ * fixed fullscreen button to false not working
+ 
 ### 1.3.8 ###
  * fixed display button add marker in event editor
  
