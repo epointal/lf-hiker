@@ -326,7 +326,6 @@ lfh.TopControl = L.Control.extend({
     _list: true,
     _selected: null,
     initialize: function(d, selected ){
-        console.log(d);
         this._fullscreen = d.fullscreen;
         this._list = d.list;
         this._index = d.i;
