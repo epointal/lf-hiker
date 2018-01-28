@@ -95,7 +95,7 @@ Class Lfh_Controller_Front
  
         $this->add_map_scripts( $options );
         
-        return $this->get_view()->render('map', array(
+        echo $this->get_view()->render('map', array(
                 'options' => $options,
                 'is_connected' => wp_get_current_user()->ID
                 ));
@@ -103,6 +103,7 @@ Class Lfh_Controller_Front
     
   
     public function gpx_shortcode($atts, $html=''){
+        
         $options = Lfh_Model_Map::filter_gpx_data($atts);
         if(is_null($options)){
             return '';
@@ -121,7 +122,7 @@ Class Lfh_Controller_Front
                         'options'     => $options,
                         'html'        => $html
                    ));
-        return $content;
+        echo $content;
     }
     
     public function marker_shortcode ( $atts, $html = '') {
@@ -145,7 +146,7 @@ Class Lfh_Controller_Front
                         'options'       => $options,
                         'html'          => $html
                 ));
-        return $content; 
+        echo $content; 
     }
     public  function add_div_fadable(){
         echo '<div id="lfh-fade"></div>';
