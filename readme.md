@@ -132,7 +132,7 @@ After downloading the ZIP file [lf-hiker-1.4.1.zip](https://github.com/epointal/
 
 
 ## Changelog 
-### 1.4.0 ###
+### 1.4.1 ###
  * fixed map at top (return previous version)
  
 ### 1.4.0 ###
