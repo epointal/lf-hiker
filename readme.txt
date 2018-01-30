@@ -6,7 +6,7 @@ Tags: map, GPX, hiker, runner, track, path, trail, leaflet, profile, openstreetm
 Requires at least: 4.7.3
 Tested up to: 4.9  
 Stable tag: 1.0  
-Version: 1.4.0
+Version: 1.4.1
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -127,6 +127,9 @@ From zip archive
 7. You can change the default configuration in tab: `Settings → Lf-hiker` 
 
 == Changelog == 
+= 1.4.1 =
+ * fixed map at top (return previous version)
+ 
 = 1.4.0 =
  * fixed issue with custom field ACF dit not do shortcode
 

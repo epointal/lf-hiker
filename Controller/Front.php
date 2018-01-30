@@ -95,7 +95,7 @@ Class Lfh_Controller_Front
  
         $this->add_map_scripts( $options );
         
-        echo $this->get_view()->render('map', array(
+        return $this->get_view()->render('map', array(
                 'options' => $options,
                 'is_connected' => wp_get_current_user()->ID
                 ));
@@ -122,7 +122,7 @@ Class Lfh_Controller_Front
                         'options'     => $options,
                         'html'        => $html
                    ));
-        echo $content;
+        return $content;
     }
     
     public function marker_shortcode ( $atts, $html = '') {
@@ -146,7 +146,7 @@ Class Lfh_Controller_Front
                         'options'       => $options,
                         'html'          => $html
                 ));
-        echo $content; 
+        return $content; 
     }
     public  function add_div_fadable(){
         echo '<div id="lfh-fade"></div>';
