@@ -352,8 +352,11 @@ input.lfh-button:hover,
     height:@height;
     display:none;
  }
-
+div.lfh-container{
+    clear:both;
+}
 div.lfh-container.lfh-min div.lfh-data{
+  
     position: relative;
     height:@height;
 }
@@ -836,12 +839,14 @@ div.lfh-container.center{
     margin:auto;
 }
 div.lfh-container.left{
+    clear:none;
     margin-left:0;
     float:left;
     margin-right:5px;
     min-width:300px;
 }
 div.lfh-container.right{
+    clear:none;
     float:right;
     margin-left:5px;
      min-width:300px;

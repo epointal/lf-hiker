@@ -6,10 +6,9 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$clear = $options['width'] == 100 ? "clear:both;":"";
 ?>
 <!-- -div of map -->
-<div  id="lfh-<?=$map_count?>-skin" class="lfh-container <?=$options['class']?>" style="position:relative;width:<?=$options['width']?>%;<?=$clear?>">
+<div  id="lfh-<?=$map_count?>-skin" class="lfh-container <?=$options['class']?>" style="position:relative;width:<?=$options['width']?>%;">
 <div id="lfh-<?=$map_count?>-fadable" class="lfh-fadable <?php echo ($is_connected>0? ' fakefull':'');?>">
     <div id="lfh-<?=$map_count?>" class="lfh-map" style="height:<?=($options['height'])?>px;width:100%;">
     </div>

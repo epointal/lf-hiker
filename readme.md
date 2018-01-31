@@ -133,7 +133,7 @@ After downloading the ZIP file [lf-hiker-1.4.2.zip](https://github.com/epointal/
 
 ## Changelog 
 ### 1.4.2 ###
- * fixed : issue 2 maps and the first floating
+ * fixed : issue 2 maps when the first floating the second is in stucks
  * fixed : issue no icon on button
  
 ### 1.4.1 ###
