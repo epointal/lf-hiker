@@ -284,6 +284,7 @@ Class Lfh_Controller_Front
                  #content input.lfh-button,
                  .main input.lfh-button,
                  input.lfh-button + input[type="button"]{
+                       font-family:"lfhiker";
                        background-color:' .$css['lfh_button_color'].';
                        border-color: ' . Lfh_Tools_Color::lighter_darker( $css['lfh_button_color'], 10) . ' ';
         $data .= Lfh_Tools_Color::lighter_darker( $css['lfh_button_color'], -10) .' ';
