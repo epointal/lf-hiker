@@ -45,7 +45,7 @@ For gpx track you can custom:
 * description
 * stroke color
 * stroke width
-
+* display button download gpx file
 
 **Lf Hiker** included an helper for edit map and add markers. 
 You can choose
@@ -58,7 +58,7 @@ You can choose
  * size of the map
  * classname for the map ( including your custom class)
  * zoom on mousewheel or not
- 
+ * start with profile elevation displayed
  
 #### for the markers:
  * color of icon marker

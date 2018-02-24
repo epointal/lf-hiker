@@ -52,6 +52,7 @@ For more information go to [Lf Hiker site](http://elisabeth.pointal.org/lf-hiker
  * stroke width
  * distance unit
  * elevation unit
+ * display button download gpx file
 
 
 **Lf Hiker** included an helper for edit map and add markers. 
@@ -65,6 +66,7 @@ You can choose
  * the size of the map
  * classnames for the map ( including your custom class)
  * zoom on mousewheel
+ * start with profile elevation displayed
  
  
 #### for the markers:
