@@ -7,6 +7,23 @@ class Lfh_Tools_Editor
     private $_cache = null;
     private $_unactive = false;
     
+    /**
+     * Create the checkbox for gpx field download button
+     * @param integer $post_id
+     * @param boolean|integer $value
+     * @return string
+     */
+    private function create_field_download_gpx( $post_id, $value ){
+        
+        $checked = $value ? 'checked="checked"': '';
+        
+        $html = '<input type="checkbox" name="attachments['. $post_id .'][lfh_download_gpx]"';
+        $html .= ' id="attachments['. $post_id .'][lfh_download_gpx]" ';
+        $html .= ' value="' .$value .'" ';
+        $html .= $checked . '  />';
+        
+        return $html;
+    }
     public function __construct( $unactive)
     {
         // for manage gpx file
@@ -253,10 +270,11 @@ class Lfh_Tools_Editor
             $color = empty($color)? Lfh_Model_Map::$default['stroke_color'] :  $color;
             $width = get_post_meta($id, 'lfh_stroke_width', true);
             $width = empty($width)? Lfh_Model_Map::$default['stroke_width'] : $width;
-            
+            $value = get_post_meta($id, 'lfh_download_gpx', true);
+            $button = $value =='' ?  Lfh_Model_Option::get_option('lfh_download_gpx'):$value;
             $filter = '';
             $filter .= '[lfh-gpx src=' . $attachment['url'] .' title="' . $attachment['post_title'] .'"';
-            $filter .= ' color='. $color . ' width=' .$width . ' ]';
+            $filter .= ' button='. $button .' color='. $color . ' width=' .$width . ' ]';
             if($attachment['post_content']){
                 $filter .= $attachment['post_content'];
             }else{
@@ -275,6 +293,17 @@ class Lfh_Tools_Editor
     {
     
         if($post->post_mime_type == 'application/gpx+xml' || $post->post_mime_type == 'application/xml'){
+            
+            $value = get_post_meta( $post->ID, 'lfh_download_gpx', true );
+            if($value==''){
+                $value = Lfh_Model_Option::get_option('lfh_download_gpx');
+            }
+            $form_fields['lfh_download_gpx'] = array(
+                    'label' => __('Display download button' , 'lfh'),
+                    'input' => 'html',
+                    'value' => get_post_meta( $post->ID, 'lfh_', true ),
+                    'html'  => $this->create_field_download_gpx( $post->ID , $value)
+            );
             //stroke color
             $form_fields['lfh_stroke_color'] = array(
                     'label' => __('Color path' , 'lfh'),
@@ -313,10 +342,16 @@ class Lfh_Tools_Editor
     {
         if( isset($attachment['lfh_stroke_color']) ){
             update_post_meta($post['ID'], 'lfh_stroke_color', $attachment['lfh_stroke_color']);
+            if( isset($attachment['lfh_download_gpx']) ){
+                update_post_meta($post['ID'], 'lfh_download_gpx', 1);
+            }else{
+                update_post_meta($post['ID'], 'lfh_download_gpx', 0);
+            }
         }
         if( isset($attachment['lfh_stroke_width']) ){
             update_post_meta($post['ID'], 'lfh_stroke_width', $attachment['lfh_stroke_width']);
         }
+     
         return $post;
     }
     //add in ajax for save also custom fieds in upload page
@@ -327,6 +362,11 @@ class Lfh_Tools_Editor
         if(isset( $_POST['attachments'][$post_id ]['lfh_stroke_color']) ){
             $meta = Lfh_Model_Map::is_path_color($_POST['attachments'][$post_id ]['lfh_stroke_color']);
             update_post_meta($post_id , 'lfh_stroke_color', $meta);
+            if(isset( $_POST['attachments'][$post_id ]['lfh_download_gpx']) ){
+                update_post_meta($post_id, 'lfh_download_gpx', 1);
+            }else{
+                update_post_meta($post_id, 'lfh_download_gpx', 0);
+            }
         }
         if(isset(  $_POST['attachments'][$post_id ]['lfh_stroke_width'] )){
             $meta = filter_var($_POST['attachments'][$post_id ]['lfh_stroke_width'], FILTER_VALIDATE_INT , array(

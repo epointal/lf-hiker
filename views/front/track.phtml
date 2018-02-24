@@ -19,11 +19,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         <div class="lfh-element-content">
         <div  class="lfh-file">
         <!-- control buttons -->
+          <?php if($options['button']):?>
             <div >
                 <a  href="<?=$options['src']?>"  download="<?php echo basename($options['src']);?>" class="lfh-gpx-file"  >
                 <span class="lfhicon lfhicon-download"> &nbsp;<?=$file_type?></span>
                 </a>
             </div>
+         <?php endif;?>
         </div>
         <div class="lfh-section">
               <div class="lfh-header">

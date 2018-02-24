@@ -63,6 +63,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                 <?php endif;?>
             <?php endforeach;?>
             </select>
+            <?php elseif($input['type']== 'checkbox'):?>
+            <?php  $checked = $input['value'] ? 'checked="checked"':'';?>
+             <input <?=$class?> <?=$style?> type="<?=$input['type']?>" value="<?=$input['value']?>" name="<?=$key?>" <?=$checked?> <?=$attributes?>/>
+          
            <?php else:?>
            <input <?=$class?> <?=$style?> type="<?=$input['type']?>" name="<?=$key?>" value="<?=$input['value']?>" <?=$attributes?>/>
            <?php endif;?>

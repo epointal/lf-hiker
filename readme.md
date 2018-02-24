@@ -1,7 +1,7 @@
 # Lf Hiker 
 [![Contributor: Elisabeth Pointal](https://github.com/epointal/lf-hiker/blob/master/assets/svg/contributor2.svg)](http://elisabeth.pointal.org)
 [![License GPL 2](https://github.com/epointal/lf-hiker/blob/master/assets/svg/license.svg)](http://www.gnu.org/licenses/gpl-2.0.html )
-[![Version 1.4.2](https://github.com/epointal/lf-hiker/blob/master/assets/svg/version1.4.2.svg)](https://github.com/epointal/lf-hiker/archive/1.4.2.zip) 
+[![Version 1.4.3](https://github.com/epointal/lf-hiker/blob/master/assets/svg/version1.4.3.svg)](https://github.com/epointal/lf-hiker/archive/1.4.3.zip) 
 
 Plugin site web: [Lf Hiker](http://elisabeth.pointal.org/lf-hiker/en/about/ )  
 Requires Wordpress version: 4.7.3  
@@ -103,7 +103,7 @@ If you have any questions about the method, do not hesitate to [contact me](http
 
 ### Perform a new installation  
 
-After downloading the ZIP file [lf-hiker-1.4.2.zip](https://github.com/epointal/lf-hiker/archive/1.4.2.zip)   
+After downloading the ZIP file [lf-hiker-1.4.3.zip](https://github.com/epointal/lf-hiker/archive/1.4.3.zip)   
 
 1. Unzip `lf-hiker.zip` 
 2. Put the folder `lf-hiker` in directory `wp-content/plugins`
@@ -132,6 +132,10 @@ After downloading the ZIP file [lf-hiker-1.4.2.zip](https://github.com/epointal/
 
 
 ## Changelog 
+### 1.4.3 ###
+ * Can start with profile elevation displayed
+ * Can manage (hide/show) button download gpx
+ 
 ### 1.4.2 ###
  * fixed : issue 2 maps when the first floating the second is in stucks
  * fixed : issue no icon on button

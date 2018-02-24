@@ -12,7 +12,7 @@ Class Lfh_Model_Option
                         'label'  => __('Custom css'),
                         'comment'=> ''),
                 'config_tile'   => array(
-                        'label'  => __('Config  Map', 'lfh'),
+                        'label'  => __('Config units, gpx, tiles', 'lfh'),
                         'comment'=> __('You can add tiles layers which need key here, or choose unit for distance', 'lfh')),
                 'config_lfh'    => array(
                         'label'  => __('General', 'lfh'),
@@ -64,12 +64,29 @@ Class Lfh_Model_Option
                 );
             break;
             case 'config_tile':
+                $distance_units = array_keys( Lfh_Model_Map::distance_units());
+                $height_units = array_keys(Lfh_Model_Map::height_units());
             return array(
+                 'lfh_download_gpx' => array(
+                    'type'    => 'checkbox',
+                    'default' => true,
+                    'label'   => __('Display button download gpx', 'lfh'),
+                    'filter'  => FILTER_VALIDATE_BOOLEAN,
+                    'helper'  => esc_html__('You can change it for one gpx in shortcode by using property <code>button</code>', 'lfh')
+                 ),
+                'lfh_open_profile' => array(
+                     'type'   => 'checkbox',
+                     'default'=> false,
+                     'label'  => __('Open profile window automatically', 'lfh'),
+                     'filter' => FILTER_VALIDATE_BOOLEAN,
+                     'helper'  => esc_html__('You can change it for one map in shortcode by using property <code>open</code>', 'lfh')
+                        
+                ),
                 'lfh_distance_unit'=> array(
                     'type'   => 'select',
                     'select_options' => Lfh_Model_Map::distance_units(),
                     'label'  => __('Default distance unit', 'lfh'),
-                    'default'=> array_keys( Lfh_Model_Map::distance_units())[0],
+                    'default'=> $distance_units[0],
                     'filter' => FILTER_CALLBACK,
                     'options'=> 'Lfh_Model_Map::is_distance_unit'
                 ),
@@ -77,7 +94,7 @@ Class Lfh_Model_Option
                         'type'   => 'select',
                         'select_options' => Lfh_Model_Map::height_units(),
                         'label'  => __('Default height unit', 'lfh'),
-                        'default'=> array_keys(Lfh_Model_Map::height_units())[0],
+                        'default'=> $height_units[0],
                         'filter' => FILTER_CALLBACK,
                         'options'=> 'Lfh_Model_Map::is_height_unit'
                 ),
@@ -143,8 +160,22 @@ Class Lfh_Model_Option
 
    public static function save_data($tab , $data){
        //filter 
+       if( $tab == 'config_tile'){
+           if(  isset( $data["lfh_download_gpx"])){
+               $data["lfh_download_gpx"] = true;
+           }else{
+               $data["lfh_download_gpx"] = false;
+           }
+           if(  isset( $data["lfh_open_profile"])){
+               $data["lfh_open_profile"] = true;
+           }else{
+               $data["lfh_open_profile"] = false;
+           }
+       }
+    
        $filter = self::get_defaults($tab);
        $data = filter_var_array($data, $filter);
+ 
        foreach ($data as $name=>$atts) {
            update_option($name, $data[$name] );
        }

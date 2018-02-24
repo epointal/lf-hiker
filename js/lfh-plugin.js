@@ -525,6 +525,7 @@ lfh.Map = function(i){
         var _map_id = 'lfh-'+i;
         var _index = i;
         var _data = lfh.data[i];
+        var _OPEN_PROFILE = lfh.data[i].OPEN_PROFILE;
         var _large = true; // "big screen"
         var _center = [0,0];//[48.866667,2.333333];//default value Paris if not in data
         var _zoom = 13;                    // default value if not in data
@@ -850,14 +851,19 @@ lfh.Map = function(i){
                 count++;
                
             })
+            
             list.step = 0;
             list.step_max = count_div;
             if(list.step_max == 1){
                 list.className = list.className + " lfh-small-content";
             }
             lfh.toggle_next( list, 0,_map_id);
+            if( _gpx.length > 0 && _OPEN_PROFILE){
+                _gpx[1].fire('click');
+            }
         }
         _initialize( i );
+       
         return map;
 }
 
@@ -977,9 +983,11 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
             link_gpx.parentNode.removeChild( link_gpx );
         }
         if(_selected_element.layer instanceof L.GPX){
-            // add link to gpx file
-            var link_gpx = _selected_element.dom.querySelector(".lfh-gpx-file").cloneNode(true);
-            nav.querySelector(".lfh-title").appendChild( link_gpx );
+            // add link to gpx file, if button download
+            if( _selected_element.dom.querySelector(".lfh-gpx-file")){
+                var link_gpx = _selected_element.dom.querySelector(".lfh-gpx-file").cloneNode(true);
+                nav.querySelector(".lfh-title").appendChild( link_gpx );
+            }
         }
         
     }

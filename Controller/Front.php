@@ -173,6 +173,7 @@ Class Lfh_Controller_Front
         $data .= '
         lfh.data['.$map_count.']= {
               map: '.json_encode($options, JSON_NUMERIC_CHECK ).',
+              OPEN_PROFILE: '. ($options["open"] == true?'true':'false') .',
               markers: new Array(),
               gpx: new Array()
         };

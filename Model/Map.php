@@ -167,7 +167,14 @@ Class Lfh_Model_Map{
                  'list'      => self::get_valide_tiles(),
                  'filter'    => FILTER_CALLBACK,
                  'options'   => 'Lfh_Model_Map::valid_tile'
-                 )
+                 ),
+             'open' => array( 
+                 'type'      => 'checkbox',
+                 'label'     => ucfirst(__('Open profile automaticaly' , 'lfh')),
+                 'default'   => Lfh_Model_Option::get_option('lfh_open_profile'),
+                 'filter'    => FILTER_VALIDATE_BOOLEAN,
+                     'flags'   => FILTER_NULL_ON_FAILURE
+             )
         );
    }
   
@@ -212,7 +219,8 @@ Class Lfh_Model_Map{
                 'color'      => isset($color) ? $color: self::$default['stroke_color'],
                 'width'      => isset($width) ? $width: self::$default['stroke_width'],
                 'unit'       => isset($unit)  ? $unit:  Lfh_Model_Map::is_distance_unit(),
-                'unit_h'     => isset($unit_h)  ? $unit_h:  Lfh_Model_Map::is_height_unit()
+                'unit_h'     => isset($unit_h)  ? $unit_h:  Lfh_Model_Map::is_height_unit(),
+                'button'     => isset($button)  ? $button: Lfh_Model_Option::get_option('lfh_download_gpx')
         );
        
         $args = array(
@@ -243,6 +251,9 @@ Class Lfh_Model_Map{
                 'unit_h' => array(
                         'filter'    => FILTER_CALLBACK,
                         'options'   => 'Lfh_Model_Map::is_height_unit'
+                ),
+                'button' => array(
+                        'filter'    => FILTER_VALIDATE_BOOLEAN
                 )
         );
       
@@ -339,6 +350,7 @@ Class Lfh_Model_Map{
 
         return $url;
     }
+ 
     private static function validate_boolean( $bool){
         if( is_null($bool)){
             return true;

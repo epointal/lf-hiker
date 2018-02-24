@@ -246,7 +246,7 @@ String.prototype.replaceAll = function (search, replacement) {
             if (document.querySelector('input[name="lfh-form-map-class"]').value != '') {
                 shortcode += ' class="' + document.querySelector('input[name="lfh-form-map-class"]').value.replaceAll('-', '\\-') + '"';
             }
-            ['autocenter', 'fullscreen', 'reset', 'list', 'mousewheel'].forEach(function (key) {
+            ['autocenter', 'fullscreen', 'reset', 'list', 'mousewheel', 'open'].forEach(function (key) {
                 shortcode += ' ' + key + '=' + document.querySelector('input[name="lfh-form-map-' + key + '"]').checked;
             });
             ['width', 'height'].forEach(function (key) {
