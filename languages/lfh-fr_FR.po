@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lfh\n"
 "POT-Creation-Date: 2018-02-24 22:38+0100\n"
-"PO-Revision-Date: 2018-02-24 22:43+0100\n"
+"PO-Revision-Date: 2018-02-25 00:43+0100\n"
 "Last-Translator: Elisabeth Pointal <elisabeth.pointal@free.fr>\n"
 "Language-Team: elisabeth\n"
 "Language: fr_FR\n"
@@ -208,7 +208,7 @@ msgstr "Personnaliser le css"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:15
 msgid "Config units, gpx, tiles"
-msgstr "Unit&eacute;s, button, tuiles"
+msgstr "Unit&eacute;s, bouton, tuiles"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:16
 msgid ""
