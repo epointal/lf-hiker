@@ -132,6 +132,7 @@ From zip archive
 = 1.4.3 =
  * Can start with profile elevation displayed
  * Can manage (hide/show) button download gpx
+ * Add checkbox show/hide gpx path when more than 2 paths
  
 = 1.4.2 =
  * fixed : issue 2 maps when the first floating the second is in stucks

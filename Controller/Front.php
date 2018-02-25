@@ -281,10 +281,14 @@ Class Lfh_Controller_Front
                      color:inherit;
                      border:none;
                  }
-                 input.lfh-button,
-                 #content input.lfh-button,
-                 .main input.lfh-button,
-                 input.lfh-button + input[type="button"]{
+                 .lfh-button,
+                 #content .lfh-button,
+                 .main .lfh-button,
+                 .lfh-button + input[type="button"],
+                input.lfh-button,
+                #content input.lfh-button,
+                .main input.lfh-button,
+                input.lfh-button + input[type="button"]{
                        font-family:"lfhiker";
                        background-color:' .$css['lfh_button_color'].';
                        border-color: ' . Lfh_Tools_Color::lighter_darker( $css['lfh_button_color'], 10) . ' ';
@@ -296,9 +300,12 @@ Class Lfh_Controller_Front
         $data .= '-1px 0 1px '. Lfh_Tools_Color::lighter_darker( $css['lfh_button_color'], -20).';
    
                  }
-                 input.lfh-button:hover,
-                 #content input.lfh-button:hover,
-                 .main input.lfh-button:hover{
+                 .lfh-button:hover,
+                 #content .lfh-button:hover,
+                 .main .lfh-button:hover,
+                input.lfh-button:hover,
+                #content input.lfh-button:hover,
+                .main input.lfh-button:hover{
                        background-color:' . Lfh_Tools_Color::saturate( $css['lfh_button_color'], 20) .';
                  }
                 ';

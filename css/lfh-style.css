@@ -520,7 +520,24 @@ div.lfh-fadable,
   display: inline-block;
 }
 /* @color: #191970;*/
-input.lfh-button,
+.lfh-button,
+#content .lfh-button,
+.main .lfh-button {
+  min-height: 24px;
+  height: auto;
+  font-size: 14px;
+}
+.lfh-button span {
+  font-size: 14px;
+}
+.lfh-short-button {
+  max-width: 215px;
+  word-wrap: break-word;
+  display: inline-block;
+}
+.lfh-button,
+#content .lfh-button,
+.main .lfh-button input.lfh-button,
 #content input.lfh-button,
 .main input.lfh-button,
 input.lfh-button + input[type="button"] {
@@ -546,11 +563,19 @@ input.lfh-button + input[type="button"] {
   box-sizing: border-box;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
 }
-input.lfh-button:hover,
+.lfh-button:hover,
+#content .lfh-button:hover,
+.main .lfh-button:hover,
+.lfh-button:hover,
 #content input.lfh-button:hover,
 .main input.lfh-button:hover {
   background: #ff470f;
   text-decoration: none;
+}
+.lfh-button input[type="checkbox"],
+.entry-content .lfh-button input[type="checkbox"] {
+  margin-bottom: 0;
+  float: right;
 }
 .lfh-element.lfh-hidden {
   max-height: 0;

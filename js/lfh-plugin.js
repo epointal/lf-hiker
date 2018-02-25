@@ -68,6 +68,7 @@ String.prototype.replaceAll = function(search, replacement) {
  * @const lfh.POINT_ICON {L.Icon} icon for start and end points of path
  * @const lfh.SELECTED_COLOR string html color for the selected path 
  * @const lfh.WIDTH_LIMIT interger the map width limit in pixels to change displaying
+ * @const lfh.MAX_GPX_FOR_CHECK max of gpx for adding checkbox hide/show
  **/
 lfh.ZOOM_LIMIT = 11;
 
@@ -95,6 +96,9 @@ lfh.WIDTH_LIMIT = 620;
 lfh.HEIGHT = 170;
 // width of part of description under the map (without margin)
 lfh.WIDTH = 280;
+
+// max of gpx for adding checkbox hide/show
+lfh.MAX_GPX_FOR_CHECK = 3;
 /** Build all on the differents maps*/
 lfh.initialize_map = function(i){
     if(typeof lfh.data[i] != 'function'){
@@ -721,27 +725,50 @@ lfh.Map = function(i){
         }
  
         function _add_marker_to_node(marker, container){
-            var node = document.createElement("input");
-            node.setAttribute("type", "button");
-            node.value = "\ue80f  "+ marker.options.title;
-
-            node.className = 'lfh-button lfhicon';
-            container.appendChild(node);
+            var div = document.createElement("div");
+            div.className = 'lfh-button lfhicon';
+            var node = document.createElement("span");
+           // node.setAttribute("type", "button");
+            node.textContent = "\ue80f  "+ marker.options.title;
+            div.appendChild( node );
+            container.appendChild(div);
             
             L.DomEvent.addListener( node , 'click', function(e){
                 marker.fire('click');
                 e.stopPropagation();
             });
         }
- 
-        function _add_gpx_to_node( gpx, container )
+        
+        function _add_gpx_to_node( gpx, container, length )
         {
-            var node = document.createElement("input");
-            node.setAttribute("type", "button");
-            node.className = 'lfh-button lfhicon';
-            node.value = "\ue80e  " + document.querySelector('#'+gpx.options.elem_id + ' span.lfh-trackname').textContent;
-
-            container.insertBefore(node, container.firstChild); //appendChild(node);
+            var div = document.createElement("div");
+           div.className = "lfh-button lfhicon";
+       
+            var node = document.createElement("span");
+            if( length > lfh.MAX_GPX_FOR_CHECK){
+                node.className = "lfh-short-button"
+            }
+            node.textContent = "\ue80e  " + document.querySelector('#'+gpx.options.elem_id + ' span.lfh-trackname').textContent;
+            div.appendChild( node );
+            if( length > lfh.MAX_GPX_FOR_CHECK ){
+                
+                var checkbox = document.createElement("input");
+                checkbox.setAttribute("type", "checkbox");
+                checkbox.checked = true;
+                L.DomEvent.addListener( checkbox, 'change', function(e){
+                    var markers = gpx.get_markers();
+                    if( this.checked){
+                        gpx.addTo(map);
+                    }else{
+                        map.removeLayer(gpx);
+                    }
+                    e.stopPropagation();
+                })
+                div.appendChild( checkbox);
+               
+            }
+            container.insertBefore( div, container.firstChild);
+            //appendChild(node);
             
             L.DomEvent.addListener( node , 'click', function(e){
                 gpx.fire('click');
@@ -836,7 +863,7 @@ lfh.Map = function(i){
                     nav.appendChild(div);
                     count_div++;
                 }
-                _add_gpx_to_node( one_gpx, div );
+                _add_gpx_to_node( one_gpx, div, _gpx.length );
                 count++;
             });
           
