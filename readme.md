@@ -1,7 +1,7 @@
 # Lf Hiker 
 [![Contributor: Elisabeth Pointal](https://github.com/epointal/lf-hiker/blob/master/assets/svg/contributor2.svg)](http://elisabeth.pointal.org)
 [![License GPL 2](https://github.com/epointal/lf-hiker/blob/master/assets/svg/license.svg)](http://www.gnu.org/licenses/gpl-2.0.html )
-[![Version 1.5.0](https://github.com/epointal/lf-hiker/blob/master/assets/svg/version1.5.0.svg)](https://github.com/epointal/lf-hiker/archive/1.4.2.zip) 
+[![Version 1.5.0](https://github.com/epointal/lf-hiker/blob/master/assets/svg/version1.5.0.svg)](https://github.com/epointal/lf-hiker/archive/1.4.5.zip) 
 
 Plugin site web: [Lf Hiker](http://elisabeth.pointal.org/lf-hiker/en/about/ )  
 Requires Wordpress version: 4.7.3  
