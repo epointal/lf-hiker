@@ -79,8 +79,26 @@ Class Lfh_Model_Option
                      'default'=> false,
                      'label'  => __('Open profile window automatically', 'lfh'),
                      'filter' => FILTER_VALIDATE_BOOLEAN,
-                     'helper'  => esc_html__('You can change it for one map in shortcode by using property <code>open</code>', 'lfh')
+                     'helper'  => esc_html__('You can change it for one map in shortcode by using property', 'lfh'). ' <code>open</code>'
                         
+                ),
+                'lfh_number_gpx_for_checkbox'=> array(
+                    'type'   => 'select',
+                    'select_options' => Lfh_Model_Option::generate_range(0,20),
+                    'label'  => __('Number of gpx to display a checkbox show/hide', 'lfh'),
+                    'default'=> '10',
+                    'filter' => FILTER_VALIDATE_INT,
+                    'options' => array(
+                        'min_range' => 0,
+                        'max_range' => 20),
+                   // 'helper'  => esc_html__('You can change it for one map in shortcode by using property', 'lfh'). '<code>checkbox</code>'
+                 ),
+                'lfh_button_fullscreen' => array(
+                        'type'   => 'checkbox',
+                        'default'=> true,
+                        'label'  => __('Display button fullscreen', 'lfh'),
+                        'filter' => FILTER_VALIDATE_BOOLEAN,
+                        'helper'  => esc_html__('You can change it for one map in shortcode by using property', 'lfh'). '<code>fullscreen</code>'
                 ),
                 'lfh_distance_unit'=> array(
                     'type'   => 'select',
@@ -136,6 +154,13 @@ Class Lfh_Model_Option
         }
         
     }
+    private static function generate_range( $min=0, $max=20){
+        $result = array();
+        for( $i=$min; $i<$max+1; $i++){
+            $result[$i] = array('label' => strval($i));
+        }
+        return $result;
+    }
    public static function get_values($tab){
 
        $atts = self::get_defaults($tab);
@@ -170,6 +195,11 @@ Class Lfh_Model_Option
                $data["lfh_open_profile"] = true;
            }else{
                $data["lfh_open_profile"] = false;
+           }
+           if(  isset( $data["lfh_button_fullscreen"])){
+               $data["lfh_button_fullscreen"] = true;
+           }else{
+               $data["lfh_button_fullscreen"] = false;
            }
        }
     

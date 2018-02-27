@@ -68,7 +68,7 @@ String.prototype.replaceAll = function(search, replacement) {
  * @const lfh.POINT_ICON {L.Icon} icon for start and end points of path
  * @const lfh.SELECTED_COLOR string html color for the selected path 
  * @const lfh.WIDTH_LIMIT interger the map width limit in pixels to change displaying
- * @const lfh.MAX_GPX_FOR_CHECK max of gpx for adding checkbox hide/show
+ * @const lfh.NUMBER_GPX_FOR_CHECK max of gpx for adding checkbox hide/show
  **/
 lfh.ZOOM_LIMIT = 11;
 
@@ -98,7 +98,8 @@ lfh.HEIGHT = 170;
 lfh.WIDTH = 280;
 
 // max of gpx for adding checkbox hide/show
-lfh.MAX_GPX_FOR_CHECK = 3;
+if(! lfh.NUMBER_GPX_FOR_CHECK) lfh.NUMBER_GPX_FOR_CHECK = 3;
+
 /** Build all on the differents maps*/
 lfh.initialize_map = function(i){
     if(typeof lfh.data[i] != 'function'){
@@ -745,12 +746,12 @@ lfh.Map = function(i){
            div.className = "lfh-button lfhicon";
        
             var node = document.createElement("span");
-            if( length > lfh.MAX_GPX_FOR_CHECK){
+            if( length > lfh.NUMBER_GPX_FOR_CHECK){
                 node.className = "lfh-short-button"
             }
             node.textContent = "\ue80e  " + document.querySelector('#'+gpx.options.elem_id + ' span.lfh-trackname').textContent;
             div.appendChild( node );
-            if( length > lfh.MAX_GPX_FOR_CHECK ){
+            if( length > lfh.NUMBER_GPX_FOR_CHECK ){
                 
                 var checkbox = document.createElement("input");
                 checkbox.setAttribute("type", "checkbox");

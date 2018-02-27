@@ -136,9 +136,9 @@ Class Lfh_Model_Map{
             'fullscreen' => array(
                 'type'      => 'checkbox',
                 'label'     => __('Fullscreen', 'lfh'),
-                'default'   => true,
-                 'filter'   => FILTER_CALLBACK,
-                'options'   => 'Lfh_Model_Map::validate_boolean'
+                'default'   => Lfh_Model_Option::get_option('lfh_button_fullscreen')?true:false,
+                'filter'   => FILTER_VALIDATE_BOOLEAN,
+                'options'   => 'FILTER_NULL_ON_FAILURE'
                 ),
             'reset' => array(
                 'type'      => 'checkbox',
@@ -173,7 +173,7 @@ Class Lfh_Model_Map{
                  'label'     => ucfirst(__('Open profile automaticaly' , 'lfh')),
                  'default'   => Lfh_Model_Option::get_option('lfh_open_profile'),
                  'filter'    => FILTER_VALIDATE_BOOLEAN,
-                     'flags'   => FILTER_NULL_ON_FAILURE
+                 'flags'   => FILTER_NULL_ON_FAILURE
              )
         );
    }

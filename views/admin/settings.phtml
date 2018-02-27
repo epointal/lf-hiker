@@ -57,7 +57,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             <select <?=$class?> <?=$style?>  name="<?=$key?>" value="<?=$input['value']?>" <?=$attributes?>/>
             <?php foreach($input['select_options'] as $key => $option):?>
                 <?php if( $input['value'] == $key ):?>
-                <option value="<?=$key?>" selected><?=$option['label']?></option>
+                <option value="<?=$key?>" selected="selected"><?=$option['label']?></option>
                 <?php else:?>
                 <option value="<?=$key?>"><?=$option['label']?></option>
                 <?php endif;?>

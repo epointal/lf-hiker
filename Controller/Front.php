@@ -166,6 +166,7 @@ Class Lfh_Controller_Front
                   lfh.tiles = '.json_encode(Lfh_Model_Map::$tiles, JSON_UNESCAPED_SLASHES).';
                   lfh.tiles["mapquest"] = { max_zoom:18 };
                   lfh.SELECTED_COLOR = "' . $selected_color .'";
+                  lfh.NUMBER_GPX_FOR_CHECK = '. Lfh_Model_Option::get_option('lfh_number_gpx_for_checkbox').';
                   lfh.DISTANCE_UNIT = ' .json_encode(Lfh_Model_Map::distance_units()). ';
                   lfh.HEIGHT_UNIT = ' .json_encode(Lfh_Model_Map::height_units());';
                 ';
