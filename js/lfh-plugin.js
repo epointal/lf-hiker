@@ -1116,11 +1116,16 @@ lfh.Profile = function( map, layer, dom, move, unit, unit_h){
      //if(_data[0][1]==null){
       //   return null;
      // }
-     if( _data[0][1] !=  null){
+     if( _gpx.get_elevation_max()!= 0){
+         
          var _has_elevation = true;
          var _max = _gpx.get_elevation_max() / _coeff_elevation;
          var _min = _gpx.get_elevation_min() / _coeff_elevation;
-         var _max_km = _data[ _data.length-1 ][0] / _coeff;
+         var i0 = _data.length-1;
+         while( i0> 0 && _data[i0][1] === null){
+             i0--;
+         }
+         var _max_km = _data[ i0 ][0] / _coeff;
          var _step_h =  lfh.Util.step_round((_max - _min)/3.5);
          if( _step_h < 10 / _coeff_elevation ){
             
@@ -1149,20 +1154,32 @@ lfh.Profile = function( map, layer, dom, move, unit, unit_h){
          var d= 'M ';
          var add = parseInt(_data.length /150)+1;
          var ln = _data.length;
-         //first point
-         d += _x(_data[0][0]) + ','+ _h(_data[0][1]) + ' L ';
-         for(var i=0; i < ln -add ; i = i + add){
+         //find first point with elevation
+         var i0 = 0;
+         while( _data[i0][1] === null){
+             i0++;
+         }
+
+         d += _x(_data[i0][0]) + ','+ _h(_data[i0][1]) + ' L ';
+         for(var i=i0; i < ln -add ; i = i + add){
            
              var x = 0;
              var h = 0;
              for(var j=0;  j <add && i+j< ln ; j++){
-                 x += _x(_data[i + j][0]);
-                 h += _h(_data[i + j][1]);
+                 var lg = 0;
+                 if( _data[ i +j ][1] != null){
+                     x += _x(_data[i + j][0]);
+                     h += _h(_data[i + j][1]);
+                     lg++;
+                 }
              }
-             d += Math.round( x/add) + ','+ Math.round(h/add) + ' L ';
+             if(lg != 0){
+                 d += Math.round( x/add) + ','+ Math.round(h/add) + ' L ';
+             }
             
          }
          // last point
+         if( _data[ln-1][1] != null)
          d += _x(_data[ln-1][0]) + ','+ _h(_data[ln-1][1]);
          return d;
      }
@@ -1188,11 +1205,7 @@ lfh.Profile = function( map, layer, dom, move, unit, unit_h){
              //if()
              _track.querySelector('.lfh-gpx-elevation-gain').textContent = Math.round(_gpx.get_elevation_gain()/_coeff_elevation) + ' ' + lfh.HEIGHT_UNIT[_unit_h].code;
              _track.querySelector('.lfh-gpx-elevation-loss').textContent =  Math.round(_gpx.get_elevation_loss()/_coeff_elevation) + ' ' + lfh.HEIGHT_UNIT[_unit_h].code;
-             var _duration = _gpx.get_total_time();
-             if( _duration )
-             {
-                 _track.querySelector('.lfh-gpx-duration').textContent = _gpx.get_duration_string(_duration);
-             }
+             
              //ajout d'un ecouteur sur le 
              L.DomEvent.addListener( _track.querySelector('svg') ,'click mousemove', function(e){
                 _on_move(e );
@@ -1203,6 +1216,11 @@ lfh.Profile = function( map, layer, dom, move, unit, unit_h){
          }else{
              // No data elevation : remove svg
              _track.querySelector('svg').parentNode.removeChild( _track.querySelector('svg'));
+             var _duration = _gpx.get_total_time();
+             if( _duration )
+             {
+                 _track.querySelector('.lfh-gpx-duration').textContent = _gpx.get_duration_string(_duration);
+             }
          }
          _track.querySelector('.lfh-gpx-name').textContent = _gpx.get_name();
          _track.querySelector('.lfh-gpx-distance').textContent = (Math.round(_gpx.get_distance()/(100*_coeff))/10).toString().replace('.' , ',')  + ' ' + lfh.DISTANCE_UNIT[_unit].code;
