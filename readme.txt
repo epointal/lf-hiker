@@ -129,10 +129,12 @@ From zip archive
 7. You can change the default configuration in tab: `Settings → Lf-hiker` 
 
 == Changelog == 
-= 1.4.3 =
- * New : Can start with profile elevation displayed
- * New : Can manage (hide/show) button download gpx
- * New : Add checkbox show/hide gpx path when more than 2 paths
+= 1.5.0 =
+ * Ability to start with profile elevation displayed
+ * Ability to manage (hide/show) button download gpx
+ * Ability to show/hide gpx path when more than 2 paths
+ * Ability to globally configure default settings: fullscreen, button download, start with profile displayed, add checkbox to display/hide gpx
+ * Fixed: some points without elevation value
  
 = 1.4.2 =
  * fixed : issue 2 maps when the first floating the second is in stucks
