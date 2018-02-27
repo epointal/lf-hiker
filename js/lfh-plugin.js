@@ -1199,7 +1199,12 @@ lfh.Profile = function( map, layer, dom, move, unit, unit_h){
                  var node = _track.querySelector( '.v'+i );
                  var tr_x = Math.round( i * _step_x * 220 / _max_km );
                  node.setAttribute( 'transform', 'translate(' + tr_x + ', 0)');
-                 node.querySelector('text').textContent = i * _step_x;
+                 if( tr_x > 220){
+                     node.setAttribute('stroke-opacity', 0);
+                     node.querySelector('text').textContent = "";
+                 }else{
+                     node.querySelector('text').textContent = i * _step_x;
+                 }
              }
     
              //if()
