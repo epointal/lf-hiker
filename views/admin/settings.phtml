@@ -82,7 +82,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     <?php //unactive cache @todo re active cache? or delete function
     $disabled ='';
     if($active_tab == 'config_lfh'){
-        $disabled = 'disabled';
+        $disabled = 'disabled style="display:none;"';
     }
     ?>
     <tr>
@@ -97,7 +97,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     
     <!-- More functions for config lfh -->
     <?php if($active_tab == 'config_lfh'):?>
-    <tr>
+    <tr style="display:none;">
         <th>
             <label for="lfh_clear_cache">
             </label>

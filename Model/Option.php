@@ -13,7 +13,7 @@ Class Lfh_Model_Option
                         'comment'=> ''),
                 'config_tile'   => array(
                         'label'  => __('Config units, gpx, tiles', 'lfh'),
-                        'comment'=> __('You can add tiles layers which need key here, or choose unit for distance', 'lfh')),
+                        'comment'=> ''), //__('You can add tiles layers which need key here, or choose unit for distance', 'lfh')),
                 'config_lfh'    => array(
                         'label'  => __('General', 'lfh'),
                         'comment'=> ''));
@@ -116,7 +116,7 @@ Class Lfh_Model_Option
                         'filter' => FILTER_CALLBACK,
                         'options'=> 'Lfh_Model_Map::is_height_unit'
                 ),
-                'lfh_mapquest_key' => array(
+               /* 'lfh_mapquest_key' => array(
                     'type'    => 'text',
                     'label'   => __('Mapquest key', 'lfh'),
                     'filter'  => FILTER_VALIDATE_REGEXP,
@@ -132,12 +132,13 @@ Class Lfh_Model_Option
                     'options' => array( 
                             'regexp'    => "/^[0-9a-z-A-Z]{9,}$/",
                             'default'   => '')
-                ));
+                )*/
+            );
             break;
             case 'config_lfh':
             return array(
                
-                'lfh_cache_parent' => array(
+                /*'lfh_cache_parent' => array(
                     'type'    => 'text',
                     'label'   => __('Cache dir', 'lfh'),
                     'default' => realpath(WP_CONTENT_DIR),
@@ -145,7 +146,7 @@ Class Lfh_Model_Option
                     'filter'  => FILTER_CALLBACK,
                     'style'   => 'width:500px;',
                     'attributes' => 'disabled',
-                    'options' => 'Lfh_Model_Option::try_cache_dir')
+                    'options' => 'Lfh_Model_Option::try_cache_dir')*/
                 );
             break;
             

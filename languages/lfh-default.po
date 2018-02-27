@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lfh\n"
-"POT-Creation-Date: 2018-02-24 22:35+0100\n"
-"PO-Revision-Date: 2018-02-24 22:38+0100\n"
+"POT-Creation-Date: 2018-02-27 16:35+0100\n"
+"PO-Revision-Date: 2018-02-27 16:36+0100\n"
 "Last-Translator: Elisabeth Pointal <elisabeth.pointal@free.fr>\n"
 "Language-Team: elisabeth\n"
 "Language: en_EN\n"
@@ -165,62 +165,67 @@ msgid "Open profile window automatically"
 msgstr "Open profile window automatically"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:82
-msgid ""
-"You can change it for one map in shortcode by using property <code>open</"
-"code>"
-msgstr ""
-"You can change it for one map in shortcode by using property <code>open</"
-"code>"
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:101
+msgid "You can change it for one map in shortcode by using property"
+msgstr "You can change it for one map in shortcode by using property"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:88
+msgid "Number of gpx to display a checkbox show/hide"
+msgstr "Number of gpx to display a checkbox show/hide"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:99
+msgid "Display button fullscreen"
+msgstr "Display button fullscreen"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:106
 msgid "Default distance unit"
 msgstr "Default distance unit"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:96
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:114
 msgid "Default height unit"
 msgstr "Default height unit"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:103
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:121
 msgid "Mapquest key"
 msgstr "Mapquest key"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:108
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:126
 msgid "This option is deactived (mapquest using deprecated method)."
 msgstr "This option is deactived (mapquest using deprecated method)."
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:108
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:126
 msgid "If you want MapQuest, you must provide an app key."
 msgstr "If you want MapQuest, you must provide an app key."
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:110
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:128
 msgid "Sign up"
 msgstr "Sign up"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:111
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:129
 msgid "then"
 msgstr "then"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:112
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:130
 msgid "Create a new app"
 msgstr "Create a new app"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:113
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:131
 msgid "then supply the &laquo;Consumer Key&raquo; here."
 msgstr "then supply the &laquo;Consumer Key&raquo; here."
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:124
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:142
 msgid "Cache dir"
 msgstr "Cache dir"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:156
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:181
 msgid "Failed to create a new cache"
 msgstr "Failed to create a new cache"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:191
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:221
 msgid "data updated"
 msgstr "data updated"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:211
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:241
 msgid "data reseted"
 msgstr "data reseted"
 
@@ -243,7 +248,7 @@ msgid "Delete marker"
 msgstr "Delete marker"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:141
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:280
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:281
 msgid "Add here your formated description"
 msgstr "Add here your formated description"
 
@@ -251,15 +256,15 @@ msgstr "Add here your formated description"
 msgid "Manage gpx"
 msgstr "Manage gpx"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:301
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:302
 msgid "Display download button"
 msgstr "Display download button"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:308
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:309
 msgid "Color path"
 msgstr "Color path"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:325
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:326
 msgid "Stroke width"
 msgstr "Stroke width"
 

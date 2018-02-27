@@ -243,7 +243,9 @@ Example:
 --------------------
 You can find a website list for do this in the page [Track drawing websites](http://wiki.openstreetmap.org/wiki/Track_drawing_websites)   
 [Openrunner](http://www.openrunner.com/) is the best one for me and the most important: this website automatically add the elevation data needed to create the profile.  
-You can find on this site a quantity of already registered tracks.
+You can find on this site a quantity of already registered tracks.  
+
+You can also try the tools on [www.mygpsfiles.com](http://www.mygpsfiles.com/app/), easier to use
 
 -------------------------
 **3. I have a blank page in place of the marker editor**

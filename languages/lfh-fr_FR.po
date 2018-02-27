@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lfh\n"
-"POT-Creation-Date: 2018-02-24 22:38+0100\n"
-"PO-Revision-Date: 2018-02-25 00:43+0100\n"
+"POT-Creation-Date: 2018-02-27 16:34+0100\n"
+"PO-Revision-Date: 2018-02-27 16:35+0100\n"
 "Last-Translator: Elisabeth Pointal <elisabeth.pointal@free.fr>\n"
 "Language-Team: elisabeth\n"
 "Language: fr_FR\n"
@@ -51,7 +51,7 @@ msgid "Delete marker"
 msgstr "Effacer des marqueurs"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:141
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:280
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:281
 msgid "Add here your formated description"
 msgstr "Ins&eacute;rez votre description format&eacute;e ici"
 
@@ -59,15 +59,15 @@ msgstr "Ins&eacute;rez votre description format&eacute;e ici"
 msgid "Manage gpx"
 msgstr "G&egrave;rer les GPX"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:301
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:302
 msgid "Display download button"
 msgstr "Afficher le bouton t&eacute;l&eacute;charger"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:308
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:309
 msgid "Color path"
 msgstr "Couleur du chemin"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:325
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:326
 msgid "Stroke width"
 msgstr "Epaisseur du trait"
 
@@ -266,63 +266,70 @@ msgid "Open profile window automatically"
 msgstr "Ouvrir le profile automatiquement"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:82
-msgid ""
-"You can change it for one map in shortcode by using property <code>open</"
-"code>"
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:101
+msgid "You can change it for one map in shortcode by using property"
 msgstr ""
 "Vous pouvez le modifier pour une carte dans le shortcode en utilisant la "
-"propri&eacute;t&eacute; <code>open</code>"
+"propri&eacute;t&eacute; "
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:88
+msgid "Number of gpx to display a checkbox show/hide"
+msgstr "Nombre de gpx pour afficher une case &agrave; cocher montrer/cacher"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:99
+msgid "Display button fullscreen"
+msgstr "Afficher le bouton plein &eacute;cran"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:106
 msgid "Default distance unit"
 msgstr "Unit&eacute; de distance (d&eacute;faut)"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:96
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:114
 msgid "Default height unit"
 msgstr "Unit&eacute; de hauteur (d&eacute;faut)"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:103
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:121
 msgid "Mapquest key"
 msgstr "La cl&eacute; MapQuest"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:108
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:126
 msgid "This option is deactived (mapquest using deprecated method)."
 msgstr "Cette option est d&eacute;sactiv&eacute;e ( fatale issue )"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:108
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:126
 msgid "If you want MapQuest, you must provide an app key."
 msgstr ""
 "Si vous souhaitez utiliser MapQuest, vous devez fournie une cl&eacute;."
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:110
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:128
 msgid "Sign up"
 msgstr "S&rsquo;inscrire"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:111
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:129
 msgid "then"
 msgstr "alors"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:112
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:130
 msgid "Create a new app"
 msgstr "Cr&eacute;er une nouvelle application"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:113
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:131
 msgid "then supply the &laquo;Consumer Key&raquo; here."
 msgstr "ensuite entrer votre cl&acute; "
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:124
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:142
 msgid "Cache dir"
 msgstr "Dossier du cache"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:156
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:181
 msgid "Failed to create a new cache"
 msgstr "&Eacute;chec lors de la cr&eacute;ation du cache"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:191
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:221
 msgid "data updated"
 msgstr "donn&eacute;es mises &agrave; jour"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:211
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:241
 msgid "data reseted"
 msgstr "Donn&eacute;es initialis&eacute;es"
 
