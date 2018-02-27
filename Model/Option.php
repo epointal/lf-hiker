@@ -244,7 +244,12 @@ Class Lfh_Model_Option
    public static function get_option($key){
        //only for lfh_cache_parent
        if(get_option($key)=== false){ 
-           return self::get_defaults('config_lfh')[$key]['default'];
+           if(isset(self::get_defaults('config_tile')[$key]['default'])){
+               return self::get_defaults('config_tile')[$key]['default'];
+           }
+           if(isset(self::get_defaults('config_lfh')[$key])){
+               return self::get_defaults('config_lfh')[$key]['default'];
+           }
        }else{
            return get_option($key);
        }
