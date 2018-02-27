@@ -69,7 +69,6 @@ Class Lfh_Controller_Front
             $atts = array();
         }
         $options = Lfh_Model_Map::filter_map_data($atts);
-        
         if(self::$_lfh_map_count == 0){
             //if the first map in the page/article add a div for the fade in bottom fullscreen
             // @todo (can do this with js)
@@ -174,7 +173,6 @@ Class Lfh_Controller_Front
         $data .= '
         lfh.data['.$map_count.']= {
               map: '.json_encode($options, JSON_NUMERIC_CHECK ).',
-              OPEN_PROFILE: '. ($options["open"] == true?'true':'false') .',
               markers: new Array(),
               gpx: new Array()
         };

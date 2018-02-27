@@ -382,6 +382,9 @@ Version: 1.0
   text-align: center;
   clear: none;
 }
+.leaflet-control .lfh-control-list.lfh-hidden {
+  display: none;
+}
 .lfh-control-fullscreen:hover,
 .lfh-control-refresh:hover,
 .lfh-control-list:hover {

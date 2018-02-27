@@ -530,7 +530,7 @@ lfh.Map = function(i){
         var _map_id = 'lfh-'+i;
         var _index = i;
         var _data = lfh.data[i];
-        var _OPEN_PROFILE = lfh.data[i].OPEN_PROFILE;
+        var _OPEN_PROFILE = false;
         var _large = true; // "big screen"
         var _center = [0,0];//[48.866667,2.333333];//default value Paris if not in data
         var _zoom = 13;                    // default value if not in data
@@ -549,6 +549,7 @@ lfh.Map = function(i){
         function _initialize( i ){
             _data = lfh.data[i];
             var d = lfh.data[i].map;
+            _OPEN_PROFILE = d.open;
             d.i = i;
             _auto_center = d.autocenter;
             _list = d.list;
@@ -1245,7 +1246,7 @@ lfh.Profile = function( map, layer, dom, move, unit, unit_h){
          if(x>220){
               x = 220;
          }
-          
+         x = parseInt(x );
          _track.querySelector('.lfh-move-line').setAttribute('transform','translate(' + x + ',0)');
          
          var km = x * _max_km/220;

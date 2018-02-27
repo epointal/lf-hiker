@@ -138,6 +138,8 @@ After downloading the ZIP file [lf-hiker-1.5.0.zip](https://github.com/epointal/
  * Ability to show/hide gpx path when more than 2 paths
  * Ability to globally configure default settings: fullscreen, button download, start with profile displayed, add checkbox to display/hide gpx
  * Fixed: some points without elevation value
+ * Fixed: button list always displayed when parameter list is false
+ * Fixed: move line on profile not visible on little screen
  
 ### 1.4.2 ###
  * fixed : issue 2 maps when the first floating the second is in stucks
