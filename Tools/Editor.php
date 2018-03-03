@@ -345,7 +345,7 @@ class Lfh_Tools_Editor
             if( isset($attachment['lfh_download_gpx']) ){
                 update_post_meta($post['ID'], 'lfh_download_gpx', true);
             }else{
-                update_post_meta($post['ID'], 'lfh_download_gpx', false);
+                update_post_meta($post['ID'], 'lfh_download_gpx', 0);
             }
         }
         if( isset($attachment['lfh_stroke_width']) ){
@@ -365,7 +365,7 @@ class Lfh_Tools_Editor
             if(isset( $_POST['attachments'][$post_id ]['lfh_download_gpx']) ){
                 update_post_meta($post_id, 'lfh_download_gpx', true);
             }else{
-                update_post_meta($post_id, 'lfh_download_gpx', false);
+                update_post_meta($post_id, 'lfh_download_gpx', 0);
             }
         }
         if(isset(  $_POST['attachments'][$post_id ]['lfh_stroke_width'] )){

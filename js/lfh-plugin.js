@@ -361,6 +361,7 @@ lfh.TopControl = L.Control.extend({
                       if(! map.options.mousewheel){
                           map.scrollWheelZoom.disable();
                       }
+                      map.options.dragging = !L.Browser.mobile;
                   }else{
                       // go to fullscreen
                       fade.appendChild( container);
@@ -369,6 +370,7 @@ lfh.TopControl = L.Control.extend({
                       map.scrollWheelZoom.enable();
                       map._container.h0 = map._container.style.height;
                       map._container.style.height = "100%";
+                      map.options.dragging = true;
                   }
                   
                   lfh.resize_all_map();

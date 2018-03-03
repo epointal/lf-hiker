@@ -175,7 +175,7 @@ Class Lfh_Model_Map{
              'open' => array( 
                  'type'      => 'checkbox',
                  'label'     => ucfirst(__('Open profile automaticaly' , 'lfh')),
-                 'default'   => Lfh_Model_Option::get_option('lfh_open_profile'),
+                 'default'   => boolval( Lfh_Model_Option::get_option('lfh_open_profile')),
                  'filter'    => FILTER_VALIDATE_BOOLEAN,
                  'flags'   => FILTER_NULL_ON_FAILURE
              )
@@ -224,8 +224,8 @@ Class Lfh_Model_Map{
                 'width'      => isset($width) ? $width: self::$default['stroke_width'],
                 'unit'       => isset($unit)  ? $unit:  Lfh_Model_Map::is_distance_unit(),
                 'unit_h'     => isset($unit_h)  ? $unit_h:  Lfh_Model_Map::is_height_unit(),
-                'step_min'  => isset($step_min)? $step_min: Lfh_Model_Option::get_option('lfh_step_min'),
-                'button'     => isset($button)  ? $button: Lfh_Model_Option::get_option('lfh_download_gpx')
+                'step_min'   => isset($step_min)? $step_min: Lfh_Model_Option::get_option('lfh_step_min'),
+                'button'     => isset($button)  ? self::to_bool($button): boolval(Lfh_Model_Option::get_option('lfh_download_gpx'))
         );
        
         $args = array(
@@ -265,8 +265,7 @@ Class Lfh_Model_Map{
                                 'max_range' => 500 )
                 ),
                 'button' => array(
-                        'filter'    => FILTER_VALIDATE_BOOLEAN,
-                        
+                        'filter'    => FILTER_VALIDATE_BOOLEAN
                 )
         );
       
@@ -277,6 +276,14 @@ Class Lfh_Model_Map{
         }
         return $return;
       
+        
+    }
+    public static function to_bool( $var ){
+        if( strtolower( $var) == "false" || $var == '0'){
+            return false;
+        }else{
+            return boolval( $var );
+        }
         
     }
     public static function filter_marker_data($atts)
@@ -358,6 +365,10 @@ Class Lfh_Model_Map{
         }else{
             return 'osm';
         }
+    }
+    private static function is_button_download( $var ){
+       // if( )
+       return true;
     }
     private static function is_url( $url ){
        if( (strpos( $url, '.gpx') === false && strpos($url, '.GPX') === false)){
