@@ -452,7 +452,7 @@ div.lfh-min div.lfh-no-data {
   opacity: 0;
   background: grey;
   text-align: center;
-  z-index: 1000;
+  z-index: 99999;
 }
 #lfh-fade.actived {
   opacity: 0.99;
