@@ -987,7 +987,7 @@ div.lfh-min .lfh-content > div {
   max-width: 280px;
   width: 280px;
   float: left;
-  height: 167px;
+  /*  height:@height - @height_title - 2*@padding_title;*/
   max-height: 167px;
   vertical-align: bottom;
   margin-top: 5px;
@@ -1033,7 +1033,7 @@ div.lfh-min div.lfh-content ~ div {
 }
 div.lfh-min div.lfh-content > div {
   width: 280px;
-  height: 167px;
+  /*  height: @height - @height_title - 2*@padding_title;*/
   max-width: 280px;
   max-height: 167px;
 }

@@ -555,7 +555,8 @@ lfh.Map = function(i){
             _list = d.list;
             _center = [d.lat, d.lng];
             _zoom = Math.min(d.zoom,lfh.tiles[d.tile].max_zoom);
-            map = L.map(_map_id);
+            map = L.map(_map_id, { dragging: !L.Browser.mobile });
+           // map = L.map(_map_id, { dragging: false });
             if( !_auto_center ){
                 map.setView( _center, _zoom);
             }
@@ -565,7 +566,7 @@ lfh.Map = function(i){
             if(!d.mousewheel){
                 map.scrollWheelZoom.disable();
             }
-           // map.touchZoom.disable();
+            map.touchZoom.enable();
             // Add layers
             _add_move_marker(_center);
             //Create the selected element after the move marker
