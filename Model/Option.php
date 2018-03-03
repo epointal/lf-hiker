@@ -85,7 +85,7 @@ Class Lfh_Model_Option
                 ),
                 'lfh_number_gpx_for_checkbox'=> array(
                     'type'   => 'select',
-                    'select_options' => Lfh_Model_Option::generate_range(0,20),
+                    'select_options' => Lfh_Model_Option::generate_range(0,20,1),
                     'label'  => __('Number of gpx to display a checkbox show/hide', 'lfh'),
                     'default'=> '10',
                     'filter' => FILTER_VALIDATE_INT,
@@ -126,6 +126,18 @@ Class Lfh_Model_Option
                         'filter' => FILTER_CALLBACK,
                         'options'=> 'Lfh_Model_Map::is_height_unit'
                 ),
+                'lfh_step_min' => array(
+                        'type'   => 'select',
+                        'select_options' => Lfh_Model_Option::generate_range(10,500,10),
+                        'label'  => __('Minimum step on elevation axis in meters ( four steps in general)', 'lfh'),
+                        'default'=> 50,
+                        'filter' => FILTER_VALIDATE_INT,
+                        'options' => array(
+                                'min_range' => 10,
+                                'max_range' => 500),
+                        'helper'  => esc_html__('You can change it for one gpx in shortcode by using property', 'lfh'). ' <code>step_min</code>'
+                        
+                )
                /* 'lfh_mapquest_key' => array(
                     'type'    => 'text',
                     'label'   => __('Mapquest key', 'lfh'),
@@ -165,9 +177,9 @@ Class Lfh_Model_Option
         }
         
     }
-    private static function generate_range( $min=0, $max=20){
+    private static function generate_range( $min=0, $max=20, $step=1){
         $result = array();
-        for( $i=$min; $i<$max+1; $i++){
+        for( $i=$min; $i<$max+1; $i +=$step){
             $result[$i] = array('label' => strval($i));
         }
         return $result;

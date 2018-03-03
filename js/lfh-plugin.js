@@ -55,13 +55,19 @@ String.prototype.replaceAll = function(search, replacement) {
   * 8625    -> 10000*/
  lfh.Util.step_round = function(delta)
  {
+  // console.log( 'step = ' +delta);
  /**  */
    var precision = Math.round( Math.log(delta)/Math.log(10) );
+  // console.log('precision = '+ precision);
    var p = Math.pow (10, precision);
    var max = Math.ceil(delta / p) * p;
-   return max/2> delta ? max/2:max; 
+  // console.log( 'max =' +max);
+   return max/2>= delta ? max/2:max; 
  }
-
+// var result = lfh.Util.step_round();
+//console.log( 'step_round =' +result);
+// var result = lfh.Util.step_round(50);
+//console.log( 'step_round =' +result);
 /**
  * @const lfh.ZOOM_LIMIT the zoom limit for which some markers are displayed
  * @const lfh.ICON_MOVE {L.Icon} icon for marker moving on path
@@ -376,7 +382,7 @@ lfh.TopControl = L.Control.extend({
         }
         container.appendChild(div2);
         //append list window to the map
-        var link = new lfh.Link( map, div2, 'lfh-list-' + this._index , this._selected, null, null,null);
+        var link = new lfh.Link( map, div2, 'lfh-list-' + this._index , this._selected, null, null,null, null);
        
         return container;
     },
@@ -841,7 +847,8 @@ lfh.Map = function(i){
                               _selected_element,
                               _move_marker,
                               _data.gpx[j].unit,
-                              _data.gpx[j].unit_h);
+                              _data.gpx[j].unit_h,
+                              _data.gpx[j].step_min);
                  }).on('failed', function(){
                       e.target.options.isLoaded = true;
                       console.log("failed");
@@ -908,9 +915,10 @@ lfh.Map = function(i){
  * @param {L.Marker} move the object _move_marker on the map (important only for gpx)
  * @param {string} unit km or milles (important only for gpx)
  * @param {string} unit_h m or ft (important only for gpx)
+ * @param {integer} step_min the difference between max and min elevation axis (important only for gpx)
  * @return {object <dom, layer, id >}
  */
-lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
+lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h, step_min){
     
     var _id = elem_id;
     var _layer = layer;
@@ -920,6 +928,7 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
     var _move_marker = move;
     var _unit = unit;
     var _unit_h = unit_h;
+    var _step_min = step_min;
     
     function _initialize(){
         if( typeof _layer.options == 'undefined'){
@@ -959,7 +968,8 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
                         _dom, 
                         _move_marker,
                         _unit,
-                        _unit_h);
+                        _unit_h,
+                        _step_min);
             }
         }
     }
@@ -1096,9 +1106,10 @@ lfh.Link = function( map, layer, elem_id, selected, move, unit, unit_h){
  * @param {DomNode} dom the node link to the track 
  * @param {L.Marker} move, the move_marker on polyline path 
  */
-lfh.Profile = function( map, layer, dom, move, unit, unit_h){
+lfh.Profile = function( map, layer, dom, move, unit, unit_h, step_min){
      var _unit = unit;
      var _unit_h = unit_h;
+     var _step_min = step_min;
      if( _unit == "km"){
         var  _coeff = 1;
      }else{
@@ -1129,15 +1140,13 @@ lfh.Profile = function( map, layer, dom, move, unit, unit_h){
          }
          var _max_km = _data[ i0 ][0] / _coeff;
          var _step_h =  lfh.Util.step_round((_max - _min)/3.5);
-         if( _step_h < 10 / _coeff_elevation ){
+         if( _step_h < _step_min / ( _coeff_elevation) ){
             
-             _step_h = _coeff_elevation==1? 10 : 25 ;
-             if(_min -5 < 0){
-                 _max = _coeff_elevation==1? 40 : 100 ;
-             }else{
-                 _middle = lfh.Util.step_round((_max + _min)/2);
-                 _max = _middle + 30;
-             }
+             _step_h = lfh.Util.step_round( _step_min/(_coeff_elevation)) ;
+             _middle = Math.ceil((_max + _min)/2);
+            _max = _middle + 2* _step_h;
+           // _min = _middle - 2* _step_h;
+
          }
         var _max_h = Math.ceil( _max/_step_h)*(_step_h);
         var _min_h = _max_h - 5 * _step_h;

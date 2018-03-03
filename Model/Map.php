@@ -224,6 +224,7 @@ Class Lfh_Model_Map{
                 'width'      => isset($width) ? $width: self::$default['stroke_width'],
                 'unit'       => isset($unit)  ? $unit:  Lfh_Model_Map::is_distance_unit(),
                 'unit_h'     => isset($unit_h)  ? $unit_h:  Lfh_Model_Map::is_height_unit(),
+                'step_min'  => isset($step_min)? $step_min: Lfh_Model_Option::get_option('lfh_step_min'),
                 'button'     => isset($button)  ? $button: Lfh_Model_Option::get_option('lfh_download_gpx')
         );
        
@@ -256,8 +257,16 @@ Class Lfh_Model_Map{
                         'filter'    => FILTER_CALLBACK,
                         'options'   => 'Lfh_Model_Map::is_height_unit'
                 ),
+                'step_min' => array(
+                        'filter'    => FILTER_VALIDATE_INT,
+                        'options'   => array(
+                                'default'   => Lfh_Model_Option::get_option('lfh_step_min'),
+                                'min_range' => 10,
+                                'max_range' => 500 )
+                ),
                 'button' => array(
-                        'filter'    => FILTER_VALIDATE_BOOLEAN
+                        'filter'    => FILTER_VALIDATE_BOOLEAN,
+                        
                 )
         );
       

@@ -134,6 +134,8 @@ After downloading the ZIP file [lf-hiker-1.6.0.zip](https://github.com/epointal/
 ## Changelog 
 ### 1.6.0 ###
  * Ability to choose the default map tiles
+ * Add parameter step_min for gpx profile elevation 
+ * Ability to choose the default step_min for elevation step in settings
  * Fixed: path and marker button too high in little view
  
 ### 1.5.0 ###
