@@ -1,8 +1,8 @@
 //need to be very carefull with the replace version number
 //there are in files readme others version numbers: for releases, tested browsers, and the most important wordpress
 
-var old_version = '1.4.3';
-var version = '1.5.0';
+var old_version = '1.5.1';
+var version = '1.6.0';
 var gulp = require('gulp');
 var less = require('gulp-less');
 var minify = require('gulp-minify');

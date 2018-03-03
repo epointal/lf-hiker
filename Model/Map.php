@@ -27,23 +27,27 @@ Class Lfh_Model_Map{
     
     public static $tiles = array(
             'osm'         => array( 
+                        'label'         => 'OpenStreetMap',
                         'url'           => '//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
                         'attribution'   => ' &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
                         'min_zoom'      => 1, 
                         'max_zoom'      => 18,
                         'need_key'      => false),
             'osm_fr'      => array(
+                        'label'         => 'OpenStreetMap FR',
                         'url'           => '//{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
                         'attribution'   => 'donn&eacute;es &copy; <a href="//osm.org/copyright">OpenStreetMap</a>/ODbL - rendu <a href="//openstreetmap.fr">OSM France</a>',
                         'min_zoom'      => 1,
                         'max_zoom'      => 20,
                         'need_key'      => false),
             'arcgis_topo' => array(
+                        'label'         => 'Arcgis topo',
                         'url'           => '//server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
                         'attribution'   => 'Tiles © <a href="https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer">ArcGIS</a>',
                         'max_zoom'      => 18,
                         'need_key'      => false),
             'stamen_water'=> array(
+                        'label'         => 'Stamen Water',
                        // 'url'           =>  'https://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg',
                         'url'           => '//stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg',
                         'attribution'   => '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>Contributors & <a href="http://stamen.com">Stamen Design</a>',
@@ -163,7 +167,7 @@ Class Lfh_Model_Map{
             'tile' => array(
                  'type'      => 'select',
                  'label'     => __('Tiles', 'lfh'),
-                 'default'   => 'osm',
+                 'default'   => Lfh_Model_Option::get_option('lfh_default_tiles'),
                  'list'      => self::get_valide_tiles(),
                  'filter'    => FILTER_CALLBACK,
                  'options'   => 'Lfh_Model_Map::valid_tile'
@@ -338,6 +342,14 @@ Class Lfh_Model_Map{
             return  get_option('lfh_height_unit', $units[0]);
         }
     }
+    public static function valid_tile($var)
+    {
+        if(in_array(strtolower($var), self::get_valide_tiles())){
+            return strtolower($var);
+        }else{
+            return 'osm';
+        }
+    }
     private static function is_url( $url ){
        if( (strpos( $url, '.gpx') === false && strpos($url, '.GPX') === false)){
            return false;
@@ -397,14 +409,7 @@ Class Lfh_Model_Map{
        // }
         return $tiles;
     }
-    private static function valid_tile($var)
-    {
-        if(in_array(strtolower($var), self::get_valide_tiles())){
-            return strtolower($var);
-        }else{
-            return 'osm';
-        }
-    }
+  
     private static function is_visibility($var)
     {
         if(strtolower($var) === 'zoom'){

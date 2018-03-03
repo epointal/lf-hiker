@@ -66,6 +66,7 @@ Class Lfh_Model_Option
             case 'config_tile':
                 $distance_units = array_keys( Lfh_Model_Map::distance_units());
                 $height_units = array_keys(Lfh_Model_Map::height_units());
+                $map_tiles = Lfh_Model_Map::$tiles;
             return array(
                  'lfh_download_gpx' => array(
                     'type'    => 'checkbox',
@@ -98,7 +99,16 @@ Class Lfh_Model_Option
                         'default'=> true,
                         'label'  => __('Display button fullscreen', 'lfh'),
                         'filter' => FILTER_VALIDATE_BOOLEAN,
-                        'helper'  => esc_html__('You can change it for one map in shortcode by using property', 'lfh'). '<code>fullscreen</code>'
+                        'helper' => esc_html__('You can change it for one map in shortcode by using property', 'lfh'). '<code>fullscreen</code>'
+                ),
+                'lfh_default_tiles' => array(
+                        'type'   => 'select',
+                        'select_options' => $map_tiles,
+                        'default'=> 'osm',
+                        'label'  => __('Default map tiles', 'lfh'),
+                        'filter' => FILTER_CALLBACK,
+                        'options' => 'Lfh_Model_Map::valid_tile',
+                        'helper'  => esc_html__('You can change it for one map in shortcode by using property', 'lfh'). '<code>tile</code>'
                 ),
                 'lfh_distance_unit'=> array(
                     'type'   => 'select',
@@ -212,7 +222,7 @@ Class Lfh_Model_Option
        }
        switch($tab){
            case 'config_tile':
-           Lfh_Tools_Cache::clear_cache_dir();
+          // Lfh_Tools_Cache::clear_cache_dir();
            break;
            case 'custom_css':
                self::update_inherit_color();
@@ -224,7 +234,7 @@ Class Lfh_Model_Option
    public static function reset_data($tab){
        if($tab == 'config_lfh'){
            //delete old cache
-           Lfh_Tools_Cache::delete_cache_dir();
+          // Lfh_Tools_Cache::delete_cache_dir();
        }
        $data = self::get_defaults($tab);
        foreach( $data as $name=>$atts ){
@@ -232,11 +242,11 @@ Class Lfh_Model_Option
            update_option($name, $default );
        }
        if( $tab == 'config_tile'){
-           Lfh_Tools_Cache::clear_cache_dir();
+          // Lfh_Tools_Cache::clear_cache_dir();
        }
        if($tab == 'config_lfh'){
            //create new cache
-           Lfh_Tools_Cache::create_cache_dir();
+           //Lfh_Tools_Cache::create_cache_dir();
        }
        
        return array('msg' => __('data reseted', 'lfh'), 'error' => null);

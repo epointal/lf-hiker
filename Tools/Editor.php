@@ -343,9 +343,9 @@ class Lfh_Tools_Editor
         if( isset($attachment['lfh_stroke_color']) ){
             update_post_meta($post['ID'], 'lfh_stroke_color', $attachment['lfh_stroke_color']);
             if( isset($attachment['lfh_download_gpx']) ){
-                update_post_meta($post['ID'], 'lfh_download_gpx', 1);
+                update_post_meta($post['ID'], 'lfh_download_gpx', true);
             }else{
-                update_post_meta($post['ID'], 'lfh_download_gpx', 0);
+                update_post_meta($post['ID'], 'lfh_download_gpx', false);
             }
         }
         if( isset($attachment['lfh_stroke_width']) ){
@@ -363,9 +363,9 @@ class Lfh_Tools_Editor
             $meta = Lfh_Model_Map::is_path_color($_POST['attachments'][$post_id ]['lfh_stroke_color']);
             update_post_meta($post_id , 'lfh_stroke_color', $meta);
             if(isset( $_POST['attachments'][$post_id ]['lfh_download_gpx']) ){
-                update_post_meta($post_id, 'lfh_download_gpx', 1);
+                update_post_meta($post_id, 'lfh_download_gpx', true);
             }else{
-                update_post_meta($post_id, 'lfh_download_gpx', 0);
+                update_post_meta($post_id, 'lfh_download_gpx', false);
             }
         }
         if(isset(  $_POST['attachments'][$post_id ]['lfh_stroke_width'] )){
