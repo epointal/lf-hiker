@@ -361,9 +361,7 @@ lfh.TopControl = L.Control.extend({
                       if(! map.options.mousewheel){
                           map.scrollWheelZoom.disable();
                       }
-                      if( L.Brower.mobile ){
-                          map.dragging.disable();
-                      }
+                     
                       
                   }else{
                       // go to fullscreen
@@ -373,7 +371,7 @@ lfh.TopControl = L.Control.extend({
                       map.scrollWheelZoom.enable();
                       map._container.h0 = map._container.style.height;
                       map._container.style.height = "100%";
-                      map.dragging.enable();
+                     // map.dragging.enable();
                   }
                   
                   lfh.resize_all_map();
@@ -566,7 +564,7 @@ lfh.Map = function(i){
             _list = d.list;
             _center = [d.lat, d.lng];
             _zoom = Math.min(d.zoom,lfh.tiles[d.tile].max_zoom);
-            map = L.map(_map_id, { dragging: !L.Browser.mobile });
+            map = L.map(_map_id, { dragging: !L.Browser.mobile, tap:!L.Browser.mobile });
            // map = L.map(_map_id, { dragging: false });
             if( !_auto_center ){
                 map.setView( _center, _zoom);
