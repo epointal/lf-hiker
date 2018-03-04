@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lfh\n"
-"POT-Creation-Date: 2018-02-27 16:34+0100\n"
-"PO-Revision-Date: 2018-02-27 16:35+0100\n"
+"POT-Creation-Date: 2018-03-04 14:52+0100\n"
+"PO-Revision-Date: 2018-03-04 14:52+0100\n"
 "Last-Translator: Elisabeth Pointal <elisabeth.pointal@free.fr>\n"
 "Language-Team: elisabeth\n"
 "Language: fr_FR\n"
@@ -120,55 +120,55 @@ msgstr "&agrave; propos"
 msgid "Your configuration has been updated"
 msgstr "Votre configuration a &eacute;t&eacute; mise &agrave; jour"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:57
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:61
 msgid "kilometer"
 msgstr "kilom&egrave;tre"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:58
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:62
 msgid "km"
 msgstr "km"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:61
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:65
 msgid "milles"
 msgstr "milles"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:62
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:66
 msgid "mi"
 msgstr "mi"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:68
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:72
 msgid "meter"
 msgstr "m&egrave;tre"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:69
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:73
 msgid "m"
 msgstr "m"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:72
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:76
 msgid "foot"
 msgstr "pied"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:73
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:77
 msgid "ft"
 msgstr "ft"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:82
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:86
 msgid "Position auto"
 msgstr "Position auto"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:110
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:114
 msgid "Width"
 msgstr "Largeur"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:120
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:124
 msgid "Height"
 msgstr "Hauteur"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:138
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:142
 msgid "Fullscreen"
 msgstr "Plein &eacute;cran"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:145
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:149
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:93
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/map-form.phtml:113
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\admin/settings.phtml:93
@@ -176,29 +176,29 @@ msgstr "Plein &eacute;cran"
 msgid "reset"
 msgstr "initialiser"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:152
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:156
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/map.phtml:20
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/map.phtml:20
 msgid "list"
 msgstr "liste"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:159
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:163
 msgid "Zoom on wheel"
 msgstr "Zoom sur la mollette"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:165
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:169
 msgid "Tiles"
 msgstr "Tuiles"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:173
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:177
 msgid "Open profile automaticaly"
 msgstr "Ouvrir le profile automatiquemement"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:218
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:222
 msgid "no named gpx"
 msgstr "gpx sans nom"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:281
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:301
 msgid "no named marker"
 msgstr "marqueur sans nom"
 
@@ -209,13 +209,6 @@ msgstr "Personnaliser le css"
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:15
 msgid "Config units, gpx, tiles"
 msgstr "Unit&eacute;s, bouton, tuiles"
-
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:16
-msgid ""
-"You can add tiles layers which need key here, or choose unit for distance"
-msgstr ""
-"Vous pouvez ajouter les fonds de cartes qui demandent une cl&eacute; ici, ou "
-"choisir une unit&eacute; de distance."
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:18
 msgid "General"
@@ -249,11 +242,11 @@ msgstr "Couleur des boutons pour la liste des &eacute;l&eacute;ments"
 msgid "Selected path color"
 msgstr "Couleur du chemin s&eacute;lectionn&eacute;"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:73
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:74
 msgid "Display button download gpx"
 msgstr "Afficher le bouton t&eacute;l&eacute;charger gpx"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:75
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:76
 msgid ""
 "You can change it for one gpx in shortcode by using property <code>button</"
 "code>"
@@ -261,75 +254,59 @@ msgstr ""
 "Vous pouvez le modifier pour un fichier gpx dans le shortcode, en utilisant "
 "la propri&eacute;t&eacute; <code>button</code>"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:80
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:81
 msgid "Open profile window automatically"
 msgstr "Ouvrir le profile automatiquement"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:82
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:101
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:83
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:102
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:111
 msgid "You can change it for one map in shortcode by using property"
 msgstr ""
 "Vous pouvez le modifier pour une carte dans le shortcode en utilisant la "
 "propri&eacute;t&eacute; "
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:88
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:89
 msgid "Number of gpx to display a checkbox show/hide"
 msgstr "Nombre de gpx pour afficher une case &agrave; cocher montrer/cacher"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:99
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:100
 msgid "Display button fullscreen"
 msgstr "Afficher le bouton plein &eacute;cran"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:106
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:108
+msgid "Default map tiles"
+msgstr "Fond de carte par d&eacute;faut"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:116
 msgid "Default distance unit"
 msgstr "Unit&eacute; de distance (d&eacute;faut)"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:114
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:124
 msgid "Default height unit"
 msgstr "Unit&eacute; de hauteur (d&eacute;faut)"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:121
-msgid "Mapquest key"
-msgstr "La cl&eacute; MapQuest"
-
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:126
-msgid "This option is deactived (mapquest using deprecated method)."
-msgstr "Cette option est d&eacute;sactiv&eacute;e ( fatale issue )"
-
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:126
-msgid "If you want MapQuest, you must provide an app key."
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:132
+msgid "Minimum step on elevation axis in meters ( four steps in general)"
 msgstr ""
-"Si vous souhaitez utiliser MapQuest, vous devez fournie une cl&eacute;."
+"Pas minimum sur l&prime;axe des altitudes en m&egrave;tres ( 4 pas en "
+"g&eacute;n&eacute;ral)"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:128
-msgid "Sign up"
-msgstr "S&rsquo;inscrire"
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:138
+msgid "You can change it for one gpx in shortcode by using property"
+msgstr ""
+"Vous pouvez le modifier pour un gpx dans le shortcode en utilisant la "
+"propri&eacute;t&eacute; "
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:129
-msgid "then"
-msgstr "alors"
-
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:130
-msgid "Create a new app"
-msgstr "Cr&eacute;er une nouvelle application"
-
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:131
-msgid "then supply the &laquo;Consumer Key&raquo; here."
-msgstr "ensuite entrer votre cl&acute; "
-
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:142
-msgid "Cache dir"
-msgstr "Dossier du cache"
-
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:181
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:204
 msgid "Failed to create a new cache"
 msgstr "&Eacute;chec lors de la cr&eacute;ation du cache"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:221
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:244
 msgid "data updated"
 msgstr "donn&eacute;es mises &agrave; jour"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:241
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:264
 msgid "data reseted"
 msgstr "Donn&eacute;es initialis&eacute;es"
 
@@ -439,9 +416,9 @@ msgstr "titre"
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:55
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:80
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/marker.phtml:37
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:109
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:117
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/marker.phtml:37
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:109
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:117
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back/about-page.phtml:55
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back/editor/add-marker.phtml:80
 msgid "description"
@@ -458,15 +435,15 @@ msgid "distance of the track"
 msgstr "longueur du parcours"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:58
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:95
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:95
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:103
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:103
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back/about-page.phtml:58
 msgid "elevation loss"
 msgstr "descente cumul&eacute;e "
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:59
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:91
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:91
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:99
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:99
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\back/about-page.phtml:59
 msgid "elevation gain"
 msgstr "mont&eacute;e cumul&eacute;e"
@@ -625,19 +602,64 @@ msgstr "nom"
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:88
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:92
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:96
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:99
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:100
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:104
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:107
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:84
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:88
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:92
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:96
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:99
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:100
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:104
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:107
 msgid "no data"
 msgstr "aucune donn&eacute;e"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:98
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:98
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:91
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:91
+msgid "minimum elevation"
+msgstr "altitude minimum"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:95
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:95
+msgid "maximum elevation"
+msgstr "altitude maximum"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:106
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views\front/track.phtml:106
 msgid "duration"
 msgstr "dur&eacute;e"
+
+#~ msgid ""
+#~ "You can add tiles layers which need key here, or choose unit for distance"
+#~ msgstr ""
+#~ "Vous pouvez ajouter les fonds de cartes qui demandent une cl&eacute; ici, "
+#~ "ou choisir une unit&eacute; de distance."
+
+#~ msgid "Mapquest key"
+#~ msgstr "La cl&eacute; MapQuest"
+
+#~ msgid "This option is deactived (mapquest using deprecated method)."
+#~ msgstr "Cette option est d&eacute;sactiv&eacute;e ( fatale issue )"
+
+#~ msgid "If you want MapQuest, you must provide an app key."
+#~ msgstr ""
+#~ "Si vous souhaitez utiliser MapQuest, vous devez fournie une cl&eacute;."
+
+#~ msgid "Sign up"
+#~ msgstr "S&rsquo;inscrire"
+
+#~ msgid "then"
+#~ msgstr "alors"
+
+#~ msgid "Create a new app"
+#~ msgstr "Cr&eacute;er une nouvelle application"
+
+#~ msgid "then supply the &laquo;Consumer Key&raquo; here."
+#~ msgstr "ensuite entrer votre cl&acute; "
+
+#~ msgid "Cache dir"
+#~ msgstr "Dossier du cache"
 
 #~ msgid "Config  Map"
 #~ msgstr "Carte"

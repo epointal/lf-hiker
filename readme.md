@@ -26,6 +26,8 @@ The trail is displayed on an OSM map by default, and have its own information wi
 * description
 * interactive **profile elevation**  according to path
 * distance of the track
+* maximum elevation
+* minimum elevation
 * elevation loss
 * elevation gain 
 * duration
@@ -45,7 +47,11 @@ For gpx track you can custom:
 * description
 * stroke color
 * stroke width
-* display button download gpx file
+* display button download gpx file  
+And only with shortcode:
+* the elevation unit
+* the distance unit
+* the minimum step on elevation axis (in meter)
 
 **Lf Hiker** included an helper for edit map and add markers. 
 You can choose

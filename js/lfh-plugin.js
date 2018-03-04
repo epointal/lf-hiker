@@ -361,7 +361,10 @@ lfh.TopControl = L.Control.extend({
                       if(! map.options.mousewheel){
                           map.scrollWheelZoom.disable();
                       }
-                      map.options.dragging = !L.Browser.mobile;
+                      if( L.Brower.mobile ){
+                          map.dragging.disable();
+                      }
+                      
                   }else{
                       // go to fullscreen
                       fade.appendChild( container);
@@ -370,7 +373,7 @@ lfh.TopControl = L.Control.extend({
                       map.scrollWheelZoom.enable();
                       map._container.h0 = map._container.style.height;
                       map._container.style.height = "100%";
-                      map.options.dragging = true;
+                      map.dragging.enable();
                   }
                   
                   lfh.resize_all_map();
@@ -1221,6 +1224,8 @@ lfh.Profile = function( map, layer, dom, move, unit, unit_h, step_min){
              }
     
              //if()
+             _track.querySelector('.lfh-gpx-min-elevation').textContent = Math.round(_gpx.get_elevation_min()/_coeff_elevation) + ' ' + lfh.HEIGHT_UNIT[_unit_h].code;
+             _track.querySelector('.lfh-gpx-max-elevation').textContent = Math.round(_gpx.get_elevation_max()/_coeff_elevation) + ' ' + lfh.HEIGHT_UNIT[_unit_h].code;
              _track.querySelector('.lfh-gpx-elevation-gain').textContent = Math.round(_gpx.get_elevation_gain()/_coeff_elevation) + ' ' + lfh.HEIGHT_UNIT[_unit_h].code;
              _track.querySelector('.lfh-gpx-elevation-loss').textContent =  Math.round(_gpx.get_elevation_loss()/_coeff_elevation) + ' ' + lfh.HEIGHT_UNIT[_unit_h].code;
              

@@ -31,6 +31,8 @@ Display the post/page : you have an interactive view of your track.
  * description
  * interactive **profile elevation**  according to path
  * distance of the track
+ * maximum elevation
+ * minimum elevation
  * elevation loss
  * elevation gain 
  * trail duration
@@ -50,9 +52,11 @@ For more information go to [Lf Hiker site](http://elisabeth.pointal.org/lf-hiker
  * description
  * stroke color
  * stroke width
- * distance unit
- * elevation unit
- * display button download gpx file
+ * display button download gpx file   
+ And only in shortcode:
+* the elevation unit
+* the distance unit
+* the minimum step on elevation axis (in meter)
 
 
 **Lf Hiker** included an helper for edit map and add markers. 
