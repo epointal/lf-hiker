@@ -271,7 +271,7 @@ class Lfh_Tools_Editor
             $width = get_post_meta($id, 'lfh_stroke_width', true);
             $width = empty($width)? Lfh_Model_Map::$default['stroke_width'] : $width;
             $value = get_post_meta($id, 'lfh_download_gpx', true);
-            $button = $value =='' ?  Lfh_Model_Option::get_option('lfh_download_gpx'):$value;
+            $button = empty($value) ? 'false': 'true';
             $filter = '';
             $filter .= '[lfh-gpx src=' . $attachment['url'] .' title="' . $attachment['post_title'] .'"';
             $filter .= ' button='. $button .' color='. $color . ' width=' .$width . ' ]';
