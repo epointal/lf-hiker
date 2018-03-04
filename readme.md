@@ -1,7 +1,7 @@
 # Lf Hiker 
 [![Contributor: Elisabeth Pointal](https://github.com/epointal/lf-hiker/blob/master/assets/svg/contributor2.svg)](http://elisabeth.pointal.org)
 [![License GPL 2](https://github.com/epointal/lf-hiker/blob/master/assets/svg/license.svg)](http://www.gnu.org/licenses/gpl-2.0.html )
-[![Version 1.6.0](https://github.com/epointal/lf-hiker/blob/master/assets/svg/version1.6.0.svg)](https://github.com/epointal/lf-hiker/archive/1.5.0.zip) 
+[![Version 1.6.0](https://github.com/epointal/lf-hiker/blob/master/assets/svg/version1.6.0.svg)](https://github.com/epointal/lf-hiker/archive/1.6.0.zip) 
 
 Plugin site web: [Lf Hiker](http://elisabeth.pointal.org/lf-hiker/en/about/ )  
 Requires Wordpress version: 4.7.3  
@@ -140,6 +140,8 @@ After downloading the ZIP file [lf-hiker-1.6.0.zip](https://github.com/epointal/
 ## Changelog 
 ### 1.6.0 ###
  * Ability to choose the default map tiles
+ * Display minimum elevation under profile
+ * Display maximum elevation under profile
  * Add parameter step_min for gpx profile elevation 
  * Ability to choose the default step_min for elevation step in settings
  * Disable map pan with one finger

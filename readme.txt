@@ -135,6 +135,8 @@ From zip archive
 == Changelog == 
 = 1.6.0 =
  * Ability to choose the default map tiles
+ * Display minimum elevation under profile
+ * Display maximum elevation under profile
  * Add parameter step_min for gpx profile elevation 
  * Ability to choose the default step_min for elevation step in settings
  * Disable map pan with one finger
