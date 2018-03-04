@@ -1174,7 +1174,7 @@ lfh.Profile = function( map, layer, dom, move, unit, unit_h, step_min){
              i0++;
          }
 
-         d += _x(_data[i0][0]) + ','+ _h(_data[i0][1]) + ' L ';
+         d += Math.round(_x(_data[i0][0])) + ','+ Math.round(_h(_data[i0][1])) + ' L ';
          for(var i=i0; i < ln -add ; i = i + add){
            
              var x = 0;
@@ -1217,7 +1217,9 @@ lfh.Profile = function( map, layer, dom, move, unit, unit_h, step_min){
                      node.setAttribute('stroke-opacity', 0);
                      node.querySelector('text').textContent = "";
                  }else{
-                     node.querySelector('text').textContent = i * _step_x;
+                     var tx = 1;
+                     if(_step_x < 1){ tx =100;}
+                     node.querySelector('text').textContent = Math.round( i * _step_x * tx)/tx;
                  }
              }
     
