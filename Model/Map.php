@@ -217,6 +217,7 @@ Class Lfh_Model_Map{
         if(!isset($src) || empty($src)){
             return null;
         }
+
         $options = array(
                 'src'        => $src,
                 'title'      => isset($title) && !empty($title) ? $title:  strtoupper(__('no named gpx', 'lfh')),
@@ -227,7 +228,7 @@ Class Lfh_Model_Map{
                 'step_min'   => isset($step_min)? $step_min: Lfh_Model_Option::get_option('lfh_step_min'),
                 'button'     => isset($button)  ? self::to_bool($button): boolval(Lfh_Model_Option::get_option('lfh_download_gpx'))
         );
-       
+  
         $args = array(
                 'src'   => array(
                         'filter'    => FILTER_CALLBACK,
@@ -279,10 +280,10 @@ Class Lfh_Model_Map{
         
     }
     public static function to_bool( $var ){
-        if( strtolower( $var) == "false" || $var == '0'){
-            return false;
+        if( strtolower( $var) === "true" || $var === '1' || $var === 1 || $var===true){
+            return true;
         }else{
-            return boolval( $var );
+            return false;
         }
         
     }
