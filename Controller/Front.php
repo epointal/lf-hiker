@@ -5,9 +5,11 @@
  *
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
+$lfh_shortcode_done = array();
 
 Class Lfh_Controller_Front
 {
+   
     private static $_instance = null;
     private static $_lfh_map_count =0;
     private static $_lfh_mapquest_count = 0;
@@ -21,7 +23,7 @@ Class Lfh_Controller_Front
         add_shortcode('lfh-map', array(&$this, 'map_shortcode'));
         add_shortcode('lfh-marker', array(&$this, 'marker_shortcode'));
         add_shortcode('lfh-gpx', array(&$this, 'gpx_shortcode'));
-        add_shortcode('lfh-kml', array(&$this, 'kml_shortcode'));
+       // add_shortcode('lfh-kml', array(&$this, 'kml_shortcode'));
         if(!function_exists('shortcode_empty_paragraph_fix')){
             add_filter( 'the_content', array(&$this,'shortcode_empty_paragraph_fix' ));
         }
@@ -65,9 +67,13 @@ Class Lfh_Controller_Front
     }
    
     public function map_shortcode($atts, $html =null){
+        if( $this->is_divi_get_thumbnail()){
+            return "";
+        }
         if(!is_array($atts)){
             $atts = array();
         }
+
         $options = Lfh_Model_Map::filter_map_data($atts);
       
         if(self::$_lfh_map_count == 0){
@@ -95,15 +101,19 @@ Class Lfh_Controller_Front
  
         $this->add_map_scripts( $options );
         
-        return $this->get_view()->render('map', array(
+        $map = $this->get_view()->render('map', array(
                 'options' => $options,
                 'is_connected' => wp_get_current_user()->ID
                 ));
+       
+        return $map;
     }
     
   
     public function gpx_shortcode($atts, $html=''){
-        
+        if( $this->is_divi_get_thumbnail()){
+            return "";
+        }
         $options = Lfh_Model_Map::filter_gpx_data($atts);
         if(is_null($options)){
             return '';
@@ -122,10 +132,14 @@ Class Lfh_Controller_Front
                         'options'     => $options,
                         'html'        => $html
                    ));
+        
         return $content;
     }
     
     public function marker_shortcode ( $atts, $html = '') {
+        if( $this->is_divi_get_thumbnail()){
+            return "";
+        }
         $options = Lfh_Model_Map::filter_marker_data($atts);
         if(is_null($options)){
             return '';
@@ -150,6 +164,22 @@ Class Lfh_Controller_Front
     }
     public  function add_div_fadable(){
         echo '<div id="lfh-fade"></div>';
+    }
+    private function is_divi_get_thumbnail(){
+        global $shortname;
+        if( $shortname != "divi"){
+            return false;
+        }
+        $functions = debug_backtrace();
+        $find = false;
+        $i = 5;
+        while( $i < count( $functions) && !$find){
+            if( $functions[$i]["function"] === "get_thumbnail"){
+                $find = true;
+            }
+            $i++;
+        }
+        return $find;
     }
     private function add_map_scripts($options){
         $map_count = self::$_lfh_map_count;

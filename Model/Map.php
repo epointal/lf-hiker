@@ -54,12 +54,12 @@ Class Lfh_Model_Map{
                         'max_zoom'      => 13,
                         'need_key'      => false),
             'stamen_terrain'=> array(
-                    'label'         => 'Stamen Terrain',
-                    'url'           => '//stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg',
-                    'attribution'   => 'by <a href="http://stamen.com">Stamen Design</a> Data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> Contributors  | licence <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>',
-                    'min_zoom'      => 1,
-                    'max_zoom'      => 14,
-                    'need_key'      => false)
+                        'label'         => 'Stamen Terrain',
+                        'url'           => '//stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg',
+                        'attribution'   => 'by <a href="http://stamen.com">Stamen Design</a> Data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> Contributors  | licence <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>',
+                        'min_zoom'      => 1,
+                        'max_zoom'      => 14,
+                        'need_key'      => false)
     );
     
     public static function distance_units(){
