@@ -138,6 +138,10 @@ After downloading the ZIP file [lf-hiker-1.6.0.zip](https://github.com/epointal/
 
 
 ## Changelog 
+### In progress ###
+ * Fixed: no path displayed with mesmerize theme
+ * Evolution: add tiles Stamen Terrain
+ 
 ### 1.6.0 ###
  * Ability to choose the default map tiles
  * Display minimum elevation under profile
