@@ -52,7 +52,13 @@ Class Lfh_Model_Map{
                         'url'           => '//stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg',
                         'attribution'   => '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>Contributors & <a href="http://stamen.com">Stamen Design</a>',
                         'max_zoom'      => 13,
-                        'need_key'      => false)
+                        'need_key'      => false),
+            'stamen_terrain'=> array(
+                    'label'         => 'Stamen Terrain',
+                    'url'           => '//stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg',
+                    'attribution'   => '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a>Contributors & <a href="http://stamen.com">Stamen Design</a>',
+                    'max_zoom'      => 13,
+                    'need_key'      => false)
     );
     
     public static function distance_units(){

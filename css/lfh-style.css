@@ -1221,6 +1221,9 @@ div.lfh-list h4,
 #lfh-fade div.lfh-list h4 {
   margin-bottom: 2px;
 }
+svg.leaflet-zoom-animated {
+  max-height: none;
+}
 @media screen and (max-width: 768px) {
   /*.lfh-control-fullscreen{
     display:none;*/
