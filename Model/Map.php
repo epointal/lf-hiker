@@ -50,13 +50,13 @@ Class Lfh_Model_Map{
                         'label'         => 'Stamen Water',
                        // 'url'           =>  'https://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg',
                         'url'           => '//stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.jpg',
-                        'attribution'   => 'by <a href="http://stamen.com">Stamen Design</a> Data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> Contributors  | licence <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>',
+                        'attribution'   => 'by <a href="http://stamen.com">Stamen Design</a> Data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> Contributors | <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>',
                         'max_zoom'      => 13,
                         'need_key'      => false),
             'stamen_terrain'=> array(
                         'label'         => 'Stamen Terrain',
                         'url'           => '//stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg',
-                        'attribution'   => 'by <a href="http://stamen.com">Stamen Design</a> Data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> Contributors  | licence <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>',
+                        'attribution'   => 'by <a href="http://stamen.com">Stamen Design</a> Data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> Contributors | <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>',
                         'min_zoom'      => 1,
                         'max_zoom'      => 14,
                         'need_key'      => false)

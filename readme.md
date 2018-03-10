@@ -142,6 +142,7 @@ After downloading the ZIP file [lf-hiker-1.6.0.zip](https://github.com/epointal/
  * Fixed: no path displayed with mesmerize theme
  * Evolution: add tiles Stamen Terrain
  * Evolution: add german translation
+ * Fixed: conflict with divi theme and option Grab the first post image
  
 ### 1.6.0 ###
  * Ability to choose the default map tiles
