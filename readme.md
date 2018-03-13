@@ -1,7 +1,7 @@
 # Lf Hiker 
 [![Contributor: Elisabeth Pointal](https://github.com/epointal/lf-hiker/blob/master/assets/svg/contributor2.svg)](http://elisabeth.pointal.org)
 [![License GPL 2](https://github.com/epointal/lf-hiker/blob/master/assets/svg/license.svg)](http://www.gnu.org/licenses/gpl-2.0.html )
-[![Version 1.6.0](https://github.com/epointal/lf-hiker/blob/master/assets/svg/version1.6.0.svg)](https://github.com/epointal/lf-hiker/archive/1.6.0.zip) 
+[![Version 1.7.0](https://github.com/epointal/lf-hiker/blob/master/assets/svg/version1.7.0.svg)](https://github.com/epointal/lf-hiker/archive/1.7.0.zip) 
 
 Plugin site web: [Lf Hiker](http://elisabeth.pointal.org/lf-hiker/en/about/ )  
 Requires Wordpress version: 4.7.3  
@@ -89,7 +89,7 @@ If you think you found a bug in **Lf Hiker** or have any problem/question concer
 ## Supported languages 
  * Fran&ccedil;ais (fr_FR) 
  * English (en_US)  
- 
+ * Deutsch (de_DE) 
  If you need language for **Lf Hiker** which is not included. You can easily translate with poedit from the file :    
     `lf-hiker/languages/lfh-default.po`.   
 	
@@ -109,7 +109,7 @@ If you have any questions about the method, do not hesitate to [contact me](http
 
 ### Perform a new installation  
 
-After downloading the ZIP file [lf-hiker-1.6.0.zip](https://github.com/epointal/lf-hiker/archive/1.6.0.zip)   
+After downloading the ZIP file [lf-hiker-1.7.0.zip](https://github.com/epointal/lf-hiker/archive/1.7.0.zip)   
 
 1. Unzip `lf-hiker.zip` 
 2. Put the folder `lf-hiker` in directory `wp-content/plugins`
@@ -138,11 +138,12 @@ After downloading the ZIP file [lf-hiker-1.6.0.zip](https://github.com/epointal/
 
 
 ## Changelog 
-### In progress ###
+### 1.7.0 ###
  * Fixed: no path displayed with mesmerize theme
  * Evolution: add tiles Stamen Terrain
  * Evolution: add german translation
  * Fixed: conflict with divi theme and option Grab the first post image
+ * Fixed: function boolval do not exists (version php <5.5)
  
 ### 1.6.0 ###
  * Ability to choose the default map tiles
