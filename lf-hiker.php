@@ -11,7 +11,42 @@
     */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
-
+if( ! function_exists( "boolval")){
+    function boolval( $var ){
+        if( is_null( $var )){
+            return false;
+        }
+        switch( gettype( $var)){
+            case "boolean":
+                return $var;
+                break;
+            case "integer":
+            case "double":
+                if($var >0){
+                    return true;
+                }else{
+                    return false;
+                }
+                break;
+            case "string":
+                if( $var === "" || $var === "0" || $var === "false"){
+                    return false;
+                }else{
+                    return true;
+                }
+                break;
+            case "array":
+                if( count($var)>0){
+                    return true;
+                }else{
+                    return false;
+                }
+                break;
+            default:
+                return true;
+        }
+    }
+}
 
 class Lf_Hiker_Plugin
 {
