@@ -88,8 +88,8 @@ If you think you found a bug in **Lf Hiker** or have any problem/question concer
 ------------------------------------------
 ## Supported languages 
  * Fran&ccedil;ais (fr_FR) 
- * English (en_US)  
- * Deutsch (de_DE)  
+ * English (en_US) 
+ * Deutsch (de_DE)  by [Kristof Kling](https://lg-buggingen.de/bugginger-feierabendlauf/strecke/)
  If you need language for **Lf Hiker** which is not included. You can easily translate with poedit from the file :    
     `lf-hiker/languages/lfh-default.po`.   
 	

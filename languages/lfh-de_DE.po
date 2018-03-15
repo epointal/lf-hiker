@@ -2,17 +2,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lfh\n"
 "POT-Creation-Date: 2018-03-04 14:51+0100\n"
-"PO-Revision-Date: 2018-03-07 09:23+0100\n"
+"PO-Revision-Date: 2018-03-15 20:18+0100\n"
 "Language-Team: elisabeth\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__;_noop;esc_html__\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"Last-Translator: \n"
+"Last-Translator: Elisabeth Pointal <elisabeth.pointal@free.fr>\n"
 "Language: de_DE\n"
 "X-Poedit-SearchPath-0: C:/wamp/www/rancs/blog/wp-content/plugins/lf-hiker/"
 "Model\n"
@@ -33,7 +33,7 @@ msgstr "km"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:65
 msgid "milles"
-msgstr "Tausend"
+msgstr "Meilen"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:66
 msgid "mi"
@@ -75,7 +75,7 @@ msgstr "Vollbild"
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:93
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/map-form.phtml:113
 msgid "reset"
-msgstr "Reset"
+msgstr "zur&uuml;cksetzen"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:156
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/map.phtml:20
@@ -144,7 +144,7 @@ msgstr "Farbe der ausgew&auml;hlten Strecke"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:74
 msgid "Display button download gpx"
-msgstr "Schaltfl&auml;che 'GPX herunterladen' anzeigen"
+msgstr "Schaltfl&auml;che &quot;GPX herunterladen&quot; anzeigen"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:76
 msgid ""
@@ -152,7 +152,7 @@ msgid ""
 "code>"
 msgstr ""
 "F&uuml;r einzelne GPX auch im Shortcode &auml;nderbar mit der Eigenschaft "
-"<code>Schaltfl&auml;che</code>"
+"<code>button</code>"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:81
 msgid "Open profile window automatically"
@@ -162,11 +162,13 @@ msgstr "Profilfenster automatisch &ouml;ffnen"
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:102
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:111
 msgid "You can change it for one map in shortcode by using property"
-msgstr "F&uuml;r einzelne Karten auch im Shortcode &auml;nderbar mit der Eigenschaft"
+msgstr ""
+"F&uuml;r einzelne Karten auch im Shortcode &auml;nderbar mit der Eigenschaft"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:89
 msgid "Number of gpx to display a checkbox show/hide"
-msgstr "Anzahl der GPX um die 'zeigen/verstecken' Checkbox anzuzeigen"
+msgstr ""
+"Anzahl der GPX um die &quot;zeigen/verstecken&quot; Checkbox anzuzeigen"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:100
 msgid "Display button fullscreen"
@@ -186,11 +188,13 @@ msgstr "Standard H&ouml;heneinheit"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:132
 msgid "Minimum step on elevation axis in meters ( four steps in general)"
-msgstr "Minimum Schrittweite der H&ouml;henachse in Metern (meistens 4 Schritte)"
+msgstr ""
+"Minimum Schrittweite der H&ouml;henachse in Metern (meistens 4 Schritte)"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:138
 msgid "You can change it for one gpx in shortcode by using property"
-msgstr "F&uuml;r einzelne GPX auch im Shortcode &auml;nderbar mit der Eigenschaft"
+msgstr ""
+"F&uuml;r einzelne GPX auch im Shortcode &auml;nderbar mit der Eigenschaft"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:204
 msgid "Failed to create a new cache"
@@ -233,7 +237,7 @@ msgstr "GPX verwalten"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:302
 msgid "Display download button"
-msgstr "'Herunterladen'-Schaltfl&auml;che anzeigen"
+msgstr "&quot;Herunterladen&quot;-Schaltfl&auml;che anzeigen"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:309
 msgid "Color path"
@@ -266,8 +270,8 @@ msgid ""
 "Failed to write directive in .htaccess. It can blocked the helper editor for "
 "markers"
 msgstr ""
-"Konnte die Anweisung nicht in .htaccess schreiben. K&ouml;nnte vom Editor f&uuml;r "
-"Markierungen blockiert sein"
+"Konnte die Anweisung nicht in .htaccess schreiben. K&ouml;nnte vom Editor "
+"f&uuml;r Markierungen blockiert sein"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Back.php:63
 msgid "All gpx files"
@@ -300,11 +304,13 @@ msgstr "Cache leeren"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:112
 msgid "Add directive for allowed x-frame same origin in .htaccess"
-msgstr "Anweisung f&uuml;r erlaubten x-Frame gleicher Quelle in .htaccess hinf&uuml;gen"
+msgstr ""
+"Anweisung f&uuml;r erlaubten x-Frame gleicher Quelle in .htaccess hinf&uuml;"
+"gen"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:116
 msgid "Add in"
-msgstr "Add in"
+msgstr "Hinzuf&uuml;gen zu"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:118
 msgid "Seems resolve trouble with multiple directive x-frame-options. See "
@@ -318,7 +324,7 @@ msgstr "Wordpress Support Thema"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:128
 msgid "Remove in"
-msgstr "Entfernen in"
+msgstr "Entfernen aus"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:12
 msgid "Your personnal configuration"
@@ -329,12 +335,12 @@ msgid ""
 "is a wordpress plugin for quickly display your gpx tracks with their profile "
 "elevation on an interactive map."
 msgstr ""
-"ist ein Wordpress Plugin um Ihre GPX-Strecken mit H&ouml;henprofil auf einer "
-"interaktiven Karte anzuzeigen."
+"ist ein Wordpress Plugin, um Ihre GPX-Strecken mit H&ouml;henprofil auf "
+"einer interaktiven Karte anzuzeigen."
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:47
 msgid "You can find informations, and tutorial on website"
-msgstr "Informationen und Anleitungen auf der Webseite"
+msgstr "Informationen und Anleitungen finden Sie auf der Webseite"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:48
 msgid "Main Utilisation"
@@ -346,7 +352,8 @@ msgid ""
 "informations and insert it in your post/page (shortcode)."
 msgstr ""
 "Einfach die GPX-Datei mit dem Wordpress Media Manager hochladen, die "
-"Informationen erg&auml;nzen und in das Posting/die Seite einf&uuml;gen (shortcode)."
+"Informationen erg&auml;nzen und den Shortcode in das Posting/die Seite "
+"einf&uuml;gen. "
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:51
 msgid "Display the post/page : you have an interactive view of your track."
@@ -375,7 +382,7 @@ msgstr "Beschreibung"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:56
 msgid "interactive profile elevation  according to path"
-msgstr "interaktives Streckenprofil"
+msgstr "interaktivem Streckenprofil"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:57
 msgid "distance of the track"
@@ -398,11 +405,13 @@ msgstr "andere Funktionen"
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:64
 msgid "included an helper for edit map and add markers."
 msgstr ""
-"enth&auml;lt ein Werkzeug um Karte zu bearbeiten und Markierungen hinzuzuf&uuml;gen."
+"enth&auml;lt ein Werkzeug um die Karte zu bearbeiten und Markierungen "
+"hinzuzuf&uuml;gen."
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:65
 msgid "See all features on Lf Hiker website"
-msgstr "F&uuml;r eine &Uuml;bersicht der Funktionen Lf Hiker Webseite besuchen"
+msgstr ""
+"F&uuml;r eine &Uuml;bersicht der Funktionen die Lf Hiker Webseite besuchen"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/user.phtml:12
 msgid "Unactive helper for markers"
@@ -530,8 +539,8 @@ msgstr "Dauer"
 msgid ""
 "You can add tiles layers which need key here, or choose unit for distance"
 msgstr ""
-"Hier k&ouml;nnen Sie Kachel-Ebenen hinzuf&uuml;gen, die einen Schl&uuml;ssel ben&ouml;tigen, "
-"oder die Einheit f&uuml;r Entfernungen ausw&auml;hlen"
+"Hier k&ouml;nnen Sie Kachel-Ebenen hinzuf&uuml;gen, die einen Schl&uuml;ssel "
+"ben&ouml;tigen, oder die Einheit f&uuml;r Entfernungen ausw&auml;hlen"
 
 msgid "Mapquest key"
 msgstr "Mapquest Schl&uuml;ssel"
@@ -540,7 +549,8 @@ msgid "This option is deactived (mapquest using deprecated method)."
 msgstr "Diese Option ist deaktiviert (MapQuest mit veralteter Methode)."
 
 msgid "If you want MapQuest, you must provide an app key."
-msgstr "Wenn Sie MapQuest nutzen wollen, ben&ouml;tigen Sie einen App Schl&uuml;ssel."
+msgstr ""
+"Wenn Sie MapQuest nutzen wollen, ben&ouml;tigen Sie einen App Schl&uuml;ssel."
 
 msgid "Sign up"
 msgstr "Anmelden"
