@@ -16,7 +16,7 @@ Class Lfh_Model_Map{
         'bicycle', 'train', 'bed', 'shower', 'cutlery', 'coffee', 'beer', 'glass', 'spoon', 'bell',
         'home', 'wheelchair', 'school', 'child', 'female', 'male',   'bank', 'industry');
     
-    public static $colors_path = array('red', 'blue', 'purple', 'orange', 'darkred', 'darkblue', 'darkgreen');
+    public static $colors_path = array('red', 'blue', 'purple', 'orange', 'darkred', 'darkblue', 'darkgreen', 'black');
     
     public static $distance_units = array( 'km', 'miles');
     
@@ -343,7 +343,8 @@ Class Lfh_Model_Map{
     }
     public static function is_path_color($var)
     {
-        if(in_array(strtolower($var), self::$colors_path)){
+        if(in_array(strtolower($var), self::$colors_path)
+                || preg_match('/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/', $var)){
             return strtolower($var);
         }else{
             return self::$default['stroke_color'];
