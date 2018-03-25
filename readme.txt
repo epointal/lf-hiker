@@ -6,7 +6,7 @@ Tags: map, GPX, hiker, runner, track, path, trail, leaflet, profile, openstreetm
 Requires at least: 4.7.3
 Tested up to: 4.9  
 Stable tag: 1.0  
-Version: 1.7.0
+Version: 1.8.0
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -96,7 +96,7 @@ If you think you found a bug in **Lf Hiker** or have any problem/question concer
 ### Supported languages 
  * Fran&ccedil;ais (fr_FR) 
  * English (en_US) 
- * Deutsch (de_DE)  by [Kristof Kling](https://lg-buggingen.de/bugginger-feierabendlauf/strecke/)  
+ * Deutsch (de_DE) by [Kristof Kling](https://lg-buggingen.de/bugginger-feierabendlauf/strecke/)  
  
  If you need language of **Lf Hiker** which is not included. You can easily translate with poedit from the file :    
     `lf-hiker/languages/lfh-default.po`.   
@@ -134,6 +134,12 @@ From zip archive
 7. You can change the default configuration in tab: `Settings → Lf-hiker` 
 
 == Changelog == 
+= 1.8.0 =
+ * Evolution: Add black in color path
+ * Evolution: Enable all hexadecimal color for path
+ * Evolution: Little dots at ends for path with width less than 3px
+ * Fixed: german translation
+ 
 = 1.7.0 =
  * Fixed: no path displayed with mesmerize theme
  * Evolution: add tiles Stamen Terrain

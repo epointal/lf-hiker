@@ -95,7 +95,14 @@ lfh.POINT_ICON = L.icon({
         shadowAnchor: [5, 5],  
         popupAnchor:  [5, 5]
     });
-
+lfh.MINI_POINT_ICON = L.icon({
+    iconUrl: lfh.ICON_URL + '/markers/pointS6.png',
+    iconSize:     [6, 6], 
+    shadowSize:   [0, 0], 
+    iconAnchor:   [3, 3], 
+    shadowAnchor: [3, 3],  
+    popupAnchor:  [3, 3]
+});
 lfh.WIDTH_LIMIT = 620;
 
 // height of window under the map (without the title)
@@ -829,8 +836,8 @@ lfh.Map = function(i){
                     isLoaded: false,
                     elem_id: track_id,
                     marker_options: {
-                        startIcon: lfh.POINT_ICON,
-                        endIcon: lfh.POINT_ICON,
+                        startIcon: _data.gpx[j].width> 2 ? lfh.POINT_ICON:lfh.MINI_POINT_ICON,
+                        endIcon: _data.gpx[j].width> 2 ? lfh.POINT_ICON:lfh.MINI_POINT_ICON,
                         //shadowUrl: 'images/pin-shadow.png'
                       }
                  }).on('loaded', function(e) {
