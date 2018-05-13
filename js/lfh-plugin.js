@@ -79,7 +79,7 @@ String.prototype.replaceAll = function(search, replacement) {
 lfh.ZOOM_LIMIT = 11;
 
 lfh.ICON_MOVE = L.icon({
-        iconUrl: lfh.ICON_URL +'/markers/move.png',
+        iconUrl: lfh.ICON_URL +'markers/move.png',
         iconSize:     [15, 15], 
         shadowSize:   [0, 0], 
         iconAnchor:   [7, 7],
@@ -88,7 +88,7 @@ lfh.ICON_MOVE = L.icon({
 
     });
 lfh.POINT_ICON = L.icon({
-        iconUrl: lfh.ICON_URL + '/markers/pointS000063.png',
+        iconUrl: lfh.ICON_URL + 'markers/pointS000063.png',
         iconSize:     [10, 10], 
         shadowSize:   [0, 0], 
         iconAnchor:   [5, 5], 
@@ -96,7 +96,7 @@ lfh.POINT_ICON = L.icon({
         popupAnchor:  [5, 5]
     });
 lfh.MINI_POINT_ICON = L.icon({
-    iconUrl: lfh.ICON_URL + '/markers/pointS6.png',
+    iconUrl: lfh.ICON_URL + 'markers/pointS6.png',
     iconSize:     [6, 6], 
     shadowSize:   [0, 0], 
     iconAnchor:   [3, 3], 

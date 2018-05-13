@@ -35,7 +35,7 @@
  * can be used to display additional information about the track that is
  * rendered on the Leaflet map.
  */
-
+console.log( lfh.ICON_URL);
 var L = L || require('leaflet');
 
 var _MAX_POINT_INTERVAL_MS = 15000;
