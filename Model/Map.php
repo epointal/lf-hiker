@@ -59,7 +59,14 @@ Class Lfh_Model_Map{
                         'attribution'   => 'by <a href="http://stamen.com">Stamen Design</a> Data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> Contributors | <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>',
                         'min_zoom'      => 1,
                         'max_zoom'      => 14,
-                        'need_key'      => false)
+                        'need_key'      => false),
+            'opentopomap'      => array(
+                    'label'         => 'OpenTopoMap',
+                    'url'           => '//{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+                    'attribution'   => 'Kartendaten: © <a href="https://openstreetmap.org/copyright">OpenStreetMap</a>-Mitwirkende, <a href="http://viewfinderpanoramas.org">SRTM</a> | Kartendarstellung: © <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)',
+                    'min_zoom'      => 1,
+                    'max_zoom'      => 20,
+                    'need_key'      => false),
     );
     
     public static function distance_units(){
