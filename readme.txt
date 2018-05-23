@@ -134,9 +134,10 @@ From zip archive
 7. You can change the default configuration in tab: `Settings → Lf-hiker` 
 
 == Changelog == 
-= 1.8.2 =
+= 1.9.0 =
  * Fixed: trouble position of gpx dom block and list block
  * Fixed: trouble with map when tabs (map only on top left corner)
+ * Evolution: Add open Topo Map tiles
  
 = 1.8.1 =
  * Fixed: no icon for way point
