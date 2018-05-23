@@ -636,9 +636,8 @@ lfh.Map = function(i){
             // Add control button
             _add_controls(d);
             lfh.map_resize( map);
-            if(i = lfh.data.length -1){
+            if(i == lfh.data.length -1){
                 lfh.handle_tab_event();
-               
             }
         }
         

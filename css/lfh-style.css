@@ -277,6 +277,8 @@ Version: 1.0
   font-family: Helvetica, Arial, sans-serif;
   font-size: 12px;
   border-bottom-left-radius: 6px;
+  pointer-events: auto;
+  cursor: auto;
 }
 .main .lfh-element h1,
 .main .lfh-element h2,
