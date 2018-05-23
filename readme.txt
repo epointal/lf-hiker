@@ -135,7 +135,7 @@ From zip archive
 
 == Changelog == 
 = 1.9.0 =
- * Fixed: trouble position of gpx dom block and list block
+ * Fixed: trouble position of gpx dom block, marker block and list block
  * Fixed: trouble with map when tabs (map only on top left corner)
  * Evolution: Add open Topo Map tiles
  

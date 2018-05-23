@@ -139,8 +139,8 @@ After downloading the ZIP file [lf-hiker-1.9.0.zip](https://github.com/epointal/
 
 
 ## Changelog 
-### 1.9 ###
- * Fixed: trouble position of gpx dom block and list block
+### 1.9.0 ###
+ * Fixed: trouble position of gpx dom block, marker block and list block
  * Fixed: trouble with map when tabs (map only on top left corner)
  * Evolution: Add open Topo Map tiles
  
