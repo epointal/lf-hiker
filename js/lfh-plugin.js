@@ -118,6 +118,7 @@ lfh.initialize_map = function(i){
     if(typeof lfh.data[i] != 'function'){
         lfh.all[i] = new lfh.Map(i);
     }
+  
 }
 /** Recursivily initialize the map, if there are a lot of map*/
 lfh.all = new Array();
@@ -457,6 +458,12 @@ lfh.map_resize = function(map){
     map.invalidateSize();
     return _large;
 }
+lfh.reset_all_map = function(){
+    [].forEach.call(lfh.all , function( mapi ) {
+        mapi.reset();
+         
+     });
+}
 lfh.resize_all_map = function(){
     // do it for all maps on dom
     [].forEach.call(lfh.all , function( mapi ) {
@@ -469,6 +476,17 @@ L.DomEvent.addListener( window, 'resize', function(e){
    lfh.resize_all_map();
 });
 
+/** add event for tabs situation */
+lfh.handle_tab_event = function(){
+    var nodes = document.querySelectorAll("[role='tab'], [data-tab]");
+    [].forEach.call( nodes, function( node ){
+        L.DomEvent.addListener( node, 'click', function(e){
+           setTimeout( lfh.reset_all_map, 1000);
+        })
+       
+        
+    })
+}
 lfh.toggle_next = function( node, delta, map_id){
     if( !node ){
         return;
@@ -531,7 +549,19 @@ lfh.Selected = function( map_id, map, marker){
         }
        
 }
-
+L.Map.include({
+    _center0:[0,0],
+    _zoom0:2,
+    _bounds:null,
+    reset: function(){
+        this.invalidateSize();
+        if( this._bounds == null){
+            this.setView( this._center0, this._zoom0);
+        }else{
+            this.fitBounds( this._bounds);
+        }
+    }
+});
 
 /**
  * Build the map indexed i, with its markers, its gpx path, its controls...
@@ -561,7 +591,7 @@ lfh.Map = function(i){
         var _latlngbounds = new Array();   // markers used for compute bounds of map if _auto_center
         
         var _selected_element = null; 
-       
+        
         function _initialize( i ){
             _data = lfh.data[i];
             var d = lfh.data[i].map;
@@ -570,12 +600,20 @@ lfh.Map = function(i){
             _auto_center = d.autocenter;
             _list = d.list;
             _center = [d.lat, d.lng];
+            
+            
             _zoom = Math.min(d.zoom,lfh.tiles[d.tile].max_zoom);
+            
             map = L.map(_map_id, { dragging: !L.Browser.mobile, tap:!L.Browser.mobile });
-           // map = L.map(_map_id, { dragging: false });
+            map._center0 = _center;
+            map._zoom0 = _zoom;
+            // map = L.map(_map_id, { dragging: false });
             if( !_auto_center ){
                 map.setView( _center, _zoom);
             }
+           // if( L.Brower.mobile){
+               // map.locate({setView: false, maxZoom: 16});
+            //}
             _set_tile(d.tile);
        
             map.options.mousewheel = d.mousewheel;
@@ -598,7 +636,10 @@ lfh.Map = function(i){
             // Add control button
             _add_controls(d);
             lfh.map_resize( map);
-            
+            if(i = lfh.data.length -1){
+                lfh.handle_tab_event();
+               
+            }
         }
         
       
@@ -807,11 +848,13 @@ lfh.Map = function(i){
                setTimeout(function(){_add_loaded_listener( buttonreset );}, 500);
            }else{
                if(_latlngbounds.length>0){
+                   map._bounds = _latlngbounds;
                    map.fitBounds(_latlngbounds);
                }
                _center = map.getCenter();
                _zoom = map.getZoom();
-               
+               this.center = _center;
+               this.zoom = _zoom;
                if(lfh.tiles[_data.map.tile].max_zoom < _zoom){
                    _zoom = lfh.tiles[_data.map.tile].max_zoom ;
                    map.setZoom( _zoom );
@@ -1305,6 +1348,7 @@ lfh.Profile = function( map, layer, dom, move, unit, unit_h, step_min){
  function _count_div ( node ){
     return childs; 
  }
+
  lfh.initialize(1);
 })();
     
