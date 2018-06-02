@@ -159,7 +159,13 @@ Class Lfh_Model_Option
             break;
             case 'config_lfh':
             return array(
-               
+                'lfh_use_cdn' => array(
+                    'type'   => 'checkbox',
+                    'default'=> true,
+                    'label'  => __('Use cdn host for leaflet', 'lfh'),
+                    'filter' => FILTER_VALIDATE_INT,
+                    'helper' => esc_html__('If unchecked, use local leaflet version', 'lfh')
+                    )
                 /*'lfh_cache_parent' => array(
                     'type'    => 'text',
                     'label'   => __('Cache dir', 'lfh'),
@@ -223,6 +229,13 @@ Class Lfh_Model_Option
                $data["lfh_button_fullscreen"] = true;
            }else{
                $data["lfh_button_fullscreen"] = false;
+           }
+       }
+       if( $tab == 'config_lfh'){
+           if(  isset( $data["lfh_use_cdn"])){
+               $data["lfh_use_cdn"] = true;
+           }else{
+               $data["lfh_use_cdn"] = false;
            }
        }
     

@@ -51,6 +51,7 @@ if( ! function_exists( "boolval")){
 class Lf_Hiker_Plugin
 {
     const VERSION = '1.9.0';
+    const LEAFLET_VERSION = '1.3.1';
     
     private static $_controller;
     

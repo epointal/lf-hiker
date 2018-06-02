@@ -46,11 +46,16 @@ Class Lfh_Controller_Front
         }
     }
     public  function register_scripts () {
-    
-        wp_register_style('leaflet_stylesheet', "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.1.0/leaflet.css", Array(), null, false);
-        wp_register_script('leaflet',"https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.1.0/leaflet.js",Array(),null, true);
+        $cdn = Lfh_Model_Option::get_option('lfh_use_cdn');
+        if( $cdn ){
+            wp_register_style('leaflet_stylesheet', "https://cdnjs.cloudflare.com/ajax/libs/leaflet/" . Lf_Hiker_Plugin::LEAFLET_VERSION . '/leaflet.css', Array(), null, false);
+            wp_register_script('leaflet',"https://cdnjs.cloudflare.com/ajax/libs/leaflet/" . Lf_Hiker_Plugin::LEAFLET_VERSION . "/leaflet.js",Array(),null, true);
      //   wp_register_style('font_awesome', "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css", Array(), null, false);
-        
+        }else{
+            wp_register_style('leaflet_stylesheet', Lf_Hiker_Plugin::$url.'lib/leaflet/'.Lf_Hiker_Plugin::LEAFLET_VERSION.'/leaflet.css', Array(), null, false);
+            wp_register_script('leaflet', Lf_Hiker_Plugin::$url.'lib/leaflet/'.Lf_Hiker_Plugin::LEAFLET_VERSION.'/leaflet.js',Array(),null, true);
+            
+        }
         
         if(WP_DEBUG){
           //  wp_register_style('awesome_marker_css', Lf_Hiker_Plugin::$url."lib/awesome-marker/leaflet.awesome-markers.css", Array('font_awesome'), null, false);
