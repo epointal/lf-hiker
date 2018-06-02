@@ -6,7 +6,7 @@ Tags: map, GPX, hiker, runner, track, path, trail, leaflet, profile, openstreetm
 Requires at least: 4.7.3
 Tested up to: 4.9  
 Stable tag: 1.0  
-Version: 1.9.0
+Version: 1.10.0
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -134,6 +134,9 @@ From zip archive
 7. You can change the default configuration in tab: `Settings → Lf-hiker` 
 
 == Changelog == 
+= 1.10.0 =
+ * Evolution: Ability to choose the leaflet host
+ 
 = 1.9.0 =
  * Fixed: trouble position of gpx dom block, marker block and list block
  * Fixed: trouble with map when tabs (map only on top left corner)
