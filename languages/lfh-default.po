@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lfh\n"
-"POT-Creation-Date: 2018-03-04 14:51+0100\n"
-"PO-Revision-Date: 2018-03-04 14:52+0100\n"
+"POT-Creation-Date: 2018-06-03 00:33+0100\n"
+"PO-Revision-Date: 2018-06-03 00:34+0100\n"
 "Last-Translator: Elisabeth Pointal <elisabeth.pointal@free.fr>\n"
 "Language-Team: elisabeth\n"
 "Language: en_EN\n"
@@ -23,82 +23,82 @@ msgstr ""
 "X-Poedit-SearchPath-3: C:\\wamp\\www\\rancs\\blog\\wp-content\\plugins\\lf-"
 "hiker\\Controller\n"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:61
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:75
 msgid "kilometer"
 msgstr "kilometer"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:62
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:76
 msgid "km"
 msgstr "km"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:65
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:79
 msgid "milles"
 msgstr "milles"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:66
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:80
 msgid "mi"
 msgstr "mi"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:72
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:86
 msgid "meter"
 msgstr "meter"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:73
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:87
 msgid "m"
 msgstr "m"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:76
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:90
 msgid "foot"
 msgstr "foot"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:77
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:91
 msgid "ft"
 msgstr "ft"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:86
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:100
 msgid "Position auto"
 msgstr "Position auto"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:114
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:128
 msgid "Width"
 msgstr "Width"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:124
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:138
 msgid "Height"
 msgstr "Height"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:142
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:156
 msgid "Fullscreen"
 msgstr "Fullscreen"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:149
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:163
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:93
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/map-form.phtml:113
 msgid "reset"
 msgstr "reset"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:156
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:170
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/map.phtml:20
 msgid "list"
 msgstr "list"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:163
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:177
 msgid "Zoom on wheel"
 msgstr "Zoom on wheel"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:169
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:183
 msgid "Tiles"
 msgstr "Tiles"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:177
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:191
 msgid "Open profile automaticaly"
 msgstr "Open profile automaticaly"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:222
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:237
 msgid "no named gpx"
 msgstr "no named gpx"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:301
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:316
 msgid "no named marker"
 msgstr "no named marker"
 
@@ -192,15 +192,23 @@ msgstr "Minimum step on elevation axis in meters ( four steps in general)"
 msgid "You can change it for one gpx in shortcode by using property"
 msgstr "You can change it for one gpx in shortcode by using property"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:204
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:165
+msgid "Use cdn host for leaflet"
+msgstr "Use cdn host for leaflet"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:167
+msgid "If unchecked, use local leaflet version"
+msgstr "If unckecked, use local leaflet version"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:210
 msgid "Failed to create a new cache"
 msgstr "Failed to create a new cache"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:244
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:257
 msgid "data updated"
 msgstr "data updated"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:264
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:277
 msgid "data reseted"
 msgstr "data reseted"
 
@@ -223,23 +231,23 @@ msgid "Delete marker"
 msgstr "Delete marker"
 
 #: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:141
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:281
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:286
 msgid "Add here your formated description"
 msgstr "Add here your formated description"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:257
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:262
 msgid "Manage gpx"
 msgstr "Manage gpx"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:302
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:307
 msgid "Display download button"
 msgstr "Display download button"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:309
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:314
 msgid "Color path"
 msgstr "Color path"
 
-#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:326
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:331
 msgid "Stroke width"
 msgstr "Stroke width"
 
