@@ -833,8 +833,7 @@ lfh.Map = function(i){
                 div.appendChild( checkbox);
                
             }
-            container.insertBefore( div, container.firstChild);
-            //appendChild(node);
+            container.appendChild( div);
             
             L.DomEvent.addListener( node , 'click', function(e){
                 gpx.fire('click');
@@ -925,7 +924,7 @@ lfh.Map = function(i){
             count_div++;
             div.className = "lfh-content";*/
             //begin by gpx
-            [].forEach.call(_gpx, function( one_gpx){
+            _gpx.forEach(function( one_gpx, i){
                 if( count%3 == 0){
                     div = document.createElement("div");
                     div.className = "lfh-content";
