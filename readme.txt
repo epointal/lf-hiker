@@ -135,6 +135,7 @@ From zip archive
 
 == Changelog == 
 = 1.10.0 =
+ * Fixed: lf hiker is destroying the AMP pages
  * Evolution: Ability to choose the leaflet host
  
 = 1.9.0 =

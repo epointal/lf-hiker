@@ -140,6 +140,7 @@ After downloading the ZIP file [lf-hiker-1.10.0.zip](https://github.com/epointal
 
 ## Changelog 
 ### 1.10.0 ###
+ * Fixed: lf hiker is destroying the AMP pages
  * Evolution: Ability to choose the leaflet host
  
 ### 1.9.0 ###

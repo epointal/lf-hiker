@@ -72,6 +72,9 @@ Class Lfh_Controller_Front
     }
    
     public function map_shortcode($atts, $html =null){
+        if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ){
+            return "";
+        }
         if( $this->is_divi_get_thumbnail()){
             return "";
         }
