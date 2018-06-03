@@ -461,8 +461,6 @@ lfh.map_resize = function(map){
 lfh.reset_all_map = function(){
     [].forEach.call(lfh.all , function( mapi ) {
         mapi.reset();
-        console.log("reset map");
-         
      });
 }
 lfh.resize_all_map = function(){

@@ -137,6 +137,7 @@ From zip archive
 = 1.10.0 =
  * Fixed: lf hiker is destroying the AMP pages
  * Fixed: bug with tabby-responsive-tabs plugin
+ * Evolution: gpx buttons are ordered in list as the gpx files in post/page
  * Evolution: Ability to choose the leaflet host
  
 = 1.9.0 =
