@@ -461,6 +461,7 @@ lfh.map_resize = function(map){
 lfh.reset_all_map = function(){
     [].forEach.call(lfh.all , function( mapi ) {
         mapi.reset();
+        console.log("reset map");
          
      });
 }
@@ -478,15 +479,21 @@ L.DomEvent.addListener( window, 'resize', function(e){
 
 /** add event for tabs situation */
 lfh.handle_tab_event = function(){
-    var nodes = document.querySelectorAll("[role='tab'], [data-tab]");
+    var nodes = document.querySelectorAll("[data-tab]");
     [].forEach.call( nodes, function( node ){
         L.DomEvent.addListener( node, 'click', function(e){
-           setTimeout( lfh.reset_all_map, 1000);
+           setTimeout( lfh.reset_all_map, 100);
         })
-       
-        
     })
 }
+window.addEventListener("load", function(e) {
+    var nodes = document.querySelectorAll(".responsive-tabs__list__item");
+    [].forEach.call( nodes, function( node ){
+        L.DomEvent.addListener( node, 'click', function(e){
+          lfh.reset_all_map();
+        })
+    })
+}, true);
 lfh.toggle_next = function( node, delta, map_id){
     if( !node ){
         return;
