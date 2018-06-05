@@ -1292,11 +1292,11 @@ lfh.Profile = function( map, layer, dom, move, unit, unit_h, step_min){
          }else{
              // No data elevation : remove svg
              _track.querySelector('svg').parentNode.removeChild( _track.querySelector('svg'));
-             var _duration = _gpx.get_total_time();
-             if( _duration )
-             {
-                 _track.querySelector('.lfh-gpx-duration').textContent = _gpx.get_duration_string(_duration);
-             }
+         }
+         var _duration = _gpx.get_total_time();
+         if( _duration )
+         {
+             _track.querySelector('.lfh-gpx-duration').textContent = _gpx.get_duration_string(_duration);
          }
          _track.querySelector('.lfh-gpx-name').textContent = _gpx.get_name();
          _track.querySelector('.lfh-gpx-distance').textContent = (Math.round(_gpx.get_distance()/(100*_coeff))/10).toString().replace('.' , ',')  + ' ' + lfh.DISTANCE_UNIT[_unit].code;
