@@ -428,6 +428,8 @@ L.GPX = L.FeatureGroup.extend({
       this._info.duration.end = ll.meta.time;
 
       if (last != null) {
+        var dist = this._dist3d(last, ll);
+        console.log(dist);
         this._info.length += this._dist3d(last, ll);
 
         var t = ll.meta.ele - last.meta.ele;
