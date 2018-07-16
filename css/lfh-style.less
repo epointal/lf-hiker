@@ -186,7 +186,8 @@ div.lfh-no-data{
     border: 1px dotted red;
     margin: 5px;
 }
-div.lfh-min div.lfh-no-data{
+div.lfh-min div.lfh-no-data,
+div.undermap div.lfh-no-data{
     display:block;
     margin-top:2px;
     height:@height - @height_title - 20px;
@@ -229,7 +230,8 @@ div.lfh-fadable,
     height:100%;
 }
 
-#lfh-fade.lfh-min div.lfh-map{
+#lfh-fade.lfh-min div.lfh-map,
+#lfh-fade.undermap div.lfh-map{
 	position:absolute;
 	width:100%;
 	top:0;
@@ -386,22 +388,26 @@ input.lfh-button + input[type="button"]{
 div.lfh-container{
     clear:both;
 }
-div.lfh-container.lfh-min div.lfh-data{
+div.lfh-container.lfh-min div.lfh-data,
+div.lfh-container.undermap div.lfh-data{
   
     position: relative;
     height:@height;
 }
-#lfh-fade.lfh-min div.lfh-data{
+#lfh-fade.lfh-min div.lfh-data,
+#lfh-fade.undermap div.lfh-data{
 	position:absolute;
 	top:auto;
 	bottom:0;
 	height:@height;
 	background-color:white;
 }
-div.lfh-min div.lfh-content{
+div.lfh-min div.lfh-content,
+div.undermap div.lfh-content{
     margin:0;
 }
-div.lfh-min div.lfh-control-list{
+div.lfh-min div.lfh-control-list,
+div.undermap div.lfh-control-list{
     display:none;
 }
 div.lfh-data-content{
@@ -412,13 +418,15 @@ div.lfh-data-content > div:not(.lfh-contributor){
 	width:100%;
 	margin-top:3px;
 }
-div.lfh-min div.lfh-data-content{
+div.lfh-min div.lfh-data-content,
+div.undermap div.lfh-data-content{
     margin: 35px 5px;
     display:block;
     text-align:left;
     vertical-align:middle;
 }
-div.lfh-min div.lfh-data-content div.lfh-section{
+div.lfh-min div.lfh-data-content div.lfh-section,
+div.undermap div.lfh-data-content div.lfh-section{
 
     display:block;
     height:100%;
@@ -426,18 +434,24 @@ div.lfh-min div.lfh-data-content div.lfh-section{
     line-height:@height - @height_title - 60px;
 }
  
-div.lfh-min div.lfh-data-content div.lfh-section div.lfh-content{
+div.lfh-min div.lfh-data-content div.lfh-section div.lfh-content,
+div.undermap div.lfh-data-content div.lfh-section div.lfh-content{
 	margin:auto;
 }
 div.lfh-container.lfh-min,
-#fade div.lfh-container.lfh-min{
+#fade div.lfh-container.lfh-min,
+div.lfh-container.undermap,
+#fade div.lfh-container.undermap{
     height:auto;
 }
 #lfh-fade.lfh-min div.lfh-nav,
- div.lfh-min div.lfh-nav{
+ div.lfh-min div.lfh-nav,
+ #lfh-fade.undermap div.lfh-nav,
+ div.undermap div.lfh-nav{
     display: block;
  }
- div.lfh-container.lfh-min{
+ div.lfh-container.lfh-min,
+  div.lfh-container.undermap{
      border: 2px solid #9e9e9e;
  }
  
@@ -445,11 +459,14 @@ div.lfh-container.lfh-min,
  div.lfh-nav div.lfh-next{
      display:none;
  }
- div.lfh-min div.lfh-head{
+ div.lfh-min div.lfh-head,
+ div.undermap div.lfh-head{
      display:none;
  }
  div.lfh-min div.lfh-nav div.lfh-back,
- div.lfh-min div.lfh-nav div.lfh-next{
+ div.lfh-min div.lfh-nav div.lfh-next,
+ div.undermap div.lfh-nav div.lfh-back,
+ div.undermap div.lfh-nav div.lfh-next{
     position:absolute;
     display:none;
     top:@height/2;
@@ -466,10 +483,12 @@ div.lfh-container.lfh-min,
      background-color:rgba(255,255,255,0.6)
    
  }
- div.lfh-min div.lfh-nav div.lfh-back{
+ div.lfh-min div.lfh-nav div.lfh-back,
+ div.undermap div.lfh-nav div.lfh-back{
       left:-1px;
  }
- div.lfh-min div.lfh-nav div.lfh-next{
+ div.lfh-min div.lfh-nav div.lfh-next,
+ div.undermap div.lfh-nav div.lfh-next{
      right:0px;
  }
  div.lfh-nav div.lfh-next::before,
@@ -477,7 +496,9 @@ div.lfh-nav div.lfh-back::before{
     margin-left:-3px;
 }
  div.lfh-min div.lfh-nav div.lfh-back:hover,
- div.lfh-min div.lfh-nav div.lfh-next:hover{
+ div.lfh-min div.lfh-nav div.lfh-next:hover,
+ div.undermap div.lfh-nav div.lfh-back:hover,
+ div.undermap div.lfh-nav div.lfh-next:hover{
      opacity:0.9;
      background-color:rgba(255,255,255,0.9);
 
@@ -502,7 +523,9 @@ a.lfh-gpx-file:hover{
       background:#eee;
 }
  div.lfh-min a.lfh-gpx-file,
-#lfh-fade.lfh-min a.lfh-gpx-file{
+#lfh-fade.lfh-min a.lfh-gpx-file,
+div.undermap a.lfh-gpx-file,
+#lfh-fade.undermap a.lfh-gpx-file{
      color:inherit;
      pointer-events: auto;
      background:none;
@@ -512,28 +535,32 @@ a.lfh-gpx-file:hover{
      margin:0 2px;
  }
 
- div.lfh-min a.lfh-gpx-file{
+ div.lfh-min a.lfh-gpx-file,
+ div.undermap a.lfh-gpx-file{
       pointer-events: auto;
       cursor: pointer;
       margin: 0 5px;
       float:right;
  }
 
- div.lfh-min div.lfh-contributor{
+ div.lfh-min div.lfh-contributor,
+ div.undermap div.lfh-contributor{
      position:absolute;
      bottom:0;
      right:5px;
      font-size:11px;
      pointer-events:auto;
  }
-  div.lfh-min div.lfh-contributor a{
+  div.lfh-min div.lfh-contributor a,
+  div.undermap div.lfh-contributor a{
      text-decoration:none;
   }
  @width: 280px;
  @height:200px;
  @height_title:27px;
  @padding_title:3px;
- div.lfh-min div.lfh-nav div.lfh-title{
+ div.lfh-min div.lfh-nav div.lfh-title,
+ div.undermap div.lfh-nav div.lfh-title{
      font-size:1rem;
      font-weight:600;
      padding: @padding_title 5px;
@@ -546,12 +573,14 @@ a.lfh-gpx-file:hover{
     overflow: hidden;
  }
  
- #lfh-fade.lfh-min div.lfh-nav div.lfh-title{
+ #lfh-fade.lfh-min div.lfh-nav div.lfh-title,
+ #lfh-fade.undermap div.lfh-nav div.lfh-title{
      text-align:left;
  }
  
- div.lfh-min div.lfh-element{
- position:absolute;
+ div.lfh-min div.lfh-element,
+ div.undermap div.lfh-element{
+    position:absolute;
     top: @height_title + 6px;
     left:0;
     min-width:100%;
@@ -561,21 +590,26 @@ a.lfh-gpx-file:hover{
  
 }
 
-div.lfh-min div.lfh-element.lfh-small-content{
+div.lfh-min div.lfh-element.lfh-small-content,
+div.undermap div.lfh-element.lfh-small-content{
     width:100%;
 }
 
-div.lfh-min div.lfh-element.lfh-small-content div.lfh-element-content{
+div.lfh-min div.lfh-element.lfh-small-content div.lfh-element-content,
+div.undermap div.lfh-element.lfh-small-content div.lfh-element-content{
     text-align:center;
 }
-div.lfh-min div.lfh-element.lfh-small-content:not(.lfh-list) div.lfh-content{
+div.lfh-min div.lfh-element.lfh-small-content:not(.lfh-list) div.lfh-content,
+div.undermap div.lfh-element.lfh-small-content:not(.lfh-list) div.lfh-content{
     text-align:left;
 }
-div.lfh-min div.lfh-element.lfh-small-content div.lfh-section{
+div.lfh-min div.lfh-element.lfh-small-content div.lfh-section,
+div.undermap div.lfh-element.lfh-small-content div.lfh-section{
     float:none;
     margin:auto;
 }
-div.lfh-min div.lfh-element.lfh-hidden{
+div.lfh-min div.lfh-element.lfh-hidden,
+div.undermap div.lfh-element.lfh-hidden{
    -ms-transform: translateY(300px);
    -webkit-transform: translateY(300px);
    -moz-transform: translateY(300px);
@@ -583,7 +617,8 @@ div.lfh-min div.lfh-element.lfh-hidden{
    transform: translateY(300px);
 
  }
-div.lfh-min div.lfh-list.lfh-element.lfh-hidden{
+div.lfh-min div.lfh-list.lfh-element.lfh-hidden,
+div.undermap div.lfh-list.lfh-element.lfh-hidden{
    opacity:1;
    max-height:@height - @height_title - 2* @padding_title;
    -ms-transform: translate(0, 0);
@@ -594,12 +629,15 @@ div.lfh-min div.lfh-list.lfh-element.lfh-hidden{
    z-index:0;
    background: transparent;
 }
-div.lfh-min div.lfh-list.lfh-element.lfh-hidden div.lfh-description{
+div.lfh-min div.lfh-list.lfh-element.lfh-hidden div.lfh-description,
+div.undermap div.lfh-list.lfh-element.lfh-hidden div.lfh-description{
     margin-top:40px;
 }
 .loopingClass (@i) when (@i < 11) {
     div.lfh-min div.lfh-element.step@{i},
-    div.lfh-min div.lfh-list.lfh-hidden.step@{i} {
+    div.lfh-min div.lfh-list.lfh-hidden.step@{i},
+    div.undermap div.lfh-element.step@{i},
+    div.undermap div.lfh-list.lfh-hidden.step@{i} {
         -ms-transform: translateX(-(@i * @width));
         -webkit-transform: translateX(-(@i * @width));
         -moz-transform: translateX(-(@i * @width));
@@ -611,7 +649,9 @@ div.lfh-min div.lfh-list.lfh-element.lfh-hidden div.lfh-description{
 .loopingClass (1);
 
  div.lfh-min div.lfh-element.lfh-hidden:not(.lfh-list),
- div.lfh-min div.lfh-element.lfh-hidden.step0:not(.lfh-list){
+ div.lfh-min div.lfh-element.lfh-hidden.step0:not(.lfh-list),
+ div.undermap div.lfh-element.lfh-hidden:not(.lfh-list),
+ div.undermap div.lfh-element.lfh-hidden.step0:not(.lfh-list){
    -ms-transform: translateY( @height + 50px);
    -webkit-transform: translateY( @height + 50px );
    -moz-transform: translateY( @height + 50px );
@@ -619,7 +659,8 @@ div.lfh-min div.lfh-list.lfh-element.lfh-hidden div.lfh-description{
    transform: translateY( @height + 50px );
  }
 .loopHidden (@k) when (@k < 11) {
-    div.lfh-min div.lfh-element.lfh-hidden.step@{k}:not(.lfh-list) {
+    div.lfh-min div.lfh-element.lfh-hidden.step@{k}:not(.lfh-list),
+    div.undermap div.lfh-element.lfh-hidden.step@{k}:not(.lfh-list) {
         -ms-transform: translate(-(@k * @width), @height + 50);
         -webkit-transform: translate(-(@k * @width),@height + 50);
         -moz-transform: translate(-(@k * @width), @height + 50);
@@ -631,7 +672,8 @@ div.lfh-min div.lfh-list.lfh-element.lfh-hidden div.lfh-description{
 .loopHidden (1);           
 
 
-div.lfh-min div.lfh-section{
+div.lfh-min div.lfh-section,
+div.undermap div.lfh-section{
     float:left;
     display:inline-block;
     max-height:@height - @height_title - 2* @padding_title;
@@ -642,7 +684,8 @@ div.lfh-section div.lfh-content,
 div.lfh-section div.lfh-content > div{
     height:auto;
 }
-div.lfh-min .lfh-content > div
+div.lfh-min .lfh-content > div,
+div.undermap .lfh-content > div
 {
      max-width:@width;
      width:@width;
@@ -662,7 +705,8 @@ div.lfh-min .lfh-content > div
     max-width:290px;
     margin:0;
 }
-div.lfh-min .lfh-element svg{
+div.lfh-min .lfh-element svg,
+div.undermap .lfh-element svg{
     margin-top:0;
     min-height:@height - @height_title - 13px; 
     height:@height - @height_title - 13px;
@@ -670,18 +714,24 @@ div.lfh-min .lfh-element svg{
     max-width: @width - 10px;
 }
 div.lfh-min div.lfh-file,
-div.lfh-min div.lfh-position{
+div.lfh-min div.lfh-position,
+div.undermap div.lfh-file,
+div.undermap div.lfh-position{
     display:none;
 }
 
-div.lfh-min .lfh-section .lfh-header h4{
+div.lfh-min .lfh-section .lfh-header h4,
+div.undermap .lfh-section .lfh-header h4{
     display:none;
 }
-div.lfh-min div.lfh-data-content .lfh-section .lfh-header h4{
+div.lfh-min div.lfh-data-content .lfh-section .lfh-header h4,
+div.undermap div.lfh-data-content .lfh-section .lfh-header h4{
     display: block;
 }
 div.lfh-min .lfh-section .lfh-header h4::before,
-div.lfh-min .lfh-section.lfh-hidden .lfh-header h4::before
+div.lfh-min .lfh-section.lfh-hidden .lfh-header h4::before,
+div.undermap .lfh-section .lfh-header h4::before,
+div.undermap .lfh-section.lfh-hidden .lfh-header h4::before
 {
     content:none;
 }
@@ -689,31 +739,39 @@ div.lfh-min .lfh-section.lfh-hidden .lfh-header h4::before
 
 div.lfh-min div.lfh-content,
 div.lfh-min div.lfh-content svg,
-div.lfh-min div.lfh-content ~ div{
+div.lfh-min div.lfh-content ~ div,
+div.undermap div.lfh-content,
+div.undermap div.lfh-content svg,
+div.undermap div.lfh-content ~ div{
     display:inline-block;
 }
 
-div.lfh-min div.lfh-content ~ div{
+div.lfh-min div.lfh-content ~ div,
+div.undermap div.lfh-content ~ div{
        max-width:@width;
 
     }
-div.lfh-min div.lfh-content > div{
+div.lfh-min div.lfh-content > div,
+div.undermap div.lfh-content > div{
     width: @width;
-   /*  height: @height - @height_title - 2*@padding_title;*/
+    /* height: @height - @height_title - 2*@padding_title;*/
     max-width: @width;
     max-height: @height - @height_title - 2*@padding_title;
 }
-div.lfh-min div.lfh-content div.wp-caption{
+div.lfh-min div.lfh-content div.wp-caption,
+div.undermap div.lfh-content div.wp-caption{
     max-width: @width;
     max-height: @height - @height_title - 2*@padding_title;
     
 }
-div.lfh-min div.lfh-content  img{
+div.lfh-min div.lfh-content  img,
+div.undermap div.lfh-content  img{
     max-width: @width - 10px;
      max-height: @height - @height_title - 2*@padding_title;
 }
 
-div.lfh-min .lfh-element-content{
+div.lfh-min .lfh-element-content,
+div.undermap .lfh-element-content{
     float:left;
     height:@height - @height_title - 2*@padding_title;
     max-height:@height - @height_title - 2*@padding_title;
@@ -723,7 +781,9 @@ div.lfh-min .lfh-element-content{
     box-sizing: border-box;
 }
 div.lfh-min .lfh-element:hover ~ div.lfh-nav div.lfh-next,
-div.lfh-min .lfh-element:hover ~ div.lfh-nav div.lfh-back{
+div.lfh-min .lfh-element:hover ~ div.lfh-nav div.lfh-back,
+div.undermap .lfh-element:hover ~ div.lfh-nav div.lfh-next,
+div.undermap .lfh-element:hover ~ div.lfh-nav div.lfh-back{
 	opacity:0.7;
 	/* border-radius: 50% 50%;
     width: 50px;
@@ -767,28 +827,35 @@ span.lfh-close{
     box-shadow:none;
     pointer-events:auto;
 }
-div.lfh-min span.lfh-close{
+div.lfh-min span.lfh-close,
+div.undermap span.lfh-close{
 	margin-right:0px;
 }
 span.lfh-close:hover{
     cursor:pointer;
 }
 
-div.lfh-min div.lfh-data span.lfh-close{
+div.lfh-min div.lfh-data span.lfh-close,
+div.undermap div.lfh-data span.lfh-close{
 	margin-left:5px;
 	display:none;
 }
 
-div.lfh-min div.lfh-data div.lfh-list:not(.step0) ~ div.lfh-nav div.lfh-back{
+div.lfh-min div.lfh-data div.lfh-list:not(.step0) ~ div.lfh-nav div.lfh-back,
+div.undermap div.lfh-data div.lfh-list:not(.step0) ~ div.lfh-nav div.lfh-back{
     display:inline;
 }
 div.lfh-min div.lfh-data div.lfh-element:not(.lfh-hidden) ~ div.lfh-nav span.lfh-close,
 div.lfh-min div.lfh-data div.lfh-element:not(.lfh-hidden) ~ div.lfh-nav div.lfh-back,
-div.lfh-min div.lfh-data div.lfh-element:not(.lfh-hidden) ~ div.lfh-nav div.lfh-next{
+div.lfh-min div.lfh-data div.lfh-element:not(.lfh-hidden) ~ div.lfh-nav div.lfh-next,
+div.undermap div.lfh-data div.lfh-element:not(.lfh-hidden) ~ div.lfh-nav span.lfh-close,
+div.undermap div.lfh-data div.lfh-element:not(.lfh-hidden) ~ div.lfh-nav div.lfh-back,
+div.undermap div.lfh-data div.lfh-element:not(.lfh-hidden) ~ div.lfh-nav div.lfh-next{
 	display:inline;
 }
 
-div.lfh-min div.lfh-data div.lfh-element.step0:not(.lfh-hidden) ~ div.lfh-nav div.lfh-back{
+div.lfh-min div.lfh-data div.lfh-element.step0:not(.lfh-hidden) ~ div.lfh-nav div.lfh-back,
+div.undermap div.lfh-data div.lfh-element.step0:not(.lfh-hidden) ~ div.lfh-nav div.lfh-back{
     display:none;
 }
 .fakefull .lfh-map-container{

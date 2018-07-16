@@ -295,6 +295,7 @@ Class Lfh_Controller_Front
     private static function add_css_inline($css){
    
         $data = 'div.lfh-min div.lfh-nav div.lfh-title,
+                 div.undermap div.lfh-nav div.lfh-title,
                  #content .lfh-element h3:first-child,
                  #lfh-fade .lfh-element h3:first-child,
                  .lfh-element h3:first-child {
@@ -314,7 +315,8 @@ Class Lfh_Controller_Front
                  a.lfh-gpx-file{
                      border-color:'.$css['lfh_color'].';
                  }
-                 div.lfh-min a.lfh-gpx-file{
+                 div.lfh-min a.lfh-gpx-file,
+                 div.undermap a.lfh-gpx-file{
                      background:none;
                      color:inherit;
                      border:none;

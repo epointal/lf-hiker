@@ -407,7 +407,8 @@ lfh.resize_content = function(container){
     // compute the size of the description fonction of the parent
     var node = document.querySelector('#'+ container.id + '-data');
     var height = node.offsetHeight ;
-    if(container.parentNode.parentNode.className.indexOf('lfh-min')<0){
+    if(container.parentNode.parentNode.className.indexOf('lfh-min')<0 
+       && container.parentNode.parentNode.className.indexOf('undermap')<0){
         height -= 70;
     }else{
         height = 220;
