@@ -192,6 +192,13 @@ Class Lfh_Model_Map{
                  'default'   => boolval( Lfh_Model_Option::get_option('lfh_open_profile')),
                  'filter'    => FILTER_VALIDATE_BOOLEAN,
                  'flags'   => FILTER_NULL_ON_FAILURE
+             ),
+             'undermap' => array(
+                     'type'      => 'checkbox',
+                     'label'     => ucfirst(__('Display information under map' , 'lfh')),
+                     'default'   => boolval( Lfh_Model_Option::get_option('lfh_position_under')),
+                     'filter'    => FILTER_VALIDATE_BOOLEAN,
+                     'flags'   => FILTER_NULL_ON_FAILURE
              )
         );
    }

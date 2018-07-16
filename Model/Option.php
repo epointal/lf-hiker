@@ -61,7 +61,13 @@ Class Lfh_Model_Option
                     'options' => array(
                         'regexp'    => "/^#[0-9a-f-A-F]{6}$/",
                         'default'   => '#00ff00')),
-                );
+                'lfh_position_under'      => array(
+                    'type'    => 'checkbox',
+                    'default' => false,
+                    'label'   => __('Display information window always under the map', 'lfh'),
+                    'filter'  => FILTER_VALIDATE_BOOLEAN,
+                    'helper'  => esc_html__('You can change it for only on map in its shortcode by using property <code>undermap</code>', 'lfh'))
+            );
             break;
             case 'config_tile':
                 $distance_units = array_keys( Lfh_Model_Map::distance_units());
@@ -236,6 +242,13 @@ Class Lfh_Model_Option
                $data["lfh_use_cdn"] = true;
            }else{
                $data["lfh_use_cdn"] = false;
+           }
+       }
+       if( $tab == 'custom_css'){
+           if(  isset( $data["lfh_position_under"])){
+               $data["lfh_position_under"] = true;
+           }else{
+               $data["lfh_position_under"] = false;
            }
        }
     
