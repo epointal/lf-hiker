@@ -149,6 +149,9 @@ From zip archive
 7. You can change the default configuration in tab: `Settings → Lf-hiker` 
 
 == Changelog == 
+= 1.11.0 =
+ * Evolution: Ability to always display the caption under the map
+ 
 = 1.10.0 =
  * Fixed: lf hiker is destroying the AMP pages
  * Fixed: bug with tabby-responsive-tabs plugin

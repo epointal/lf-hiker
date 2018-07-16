@@ -5,7 +5,7 @@
     Description: A responsive and mobile friendly plugin to display gpx track with profile elevation.
     Author: epointal
     Author URI: http://elisabeth.pointal.org/
-    Version: 1.10.0
+    Version: 1.11.0
     License: GPL2
     Text domain: lfh
     */
@@ -50,7 +50,7 @@ if( ! function_exists( "boolval")){
 
 class Lf_Hiker_Plugin
 {
-    const VERSION = '1.10.0';
+    const VERSION = '1.11.0';
     const LEAFLET_VERSION = '1.3.1';
     
     private static $_controller;
