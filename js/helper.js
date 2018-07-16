@@ -245,7 +245,7 @@ var lfh = {
             if(document.querySelector('input[name="lfh-form-map-class"]').value != ''){
                 shortcode += ' class="' + document.querySelector('input[name="lfh-form-map-class"]').value.replaceAll('-','\\-') +'"';
             }
-            ['autocenter', 'fullscreen', 'reset', 'list', 'mousewheel', 'open'].forEach(function(key){
+            ['autocenter', 'fullscreen', 'reset', 'list', 'mousewheel', 'open', 'undermap'].forEach(function(key){
                 shortcode += ' '+ key + '=' + document.querySelector('input[name="lfh-form-map-' + key + '"]').checked;
             });
             ['width', 'height'].forEach( function(key){

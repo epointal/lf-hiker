@@ -6,7 +6,7 @@ Tags: map, GPX, hiker, runner, track, path, trail, leaflet, profile, openstreetm
 Requires at least: 4.7.3
 Tested up to: 4.9  
 Stable tag: 1.0  
-Version: 1.10.0
+Version: 1.11.0
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -39,6 +39,21 @@ Display the post/page : you have an interactive view of your track.
  * download link of gpx file
 
 For more information go to [Lf Hiker site](http://elisabeth.pointal.org/lf-hiker) 
+
+### Use
+ * Services
+   * [OpenStreetMap](https://www.openstreetmap.org) an open map of the world
+   * [Maps Stamen](http://maps.stamen.com) design map
+   * [OpenTopoMap](https://opentopomap.org) topographic map 
+   * [ArcGIS](https://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer) topographic map
+   
+ * Libraries
+   * [leaflet](http://leafletjs.com) an open-source JavaScript library for mobile-friendly interactive maps
+   * [leaflet-gpx](https://github.com/mpetazzoni/leaflet-gpx) a leaflet plugin for the analysis and parsing of a GPX track 
+   * [font-awesome](http://fontawesome.io/) for iconic font
+   * [fontello](http://fontello.com/) for iconic font
+   * [awesome-marker](https://github.com/lvoogdt) Colorful, iconic  markers by Lennard Voogdt
+   * [Shortcode Empty Paragraph](https://wordpress.org/plugins/shortcode-empty-paragraph-fix/) little worpress plugin fix issue shortcode by [Johann Heyne](http://www.johannheyne.de/)
 
 ### List of Features
 #### **Lf Hiker** allows displaying too:  
