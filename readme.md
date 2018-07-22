@@ -144,6 +144,8 @@ After downloading the ZIP file [lf-hiker-1.11.0.zip](https://github.com/epointal
  * Evolution: Ability to always display the caption under the map
  * Evolution: Helper - Ability to add marker with its coordinates
  * Evolution: Add greek translation
+ * Fixed: duration is not displayed
+ * Fixed: choose center and zoom is not working
  
 ### 1.10.0 ###
  * Fixed: lf hiker is destroying the AMP pages
