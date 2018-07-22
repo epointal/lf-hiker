@@ -357,13 +357,18 @@ form input[type="number"] {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
   border-radius: 4px;
 }
+#window-add-marker {
+  top: 125px;
+  left: 55px;
+  display: none;
+}
 #window-edit-marker {
-  top: 5px;
-  right: 5px;
+  top: 50px;
+  left: 60px;
 }
 #window-edit-map {
   top: 5px;
-  left: 60px;
+  right: 60px;
 }
 .lfh-form-edit .header {
   background-color: #23282d;
@@ -373,7 +378,7 @@ form input[type="number"] {
   cursor: move;
 }
 .lfh-form-edit .header h3 {
-  margin: ;
+  margin: 3px;
   display: inline;
   width: 180px;
   vertical-align: middle;

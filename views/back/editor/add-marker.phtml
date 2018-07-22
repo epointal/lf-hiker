@@ -11,10 +11,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 <html>
     <head>
     <?php wp_print_styles();?>
-	</head>
+    </head>
 
-	<body>
-	<div id="fade" class="hidden">
+    <body>
+    <div id="fade" class="hidden">
     <div class="modal lfh-modal">
     <h3><?=__('Insert shortcodes', 'lfh')?></h3>
     <div class="content">
@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         </div>
     </div>
     </div>
-	</div>
+    </div>
 <!-- <div id="debug"  style="position:absolute;top:20px;left:400px;display:block;z-index:90000;"></div>-->
 <!-- control for marker on map -->
 <div id="lfh-control" class="leaflet-bar leaflet-control">
@@ -51,12 +51,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
    
     
 </div>
-<!-- block to choose position -->
-	<div id="searchPosition">
-	<input name="lfh-lat" type="text" value="0" />
-	<input name="lfh-lng" type="text" value="0" />
-	<input type="button" name="placeMarker" />
-	</div>
+
 <!-- banner buttons bottom right -->
      <div id="banner" >
          <input name="lfh-cancel" type="button" value="<?=_e('Cancel')?>" />
@@ -66,7 +61,29 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 <!-- window for edit map -->
 <?php   include 'map-form.phtml';?>
 
- 
+<!-- block to choose position -->
+<div id="window-add-marker" class="lfh-form-edit">
+     <div class="header" >
+        <h3><?=_e('Add marker', 'lfh')?></h3>
+        <div class="lfhicon lfhicon-close"></div>
+    </div>
+    <div style="padding:5px;"><?=_e('Click on the map or enter coordinates to add marker', 'lfh')?></div>
+    <form>
+        <div>
+            <label for="lfh-lat"><?=_e('Latitude', 'lfh')?></label>
+            <input name="lfh-lat" type="text" pattern="-?(90|([1-8]?[1-9](\.{1}\d{0,8})*))" 
+            title="<?=_e('Must be a number between -90 and 90')?>" value="0" />
+        </div>
+        <div>
+            <label for="lfh-lng"><?=_e('Longitude', 'lfh')?></label>
+            <input name="lfh-lng" type="text" pattern="-?(180|(1?[0-7]?[0-9](\.{1}\d{0,8})*))" 
+             title="<?=_e('Must be a number between -180 and 180')?>" value="0" />
+        </div>
+        <div style="text-align:right;">
+            <input type="button" name="placeMarker" value="<?=_e('Add marker', 'lfh')?>"/>
+        </div>
+    </form>
+</div>
 <!-- window for editing marker -->
     <div id="window-edit-marker"  class="lfh-form-edit" style="display:none;">
     <div class="header" >
