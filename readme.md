@@ -90,6 +90,7 @@ If you think you found a bug in **Lf Hiker** or have any problem/question concer
  * Fran&ccedil;ais (fr_FR) 
  * English (en_US) 
  * Deutsch (de_DE)  by [Kristof Kling](https://lg-buggingen.de/bugginger-feierabendlauf/strecke/)  
+ * Greek (gr_GR) by [Pol Gkitsas](http://eoskarditsas.gr) 
  
  If you need language for **Lf Hiker** which is not included. You can easily translate with poedit from the file :    
     `lf-hiker/languages/lfh-default.po`.   
@@ -142,6 +143,7 @@ After downloading the ZIP file [lf-hiker-1.11.0.zip](https://github.com/epointal
 ### 1.11.0 ###
  * Evolution: Ability to always display the caption under the map
  * Evolution: Helper - Ability to add marker with its coordinates
+ * Evolution: Add greek translation
  
 ### 1.10.0 ###
  * Fixed: lf hiker is destroying the AMP pages
