@@ -151,6 +151,7 @@ From zip archive
 == Changelog == 
 = 1.11.0 =
  * Evolution: Ability to always display the caption under the map
+ * Evolution: Helper - Ability to add marker with its coordinates
  
 = 1.10.0 =
  * Fixed: lf hiker is destroying the AMP pages

@@ -783,8 +783,9 @@ lfh.Map = function(i){
             }else{
                 _markers[i].addTo(map);
             }
-            _latlngbounds.push([info.lat, info.lng]);
-            
+            if (_auto_center) {
+                _latlngbounds.push([info.lat, info.lng]);
+            }
             var link = new lfh.Link( map, _markers[i], marker_id, _selected_element, null);
             return link;
         }
@@ -863,11 +864,11 @@ lfh.Map = function(i){
                    _zoom = lfh.tiles[_data.map.tile].max_zoom ;
                    map.setZoom( _zoom );
                }
-               if(buttonreset){
+               if(buttonreset && _auto_center){
                    map.addControl(new lfh.ResetControl(_center, _zoom));
                }
                lfh.resize_content(map.getContainer());
-               _auto_center = true;
+               // _auto_center = true;
                
                //wait all is loaded
                setTimeout(_create_buttons, 0);

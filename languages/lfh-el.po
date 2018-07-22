@@ -1,0 +1,599 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: lfh\n"
+"POT-Creation-Date: 2018-03-04 14:51+0100\n"
+"PO-Revision-Date: 2018-06-29 14:41+0300\n"
+"Last-Translator: Gkitsas polykarppos <makgits@gmail.com>\n"
+"Language-Team: elisabeth\n"
+"Language: el_GR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__;_noop;esc_html__\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: C:/wamp/www/rancs/blog/wp-content/plugins/lf-hiker/"
+"Model\n"
+"X-Poedit-SearchPath-1: C:/wamp/www/rancs/blog/wp-content/plugins/lf-hiker/"
+"Tools\n"
+"X-Poedit-SearchPath-2: C:/wamp/www/rancs/blog/wp-content/plugins/lf-hiker/"
+"views\n"
+"X-Poedit-SearchPath-3: C:/wamp/www/rancs/blog/wp-content/plugins/lf-hiker/"
+"Controller\n"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:61
+msgid "kilometer"
+msgstr "kilometer"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:62
+msgid "km"
+msgstr "km"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:65
+msgid "milles"
+msgstr "milles"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:66
+msgid "mi"
+msgstr "mi"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:72
+msgid "meter"
+msgstr "meter"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:73
+msgid "m"
+msgstr "m"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:76
+msgid "foot"
+msgstr "foot"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:77
+msgid "ft"
+msgstr "ft"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:86
+msgid "Position auto"
+msgstr "Θέση αυτόματη"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:114
+msgid "Width"
+msgstr "Πλάτος"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:124
+msgid "Height"
+msgstr "Ύψος"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:142
+msgid "Fullscreen"
+msgstr "Πλήρης οθόνη"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:149
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:93
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/map-form.phtml:113
+msgid "reset"
+msgstr "επαναφορά"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:156
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/map.phtml:20
+msgid "list"
+msgstr "λίστα"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:163
+msgid "Zoom on wheel"
+msgstr "Zoom με τον τροχό"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:169
+msgid "Tiles"
+msgstr "Πλακίδιο"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:177
+msgid "Open profile automaticaly"
+msgstr "Ανοίξτε το προφίλ αυτόματα"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:222
+msgid "no named gpx"
+msgstr "χωρίς όνομα gpx"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:301
+msgid "no named marker"
+msgstr "κανένας ονομαστικός δείκτης"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:12
+msgid "Custom css"
+msgstr "Προσαρμογή css"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:15
+msgid "Config units, gpx, tiles"
+msgstr "Επιβεβαίωση μονάδων, gpx, πλακιδίων"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:18
+msgid "General"
+msgstr "Γενικά"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:27
+msgid "Background color"
+msgstr "Xρώμα του φόντου"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:29
+msgid "Background color for track title"
+msgstr "Χρώμα του φόντου για τον τίτλο του track"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:43
+msgid "Title color"
+msgstr "Χρώμα τίτλου"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:44
+msgid "Font color for track title"
+msgstr "Χρώμα γραμματοσειράς για τον τίτλο του track"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:51
+msgid "Button color"
+msgstr "Χρώμα κουμπιού"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:52
+msgid "Button color for elements list"
+msgstr "Χρώμα κουμπιού για την  λίστα των στοιχείων"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:59
+msgid "Selected path color"
+msgstr "Επιλεγμένο χρώμα διαδρομής"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:74
+msgid "Display button download gpx"
+msgstr "Κουμπί εμφάνισης download gpx"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:76
+msgid ""
+"You can change it for one gpx in shortcode by using property <code>button</"
+"code>"
+msgstr ""
+"Μπορείτε να το αλλάξετε για ένα gpx σε σύντομο κώδικα "
+"( shortcode)χρησιμοποιώντας την ιδιότητα<code>button</code>"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:81
+msgid "Open profile window automatically"
+msgstr "Ανοίξτε αυτόματα το παράθυρο προφίλ"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:83
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:102
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:111
+msgid "You can change it for one map in shortcode by using property"
+msgstr ""
+"Μπορείτε να το αλλάξετε για ένα χάρτη σε σύντομο κώδικα(shortcode) "
+"χρησιμοποιώντας ιδιότητα"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:89
+msgid "Number of gpx to display a checkbox show/hide"
+msgstr "Αριθμός gpx για εμφάνιση  checkbox εμφάνιση / απόκρυψη"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:100
+msgid "Display button fullscreen"
+msgstr "Πλήκτρο εμφάνισης πλήρους οθόνης"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:108
+msgid "Default map tiles"
+msgstr "Προκαθορισμένα πλακίδια χάρτη"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:116
+msgid "Default distance unit"
+msgstr "Προεπιλεγμένη μονάδα απόστασης"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:124
+msgid "Default height unit"
+msgstr "Προεπιλεγμένη μονάδα ύψους"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:132
+msgid "Minimum step on elevation axis in meters ( four steps in general)"
+msgstr "Ελάχιστο βήμα στον άξονα ανύψωσης σε μέτρα (γενικά τέσσερα βήματα)"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:138
+msgid "You can change it for one gpx in shortcode by using property"
+msgstr ""
+"Μπορείτε να το αλλάξετε για ένα gpx σε σύντομο κώδικα (shortcode) "
+"χρησιμοποιώντας ιδιότητα"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:204
+msgid "Failed to create a new cache"
+msgstr "Αποτυχία δημιουργίας νέας προσωρινής μνήμης"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:244
+msgid "data updated"
+msgstr "τα δεδομένα ενημερώθηκαν"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:264
+msgid "data reseted"
+msgstr "τα δεδομένα έχουν επανατοποθετηθεί"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Cache.php:79
+msgid "Cache clear with success"
+msgstr "Η κρυφή μνήμη καθαρίστηκε με επιτυχία"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Cache.php:84
+msgid "Failed to clear cache"
+msgstr "Αποτυχία εκκαθάρισης της προσωρινής μνήμης"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:128
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:42
+msgid "Add marker"
+msgstr "Προσθέστε δείκτη"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:140
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:48
+msgid "Delete marker"
+msgstr "Διαγραφή δείκτη"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:141
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:281
+msgid "Add here your formated description"
+msgstr "Προσθέστε εδώ την τυποποιημένη περιγραφή σας"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:257
+msgid "Manage gpx"
+msgstr "Διαχείριση gpx"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:302
+msgid "Display download button"
+msgstr "Κουμπί λήψης οθόνης"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:309
+msgid "Color path"
+msgstr "Χρώμα διαδρομής"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:326
+msgid "Stroke width"
+msgstr "Πλάτος χτυπήματος"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Notice.php:29
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:19
+msgid "close"
+msgstr "κοντά"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Admin.php:27
+msgid "Directive added in .htaccess successfully"
+msgstr "Η οδηγία προστέθηκε με επιτυχία στο .htaccess"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Admin.php:29
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Admin.php:37
+msgid "Failure. Can not write in .htaccess"
+msgstr "Αποτυχία. Δεν είναι δυνατή η εγγραφή στο .htaccess"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Admin.php:35
+msgid "Directive removed from .htaccess successfully"
+msgstr "Η οδηγία απομακρύνθηκε από το .htaccess με επιτυχία"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Admin.php:135
+msgid ""
+"Failed to write directive in .htaccess. It can blocked the helper editor for "
+"markers"
+msgstr ""
+"Δεν ήταν δυνατή η εγγραφή οδηγίας στο .htaccess. Μπορεί να εμποδίσει τον "
+"επεξεργαστή βοήθειας για τους δείκτες"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Back.php:63
+msgid "All gpx files"
+msgstr "Όλα τα αρχεία gpx"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Back.php:64
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:8
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:11
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:44
+msgid "about"
+msgstr "σχετικά με"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Back.php:78
+msgid "Your configuration has been updated"
+msgstr "Η διαμόρφωσή σας έχει ενημερωθεί"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:9
+msgid "Configuration"
+msgstr "Διαμόρφωση"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:92
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:34
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/map-form.phtml:100
+msgid "save"
+msgstr "αποθηκεύστε"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:106
+msgid "Clear cache"
+msgstr "Εκκαθάριση προσωρινής μνήμης"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:112
+msgid "Add directive for allowed x-frame same origin in .htaccess"
+msgstr ""
+"Προσθέστε οδηγία για την επιτρεπόμενη ίδια προέλευση x-frame με .htaccess"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:116
+msgid "Add in"
+msgstr "Προσθεσέ το"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:118
+msgid "Seems resolve trouble with multiple directive x-frame-options. See "
+msgstr "Φαίνεται να επιλύεται πρόβλημα με πολλαπλές οδηγίες x-frame. Βλέπω  "
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:120
+msgid "Wordpress support topic"
+msgstr "Υποστήριξη θέμα  Wordpress"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:128
+msgid "Remove in"
+msgstr "Αφαιρέστε το"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:12
+msgid "Your personnal configuration"
+msgstr "Η προσωπική σας διαμόρφωση"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:46
+msgid ""
+"is a wordpress plugin for quickly display your gpx tracks with their profile "
+"elevation on an interactive map."
+msgstr ""
+"είναι ένα plug-in wordpress για γρήγορη απεικόνιση των κομματιών σας gpx με "
+"προφίλ ανήψωσης σε ένα διαδραστικό χάρτη."
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:47
+msgid "You can find informations, and tutorial on website"
+msgstr "Μπορείτε να βρείτε πληροφορίες και εκπαιδευτικό υλικό στην ιστοσελίδα"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:48
+msgid "Main Utilisation"
+msgstr "Κύρια χρήση"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:50
+msgid ""
+"Simply upload your gpx file with the wordpress media manager, complete its "
+"informations and insert it in your post/page (shortcode)."
+msgstr ""
+"Απλά μεταφορτώστε το αρχείο gpx με τον διαχειριστή μέσων wordpress, "
+"συμπληρώστε τις πληροφορίες και τοποθετήστε το στη post/page (shortcode)."
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:51
+msgid "Display the post/page : you have an interactive view of your track."
+msgstr "Εμφάνιση της post/page :  έχετε μια διαδραστική προβολή του track."
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:52
+msgid ""
+"The trail is displayed on an OSM map by default, and have its own "
+"information window with:"
+msgstr ""
+"Το ίχνος εμφανίζεται από προεπιλογή σε χάρτη OSM και έχει το δικό του "
+"παράθυρο πληροφοριών με:"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:54
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:72
+msgid "title"
+msgstr "τίτλος"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:55
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:80
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/marker.phtml:37
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:117
+msgid "description"
+msgstr "Περιγραφή"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:56
+msgid "interactive profile elevation  according to path"
+msgstr "διαδραστικό  προφίλ ανύψωση σύμφωνα με τη διαδρομή"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:57
+msgid "distance of the track"
+msgstr "απόσταση του ίχνους (track)"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:58
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:103
+msgid "elevation loss"
+msgstr "Yψομετρική κατάβαση"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:59
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:99
+msgid "elevation gain"
+msgstr "Yψομετρική ανάβαση"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:63
+msgid "other features"
+msgstr "άλλα χαρακτηριστικά"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:64
+msgid "included an helper for edit map and add markers."
+msgstr "συμπεριλάμβανε βοηθό για το χάρτη επεξεργασίας και πρόσθεσε δείκτες."
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:65
+msgid "See all features on Lf Hiker website"
+msgstr "Δείτε όλες τις λειτουργίες της ιστοσελίδας του Lf Hiker"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/user.phtml:12
+msgid "Unactive helper for markers"
+msgstr "Ανενεργός βοηθός για δείκτες"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:19
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:31
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:57
+msgid "Insert shortcodes"
+msgstr "Εισαγωγή σύντομων κωδικών (shortcode)"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:22
+msgid "Insert map shortcode"
+msgstr "Εισαγωγή σύντομων κωδικών (shortcode) χάρτη"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:26
+msgid "Insert markers shortcodes"
+msgstr "Τοποθετήστε δείκτες  σύντομων κωδικών  shortcodes"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:30
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:56
+msgid "Cancel"
+msgstr "Ματαίωση (Cancel)"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:39
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/map-form.phtml:10
+msgid "Edit map"
+msgstr "Επεξεργασία χάρτη (map)"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:45
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:67
+msgid "Edit marker"
+msgstr "Επεξεργασία δείκτη (marker)"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:76
+msgid "Popup"
+msgstr "Αναδυόμενο παράθυρο"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:84
+msgid "Visibility"
+msgstr "Ορατότητα"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:86
+msgid "Always"
+msgstr "Πάντα"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:87
+msgid "According to zoom"
+msgstr "Σύμφωνα με το ζουμ (zoom)"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:91
+msgid "Icon color"
+msgstr "Χρώμα εικονιδίου"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:109
+msgid "Inside icon"
+msgstr "Εσωτερικό εικονίδιο"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/map-form.phtml:98
+msgid "Pan and zoom until find the position, and when ready save the position"
+msgstr ""
+"Μετακινήστε και μεγεθύνετε μέχρι να εντοπίσετε τη θέση και όταν είναι "
+"έτοιμη, αποθηκεύστε τη θέση"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/map.phtml:39
+msgid "information"
+msgstr "πληροφορίες"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/map.phtml:48
+msgid ""
+"Click following button or element on the map to see information about it."
+msgstr ""
+"Κάντε κλικ στο παρακάτω κουμπί ή στοιχείο στο χάρτη για να δείτε πληροφορίες "
+"σχετικά με αυτό."
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/marker.phtml:24
+msgid "latitude"
+msgstr "γεωγραφικό πλάτος"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/marker.phtml:28
+msgid "longitude"
+msgstr "γεωγραφικό μήκος"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:32
+msgid "profile"
+msgstr "Προφίλ"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:70
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:87
+msgid "distance"
+msgstr "Aπόσταση"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:73
+msgid "elevation"
+msgstr "Aνύψωση"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:79
+msgid "no data elevation"
+msgstr "Xωρίς δεδομένα ανύψωση"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:83
+msgid "name"
+msgstr "Όνομα"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:84
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:88
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:92
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:96
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:100
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:104
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:107
+msgid "no data"
+msgstr "Χωρίς δεδομένα"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:91
+msgid "minimum elevation"
+msgstr "Ελάχιστη ανύψωση"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:95
+msgid "maximum elevation"
+msgstr "Μέγιστη ανύψωση"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:106
+msgid "duration"
+msgstr "Διάρκεια"
+
+#~ msgid ""
+#~ "You can add tiles layers which need key here, or choose unit for distance"
+#~ msgstr ""
+#~ "You can add tiles layers which need key here, or choose unit for distance"
+
+#~ msgid "Mapquest key"
+#~ msgstr "Mapquest key"
+
+#~ msgid "This option is deactived (mapquest using deprecated method)."
+#~ msgstr "This option is deactived (mapquest using deprecated method)."
+
+#~ msgid "If you want MapQuest, you must provide an app key."
+#~ msgstr "If you want MapQuest, you must provide an app key."
+
+#~ msgid "Sign up"
+#~ msgstr "Sign up"
+
+#~ msgid "then"
+#~ msgstr "then"
+
+#~ msgid "Create a new app"
+#~ msgstr "Create a new app"
+
+#~ msgid "then supply the &laquo;Consumer Key&raquo; here."
+#~ msgstr "then supply the &laquo;Consumer Key&raquo; here."
+
+#~ msgid "Cache dir"
+#~ msgstr "Cache dir"
+
+#~ msgid "Config  Map"
+#~ msgstr "Config  Map"
+
+#~ msgid "all tracks"
+#~ msgstr "all tracks"
+
+#~ msgid "all markers"
+#~ msgstr "all markers"
+
+#~ msgid "List"
+#~ msgstr "List"
+
+#~ msgid "Description"
+#~ msgstr "Description"
+
+#~ msgid "Reset"
+#~ msgstr "Reset"
+
+#~ msgid "About"
+#~ msgstr "About"
+
+#~ msgid "No named marker"
+#~ msgstr "No named marker"
+
+#~ msgid "Save"
+#~ msgstr "Save"
+
+#~ msgid "Title"
+#~ msgstr "Title"
+
+#~ msgid "Elevation gain"
+#~ msgstr "Elevation gain"
+
+#~ msgid "Elevation loss"
+#~ msgstr "Elevation loss"
+
+#~ msgid "Manage kml"
+#~ msgstr "Manage kml"
