@@ -84,9 +84,9 @@ You can choose
  * to display the button "list of layers"
  * the size of the map
  * classnames for the map ( including your custom class)
- * zoom on mousewheel
- * start with profile elevation displayed
- 
+ * to zoom on mousewheel
+ * to start with profile elevation displayed
+ * to display the description always under the map
  
 #### for the markers:
  * color of icon marker
