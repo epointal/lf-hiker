@@ -65,6 +65,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 } 
+.lfhicon-empty:before { content: '  '; }
 .lfhicon-close:before { content: '\e800'; } 
 .lfhicon-asterisk:before { content: '\e801'; } 
 .lfhicon-star:before { content: '\e802'; } 

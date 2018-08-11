@@ -1,0 +1,605 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: lfh\n"
+"POT-Creation-Date: 2018-03-04 14:51+0100\n"
+"PO-Revision-Date: 2018-08-11 18:19+0100\n"
+"Language-Team: Nederlands (België)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;__;_noop;esc_html__\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Last-Translator: Elisabeth Pointal <elisabeth.pointal@free.fr>\n"
+"Language: nl-BE\n"
+"Report-Msgid-Bugs-To: \n"
+"X-Loco-Template: languages/lfh-de_DE.po\n"
+"X-Poedit-SearchPath-0: C:/wamp/www/rancs/blog/wp-content/plugins/lf-hiker/"
+"Model\n"
+"X-Poedit-SearchPath-1: C:/wamp/www/rancs/blog/wp-content/plugins/lf-hiker/"
+"Tools\n"
+"X-Poedit-SearchPath-2: C:/wamp/www/rancs/blog/wp-content/plugins/lf-hiker/"
+"views\n"
+"X-Poedit-SearchPath-3: C:/wamp/www/rancs/blog/wp-content/plugins/lf-hiker/"
+"Controller\n"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:61
+msgid "kilometer"
+msgstr "kilometer"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:62
+msgid "km"
+msgstr "km"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:65
+msgid "milles"
+msgstr "mijlen"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:66
+msgid "mi"
+msgstr "mi"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:72
+msgid "meter"
+msgstr "meter"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:73
+msgid "m"
+msgstr "m"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:76
+msgid "foot"
+msgstr "voet"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:77
+msgid "ft"
+msgstr "ft"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:86
+msgid "Position auto"
+msgstr "Automatische positie"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:114
+msgid "Width"
+msgstr "Breedte"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:124
+msgid "Height"
+msgstr "Hoogte"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:142
+msgid "Fullscreen"
+msgstr "Op volledig scherm"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:149
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:93
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/map-form.phtml:113
+msgid "reset"
+msgstr "reset"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:156
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/map.phtml:20
+msgid "list"
+msgstr "Lijst"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:163
+msgid "Zoom on wheel"
+msgstr "Zoomen met het muiswieltje"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:169
+msgid "Tiles"
+msgstr "Tegels"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:177
+msgid "Open profile automaticaly"
+msgstr "Open profiel automatisch"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:222
+msgid "no named gpx"
+msgstr "geen gpx-gegevens aangegeven"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Map.php:301
+msgid "no named marker"
+msgstr "geen markering aangegeven"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:12
+msgid "Custom css"
+msgstr "Gebruikerspecifieke CSS"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:15
+msgid "Config units, gpx, tiles"
+msgstr "Eenheden, gpx en tegels configureren"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:18
+msgid "General"
+msgstr "Algemeen"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:27
+msgid "Background color"
+msgstr "Achtergrondkleur"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:29
+msgid "Background color for track title"
+msgstr "Achtergrondkleur voor de tracktitel"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:43
+msgid "Title color"
+msgstr "Titelkleur"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:44
+msgid "Font color for track title"
+msgstr "Letterkleur voor tracktitel"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:51
+msgid "Button color"
+msgstr "Knopkleur"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:52
+msgid "Button color for elements list"
+msgstr "Knopkleur voor de elementenlijst"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:59
+msgid "Selected path color"
+msgstr "Geselecteerde trackkleur"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:74
+msgid "Display button download gpx"
+msgstr "Toon de gpx downloadknop"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:76
+msgid ""
+"You can change it for one gpx in shortcode by using property <code>button</"
+"code>"
+msgstr ""
+"Je kunt het voor een bepaalde GPX bewerken in de shortcode met behulp van de "
+"eigenschap <code>button</code>"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:81
+msgid "Open profile window automatically"
+msgstr "Open het profielvenster automatisch"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:83
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:102
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:111
+msgid "You can change it for one map in shortcode by using property"
+msgstr ""
+"Je kunt het voor een bepaalde kaart bewerken in de shortcode met behulp van "
+"de eigenschap"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:89
+msgid "Number of gpx to display a checkbox show/hide"
+msgstr "Het aantal gpx om een checkbox 'Tonen / Verbergen' te tonen"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:100
+msgid "Display button fullscreen"
+msgstr "Toon de Volledig scherm knop"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:108
+msgid "Default map tiles"
+msgstr "Standaard kaarttegels"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:116
+msgid "Default distance unit"
+msgstr "Standaard afstandseenheid"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:124
+msgid "Default height unit"
+msgstr "Standaard hoogte-eenheid"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:132
+msgid "Minimum step on elevation axis in meters ( four steps in general)"
+msgstr "Minimum aanwas op de hoogte-as  in meter (minstens 4 stappen)"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:138
+msgid "You can change it for one gpx in shortcode by using property"
+msgstr ""
+"Je kunt het voor een bepaalde GPX bewerken in de shortcode met behulp van de "
+"eigenschap"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:204
+msgid "Failed to create a new cache"
+msgstr "Kan geen nieuwe cache aanmaken"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:244
+msgid "data updated"
+msgstr "data bijgewerkt"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Model/Option.php:264
+msgid "data reseted"
+msgstr "gegevens gereset"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Cache.php:79
+msgid "Cache clear with success"
+msgstr "Cache succesvol leeggemaakt"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Cache.php:84
+msgid "Failed to clear cache"
+msgstr "Kan de cache niet wissen"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:128
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:42
+msgid "Add marker"
+msgstr "Voeg markering toe"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:140
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:48
+msgid "Delete marker"
+msgstr "Verwijder markering"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:141
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:281
+msgid "Add here your formated description"
+msgstr "Voer hier je geformatteerde beschrijving in"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:257
+msgid "Manage gpx"
+msgstr "GPX beheren"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:302
+msgid "Display download button"
+msgstr "Toon de downloadknop"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:309
+msgid "Color path"
+msgstr "Trackkleur"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Editor.php:326
+msgid "Stroke width"
+msgstr "Lijnbreedte"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Tools/Notice.php:29
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:19
+msgid "close"
+msgstr "sluiten"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Admin.php:27
+msgid "Directive added in .htaccess successfully"
+msgstr "Aanduiding succesvol toegevoegd in .htaccess"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Admin.php:29
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Admin.php:37
+msgid "Failure. Can not write in .htaccess"
+msgstr "Mislukt. Kan niet schrijven in .htaccess"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Admin.php:35
+msgid "Directive removed from .htaccess successfully"
+msgstr "Aanduiding succesvol verwijderd in .htaccess"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Admin.php:135
+msgid ""
+"Failed to write directive in .htaccess. It can blocked the helper editor for "
+"markers"
+msgstr ""
+"Kan de aanduiding niet in .htaccess schrijven. Kan door de markeringen-"
+"editor geblokkeerd zijn."
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Back.php:63
+msgid "All gpx files"
+msgstr "Alle gpx-bestanden"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Back.php:64
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:8
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:11
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:44
+msgid "about"
+msgstr "over"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\Controller/Back.php:78
+msgid "Your configuration has been updated"
+msgstr "Je configuratie is bijgewerkt"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:9
+msgid "Configuration"
+msgstr "Configuratie"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:92
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:34
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/map-form.phtml:100
+msgid "save"
+msgstr "opslaan"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:106
+msgid "Clear cache"
+msgstr "Cache ledigen"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:112
+msgid "Add directive for allowed x-frame same origin in .htaccess"
+msgstr ""
+"Voeg een richtlijn toe voor toegestaan x-frame van dezelfde oorsprong in ."
+"htaccess"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:116
+msgid "Add in"
+msgstr "Toevoegen in"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:118
+msgid "Seems resolve trouble with multiple directive x-frame-options. See "
+msgstr ""
+"Er lijken problemen te zijn met meerdere instructies van de x-frame-opties. "
+"Bekijk"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:120
+msgid "Wordpress support topic"
+msgstr "WordPress support topic"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/admin/settings.phtml:128
+msgid "Remove in"
+msgstr "Verwijderen in"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:12
+msgid "Your personnal configuration"
+msgstr "Je persoonlijke configuratie"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:46
+msgid ""
+"is a wordpress plugin for quickly display your gpx tracks with their profile "
+"elevation on an interactive map."
+msgstr ""
+"is een WordPress plug-in voor het snel weergeven van je gpx-tracks met hun "
+"profielhoogte op een interactieve kaart."
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:47
+msgid "You can find informations, and tutorial on website"
+msgstr "Je kunt informatie en een handleiding vinden op de website"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:48
+msgid "Main Utilisation"
+msgstr "Wat kun je met Lf Hiker doen?"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:50
+msgid ""
+"Simply upload your gpx file with the wordpress media manager, complete its "
+"informations and insert it in your post/page (shortcode)."
+msgstr ""
+"Upload eenvoudigweg uw gpx-bestand naar de WordPress media manager, vul uw "
+"gegevens in en plaats deze in uw bericht / pagina (shortcode). "
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:51
+msgid "Display the post/page : you have an interactive view of your track."
+msgstr ""
+"Toon de post / pagina en je hebt een interactieve weergave van je track."
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:52
+msgid ""
+"The trail is displayed on an OSM map by default, and have its own "
+"information window with:"
+msgstr ""
+"Het pad wordt standaard weergegeven op de OSM-kaart en heeft een eigen "
+"informatievenster met:"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:54
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:72
+msgid "title"
+msgstr "titel"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:55
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:80
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/marker.phtml:37
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:117
+msgid "description"
+msgstr "beschrijving"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:56
+msgid "interactive profile elevation  according to path"
+msgstr "interactief hoogteprofiel volgens de track"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:57
+msgid "distance of the track"
+msgstr "lengte van de track"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:58
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:103
+msgid "elevation loss"
+msgstr "hoogtemeters (dalend)"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:59
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:99
+msgid "elevation gain"
+msgstr "hoogtemeters (stijgend)"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:63
+msgid "other features"
+msgstr "andere functies"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:64
+msgid "included an helper for edit map and add markers."
+msgstr "heeft een tool om de kaart te bewerken en markeringen toe te voegen."
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/about-page.phtml:65
+msgid "See all features on Lf Hiker website"
+msgstr "Bekijk alle functies op de Lf Hiker website"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/user.phtml:12
+msgid "Unactive helper for markers"
+msgstr "Tool voor markeringen inactief."
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:19
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:31
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:57
+msgid "Insert shortcodes"
+msgstr "Shortcodes invoegen"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:22
+msgid "Insert map shortcode"
+msgstr "Kaartshortcode invoegen"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:26
+msgid "Insert markers shortcodes"
+msgstr "Markeringsshortcodes invoegen"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:30
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:56
+msgid "Cancel"
+msgstr "Annuleer"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:39
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/map-form.phtml:10
+msgid "Edit map"
+msgstr "Kaart bewerken"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:45
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:67
+msgid "Edit marker"
+msgstr "Markering bewerken"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:76
+msgid "Popup"
+msgstr "Pop-up"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:84
+msgid "Visibility"
+msgstr "Zichtbaarheid"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:86
+msgid "Always"
+msgstr "Altijd"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:87
+msgid "According to zoom"
+msgstr "Volgens de zoom"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:91
+msgid "Icon color"
+msgstr "Icoonkleur"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/add-marker.phtml:109
+msgid "Inside icon"
+msgstr "Icoon"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/back/editor/map-form.phtml:98
+msgid "Pan and zoom until find the position, and when ready save the position"
+msgstr ""
+"Pan en zoom totdat je de positie vindt. sla de positie op wanneer je klaar "
+"bent"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/map.phtml:39
+msgid "information"
+msgstr "informatie"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/map.phtml:48
+msgid ""
+"Click following button or element on the map to see information about it."
+msgstr ""
+"Klik op de knop of het element op de kaart om er informatie over te zien."
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/marker.phtml:24
+msgid "latitude"
+msgstr "breedtegraad"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/marker.phtml:28
+msgid "longitude"
+msgstr "lengtegraad"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:32
+msgid "profile"
+msgstr "Profiel"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:70
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:87
+msgid "distance"
+msgstr "afstand"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:73
+msgid "elevation"
+msgstr "hoogte"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:79
+msgid "no data elevation"
+msgstr "geen hoogtegegevens"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:83
+msgid "name"
+msgstr "Naam"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:84
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:88
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:92
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:96
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:100
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:104
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:107
+msgid "no data"
+msgstr "geen gegevens"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:91
+msgid "minimum elevation"
+msgstr "minimale hoogte"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:95
+msgid "maximum elevation"
+msgstr "maximale hoogte"
+
+#: C:\wamp\www\rancs\blog\wp-content\plugins\lf-hiker\views/front/track.phtml:106
+msgid "duration"
+msgstr "duur"
+
+msgid ""
+"You can add tiles layers which need key here, or choose unit for distance"
+msgstr ""
+"Je kunt tegellagen toevoegen die hier een sleutel nodig hebben, of kies een "
+"eenheid voor afstand"
+
+msgid "Mapquest key"
+msgstr "MapQuest sleutel"
+
+msgid "This option is deactived (mapquest using deprecated method)."
+msgstr "Deze optie is gedeactiveerd (MapQuest gebruikt een vervallen methode)."
+
+msgid "If you want MapQuest, you must provide an app key."
+msgstr "Wil je MapQuest gebruiken, moet je een app sleutel opgeven."
+
+msgid "Sign up"
+msgstr "Aanmelden"
+
+msgid "then"
+msgstr "dan"
+
+msgid "Create a new app"
+msgstr "Maak een nieuwe app"
+
+msgid "then supply the &laquo;Consumer Key&raquo; here."
+msgstr "voer dan de gebruikerssleutel hier in."
+
+msgid "Cache dir"
+msgstr "Cache directory"
+
+msgid "Config  Map"
+msgstr "Map configureren"
+
+msgid "all tracks"
+msgstr "alle tracks"
+
+msgid "all markers"
+msgstr "alle markeringen"
+
+msgid "List"
+msgstr "Lijst"
+
+msgid "Description"
+msgstr "Beschrijving"
+
+msgid "Reset"
+msgstr "Reset"
+
+msgid "About"
+msgstr "Over"
+
+msgid "No named marker"
+msgstr "Geen markering aangegeven"
+
+msgid "Save"
+msgstr "Opslaan"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Elevation gain"
+msgstr "Hoogtemeters (stijgend)"
+
+msgid "Elevation loss"
+msgstr "Hoogtemeters (dalend)"
+
+msgid "Manage kml"
+msgstr "KML beheren"

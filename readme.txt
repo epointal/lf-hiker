@@ -6,7 +6,7 @@ Tags: map, GPX, hiker, runner, track, path, trail, leaflet, profile, openstreetm
 Requires at least: 4.7.3
 Tested up to: 4.9  
 Stable tag: 1.0  
-Version: 1.11.0
+Version: 1.12.0
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -112,7 +112,8 @@ If you think you found a bug in **Lf Hiker** or have any problem/question concer
  * Fran&ccedil;ais (fr_FR) 
  * English (en_US) 
  * Deutsch (de_DE) by [Kristof Kling](https://lg-buggingen.de/bugginger-feierabendlauf/strecke/)  
- * Greek (gr_GR) by [Pol Gkitsas](http://eoskarditsas.gr) 
+ * Greek (el) by [Pol Gkitsas](http://eoskarditsas.gr) 
+ * Dutch (nl-BE)
  
  If you need language of **Lf Hiker** which is not included. You can easily translate with poedit from the file :    
     `lf-hiker/languages/lfh-default.po`.   
@@ -150,6 +151,11 @@ From zip archive
 7. You can change the default configuration in tab: `Settings → Lf-hiker` 
 
 == Changelog == 
+= 1.12.0 =
+ * Evolution: add empty marker
+ * Evolution: add dutch language
+ * Fixed: error twice class for label in profile svg
+ 
 = 1.11.0 =
  * Evolution: Ability to always display the caption under the map
  * Evolution: Helper - Ability to add marker with its coordinates
