@@ -196,7 +196,7 @@ Class Lfh_Controller_Front
         $selected_color = $css['lfh_selected_path'];
         $data = '';
         if($map_count == 1){
-            $data .= ' if( typeof lfh == "undefined"){
+            $data .= 'if( typeof lfh == "undefined"){
                         var lfh = {}
                   }
                   lfh.data = new Array();
@@ -214,8 +214,7 @@ Class Lfh_Controller_Front
               map: '.json_encode($options, JSON_NUMERIC_CHECK ).',
               markers: new Array(),
               gpx: new Array()
-        };
-        ';
+        };';
         
         wp_add_inline_script('leaflet', $data, 'before');
     }

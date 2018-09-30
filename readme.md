@@ -1,7 +1,7 @@
 # Lf Hiker 
 [![Contributor: Elisabeth Pointal](https://github.com/epointal/lf-hiker/blob/master/assets/svg/contributor2.svg)](http://elisabeth.pointal.org)
 [![License GPL 2](https://github.com/epointal/lf-hiker/blob/master/assets/svg/license.svg)](http://www.gnu.org/licenses/gpl-2.0.html )
-[![Version 1.12.0](https://github.com/epointal/lf-hiker/blob/master/assets/svg/version1.12.0.svg)](https://github.com/epointal/lf-hiker/archive/1.12.0.zip) 
+[![Version 1.13.0](https://github.com/epointal/lf-hiker/blob/master/assets/svg/version1.13.0.svg)](https://github.com/epointal/lf-hiker/archive/1.13.0.zip) 
 
 Plugin site web: [Lf Hiker](http://elisabeth.pointal.org/lf-hiker/en/about/ )  
 Requires Wordpress version: 4.7.3  
@@ -93,6 +93,7 @@ If you think you found a bug in **Lf Hiker** or have any problem/question concer
  * Deutsch (de_DE)  by [Kristof Kling](https://lg-buggingen.de/bugginger-feierabendlauf/strecke/)  
  * Greek (el) by [Pol Gkitsas](http://eoskarditsas.gr) 
  * Dutch (nl-BE)  
+ * Spanish (es-ES) by [Miguel Angel](http://www.rutasyviajes.net)
  
  If you need language for **Lf Hiker** which is not included. You can easily translate with poedit from the file :    
     `lf-hiker/languages/lfh-default.po`.   
@@ -113,7 +114,7 @@ If you have any questions about the method, do not hesitate to [contact me](http
 
 ### Perform a new installation  
 
-After downloading the ZIP file [lf-hiker-1.12.0.zip](https://github.com/epointal/lf-hiker/archive/1.12.0.zip)   
+After downloading the ZIP file [lf-hiker-1.13.0.zip](https://github.com/epointal/lf-hiker/archive/1.13.0.zip)   
 
 1. Unzip `lf-hiker.zip` 
 2. Put the folder `lf-hiker` in directory `wp-content/plugins`
@@ -142,6 +143,9 @@ After downloading the ZIP file [lf-hiker-1.12.0.zip](https://github.com/epointal
 
 
 ## Changelog 
+### 1.13.0 ###
+ * Evolution: add spanish language
+ 
 ### 1.12.0 ###
  * Evolution: add empty marker
  * Evolution: add dutch language
@@ -321,3 +325,9 @@ This trouble come from conflict with multiple `x-frame options` directive in you
 ```
 It resolve the trouble for me.   
 You can find more information about this trouble in wordpress support [Multiple 'X-Frame-Options' headers with conflicting values](https://wordpress.org/support/topic/multiple-x-frame-options-headers-with-conflicting-values-sameorigin-deny/)
+
+-------------------------
+**4. The route is not displayed**
+
+-------------------
+If you use WP media library other than the default WP - LF Hiker will not display routes

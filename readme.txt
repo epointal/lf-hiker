@@ -6,7 +6,7 @@ Tags: map, GPX, hiker, runner, track, path, trail, leaflet, profile, openstreetm
 Requires at least: 4.7.3
 Tested up to: 4.9  
 Stable tag: 1.0  
-Version: 1.12.0
+Version: 1.13.0
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -114,6 +114,7 @@ If you think you found a bug in **Lf Hiker** or have any problem/question concer
  * Deutsch (de_DE) by [Kristof Kling](https://lg-buggingen.de/bugginger-feierabendlauf/strecke/)  
  * Greek (el) by [Pol Gkitsas](http://eoskarditsas.gr) 
  * Dutch (nl-BE)
+ * Spanish (es-ES) by [Miguel Angel](http://www.rutasyviajes.net)
  
  If you need language of **Lf Hiker** which is not included. You can easily translate with poedit from the file :    
     `lf-hiker/languages/lfh-default.po`.   
@@ -151,6 +152,9 @@ From zip archive
 7. You can change the default configuration in tab: `Settings → Lf-hiker` 
 
 == Changelog == 
+= 1.13.0 =
+ * Evolution: add spanish language
+ 
 = 1.12.0 =
  * Evolution: add empty marker
  * Evolution: add dutch language
@@ -336,3 +340,6 @@ Look at whether the plugin succeeded in writing this following lines in the `.ht
 It resolve the trouble for me.   
 You can find more information about this trouble in wordpress support [Multiple 'X-Frame-Options' headers with conflicting values](https://wordpress.org/support/topic/multiple-x-frame-options-headers-with-conflicting-values-sameorigin-deny/)
 
+= The route is not displayed =
+
+If you use WP media library other than the default WP - LF Hiker will not display routes

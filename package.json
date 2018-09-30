@@ -1,6 +1,6 @@
 {
   "name": "lf-hiker",
-  "version": "1.12.0",
+  "version": "1.13.0",
   "description": "plugin for wordpress for display track with profil elevation",
   "main": "index.js",
   "scripts": {
