@@ -196,7 +196,7 @@ Class Lfh_Controller_Front
         $selected_color = $css['lfh_selected_path'];
         $data = '';
         if($map_count == 1){
-            $data = ' if( typeof lfh == "undefined"){
+            $data .= ' if( typeof lfh == "undefined"){
                         var lfh = {}
                   }
                   lfh.data = new Array();
@@ -215,7 +215,7 @@ Class Lfh_Controller_Front
               markers: new Array(),
               gpx: new Array()
         };
-            ';
+        ';
         
         wp_add_inline_script('leaflet', $data, 'before');
     }
@@ -348,7 +348,7 @@ Class Lfh_Controller_Front
                 .main input.lfh-button:hover{
                        background-color:' . Lfh_Tools_Color::saturate( $css['lfh_button_color'], 20) .';
                  }
-                ';
+            ';
         wp_add_inline_style('lfh_style', $data );
         
     }
