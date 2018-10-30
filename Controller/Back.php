@@ -22,7 +22,7 @@ Class Lfh_Controller_Back
         add_action( 'show_user_profile', array( &$this, 'add_infos_user') );
         add_action( 'edit_user_profile', array( &$this, 'add_infos_user') );
         add_action( 'personal_options_update', array(&$this, 'update_helper_unactive' ));
-        
+        add_action('init', array(&$this, 'register_map_type'));
         if(in_array( $pagenow, array('admin-ajax.php' , 'post.php', 'post-new.php',
                                   'media-new.php', 'async-upload.php', 'upload.php'))){
             $this->_editor = new Lfh_Tools_Editor( $this->get_helper_unactive());
@@ -51,7 +51,7 @@ Class Lfh_Controller_Back
     public function editor_menu(){
         global $submenu;
         add_menu_page( 'GPX', 'GPX',
-                'edit_posts' ,'lfh_info',array(&$this , 'about_page'), Lf_Hiker_Plugin::$url.'images/icons/marker.png' ,50);
+                'edit_posts' ,'lfh_info',array(&$this , 'about_page'), 'dashicons-location-alt' ,50);
         $data = array(
                 'mode'              => 'list',
                 'attachment-filter' => 'post_mime_type:application/gpx+xml',
@@ -61,7 +61,7 @@ Class Lfh_Controller_Back
         $slug = 'upload.php?' . http_build_query($data);
        // $slug = 'upload.php?mode=list&attachment-filter=post_mime_type%3Aapplication%2Fgpx%2Bxml&m=0&filter_action=Filtrer&s&action=-1&paged=1';
         add_submenu_page('lfh_info',  'GPX' , __('All gpx files', 'lfh'), 'edit_posts', $slug ,null);
-        $submenu['lfh_info'][0][0] = ucfirst(__( 'about','lfh' ));
+       // $submenu['lfh_info'][0][0] = ucfirst(__( 'about','lfh' ));
     }
     
     public function about_page(){
@@ -86,6 +86,44 @@ Class Lfh_Controller_Back
                 'msg'             => $msg,
                 'plugin_url'      => Lf_Hiker_Plugin::$url
         ));
+    }
+    
+    public function register_map_type() {
+        register_post_type(
+                'lfh-map',
+                array(
+                        'label' => __('lfh', 'lfh-map'),
+                        'labels' => array(
+                                'name' => __('Map', 'lfh'),
+                                'singular-name' => __('Map', 'lfh'),
+                                'all_items' => __('All Map', 'lfh'),
+                                'add_new_item' => __('Add map', 'lfh'),
+                                'edit_item' => __('Edit map', 'lfh'),
+                                'new_item' => __('New map', 'lfh'),
+                                'view_item' => __('See map', 'lfh'),
+                                'search_item' => __('Search map', 'lfh'),
+                                'not_found' => __('No map found', 'lfh'),
+                                'not_found_in_trash' => __('No map found in trash', 'lfh')
+                        ),
+                        'public' => true,
+                        'show_in_rest' => true,
+                        'capability_type' => 'post',
+                        // Show in this admin menu
+                        // 'show_ui' => true,
+                        'show_in_menu' => 'lfh_info',
+                        // rewrite URL
+                        'rewrite' => array( 'slug' => 'lfh-map' ),
+                        'supports' => array(
+                                'title',
+                                'editor'
+                        ),
+                        'has_archive' => true,
+                        // Url vers une icone ou à choisir parmi celles de WP : https://developer.wordpress.org/resource/dashicons/.
+                       // 'menu_icon'   => 'dashicons-location-alt',
+                        'menu_position' => 100
+                )
+                );
+        
     }
     //for all users
     public static function add_infos_user( $user )
