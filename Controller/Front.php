@@ -16,17 +16,16 @@ Class Lfh_Controller_Front
     private static $_lfh_mapquest_count = 0;
     private static $_lfh_marker_count = 0;
     private static $_lfh_track_count = 0;
-    private static $_view = null;
+    private  $_view = null;
    
     private function __construct(){
-       
         add_action( 'wp_enqueue_scripts', array(&$this, 'register_scripts') );
-        add_shortcode('lfh-map', 'Lfh_Controller_Front::map_shortcode');
-        add_shortcode('lfh-marker', 'Lfh_Controller_Front::marker_shortcode');
-        add_shortcode('lfh-gpx', 'Lfh_Controller_Front::gpx_shortcode');
-       // add_shortcode('lfh-kml', array(&$this, 'kml_shortcode'));
+        add_shortcode('lfh-map', array(&$this, 'map_shortcode'));
+        add_shortcode('lfh-marker', array(&$this, 'marker_shortcode'));
+        add_shortcode('lfh-gpx', array(&$this, 'gpx_shortcode'));
+        // add_shortcode('lfh-kml', array(&$this, 'kml_shortcode'));
         if(!function_exists('shortcode_empty_paragraph_fix')){
-           add_filter( 'the_content', array(&$this,'shortcode_empty_paragraph_fix' ));
+            add_filter( 'the_content', array(&$this,'shortcode_empty_paragraph_fix' ));
         }
     }
     public static function get_instance() {
@@ -36,24 +35,16 @@ Class Lfh_Controller_Front
         return self::$_instance;
     }
     
-    public static function get_view($controller_name = NULL){
+    public function get_view($controller_name = NULL){
         if(is_null($controller_name)){
-            if(is_null(self::$_view)){
-                self::$_view = new Lfh_Tools_View('Front');
+            if(is_null($this->_view)){
+                $this->_view = new Lfh_Tools_View('Front');
             }
-            return self::$_view;
+            return $this->_view;
         }else{
             return new Lfh_Tools_View($controller_name);
         }
     }
-//     public function add_gpx_template ($attachment_template) {
-//         global $post;
-//         if ($post->post_mime_type == 'application/gpx+xml') {
-//             // $the_content = $this->gpx_shortcode($atts, $html);
-//            $attachement_template = Lf_Hiker_Plugin::$path . 'template-parts/gpx.php';
-//          }
-//           return $attachement_template;
-//     }
     public  function register_scripts () {
         global $post;
         $cdn = Lfh_Model_Option::get_option('lfh_use_cdn');
@@ -80,14 +71,13 @@ Class Lfh_Controller_Front
             wp_register_script('lfh_front_min', Lf_Hiker_Plugin::$url . 'dist/lfh-front-min.'.$version.'.js', Array('leaflet'), null, true);
         }
         if (get_post_type() === "attachment" && get_post_mime_type() === "application/gpx+xml") {
-            $atts = self::attsFromPost();
+            $atts = self::attsFromPost($post);
             $content = '[lfh-gpx ' . $atts . ']';
             $content .= $post->post_content . '[/lfh-gpx]';
             $post->post_content = $content;
         }
     }
-    public static function attsFromPost() {
-        global $post;
+    public static function attsFromPost($post) {
         $id = $post->ID;
         $color = get_post_meta($id, 'lfh_stroke_color', true);
         $color = empty($color)? Lfh_Model_Map::$default['stroke_color'] :  $color;
@@ -98,11 +88,11 @@ Class Lfh_Controller_Front
         $atts = 'src=' . $post->guid . ' color=' . $color . ' width=' . $width .' button=' .$button;
         return $atts;
     }
-    public static function map_shortcode($atts, $html =null){
+    public  function map_shortcode($atts, $html =null){
         if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ){
             return "";
         }
-        if( self::is_divi_get_thumbnail()){
+        if( $this->is_divi_get_thumbnail()){
             return "";
         }
         if(!is_array($atts)){
@@ -114,13 +104,13 @@ Class Lfh_Controller_Front
         if(self::$_lfh_map_count == 0){
             //if the first map in the page/article add a div for the fade in bottom fullscreen
             // @todo (can do this with js)
-            add_action( 'wp_footer', 'Lfh_Controller_Front::add_div_fadable', 100 );
+            add_action( 'wp_footer', array(&$this,'add_div_fadable'), 100 );
             
             $css = Lfh_Model_Option::get_values('custom_css');
             self::enqueue_scripts( $css );
             // assign the url of images for the template and color path
-            self::get_view()->assign('images_url', Lf_Hiker_Plugin::$url .'/images/');
-            self::get_view()->assign('selected_color' , $css['lfh_selected_path']);
+            $this->get_view()->assign('images_url', Lf_Hiker_Plugin::$url .'/images/');
+            $this->get_view()->assign('selected_color' , $css['lfh_selected_path']);
         }
         
         //mapquest case 
@@ -132,11 +122,11 @@ Class Lfh_Controller_Front
         self::$_lfh_marker_count = 0;
         self::$_lfh_track_count = 0;
         // assign the value of map_count for the templates
-        self::get_view()->assign( 'map_count', self::$_lfh_map_count);
+        $this->get_view()->assign( 'map_count', self::$_lfh_map_count);
  
-        self::add_map_scripts( $options );
+        $this->add_map_scripts( $options );
         
-        $map = self::get_view()->render('map', array(
+        $map = $this->get_view()->render('map', array(
                 'options' => $options,
                 'is_connected' => wp_get_current_user()->ID
                 ));
@@ -145,8 +135,8 @@ Class Lfh_Controller_Front
     }
     
   
-    public static function gpx_shortcode($atts, $html=''){
-        if( self::is_divi_get_thumbnail()){
+    public function gpx_shortcode($atts, $html=''){
+        if( $this->is_divi_get_thumbnail()){
             return "";
         }
         $options = Lfh_Model_Map::filter_gpx_data($atts);
@@ -155,11 +145,11 @@ Class Lfh_Controller_Front
         }
         $content = '';
         if( self::$_lfh_map_count==0){
-            $content = self::map_shortcode(array());
+            $content = $this->map_shortcode(array());
         }
         self::$_lfh_track_count++;;
-        self::add_gpx_script($options);
-        $content .= self::get_view()->render('track' ,
+        $this->add_gpx_script($options);
+        $content .= $this->get_view()->render('track' ,
                         array(
                         'file_type'   => 'GPX',
                         'track_id'    => 'track-' . self::$_lfh_map_count .'-'.self::$_lfh_track_count,
@@ -171,8 +161,8 @@ Class Lfh_Controller_Front
         return $content;
     }
     
-    public static function marker_shortcode ( $atts, $html = '') {
-        if( self::is_divi_get_thumbnail()){
+    public  function marker_shortcode ( $atts, $html = '') {
+        if($this->is_divi_get_thumbnail()){
             return "";
         }
         $options = Lfh_Model_Map::filter_marker_data($atts);
@@ -184,10 +174,10 @@ Class Lfh_Controller_Front
         }
         $content = '';
         if(self::$_lfh_map_count == 0){
-            $content = self::map_shortcode(array());
+            $content = $this->map_shortcode(array());
         }
         self::$_lfh_marker_count++;
-        self::add_marker_script($options);
+        $this->add_marker_script($options);
         $content .= self::get_view()->render('marker',
                 array(
                         'marker_count'  => self::$_lfh_marker_count,
@@ -197,10 +187,10 @@ Class Lfh_Controller_Front
                 ));
         return $content; 
     }
-    public  static function add_div_fadable(){
+    public  function add_div_fadable(){
         echo '<div id="lfh-fade"></div>';
     }
-    private static function is_divi_get_thumbnail(){
+    private  function is_divi_get_thumbnail(){
         global $shortname;
         if( $shortname != "divi"){
             return false;
@@ -216,7 +206,7 @@ Class Lfh_Controller_Front
         }
         return $find;
     }
-    private static function add_map_scripts($options){
+    private function add_map_scripts($options){
         $map_count = self::$_lfh_map_count;
         $images_url = Lf_Hiker_Plugin::$url .'/images/';
         $css = Lfh_Model_Option::get_values('custom_css');
@@ -267,14 +257,14 @@ Class Lfh_Controller_Front
     
         return $content;
     }
-    private static function add_marker_script( $options ){
+    private  function add_marker_script( $options ){
         $map_count = self::$_lfh_map_count;
         $marker_count = self::$_lfh_marker_count;
         $data = ' lfh.data[' . $map_count .'].markers['.$marker_count.'] = '.json_encode($options, JSON_NUMERIC_CHECK).';';
         wp_add_inline_script('leaflet', $data, 'before');
     }
     
-    private static function add_gpx_script($options ){
+    private  function add_gpx_script($options ){
         $map_count = self::$_lfh_map_count;
         $track_count = self::$_lfh_track_count;
         $data = '  lfh.data['.$map_count .'].gpx['.$track_count .'] = '.json_encode($options, JSON_NUMERIC_CHECK).';';
