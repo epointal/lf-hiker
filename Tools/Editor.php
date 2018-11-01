@@ -205,7 +205,7 @@ class Lfh_Tools_Editor
         global $typenow;
 
         // Only on Post Type: post,  event (events manager)  and page
-        if( ! in_array( $typenow, array( 'post', 'page',  'event', 'tribe_events', 'ai1ec_event' ) ) )
+        if( ! in_array( $typenow, array( 'post', 'page',  'event', 'tribe_events', 'ai1ec_event', 'lfh-map' ) ) )
         {
             return ;
         }

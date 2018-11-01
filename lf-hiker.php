@@ -47,17 +47,14 @@ if( ! function_exists( "boolval")){
         }
     }
 }
-
 class Lf_Hiker_Plugin
 {
     const VERSION = '1.13.0';
     const LEAFLET_VERSION = '1.3.1';
     
     private static $_controller;
-    
     public static $url = '';
     public static $path = '';
-    
     
     private  function __construct()
     {
@@ -67,12 +64,12 @@ class Lf_Hiker_Plugin
         register_deactivation_hook( __FILE__ , array( 'Lfh_Controller_Admin', 'deactivate') );
         register_uninstall_hook( __FILE__ , array( 'Lfh_Controller_Admin', 'uninstall') );
     }
-    
     public function initialize()
     {
       self::$url = plugin_dir_url( __FILE__ );
       self::$path =  plugin_dir_path( __FILE__ );
       add_action( 'init', array(&$this, 'load_textdomain') );
+      add_action('init', array(&$this, 'register_map_type'));
       if(is_admin()){
           self::$_controller = Lfh_Controller_Back::get_instance();
       }else{
@@ -100,7 +97,45 @@ class Lf_Hiker_Plugin
     {
         load_plugin_textdomain( 'lfh', false, basename( dirname( __FILE__ ) ) . '/languages' );
     }
-
+    public function register_map_type() {
+        register_post_type(
+            'lfh-map',
+            array(
+                'label' => __('lfh', 'lfh-map'),
+                'labels' => array(
+                    'name' => __('Maps and GPX', 'lfh'),
+                    'singular-name' => __('Map', 'lfh'),
+                    'all_items' => __('All Map', 'lfh'),
+                    'add_new_item' => __('Add map', 'lfh'),
+                    'edit_item' => __('Edit map', 'lfh'),
+                    'new_item' => __('New map', 'lfh'),
+                    'view_item' => __('See map', 'lfh'),
+                    'search_item' => __('Search map', 'lfh'),
+                    'not_found' => __('No map found', 'lfh'),
+                    'not_found_in_trash' => __('No map found in trash', 'lfh')
+                ),
+                'public' => true,
+                'show_in_rest' => false,
+                'capability_type' => 'post',
+                // Show in this admin menu
+                'show_ui' => true,
+                // 'show_in_menu' => 'admin.php?page=lfh_info',
+                // rewrite URL
+                // 'show_in_nav_menus'   => true,
+                'rewrite' => true,
+                'supports' => array(
+                        'title',
+                        'editor',
+                        'excerpt'
+                ),
+                'has_archive' => true,
+                'taxonomies' => array( 'category', 'post_tag' ),
+                // Url vers une icone ou à choisir parmi celles de WP : https://developer.wordpress.org/resource/dashicons/.
+                'menu_icon'   => 'dashicons-location-alt',
+                'menu_position' => 50
+            )
+        );
+    }
 } 
 
 Lf_Hiker_Plugin::get_controller();

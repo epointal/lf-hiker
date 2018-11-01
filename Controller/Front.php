@@ -20,6 +20,7 @@ Class Lfh_Controller_Front
    
     private function __construct(){
         add_action( 'wp_enqueue_scripts', array(&$this, 'register_scripts') );
+      //  add_filter ( 'single_template', array(&$this, 'register_map_single_template'));
         add_shortcode('lfh-map', array(&$this, 'map_shortcode'));
         add_shortcode('lfh-marker', array(&$this, 'marker_shortcode'));
         add_shortcode('lfh-gpx', array(&$this, 'gpx_shortcode'));
@@ -88,6 +89,13 @@ Class Lfh_Controller_Front
         $atts = 'src=' . $post->guid . ' color=' . $color . ' width=' . $width .' button=' .$button;
         return $atts;
     }
+//     public function register_map_single_template($single_template) {
+//         global $post;
+//         if ($post->post_type == 'lfh-map') {
+//            // $single_template = get_template;
+//         }
+//         return $single_template;
+//     }
     public  function map_shortcode($atts, $html =null){
         if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ){
             return "";
@@ -366,7 +374,6 @@ Class Lfh_Controller_Front
                  }
             ';
         wp_add_inline_style('lfh_style', $data );
-        
     }
    
     
