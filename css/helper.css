@@ -297,61 +297,10 @@ body {
 #lfh-control {
   font-size: 16px;
 }
-input[type="button"],
-input[type="reset"] {
-  margin: 0px 7px 3px 0;
-  padding: 6px 18px;
-  height: 50px;
-  vertical-align: middle;
-  max-width: 150px;
-  font-size: 14px;
-  line-height: 1.4285714;
-  white-space: normal;
-  background: #0085ba;
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 3px;
-  border-color: #0073aa #006799 #006799;
-  color: #fff;
-  text-decoration: none;
-  text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799;
-  vertical-align: top;
-  display: inline-block;
-  cursor: pointer;
-  box-sizing: border-box;
-  text-align: center;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
-}
-input[type="button"]:disabled {
-  background-color: lightgrey;
-}
-input[type="button"]:disabled:hover {
-  background-color: lightgrey;
-}
-input[type="button"]:hover {
-  background-color: #0089bc;
-}
-#fade input[type="button"],
-form input[type="button"],
-form input[type="reset"] {
-  margin: 7px 7px 0px 0;
-  padding: 3px 9px;
-  height: auto;
-  font-size: 12px;
-  line-height: 1.2;
-}
-#fade input[type="button"] {
-  font-size: 14px;
-}
-form input[type="number"] {
-  width: 50px;
-  direction: rtl;
-  padding-right: 3px;
-}
 .lfh-form-edit {
   padding: 0px;
-  width: 350px;
-  position: fixed;
+  width: 400px;
+  position: absolute;
   z-index: 1000;
   background-color: white;
   height: auto;
@@ -382,54 +331,110 @@ form input[type="number"] {
   margin: 3px;
   display: inline;
   width: 180px;
+  color: white;
   vertical-align: middle;
 }
-.header div.lfhicon {
+.lfh-helper .header div.lfhicon {
   float: right;
   display: inline-block;
   vertical-align: top;
   cursor: pointer;
   padding: 3px;
 }
-form {
+.lfh-helper form {
   padding-top: 10px;
   overflow-y: auto;
   height: auto;
   max-height: 395px;
   padding-bottom: 10px;
 }
-label {
+.lfh-helper label {
   text-align: right;
-  width: 150px;
+  width: 200px;
   padding-right: 5px;
   color: #124964;
 }
-input,
-select,
-textarea {
+.lfh-helper input,
+.lfh-helper select,
+.lfh-helper textarea {
   font-size: 12px;
   border-width: 1px;
   border-style: solid;
   border-color: #ddd;
 }
-input[type=text],
-textarea {
+.lfh-helper input[type=text],
+.lfh-helper textarea {
   width: 165px;
   max-width: 165px;
   line-height: 1.4;
 }
-label,
-input {
+.lfh-helper label,
+.lfh-helper input {
   display: inline-block;
   vertical-align: top;
 }
-input:focus,
-select:focus,
-textarea:focus {
+.lfh-helper input[type="checkbox"] {
+  vertical-align: baseline;
+}
+.lfh-helper input:focus,
+.lfh-helper select:focus,
+.lfh-helper textarea:focus {
   border-color: #5b9dd9;
 }
-textarea {
+.lfh-helper textarea {
   height: 33px;
+}
+.lfh-helper input[type="button"],
+.lfh-helper input[type="reset"] {
+  margin: 0px 7px 3px 0;
+  padding: 6px 18px;
+  height: 50px;
+  vertical-align: middle;
+  max-width: 150px;
+  font-size: 14px;
+  line-height: 1.4285714;
+  white-space: normal;
+  background: #0085ba;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+  border-color: #0073aa #006799 #006799;
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799;
+  vertical-align: top;
+  display: inline-block;
+  cursor: pointer;
+  box-sizing: border-box;
+  text-align: center;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+}
+.lfh-helper input[type="button"]:disabled {
+  background-color: lightgrey;
+}
+.lfh-helper input[type="button"]:disabled:hover {
+  background-color: lightgrey;
+}
+.lfh-helper input[type="button"]:hover,
+.lfh-helper input[type="reset"]:hover {
+  background-color: #0089bc;
+}
+#fade input[type="button"],
+.lfh-helper form input[type="button"],
+.lfh-helper form input[type="reset"] {
+  margin: 7px 7px 0px 0;
+  padding: 3px 9px;
+  height: auto;
+  font-size: 12px;
+  line-height: 1.2;
+}
+#fade input[type="button"] {
+  font-size: 14px;
+}
+.lfh-helper form input[type="number"] {
+  width: 50px;
+  direction: rtl;
+  padding-right: 3px;
 }
 #selected-icon,
 #selected-color {
@@ -540,7 +545,7 @@ textarea {
   height: 100%;
   vertical-align: middle;
 }
-.modal {
+.lfh-helper .modal {
   text-align: left;
   margin: auto;
   width: 350px;
@@ -554,10 +559,10 @@ textarea {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
   display: inline-block;
 }
-.modal label {
+.lfh-helper .modal label {
   width: 250px;
 }
-.modal h3 {
+.lfh-helper .modal h3 {
   font-size: 18px;
   margin: 10px 0 18px 10px;
 }

@@ -13,6 +13,7 @@ Class Lfh_Controller_Back
     private $_editor = null;
     private $_controller = null;
     private $_manage = null;
+    private $_map_block = null;
    
     private function __construct(){
         global $pagenow;
@@ -22,7 +23,8 @@ Class Lfh_Controller_Back
         add_action( 'show_user_profile', array( &$this, 'add_infos_user') );
         add_action( 'edit_user_profile', array( &$this, 'add_infos_user') );
         add_action( 'personal_options_update', array(&$this, 'update_helper_unactive' ));
-
+       
+        // $this->_map_block = new Lfh_Gutenberg_Map();
         if(in_array( $pagenow, array('admin-ajax.php' , 'post.php', 'post-new.php',
                                   'media-new.php', 'async-upload.php', 'upload.php'))){
             $this->_editor = new Lfh_Tools_Editor( $this->get_helper_unactive());
@@ -48,6 +50,9 @@ Class Lfh_Controller_Back
             return new Lfh_Tools_View($controller_name);
         }
     }
+    
+    // This action will call your function at the right time to enqueue your script for the admin area
+  
     public function editor_menu(){
 //         global $submenu;
 //         add_menu_page( 'GPX', 'GPX',

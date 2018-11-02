@@ -1,8 +1,8 @@
 //need to be very carefull with the replace version number
 //there are in files readme others version numbers: for releases, tested browsers, and the most important wordpress
 
-var old_version = '1.12.0';
-var version = '1.13.0';
+var old_version = '1.13.0';
+var version = '2.0.0';
 var gulp = require('gulp');
 var less = require('gulp-less');
 var minify = require('gulp-minify');
@@ -99,7 +99,8 @@ gulp.task('versioning', ['lessify'], function(){
 	.pipe(gulp.dest('dist'));
 	
 	gulp.src(['js/tinymce-lfh-plugin.js',
-	          'js/lfh-post-editor.js',
+			  'js/lfh-post-editor.js',
+			  'js/helper-map.js',
 			  'js/helper.js'])
 	.pipe(minify())
 	.pipe(rename({suffix: '.'+version}))

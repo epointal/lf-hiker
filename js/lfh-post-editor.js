@@ -36,6 +36,20 @@
       }
       $('#'+node_id +' .lfh-color-chosen').parent().parent().children('.to-extend').toggleClass('hidden');
   }
-  
+   $(document).ready(function(){
+            $('#insert-gpx').click(open_media_window);
+          
+  });
+  function open_media_window(event) {
+    console.log('open media');
+    event.preventDefault();
+    var wmedia = wp.media({
+            title: 'Insert a media',
+            library: {type: 'image'},
+            multiple: false,
+            button: {text: 'Insert'}
+        });
+}
+    
 
 })(jQuery);

@@ -5,7 +5,7 @@
     Description: A responsive and mobile friendly plugin to display gpx track with profile elevation.
     Author: epointal
     Author URI: http://elisabeth.pointal.org/
-    Version: 1.13.0
+    Version: 2.0.0
     License: GPL2
     Text domain: lfh
     */
@@ -49,7 +49,7 @@ if( ! function_exists( "boolval")){
 }
 class Lf_Hiker_Plugin
 {
-    const VERSION = '1.13.0';
+    const VERSION = '2.0.0';
     const LEAFLET_VERSION = '1.3.1';
     
     private static $_controller;
@@ -70,10 +70,11 @@ class Lf_Hiker_Plugin
       self::$path =  plugin_dir_path( __FILE__ );
       add_action( 'init', array(&$this, 'load_textdomain') );
       add_action('init', array(&$this, 'register_map_type'));
+      $truc = Lfh_Controller_Front::get_instance();
       if(is_admin()){
           self::$_controller = Lfh_Controller_Back::get_instance();
       }else{
-          self::$_controller = Lfh_Controller_Front::get_instance();
+          // self::$_controller = Lfh_Controller_Front::get_instance();
       }
     }
     public static function autoloader( $class_name ) 
@@ -115,7 +116,7 @@ class Lf_Hiker_Plugin
                     'not_found_in_trash' => __('No map found in trash', 'lfh')
                 ),
                 'public' => true,
-                'show_in_rest' => false,
+                'show_in_rest' => true,
                 'capability_type' => 'post',
                 // Show in this admin menu
                 'show_ui' => true,
@@ -123,11 +124,12 @@ class Lf_Hiker_Plugin
                 // rewrite URL
                 // 'show_in_nav_menus'   => true,
                 'rewrite' => true,
-                'supports' => array(
-                        'title',
-                        'editor',
-                        'excerpt'
-                ),
+                 'supports' => array(
+                         'title',
+//                         'editor',
+                         'excerpt'
+                 ),
+                // 'supports'    => false,
                 'has_archive' => true,
                 'taxonomies' => array( 'category', 'post_tag' ),
                 // Url vers une icone ou à choisir parmi celles de WP : https://developer.wordpress.org/resource/dashicons/.

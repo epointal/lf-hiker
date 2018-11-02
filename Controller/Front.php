@@ -11,7 +11,7 @@ Class Lfh_Controller_Front
 {
    
     private static $_instance = null;
-    private static $_templates = array();
+  //  private static $_templates = array();
     private static $_lfh_map_count =0;
     private static $_lfh_mapquest_count = 0;
     private static $_lfh_marker_count = 0;
@@ -20,6 +20,7 @@ Class Lfh_Controller_Front
    
     private function __construct(){
         add_action( 'wp_enqueue_scripts', array(&$this, 'register_scripts') );
+      
       //  add_filter ( 'single_template', array(&$this, 'register_map_single_template'));
         add_shortcode('lfh-map', array(&$this, 'map_shortcode'));
         add_shortcode('lfh-marker', array(&$this, 'marker_shortcode'));

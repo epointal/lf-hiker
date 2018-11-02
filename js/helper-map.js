@@ -1,34 +1,7 @@
-declare var L: any; //leaflet
-declare var MQ:any;  // Maquest
-declare var data_helper: any; // data coming from php
-interface HTMLElement{
-    dataset: any; // data in input element
-}
-
-interface Window{
-    tinymce: any;
-    dialogArguments:any;
-}
-String.prototype.addslashes = function()
-{return this.replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');};
-
-String.prototype.stripslashes = function()
-{return this.replace(/\\(.?)/g, function (s, n1){switch (n1){case '\\':return '\\';case '0':return '\u0000';case '':return '';default:return n1;}});};
-
-String.prototype.replaceAll = function(search, replacement) {
-    var target = this;
-    return target.replace(new RegExp(search, 'g'), replacement);
-};
-interface String {
-    addslashes() : string;
-    stripslashes(): string;
-    replaceAll(search : string, replacement:string) : string;
-}
-(function(){
+(function(prop){
  
 //For Adding button mode  on map control
 
-//var LfhMarkerOptions = L.MarkerOption
 var LfhControl = L.Control.extend({
     options: {
       position: 'topleft' 
@@ -40,19 +13,15 @@ var LfhControl = L.Control.extend({
     },
    
 });
-
-
-
-var center: [number, number] = [48.67777858405578, 2.166026472914382];
+console.log(prop)
 var lfh = {
         mode: "lfh-view",
         confirm : data_helper.confirm,
         add_description : data_helper.add_description,
         tiles : data_helper.tiles,
         map: null,
-        center: center , //by default center = les ulis France
+        center: [48.67777858405578, 2.166026472914382], //by default center = les ulis France
         zoom: 2,
-        map_var: new Array(),
         current_marker: null, // the selected marker
         default_icon: null,
         move_marker: null, // seen when in mode add-marker
@@ -67,7 +36,7 @@ var lfh = {
           //handler init event when control is added
             var nodes = document.querySelectorAll('.marker-control');
             [].forEach.call(nodes, function(button){
-                L.DomEvent.addListener(button,'click', function(e: MouseEvent){
+                L.DomEvent.addListener(button,'click', function(e){
                     lfh.set_mode(button);
                     e.stopPropagation();
                 });
@@ -95,7 +64,7 @@ var lfh = {
             
         },
         set_tile: function(){
-            var tilename = (<HTMLSelectElement>document.querySelector('select[name="lfh-form-map-tile"]')).value;
+            var tilename = document.querySelector('select[name="lfh-form-map-tile"]').value;
             var tileinfo = lfh.tiles[ tilename ];
            
             if(lfh.tile != null ){
@@ -143,7 +112,12 @@ var lfh = {
                 lfh.set_mode(document.querySelector('#lfh-edit-marker'));
                 return lfh.current_marker;
         },
-        
+        add_marker_from_form: function(){
+            var lat = document.querySelector('#window-add-marker input[name="lfh-lat"]').value;
+            var lng = document.querySelector('#window-add-marker input[name="lfh-lng"]').value;
+            var latlng = {lat: lat, lng: lng}
+            lfh.add_marker({latlng: latlng});
+        },
         delete_marker: function(marker){
             var answer = confirm( lfh.confirm);
             if(!answer){
@@ -181,6 +155,8 @@ var lfh = {
             if(lfh.mode == 'lfh-add-marker'){
                 //show move_marker
                 lfh.move_marker.setOpacity(1);
+                //show manual marker
+                document.querySelector('#window-add-marker').style.display = 'block';
             }else{
                 //hide move_marker
                 lfh.move_marker.setOpacity(0);
@@ -205,7 +181,7 @@ var lfh = {
         init_window: function(){
             switch(lfh.mode){
             case 'lfh-edit-map':
-                (<HTMLElement>document.querySelector('#window-edit-map')).style.display = 'block';
+                document.querySelector('#window-edit-map').style.display = 'block';
                 break;
             case 'lfh-edit-marker':
                 if(lfh.current_marker == null ) return;
@@ -214,15 +190,15 @@ var lfh = {
                 var options = lfh.current_marker.options;
                 var color = options.icon.options.markerColor;
                 var icon = options.icon.options.icon;
-                (<HTMLInputElement>document.querySelector('#window-edit-marker input[name="title"]')).value = options.title.stripslashes();
-                (<HTMLTextAreaElement>document.querySelector('#window-edit-marker textarea[name="popup"]')).value = options.popup.stripslashes();
-                (<HTMLInputElement>document.querySelector('#window-edit-marker input[name="description"]')).checked = options.description;
-                (<HTMLSelectElement>document.querySelector('#window-edit-marker select[name="visibility"]')).selectedIndex = (options.visibility == 'always')? 0:1;
+                document.querySelector('#window-edit-marker input[name="title"]').value = options.title.stripslashes();
+                document.querySelector('#window-edit-marker textarea[name="popup"]').value = options.popup.stripslashes();
+                document.querySelector('#window-edit-marker input[name="description"]').checked = options.description;
+                document.querySelector('#window-edit-marker select[name="visibility"]').selectedIndex = (options.visibility == 'always')? 0:1;
                 var evt = document.createEvent('MouseEvents');
                 evt.initEvent("click", true, true);
                 document.querySelector('#color-marker div.awesome-marker-icon-'+color).dispatchEvent(evt);
                 document.querySelector('#icon-marker div.lfhicon-'+icon).dispatchEvent(evt); 
-                (<HTMLElement>document.querySelector('#window-edit-marker')).style.display = 'block';
+                document.querySelector('#window-edit-marker').style.display = 'block';
                 break;
             }
           
@@ -235,12 +211,15 @@ var lfh = {
             case 'window-edit-marker':
                 lfh.close_color();
                 lfh.close_icon();
-                (<HTMLInputElement>document.querySelector('#'+id)).style.display = 'none';
+                document.querySelector('#'+id).style.display = 'none';
                 break;
             case 'window-edit-map':
                 var evt = document.createEvent('MouseEvents');
                 evt.initEvent("click", true, true);
                 document.querySelector('#lfh-edit-map').dispatchEvent(evt);
+                break;
+            case 'window-add-marker':
+                document.querySelector('#' + id).style.display = 'none';
                 break;
             }
            
@@ -248,7 +227,7 @@ var lfh = {
 
         close_color: function(){
             var label = document.querySelector('#window-edit-marker .to-extend label ');
-            var div = (<Element>label.parentNode).querySelector("div");
+            var div = label.parentNode.querySelector("div");
             if(label.textContent == '-'){
                 label.textContent = '+';
                 div.style.display = 'none';
@@ -256,33 +235,33 @@ var lfh = {
         },
         close_icon: function(){
             var label = document.querySelector('#window-edit-marker .to-extend:last-child label');
-            var div = (<Element>label.parentNode).querySelector("div");
+            var div = label.parentNode.querySelector("div");
             if(label.textContent == '-'){
                 label.textContent = '+';
                 div.style.display = 'none';
             }
         },
         write_checked: function(name){
-            var str = ' ' + name + '='+ (<HTMLInputElement>document.querySelector('input[name="' + lfh.map_var[name] +'"]')).checked;
+            var str = ' ' + name + '='+document.querySelector('input[name="' + lfh.map_var[name] +'"]').checked;
         },
         shortcode_map:function(){
             var shortcode = '';
             shortcode += '[lfh-map ';
-            if(!(<HTMLInputElement>document.querySelector('input[name="lfh-form-map-autocenter"]')).checked){
+            if(!document.querySelector('input[name="lfh-form-map-autocenter"]').checked){
                 shortcode += ' lat=' + lfh.record.center.lat ;
                 shortcode += ' lng=' + lfh.record.center.lng ;
                 shortcode += ' zoom=' + lfh.record.zoom ;
             }
-            if((<HTMLInputElement>document.querySelector('input[name="lfh-form-map-class"]')).value != ''){
-                shortcode += ' class="' + (<HTMLInputElement>document.querySelector('input[name="lfh-form-map-class"]')).value.replaceAll('-','\\-') +'"';
+            if(document.querySelector('input[name="lfh-form-map-class"]').value != ''){
+                shortcode += ' class="' + document.querySelector('input[name="lfh-form-map-class"]').value.replaceAll('-','\\-') +'"';
             }
-            ['autocenter', 'fullscreen', 'reset', 'list', 'mousewheel'].forEach(function(key){
-                shortcode += ' '+ key + '=' + (<HTMLInputElement>document.querySelector('input[name="lfh-form-map-' + key + '"]')).checked;
+            ['autocenter', 'fullscreen', 'reset', 'list', 'mousewheel', 'open', 'undermap'].forEach(function(key){
+                shortcode += ' '+ key + '=' + document.querySelector('input[name="lfh-form-map-' + key + '"]').checked;
             });
             ['width', 'height'].forEach( function(key){
-                shortcode += ' '+ key + '=' + (<HTMLInputElement>document.querySelector('input[name="lfh-form-map-' + key + '"]')).value;
+                shortcode += ' '+ key + '=' + document.querySelector('input[name="lfh-form-map-' + key + '"]').value;
             });
-            shortcode += ' tile=' + (<HTMLSelectElement>document.querySelector('select[name="lfh-form-map-tile"]')).value;
+            shortcode += ' tile=' + document.querySelector('select[name="lfh-form-map-tile"]').value;
             shortcode += ' ] <br /> ';
             return shortcode;
         },
@@ -349,9 +328,9 @@ var hdrg = {
     },
 
     // Will be called when user dragging an element
-    move: function(e: MouseEvent) {
-        hdrg.x_pos = document.all ? (<MouseEvent>window.event).clientX : e.pageX;
-        hdrg.y_pos = document.all ? (<MouseEvent>window.event).clientY : e.pageY;
+    move: function(e) {
+        hdrg.x_pos = document.all ? window.event.clientX : e.pageX;
+        hdrg.y_pos = document.all ? window.event.clientY : e.pageY;
         if (hdrg.selected !== null) {
             var left = Math.min( Math.max(-200, hdrg.x_pos - hdrg.x_elem), window.innerWidth-100);
             hdrg.selected.style.left = left + 'px';
@@ -404,11 +383,15 @@ document.onmouseup = hdrg.destroy;
            }
        });
    });
+   // - for add manual marker
+   // ------------------------
+   var node = document.querySelector('#window-add-marker input[name="placeMarker"]');
+   L.DomEvent.addListener(node, 'click', function(e){lfh.add_marker_from_form();})
    // - for edit map
    //-----------------
    var node = document.querySelector('#window-edit-map input[name="lfh-form-map-autocenter"]');
    L.DomEvent.addListener(node, 'click', function(e){
-       (<HTMLElement>document.querySelector('#center-map')).style.display = e.target.checked ? 'none':'block';
+       document.querySelector('#center-map').style.display = e.target.checked ? 'none':'block';
        lfh.get_position_info();
    });
    var node = document.querySelector('input[name="save-center"]');
@@ -422,13 +405,13 @@ document.onmouseup = hdrg.destroy;
    var evt = document.createEvent('MouseEvents');
    evt.initEvent("click", true, true);
    document.querySelector('#window-edit-map input[type="reset"]').dispatchEvent(evt);
-   (<HTMLFormElement>document.querySelector('#window-edit-map form')).onreset = function(){
-       (<HTMLElement>document.querySelector('#center-map')).style.display = 'none';
-       setTimeout(function(){
-           if(lfh.tiles != null)
-               lfh.set_tile();
-           }, 500);
-   }
+//    document.querySelector('#window-edit-map form').onreset = function(){
+//        document.querySelector('#center-map').style.display = 'none';
+//        setTimeout(function(){
+//            if(lfh.tiles != null)
+//                lfh.set_tile();
+//            }, 500);
+//    }
    // - for edit marker
     var node = document.querySelector('#window-edit-marker input[name="title"]');
     L.DomEvent.addListener(node,'change', function(e){
@@ -517,68 +500,28 @@ document.onmouseup = hdrg.destroy;
             
         });
     });
-   
-   
-    
-   
- //buttons insert and cancel
- 
-  
-    var node = document.querySelector('#banner input[name="lfh-cancel"]');
-    L.DomEvent.addListener(node, 'click', function(e){
-        // only close the window
-        if(typeof window.parent != 'undefined' && typeof window.parent.tinymce != 'undefined'){
-            window.parent.tinymce.activeEditor.windowManager.close();
-        }
-    });
-    var node = document.querySelector('#banner input[name="lfh-insert"]');
-    L.DomEvent.addListener(node, 'click', function(e){
-        //open modal
-        document.querySelector("#fade").className = '';
-       
-    });
-   var node = document.querySelector('#fade input[name="lfh-modal-cancel"]');
-    L.DomEvent.addListener(node, 'click', function(e){
-        //open modal
-        document.querySelector("#fade").className = 'hidden';
-        //document.querySelector('#debug').innerHTML = lfh.shortcode('map');
-        // only close the window
-       
-    });
-   var node = document.querySelector('#fade input[name="lfh-modal-insert"]');
-    L.DomEvent.addListener(node, 'click', function(e){
-        var shortcode = '';
-
-        if( (<HTMLInputElement>document.querySelector('#fade input[name="lfh-insert-map"]')).checked){
-            shortcode += lfh.shortcode('map');
-        }
-        if((<HTMLInputElement>document.querySelector('#fade input[name="lfh-insert-markers"]')).checked){
-            shortcode += lfh.shortcode('markers');
-        }
-        // only close the window
-        if(typeof window.parent != 'undefined' && typeof window.parent.tinymce != 'undefined'){
-            window.parent.tinymce.activeEditor.selection.setContent(shortcode);
-            window.parent.tinymce.activeEditor.windowManager.close();
-        }
-    });
-    
-
-    window.onload = function() {
-        if (window.dialogArguments) { // For IE
-            var arguments = window.dialogArguments;
-         }
-         else { //For FF and Chrome
-            var arguments = window.opener;
-         } 
-        if(arguments!= null && typeof arguments['lat'] != 'undefined'){
-            lfh.center = [arguments['lat'], arguments['lng']];
-            lfh.zoom = arguments['zoom'];
-        }
-        if(lfh.map == null){
-            lfh.init_map(); 
-        }
-      };
-      if(lfh.map == null){
-          lfh.init_map(); 
+    var frame = null;
+    document.querySelector('#insert-my-media').addEventListener('click', function(e) {
+      if (!frame) {
+          frame = wp.media({
+                title: 'Insert a media',
+                library: {type: 'application'},
+                multiple: true,
+                button: {text: 'Insert'}
+            });
+          frame.open()
       }
-})();
+    })
+    lfh.init_map();
+      return lfh;
+})(lfh);
+String.prototype.addslashes = function()
+{return this.replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');};
+
+String.prototype.stripslashes = function()
+{return this.replace(/\\(.?)/g, function (s, n1){switch (n1){case '\\':return '\\';case '0':return '\u0000';case '':return '';default:return n1;}});};
+
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};

@@ -1,11 +1,11 @@
 # Lf Hiker 
 [![Contributor: Elisabeth Pointal](https://github.com/epointal/lf-hiker/blob/master/assets/svg/contributor2.svg)](http://elisabeth.pointal.org)
 [![License GPL 2](https://github.com/epointal/lf-hiker/blob/master/assets/svg/license.svg)](http://www.gnu.org/licenses/gpl-2.0.html )
-[![Version 1.13.0](https://github.com/epointal/lf-hiker/blob/master/assets/svg/version1.13.0.svg)](https://github.com/epointal/lf-hiker/archive/1.13.0.zip) 
+[![Version 2.0.0](https://github.com/epointal/lf-hiker/blob/master/assets/svg/version2.0.0.svg)](https://github.com/epointal/lf-hiker/archive/2.0.0.zip) 
 
 Plugin site web: [Lf Hiker](http://elisabeth.pointal.org/lf-hiker/en/about/ )  
 Requires Wordpress version: 4.7.3  
-Tested up to: Wordpress 4.9  
+Tested up to: Wordpress 5.0  
 Stable version: 1.0    
 
 
@@ -114,7 +114,7 @@ If you have any questions about the method, do not hesitate to [contact me](http
 
 ### Perform a new installation  
 
-After downloading the ZIP file [lf-hiker-1.13.0.zip](https://github.com/epointal/lf-hiker/archive/1.13.0.zip)   
+After downloading the ZIP file [lf-hiker-2.0.0.zip](https://github.com/epointal/lf-hiker/archive/2.0.0.zip)   
 
 1. Unzip `lf-hiker.zip` 
 2. Put the folder `lf-hiker` in directory `wp-content/plugins`
@@ -143,6 +143,9 @@ After downloading the ZIP file [lf-hiker-1.13.0.zip](https://github.com/epointal
 
 
 ## Changelog 
+### 2.0.0 ###
+ * Add custom post type lfh-map
+
 ### 1.13.0 ###
  * Evolution: add spanish language
  
