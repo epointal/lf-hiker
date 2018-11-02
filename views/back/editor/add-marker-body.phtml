@@ -1,0 +1,120 @@
+<div class="lfh-container" style="width:100%;position:relative;">
+<!-- <div id="debug"  style="position:absolute;top:20px;left:400px;display:block;z-index:90000;"></div>-->
+<!-- control for marker on map -->
+<div id="lfh-control" class="leaflet-bar leaflet-control">
+  <a  id="lfh-edit-map" class="leaflet-buttons-control-button marker-control" title="<?=_e('Edit map', 'lfh')?>">
+        <div class="lfhicon lfhicon-map"></div>
+    </a>
+    <a id="lfh-add-marker" class="leaflet-buttons-control-button marker-control " title="<?=_e('Add marker', 'lfh')?>">
+        <div class="lfhicon lfhicon-map-marker"></div>
+    </a>
+    <a id="lfh-edit-marker" class="leaflet-buttons-control-button marker-control" title="<?=_e('Edit marker', 'lfh')?>">
+        <div class="lfhicon lfhicon-edit"></div>
+    </a>
+    <a  id="lfh-delete-marker" class="leaflet-buttons-control-button marker-control" title="<?=_e('Delete marker', 'lfh')?>">
+        <div class="lfhicon lfhicon-trash"></div>
+    </a>
+   
+    
+</div>
+<?php if (!isset($is_map_type)) :?>
+<!-- banner buttons bottom right -->
+     <div id="banner" class="lfh-helper>
+         <input name="lfh-cancel" type="button" value="<?=_e('Cancel')?>" />
+         <input name="lfh-insert" type="button" value="<?=_e('Insert shortcodes', 'lfh')?>" />
+     </div>
+<?php endif;?>     
+<!-- window for edit map -->
+<?php   include 'map-form.phtml';?>
+
+<!-- block to choose position -->
+<div id="window-add-marker" class="lfh-form-edit lfh-helper">
+     <div class="header" >
+        <h3><?=_e('Add marker', 'lfh')?></h3>
+        <div class="lfhicon lfhicon-close"></div>
+    </div>
+    <div style="padding:5px;"><?=_e('Click on the map or enter coordinates to add marker', 'lfh')?></div>
+    <form>
+        <div>
+            <label for="lfh-lat"><?=ucfirst(__('latitude', 'lfh'))?></label>
+            <input name="lfh-lat" type="text" pattern="-?(90|([1-8]?[1-9](\.{1}\d{0,8})*))" 
+            title="<?=_e('Must be a number between -90 and 90')?>" value="0" />
+        </div>
+        <div>
+            <label for="lfh-lng"><?=ucfirst(__('longitude', 'lfh'))?></label>
+            <input name="lfh-lng" type="text" pattern="-?(180|(1?[0-7]?[0-9](\.{1}\d{0,8})*))" 
+             title="<?=_e('Must be a number between -180 and 180')?>" value="0" />
+        </div>
+        <div style="text-align:right;">
+            <input type="button" name="placeMarker" value="<?=_e('Add marker', 'lfh')?>"/>
+        </div>
+    </form>
+</div>
+<!-- window for editing marker -->
+    <div id="window-edit-marker"  class="lfh-form-edit lfh-helper" style="display:none;">
+    <div class="header" >
+        <h3><?=_e('Edit marker', 'lfh')?></h3>
+        <div id="window-close" class="lfhicon lfhicon-close"></div>
+    </div>
+    <form>
+        <div>
+            <label for="title"><?=ucfirst(__('title', 'lfh'))?></label>
+            <input type="text" name="title" tabindex="1" value=""/>
+        </div>
+         <div>
+            <label for="popup"><?=_e('Popup', 'lfh')?></label>
+            <textarea name="popup" tabindex="2" rows="2" value=""></textarea>
+        </div>
+        <div>
+            <label for="description"><?=ucfirst(__('description', 'lfh'))?></label>
+            <input type="checkbox" name="description"  tabindex="3"/>
+        </div>
+        <div>
+            <label for="visibility"><?=_e('Visibility', 'lfh')?></label>
+            <select  name="visibility" tabindex="4">
+            <option value="always" selected><?=_e('Always', 'lfh')?></option>
+            <option value="zoom"><?=_e('According to zoom', 'lfh')?></option>
+            </select>
+        </div>
+        <div>
+            <label for="icon-color"><?=_e('Icon color', 'lfh')?></label>
+            <div id="selected-color" class="awesome-marker awesome-marker-icon-red" data-value="red" tabindex="5"></div>
+            <input name="icon-color" type="hidden" value="red" />
+        </div>
+         <div class="to-extend">
+             <label>+</label>
+             <div id="color-marker" style="display:none;">
+             <?php
+             for($i=0; $i<count($colors);$i++): ?>
+             <?php if($i==0):?>
+             <div class="awesome-marker-icon-<?=$colors[$i]?> awesome-marker selected" data-value="<?=$colors[$i]?>"></div>
+             <?php else:?>
+             <div class="awesome-marker-icon-<?=$colors[$i]?> awesome-marker" data-value="<?=$colors[$i]?>"></div>
+             <?php endif;?>
+             <?php endfor;?>
+             </div>
+         </div>
+         <div>
+            <label for="selected-icon"><?=_e('Inside icon', 'lfh')?></label>
+            <div id="selected-icon" class="lfhicon lfhicon-circle" data-value="circle" tabindex="6"></div>
+            <input name="selected-icon" type="hidden" value="red" />
+        </div>
+         <div class="to-extend">
+             <label>+</label>
+             <div id="icon-marker" style="display:none;padding-bottom:10px">
+        <?php for($i=0; $i<count($icons); $i++):?>
+        <?php if($i==0):?>
+             <div class="lfhicon lfhicon-<?=$icons[$i]?> selected"  data-value="<?=$icons[$i]?>"></div>
+        <?php else:?>
+            <div class="lfhicon lfhicon-<?=$icons[$i]?>" data-value="<?=$icons[$i]?>"></div>
+        <?php endif;?>
+        <?php endfor;?>
+             </div>
+         </div>
+    </form>
+    </div><!-- end edit marker -->
+    
+
+    <!-- the map -->
+    <div id="map" style="height:100vh;width:100%;"></div>
+    </div>
