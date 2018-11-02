@@ -1,0 +1,33 @@
+<?php
+/**
+ * Template to edit gpx parameters
+ */
+if ( ! defined( 'ABSPATH' ) ) exit;
+?>
+<div id="window-edit-gpx"  class="lfh-form-edit lfh-helper" style="display:none;">
+   <div class="header" >
+        <h3><?=_e('Edit gpx', 'lfh')?></h3>
+        <div class="lfhicon lfhicon-close"></div>
+    </div>
+    <form>
+     <div class="lfh-color-option  to-extend hidden">
+    
+      <?php for($i=0; $i<count($colors_path);$i++): ?>
+         <?php if($colors_path[$i] == $value):?>
+         <div style="background-color:<?=$colors_path[$i]?>;" data-value="<?=$colors_path[$i]?>" class="selected" >
+         </div>
+         <?php else:?>
+         <div style="background-color:<?=$colors_path[$i]?>;" data-value="<?=$colors_path[$i]?>" >
+         </div>
+         <?php endif;?>
+      <?php endfor;?>
+    </div>
+    
+        <div>
+            <label for="reset-map"></label>
+            <input type ="reset"  name="reset-gpx" value="<?=ucfirst(__('reset' , 'lfh'))?>" />
+            
+        </div>
+        
+    </form>
+  </div>

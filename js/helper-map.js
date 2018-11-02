@@ -1,4 +1,4 @@
-(function(prop){
+(function(lfh_data){
  
 //For Adding button mode  on map control
 
@@ -13,7 +13,7 @@ var LfhControl = L.Control.extend({
     },
    
 });
-console.log(prop)
+console.log(lfh_data)
 var lfh = {
         mode: "lfh-view",
         confirm : data_helper.confirm,
@@ -26,8 +26,10 @@ var lfh = {
         default_icon: null,
         move_marker: null, // seen when in mode add-marker
         markers: new Array(), // array of the added markers
+        gpx: new Array(),
         tile: null, // the current L.tileLayer
         record: null, //record center and zoom when user want
+        shortcode: '[lfh-map]',
         init_map: function(){
           
             lfh.map = L.map('map').setView(lfh.center, lfh.zoom);
@@ -501,15 +503,27 @@ document.onmouseup = hdrg.destroy;
         });
     });
     var frame = null;
-    document.querySelector('#insert-my-media').addEventListener('click', function(e) {
+    var frame2 = null;
+    document.querySelector('#insert-gpx-button').addEventListener('click', function(e) {
       if (!frame) {
           frame = wp.media({
-                title: 'Insert a media',
-                library: {type: 'application'},
+                title: 'Insert a gpx',
+                library: {type: 'application/gpx+xml'},
                 multiple: true,
                 button: {text: 'Insert'}
             });
           frame.open()
+      }
+    })
+     document.querySelector('#insert-media-button').addEventListener('click', function(e) {
+      if (!frame2) {
+          frame2 = wp.media({
+                title: 'Insert a media',
+                library: {type: 'image'},
+                multiple: true,
+                button: {text: 'Insert'}
+            });
+          frame2.open()
       }
     })
     lfh.init_map();

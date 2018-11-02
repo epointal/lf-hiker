@@ -1,0 +1,35 @@
+<div class="lfh-container" style="width:100%;position:relative;">
+<!-- <div id="debug"  style="position:absolute;top:20px;left:400px;display:block;z-index:90000;"></div>-->
+<!-- control for marker on map -->
+<div id="lfh-control" class="leaflet-bar leaflet-control">
+  <a  id="lfh-edit-map" class="leaflet-buttons-control-button marker-control" title="<?=_e('Edit map', 'lfh')?>">
+        <div class="lfhicon lfhicon-map"></div>
+    </a>
+    <a id="lfh-add-marker" class="leaflet-buttons-control-button marker-control " title="<?=_e('Add marker', 'lfh')?>">
+        <div class="lfhicon lfhicon-map-marker"></div>
+    </a>
+    <a id="lfh-edit-marker" class="leaflet-buttons-control-button marker-control" title="<?=_e('Edit marker', 'lfh')?>">
+        <div class="lfhicon lfhicon-edit"></div>
+    </a>
+    <a  id="lfh-delete-marker" class="leaflet-buttons-control-button marker-control" title="<?=_e('Delete marker', 'lfh')?>">
+        <div class="lfhicon lfhicon-trash"></div>
+    </a>
+   
+    
+</div>
+<?php if (!isset($is_map_type)) :?>
+<!-- banner buttons bottom right -->
+     <div id="banner" class="lfh-helper>
+         <input name="lfh-cancel" type="button" value="<?=_e('Cancel')?>" />
+         <input name="lfh-insert" type="button" value="<?=_e('Insert shortcodes', 'lfh')?>" />
+     </div>
+<?php endif;?>     
+<!-- window for edit map -->
+<?php   include 'map-form.phtml';?>
+
+<?php include 'marker-form.phtml'; ?>
+    
+
+    <!-- the map -->
+    <div id="map" style="height:100vh;width:100%;"></div>
+    </div>

@@ -14,12 +14,12 @@ if(empty($value)){
     
     <div class="lfh-color-option  to-extend hidden">
     
-      <?php for($i=0; $i<count($colors);$i++): ?>
-         <?php if($colors[$i] == $value):?>
-         <div style="background-color:<?=$colors[$i]?>;" data-value="<?=$colors[$i]?>" class="selected" >
+      <?php for($i=0; $i<count($colors_path);$i++): ?>
+         <?php if($colors_path[$i] == $value):?>
+         <div style="background-color:<?=$colors_path[$i]?>;" data-value="<?=$colors_path[$i]?>" class="selected" >
          </div>
          <?php else:?>
-         <div style="background-color:<?=$colors[$i]?>;" data-value="<?=$colors[$i]?>" >
+         <div style="background-color:<?=$colors_path[$i]?>;" data-value="<?=$colors_path[$i]?>" >
          </div>
          <?php endif;?>
       <?php endfor;?>

@@ -34,15 +34,12 @@ class Lfh_Tools_Editor
         $this->_unactive = $unactive;
         // Add gpx and xml as a supported upload type to Media Gallery
         add_filter( 'upload_mimes', array( &$this, 'xml_upload_mimes') );
-        
-        
-      // 
+
         add_shortcode('lfh-map', array(&$this, 'map_shortcode'));
         add_shortcode('lfh-marker', array(&$this, 'marker_shortcode'));
         add_shortcode('lfh-gpx', array(&$this, 'gpx_shortcode'));
-        add_action('edit_form_after_title', array(&$this, 'add_my_media_button'));
+        add_action('edit_form_after_title', array(&$this, 'add_media_button_to_map_editor'));
         add_action('edit_form_after_title', array(&$this, 'do_shortcode_in_editor'));
-       // add_action( 'admin_enqueue_scripts', array(&$this, 'register_scripts_for_map_type') );
         //Add fields color and stroke wifth for gpx file in media gallery
         //need when ajax in upload file and edit gpx in post media edit
         add_filter( 'attachment_fields_to_edit', array( &$this, 'gpx_attachment_field'), 10, 2 );
@@ -79,11 +76,7 @@ class Lfh_Tools_Editor
           
         }
     }
-    public function register_scripts_for_map_type() {
-       
-    }
     public  function map_shortcode($atts, $html =null){
-        
         
         $options = Lfh_Model_Map::filter_map_data($atts);
         
@@ -154,18 +147,17 @@ class Lfh_Tools_Editor
 //         }
 //     }
     // scripts only for edit post page
-    public function add_my_media_button() {
+    public function add_media_button_to_map_editor() {
         if (get_post_type() === 'lfh-map') {
-          echo '<a href="#" id="insert-my-media" class="button">'.__('Add GPX', 'lfh'). '</a>';
+            echo $this->get_view()->render('map-editor-buttons', array());
         }
     }
     public function do_shortcode_in_editor($post) {
         if (get_post_type() === 'lfh-map') {
-            $this->load_helper_scripts();
+            $this->load_helper_scripts(true);
             load_plugin_textdomain( 'lfh', false, realpath(Lf_Hiker_Plugin::$path . '/languages' ));
             do_shortcode($post->post_content);
-            
-            $content = $this->get_view()->render('add-marker-body',
+            $content = $this->get_view()->render('helper-body',
                     array(  'plugin_url' => Lf_Hiker_Plugin::$url,
                             'is_map_type' => true,
                             'colors'     => Lfh_Model_Map::$colors_marker,
@@ -173,7 +165,8 @@ class Lfh_Tools_Editor
                             'tiles'      => Lfh_Model_Map::$tiles,
                             'default'    => Lfh_Model_Map::$default,
                             'mapquest_key'=> get_option('lfh_mapquest_key'),
-                            'options_map' => Lfh_Model_Map::map_parameters()
+                            'options_map' => Lfh_Model_Map::map_parameters(),
+                            'colors_path' => Lfh_Model_Map::$colors_path
                     ));
             //        $this->get_cache()->write('add-marker-'. get_locale().'.html', $content);
             echo $content;
@@ -197,9 +190,14 @@ class Lfh_Tools_Editor
         $this->script_for_tinyMCE();
         
     }
-    // scripts for helper add-marker.phtml
-    public function load_helper_scripts(){
-        wp_enqueue_media();
+    // scripts for helper helper.phtml
+    public function load_helper_scripts($editor){
+        if ($editor) {
+           wp_enqueue_media();
+           $helper = "helper-map";
+        } else {
+           $helper = "helper";
+        }
         $cdn = Lfh_Model_Option::get_option("lfh_use_cdn");
         if( $cdn){
             wp_enqueue_style( 'leaflet_css', 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/'. Lf_Hiker_Plugin::LEAFLET_VERSION .'/leaflet.css',  null, null );
@@ -224,9 +222,9 @@ class Lfh_Tools_Editor
          $depends[] = 'mapquest';
          }*/
         if(WP_DEBUG ){
-            wp_enqueue_script('helper_js',Lf_Hiker_Plugin::$url. "js/helper-map.js", $depends, null, true);
+            wp_enqueue_script('helper_js',Lf_Hiker_Plugin::$url. "js/".$helper.".js", $depends, null, true);
         }else{
-            wp_enqueue_script('helper_js',Lf_Hiker_Plugin::$url. "dist/helper-min.".Lf_Hiker_Plugin::VERSION.".js", $depends, null, true);
+            wp_enqueue_script('helper_js',Lf_Hiker_Plugin::$url. "dist/". $helper. "-min.".Lf_Hiker_Plugin::VERSION.".js", $depends, null, true);
         }
         $this->add_inline_script_helper();
     }
@@ -252,7 +250,7 @@ class Lfh_Tools_Editor
     
     }
     
-    // data js for helper add-marker.phtml
+    // data js for helper helper.phtml
     public function add_inline_script_helper(){
         $data= 'data_helper = {
                 confirm : "'.__('Delete marker' , 'lfh').'",
@@ -263,16 +261,16 @@ class Lfh_Tools_Editor
         
     }
 
-    //ajax for load the page add-marker in editor
+    //ajax for load the page helper in editor
     public  function add_marker_action()
     {
       // Commment for the moment cache for helper :
       // if( $this->get_cache()->exist('add-marker-'. get_locale().'.html')){
       //     echo $this->get_cache()->read('add-marker-'. get_locale().'.html');
       //  }else{
-            $this->load_helper_scripts();
+            $this->load_helper_scripts(false);
             load_plugin_textdomain( 'lfh', false, realpath(Lf_Hiker_Plugin::$path . '/languages' ));
-            $content = $this->get_view()->render('add-marker',
+            $content = $this->get_view()->render('helper',
                     array(  'plugin_url' => Lf_Hiker_Plugin::$url,
                             'colors'     => Lfh_Model_Map::$colors_marker,
                             'icons'      => Lfh_Model_Map::$icons_marker,
@@ -402,11 +400,11 @@ class Lfh_Tools_Editor
                     'input' => 'html',
                     'value' => get_post_meta( $post->ID, 'lfh_stroke_color', true ),
                     'html'  => $this->get_view()->render('select-color-path', array(
-                            'post_id'   => $post->ID,
-                            'field'     => 'lfh_stroke_color',
-                            'value'     => get_post_meta( $post->ID, 'lfh_stroke_color', true ),
-                            'colors'    => Lfh_Model_Map::$colors_path,
-                            'default'   => Lfh_Model_Map::$default['stroke_color']
+                            'post_id'      => $post->ID,
+                            'field'        => 'lfh_stroke_color',
+                            'value'        => get_post_meta( $post->ID, 'lfh_stroke_color', true ),
+                            'colors_path'  => Lfh_Model_Map::$colors_path,
+                            'default'      => Lfh_Model_Map::$default['stroke_color']
                     ))
             );
             // stroke width
@@ -472,11 +470,12 @@ class Lfh_Tools_Editor
         clean_post_cache($post_id);
     }
     private function add_map_scripts($options){
+   
         $map_count = self::$_lfh_map_count;
         $images_url = Lf_Hiker_Plugin::$url .'/images/';
         $css = Lfh_Model_Option::get_values('custom_css');
         $selected_color = $css['lfh_selected_path'];
-        $data = '';
+        $data = '/* <![CDATA[ */';
         if($map_count == 1){
             $data .= 'if( typeof lfh == "undefined"){
                         var lfh = {}
@@ -497,21 +496,21 @@ class Lfh_Tools_Editor
               markers: new Array(),
               gpx: new Array()
         };';
-        
-        wp_add_inline_script('leaflet', $data, 'before');
+        $data .= '/* ]]> */';
+        wp_add_inline_script('helper_js', $data, 'before');
     }
     private  function add_marker_script( $options ){
         $map_count = self::$_lfh_map_count;
         $marker_count = self::$_lfh_marker_count;
         $data = ' lfh.data[' . $map_count .'].markers['.$marker_count.'] = '.json_encode($options, JSON_NUMERIC_CHECK).';';
-        wp_add_inline_script('leaflet', $data, 'before');
+        wp_add_inline_script('helper_js', $data, 'before');
     }
     
     private  function add_gpx_script($options ){
         $map_count = self::$_lfh_map_count;
         $track_count = self::$_lfh_track_count;
         $data = '  lfh.data['.$map_count .'].gpx['.$track_count .'] = '.json_encode($options, JSON_NUMERIC_CHECK).';';
-        wp_add_inline_script('leaflet', $data, 'before');
+        wp_add_inline_script('helper_js', $data, 'before');
     }
     private static function enqueue_scripts($css){
         //need load css and script for map
