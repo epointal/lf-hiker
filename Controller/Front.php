@@ -79,6 +79,11 @@ Class Lfh_Controller_Front
             $post->post_content = $content;
         }
     }
+    /**
+     * Create the shortcode attributes for gpx post type
+     * @param WP_Post $post
+     * @return string
+     */
     public static function attsFromPost($post) {
         $id = $post->ID;
         $color = get_post_meta($id, 'lfh_stroke_color', true);
@@ -87,16 +92,10 @@ Class Lfh_Controller_Front
         $width = empty($width)? Lfh_Model_Map::$default['stroke_width'] : $width;
         $value = get_post_meta($id, 'lfh_download_gpx', true);
         $button = empty($value) ? 'false': 'true';
-        $atts = 'src=' . $post->guid . ' color=' . $color . ' width=' . $width .' button=' .$button;
+        $atts = 'title="'.htmlspecialchars($post->post_title).'" src=' . $post->guid . ' color=' . $color . ' width=' . $width .' button=' .$button;
         return $atts;
     }
-//     public function register_map_single_template($single_template) {
-//         global $post;
-//         if ($post->post_type == 'lfh-map') {
-//            // $single_template = get_template;
-//         }
-//         return $single_template;
-//     }
+
     public  function map_shortcode($atts, $html =null){
         if ( function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ){
             return "";

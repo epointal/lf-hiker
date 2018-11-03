@@ -8,9 +8,14 @@
     <a id="lfh-add-marker" class="leaflet-buttons-control-button marker-control " title="<?=_e('Add marker', 'lfh')?>">
         <div class="lfhicon lfhicon-map-marker"></div>
     </a>
-    <a id="lfh-edit-marker" class="leaflet-buttons-control-button marker-control" title="<?=_e('Edit marker', 'lfh')?>">
+  <!--   <a id="lfh-edit-marker" class="leaflet-buttons-control-button marker-control" title="<?=_e('Edit marker', 'lfh')?>">
         <div class="lfhicon lfhicon-edit"></div>
+    </a> --> 
+   <?php if (isset($is_map_type)):?>
+     <a id="lfh-add-gpx" class="leaflet-buttons-control-button marker-control" title="<?=_e('Add gpx', 'lfh')?>">
+        <div class="lfhicon lfhicon-road"></div>
     </a>
+    <?php endif;?>
     <a  id="lfh-delete-marker" class="leaflet-buttons-control-button marker-control" title="<?=_e('Delete marker', 'lfh')?>">
         <div class="lfhicon lfhicon-trash"></div>
     </a>

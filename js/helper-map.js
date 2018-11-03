@@ -504,7 +504,7 @@ document.onmouseup = hdrg.destroy;
     });
     var frame = null;
     var frame2 = null;
-    document.querySelector('#insert-gpx-button').addEventListener('click', function(e) {
+    document.querySelector('#lfh-add-gpx').addEventListener('click', function(e) {
       if (!frame) {
           frame = wp.media({
                 title: 'Insert a gpx',
