@@ -182,16 +182,16 @@ Class Lfh_Tools_Editor_Gpx{
     {
         
         if(WP_DEBUG){
-            wp_register_style('lfh_editor_css', Lf_Hiker_Plugin::$url .'/css/lfh-post-editor.css', Array(), null, false);
-            wp_register_script('lfh_editor_js', Lf_Hiker_Plugin::$url . '/js/lfh-post-editor.js', Array('jquery'), null, false);
+            wp_register_style('lfh_gpx_editor_css', Lf_Hiker_Plugin::$url .'/css/lfh-gpx-editor.css', Array(), null, false);
+            wp_register_script('lfh_gpx_editor_js', Lf_Hiker_Plugin::$url . '/js/lfh-gpx-editor.js', Array('jquery'), null, false);
             
         }else{
             $version = '.'.Lf_Hiker_Plugin::VERSION;
-            wp_register_style('lfh_editor_css', Lf_Hiker_Plugin::$url .'/dist/lfh-post-editor'.$version.'.css', Array(), null, false);
-            wp_register_script('lfh_editor_js', Lf_Hiker_Plugin::$url . '/dist/lfh-post-editor-min'.$version.'.js', Array('jquery'), null, false);
+            wp_register_style('lfh_gpx_editor_css', Lf_Hiker_Plugin::$url .'/dist/lfh-gpx-editor'.$version.'.css', Array(), null, false);
+            wp_register_script('lfh_gpx_editor_js', Lf_Hiker_Plugin::$url . '/dist/lfh-gpx-editor-min'.$version.'.js', Array('jquery'), null, false);
         }
-        wp_enqueue_style('lfh_editor_css');
-        wp_enqueue_script('lfh_editor_js');
+        wp_enqueue_style('lfh_gpx_editor_css');
+        wp_enqueue_script('lfh_gpx_editor_js');
         $this->script_for_tinyMCE();
         
     }
@@ -205,7 +205,7 @@ Class Lfh_Tools_Editor_Gpx{
             }
         }';
         
-        wp_add_inline_script('lfh_editor_js', $data, 'before');
+        wp_add_inline_script('lfh_gpx_editor_js', $data, 'before');
         return;
         
     }

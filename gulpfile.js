@@ -25,7 +25,7 @@ gulp.task('cleancss', function(){
       .pipe(gulp.dest('clean'));
 });
 gulp.task('lessify', function(){
-	 gulp.src('css/helper.less')
+	 gulp.src('css/lfh-map-editor.less')
     .pipe(less())
     .pipe(gulp.dest('css'));
     return gulp.src('css/lfh-style.less')
@@ -83,12 +83,13 @@ gulp.task('versioning', ['lessify'], function(){
 	.pipe(rename({suffix: '-min.'+version}))
 	.pipe(gulp.dest('dist'));
 	
-	gulp.src(['css/helper.css', 'css/lfh-post-editor.css'])
+	// back style
+	gulp.src(['css/lfh-map-editor.css', 'css/lfh-gpx-editor.css'])
 	.pipe(cssmin())
 	.pipe(rename({suffix: '.'+version}))
     .pipe(gulp.dest('dist'));
 	
-	//all js in the same file
+	// front script: all js in the same file 
 	gulp.src([
 	'lib/awesome-marker/leaflet.awesome-markers.js',
 	'lib/leaflet-gpx.js',
@@ -98,10 +99,11 @@ gulp.task('versioning', ['lessify'], function(){
 	.pipe(rename({suffix: '.'+version}))
 	.pipe(gulp.dest('dist'));
 	
-	gulp.src(['js/tinymce-lfh-plugin.js',
-			  'js/lfh-post-editor.js',
-			  'js/helper-map.js',
-			  'js/helper.js'])
+	// back scripts
+	gulp.src(['js/lfh-tinymce-helper.js',
+			  'js/lfh-gpx-editor.js',
+			  'js/lfh-map-editor.js',
+			  'js/lfh-helper.js'])
 	.pipe(minify())
 	.pipe(rename({suffix: '.'+version}))
     .pipe(gulp.dest('dist'));

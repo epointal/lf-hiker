@@ -39,38 +39,29 @@ Class Lfh_Tools_Editor_Helper{
         }
     }
     // scripts for helper helper.phtml
-    public function load_helper_scripts($editor){
-        if ($editor) {
-            wp_enqueue_media();
-            $helper = "helper-map";
-        } else {
-            $helper = "helper";
-        }
-        $cdn = Lfh_Model_Option::get_option("lfh_use_cdn");
-        if( $cdn){
-            wp_enqueue_style( 'leaflet_css', 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/'. Lf_Hiker_Plugin::LEAFLET_VERSION .'/leaflet.css',  null, null );
-            wp_enqueue_script('leaflet','https://cdnjs.cloudflare.com/ajax/libs/leaflet/' .Lf_Hiker_Plugin::LEAFLET_VERSION. '/leaflet.js',Array(),null, true);
-        }else{
-            wp_enqueue_style( 'leaflet_css', Lf_Hiker_Plugin::$url.'lib/leaflet/'. Lf_Hiker_Plugin::LEAFLET_VERSION .'/leaflet.css',  null, null );
-            wp_enqueue_script('leaflet', Lf_Hiker_Plugin::$url.'lib/leaflet/' .Lf_Hiker_Plugin::LEAFLET_VERSION. '/leaflet.js',Array(),null, true);
-        }
+    public function load_helper_scripts() {
+//         $cdn = Lfh_Model_Option::get_option("lfh_use_cdn");
+//         if( $cdn){
+//             wp_enqueue_style( 'leaflet_css', 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/'. Lf_Hiker_Plugin::LEAFLET_VERSION .'/leaflet.css',  null, null );
+//             wp_enqueue_script('leaflet','https://cdnjs.cloudflare.com/ajax/libs/leaflet/' .Lf_Hiker_Plugin::LEAFLET_VERSION. '/leaflet.js',Array(),null, true);
+//         }else{
+//             wp_enqueue_style( 'leaflet_css', Lf_Hiker_Plugin::$url.'lib/leaflet/'. Lf_Hiker_Plugin::LEAFLET_VERSION .'/leaflet.css',  null, null );
+//             wp_enqueue_script('leaflet', Lf_Hiker_Plugin::$url.'lib/leaflet/' .Lf_Hiker_Plugin::LEAFLET_VERSION. '/leaflet.js',Array(),null, true);
+//         }
+        Lfh_Tools_Registrer::register_leaflet();
+        Lfh_Tools_Registrer::enqueue_leaflet();
         if(WP_DEBUG){
-            wp_enqueue_style('helper_css', Lf_Hiker_Plugin::$url."css/helper.css",Array( 'leaflet_css'), null);
+            wp_enqueue_style('helper_css', Lf_Hiker_Plugin::$url."css/lfh-map-editor.css",Array( 'leaflet_css'), null);
             
         }else{
-            wp_enqueue_style('helper_css', Lf_Hiker_Plugin::$url."dist/helper.".Lf_Hiker_Plugin::VERSION.".css", Array('leaflet_css'), null, null);
+            wp_enqueue_style('helper_css', Lf_Hiker_Plugin::$url."dist/lfh-map-editor.".Lf_Hiker_Plugin::VERSION.".css", Array('leaflet_css'), null, null);
         }
         wp_enqueue_script('awesome_marker_js',Lf_Hiker_Plugin::$url. "lib/awesome-marker/leaflet.awesome-markers.min.js", Array('leaflet'), null, true);
-        
-        
-        /*  $mapquest_key = get_option('lfh_mapquest_key');*/
+ 
         $depends = array( 'leaflet', 'awesome_marker_js');
-        /* if(!is_null($mapquest_key) && !empty($mapquest_key) && strlen($mapquest_key)>8){
-         wp_enqueue_script('mapquest', 'https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key='.$mapquest_key, Array('leaflet'), null, true);
-         $depends[] = 'mapquest';
-         }*/
+
         if(WP_DEBUG ){
-            wp_enqueue_script('helper_js',Lf_Hiker_Plugin::$url. "js/".$helper.".js", $depends, null, true);
+            wp_enqueue_script('helper_js',Lf_Hiker_Plugin::$url. "js/lfh-helper.js", $depends, null, true);
         }else{
             wp_enqueue_script('helper_js',Lf_Hiker_Plugin::$url. "dist/". $helper. "-min.".Lf_Hiker_Plugin::VERSION.".js", $depends, null, true);
         }
@@ -134,11 +125,11 @@ Class Lfh_Tools_Editor_Helper{
     public  function add_lfh_hiker_tinymce( $plugin_array )
     {
         if(WP_DEBUG){
-            $plugin_array['Lfh_plugin'] = Lf_Hiker_Plugin::$url . 'js/tinymce-lfh-plugin.js' ;
+            $plugin_array['Lfh_plugin'] = Lf_Hiker_Plugin::$url . 'js/lfh-tinymce-helper.js' ;
             
         }else{
             $version = '.'.Lf_Hiker_Plugin::VERSION;
-            $plugin_array['Lfh_plugin'] = Lf_Hiker_Plugin::$url . 'dist/tinymce-lfh-plugin-min'.$version.'.js' ;
+            $plugin_array['Lfh_plugin'] = Lf_Hiker_Plugin::$url . 'dist/lfh-tinymce-helper-min'.$version.'.js' ;
         }
         return $plugin_array;
     }

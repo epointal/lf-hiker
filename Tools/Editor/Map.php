@@ -36,8 +36,8 @@ Class Lfh_Tools_Editor_Map{
         if(self::$_lfh_map_count == 0){
             //if the first map in the page/article add a div for the fade in bottom fullscreen
             
-            $css = Lfh_Model_Option::get_values('custom_css');
-            self::enqueue_scripts( $css );
+//             $css = Lfh_Model_Option::get_values('custom_css');
+//             self::enqueue_scripts( $css );
             
         }
         self::$_lfh_map_count++;
@@ -83,7 +83,7 @@ Class Lfh_Tools_Editor_Map{
     }
     public function do_shortcode_in_editor($post) {
         if (get_post_type() === 'lfh-map') {
-            $this->load_helper_scripts(true);
+            $this->enqueue_scripts();
             load_plugin_textdomain( 'lfh', false, realpath(Lf_Hiker_Plugin::$path . '/languages' ));
             do_shortcode($post->post_content);
             $content = $this->get_view()->render('helper-body',
@@ -101,51 +101,35 @@ Class Lfh_Tools_Editor_Map{
             echo $content;
         }
     }
-    public function load_helper_scripts($editor){
-        if ($editor) {
-            wp_enqueue_media();
-            $helper = "helper-map";
-        } else {
-            $helper = "helper";
-        }
-        $cdn = Lfh_Model_Option::get_option("lfh_use_cdn");
-        if( $cdn){
-            wp_enqueue_style( 'leaflet_css', 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/'. Lf_Hiker_Plugin::LEAFLET_VERSION .'/leaflet.css',  null, null );
-            wp_enqueue_script('leaflet','https://cdnjs.cloudflare.com/ajax/libs/leaflet/' .Lf_Hiker_Plugin::LEAFLET_VERSION. '/leaflet.js',Array(),null, true);
-        }else{
-            wp_enqueue_style( 'leaflet_css', Lf_Hiker_Plugin::$url.'lib/leaflet/'. Lf_Hiker_Plugin::LEAFLET_VERSION .'/leaflet.css',  null, null );
-            wp_enqueue_script('leaflet', Lf_Hiker_Plugin::$url.'lib/leaflet/' .Lf_Hiker_Plugin::LEAFLET_VERSION. '/leaflet.js',Array(),null, true);
-        }
+    public function enqueue_scripts(){
+
+        wp_enqueue_media();
+     
+       $depends = Lfh_Tools_Registrer::register_leaflet();
+       Lfh_Tools_Registrer::enqueue_leaflet();
         if(WP_DEBUG){
-            wp_enqueue_style('helper_css', Lf_Hiker_Plugin::$url."css/helper.css",Array( 'leaflet_css'), null);
+            wp_enqueue_style('helper_css', Lf_Hiker_Plugin::$url."css/lfh-map-editor.css",Array( 'leaflet_css'), null);
             
         }else{
-            wp_enqueue_style('helper_css', Lf_Hiker_Plugin::$url."dist/helper.".Lf_Hiker_Plugin::VERSION.".css", Array('leaflet_css'), null, null);
+            wp_enqueue_style('helper_css', Lf_Hiker_Plugin::$url."dist/lfh-map-editor.".Lf_Hiker_Plugin::VERSION.".css", Array('leaflet_css'), null, null);
         }
-        wp_enqueue_script('awesome_marker_js',Lf_Hiker_Plugin::$url. "lib/awesome-marker/leaflet.awesome-markers.min.js", Array('leaflet'), null, true);
-        
-        
-        /*  $mapquest_key = get_option('lfh_mapquest_key');*/
-        $depends = array( 'leaflet', 'awesome_marker_js');
-        /* if(!is_null($mapquest_key) && !empty($mapquest_key) && strlen($mapquest_key)>8){
-         wp_enqueue_script('mapquest', 'https://www.mapquestapi.com/sdk/leaflet/v2.2/mq-map.js?key='.$mapquest_key, Array('leaflet'), null, true);
-         $depends[] = 'mapquest';
-         }*/
         if(WP_DEBUG ){
-            wp_enqueue_script('helper_js',Lf_Hiker_Plugin::$url. "js/".$helper.".js", $depends, null, true);
+            wp_enqueue_script('lfh_map_editor', Lf_Hiker_Plugin::$url. "js/lfh-map-editor.js", $depends, null, true);
         }else{
-            wp_enqueue_script('helper_js',Lf_Hiker_Plugin::$url. "dist/". $helper. "-min.".Lf_Hiker_Plugin::VERSION.".js", $depends, null, true);
+            wp_enqueue_script('lfh_map_editor', Lf_Hiker_Plugin::$url. "dist/lfh-map-editor-min.".Lf_Hiker_Plugin::VERSION.".js", $depends, null, true);
         }
-        $this->add_inline_script_helper();
+        $this->add_inline_script();
     }
     // data js for helper helper.phtml
-    public function add_inline_script_helper(){
-        $data= 'data_helper = {
+    public function add_inline_script(){
+        $data = '/* <![CDATA[ */';
+        $data .= 'data_helper = {
                 confirm : "'.__('Delete marker' , 'lfh').'",
                 add_description : "'.__('Add here your formated description', 'lfh').'",
                 tiles : '.json_encode(Lfh_Model_Map::$tiles).'
                 }';
-        wp_add_inline_script('helper_js', $data, 'before');
+        $data .= '/* ]]> */';
+        wp_add_inline_script('lfh_map_editor', $data, 'before');
         
     }
     private function add_map_scripts($options){
@@ -176,22 +160,22 @@ Class Lfh_Tools_Editor_Map{
               gpx: new Array()
         };';
         $data .= '/* ]]> */';
-        wp_add_inline_script('helper_js', $data, 'before');
+        wp_add_inline_script('lfh_map_editor', $data, 'before');
     }
     private  function add_marker_script( $options ){
         $map_count = self::$_lfh_map_count;
         $marker_count = self::$_lfh_marker_count;
         $data = ' lfh.data[' . $map_count .'].markers['.$marker_count.'] = '.json_encode($options, JSON_NUMERIC_CHECK).';';
-        wp_add_inline_script('helper_js', $data, 'before');
+        wp_add_inline_script('lfh_map_editor', $data, 'before');
     }
     
     private  function add_gpx_script($options ){
         $map_count = self::$_lfh_map_count;
         $track_count = self::$_lfh_track_count;
         $data = '  lfh.data['.$map_count .'].gpx['.$track_count .'] = '.json_encode($options, JSON_NUMERIC_CHECK).';';
-        wp_add_inline_script('helper_js', $data, 'before');
+        wp_add_inline_script('lfh_map_editor', $data, 'before');
     }
-    private static function enqueue_scripts($css){
+    private static function enqueue_scripts_old($css){
         //need load css and script for map
         wp_enqueue_style('leaflet_stylesheet');
         wp_enqueue_style('font_awesome');
