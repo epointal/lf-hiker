@@ -39,6 +39,16 @@
         <div>
             <label for="description"><?=ucfirst(__('description', 'lfh'))?></label>
             <input type="checkbox" name="description"  tabindex="3"/>
+             <?php 
+             if (isset($is_map_type)) {
+                 $settings = array(
+                 'quicktags' => array('buttons' => 'em,strong,link,ul,li',),
+                // 'quicktags' => true,
+                 'tinymce' => false,
+                 'textarea_rows' => 20
+                 );
+                 wp_editor( 'description makrer',"marker-description", $settings  ); 
+             }?>
         </div>
         <div>
             <label for="visibility"><?=_e('Visibility', 'lfh')?></label>
@@ -82,5 +92,11 @@
         <?php endfor;?>
              </div>
          </div>
+            <div>
+            <label for="save-gpx"></label>
+            <input type="button" name="save-gpx" value="<?=ucfirst(__('save', 'lfh'))?>" />
+            <input type ="reset"  name="reset-gpx" value="<?=ucfirst(__('reset' , 'lfh'))?>" />
+            
+        </div>
     </form>
     </div><!-- end edit marker -->

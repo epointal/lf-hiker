@@ -218,10 +218,12 @@ Class Lfh_Model_Map{
         
     }
     
-    public static function filter_map_data($atts)
+    public static function filter_map_data($atts = array())
     {
-      
-        $args = self::map_parameters();
+        if (empty($atts)) {
+            $atts = array();
+        }
+        $args = self:: map_parameters();
        //add key if not exists
         $first = filter_var_array($atts, $args, true);
         //put default value where null, use this solution

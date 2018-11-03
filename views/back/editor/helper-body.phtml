@@ -8,16 +8,16 @@
     <a id="lfh-add-marker" class="leaflet-buttons-control-button marker-control " title="<?=_e('Add marker', 'lfh')?>">
         <div class="lfhicon lfhicon-map-marker"></div>
     </a>
-    <?php if (!isset($is_map_type)):?>
-    <a id="lfh-edit-marker" class="leaflet-buttons-control-button marker-control" title="<?=_e('Edit marker', 'lfh')?>">
-        <div class="lfhicon lfhicon-edit"></div>
-    </a> 
-    <?php endif;?>
-   <?php if (isset($is_map_type)):?>
-     <a id="lfh-add-gpx" class="leaflet-buttons-control-button marker-control" title="<?=_e('Add gpx', 'lfh')?>">
+    <?php if (isset($is_map_type)):?>
+    <a id="lfh-add-gpx" class="leaflet-buttons-control-button marker-control" title="<?=_e('Add gpx', 'lfh')?>">
         <div class="lfhicon lfhicon-road"></div>
     </a>
     <?php endif;?>
+    <a id="lfh-edit-marker" class="leaflet-buttons-control-button marker-control" title="<?=_e('Edit marker', 'lfh')?>">
+        <div class="lfhicon lfhicon-edit"></div>
+    </a> 
+
+ 
     <a  id="lfh-delete-marker" class="leaflet-buttons-control-button marker-control" title="<?=_e('Delete marker', 'lfh')?>">
         <div class="lfhicon lfhicon-trash"></div>
     </a>
@@ -39,4 +39,10 @@
 
     <!-- the map -->
     <div id="map" style="height:100vh;width:100%;"></div>
+    <?php if (isset($is_map_type)):?>
+    <div><?php var_dump($post->post_content);?></div>
+<textarea class="wp-editor-area" style="height: 300px; margin-top: 37px; display: block;" autocomplete="off" cols="40" name="content" id="content" aria-hidden="true">
+<?php echo $post->post_content;?>
+</textarea>
+<?php endif;?>
     </div>

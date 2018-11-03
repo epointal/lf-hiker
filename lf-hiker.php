@@ -102,7 +102,7 @@ class Lf_Hiker_Plugin
         register_post_type(
             'lfh-map',
             array(
-                'label' => __('lfh', 'lfh-map'),
+                'label' => __('Map', 'lfh'),
                 'labels' => array(
                     'name' => __('Maps and GPX', 'lfh'),
                     'singular-name' => __('Map', 'lfh'),
@@ -123,6 +123,7 @@ class Lf_Hiker_Plugin
                 // 'show_in_menu' => 'admin.php?page=lfh_info',
                 // rewrite URL
                 // 'show_in_nav_menus'   => true,
+               // 'rewrite' => array( 'slug' => 'teams' ),	
                 'rewrite' => true,
                  'supports' => array(
                          'title',

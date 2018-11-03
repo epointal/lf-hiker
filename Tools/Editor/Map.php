@@ -96,7 +96,8 @@ Class Lfh_Tools_Editor_Map{
                             'default'    => Lfh_Model_Map::$default,
                             'mapquest_key'=> get_option('lfh_mapquest_key'),
                             'options_map' => Lfh_Model_Map::map_parameters(),
-                            'colors_path' => Lfh_Model_Map::$colors_path
+                            'colors_path' => Lfh_Model_Map::$colors_path,
+                            'post'       => $post
                     ));
             //        $this->get_cache()->write('add-marker-'. get_locale().'.html', $content);
             echo $content;

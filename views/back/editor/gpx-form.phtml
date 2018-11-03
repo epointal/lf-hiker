@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         <h3><?=_e('Edit gpx', 'lfh')?></h3>
         <div class="lfhicon lfhicon-close"></div>
     </div>
-    <form>
+    <form id="gpx-form">
      <div class="lfh-color-option  to-extend hidden">
     
       <?php for($i=0; $i<count($colors_path);$i++): ?>
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     </div>
     
         <div>
-            <label for="reset-map"></label>
+            <label for="reset-gpx"></label>
             <input type ="reset"  name="reset-gpx" value="<?=ucfirst(__('reset' , 'lfh'))?>" />
             
         </div>
