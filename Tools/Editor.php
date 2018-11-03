@@ -8,7 +8,7 @@ class Lfh_Tools_Editor
        global $wp_version;
        $editorMap = new Lfh_Tools_Editor_Map();
        $editorGpx = new Lfh_Tools_Editor_Gpx();
-       if(version_compare(get_bloginfo('version'),'5.0', '>=') ) {
+       if(version_compare(get_bloginfo('version'),'5.0', '<') ) {
          // helper for old version
          var_dump('old version');
          $editorHelper = new Lfh_Tools_Editor_Helper($unactive);
