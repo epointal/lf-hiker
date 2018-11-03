@@ -10,7 +10,6 @@ class Lfh_Tools_Editor
        $editorGpx = new Lfh_Tools_Editor_Gpx();
        if(version_compare(get_bloginfo('version'),'5.0', '<') ) {
          // helper for old version
-         var_dump('old version');
          $editorHelper = new Lfh_Tools_Editor_Helper($unactive);
        }
     }
