@@ -545,7 +545,7 @@ body {
   height: 100%;
   vertical-align: middle;
 }
-.lfh-helper .modal {
+.modal {
   text-align: left;
   margin: auto;
   width: 350px;
@@ -559,10 +559,10 @@ body {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
   display: inline-block;
 }
-.lfh-helper .modal label {
+.modal label {
   width: 250px;
 }
-.lfh-helper .modal h3 {
+.modal h3 {
   font-size: 18px;
   margin: 10px 0 18px 10px;
 }
