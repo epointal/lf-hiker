@@ -137,10 +137,10 @@ Class Lfh_Tools_Editor_Helper{
     public function  add_css_tinymce( $init_array )
     {
         if(WP_DEBUG){
-            $init_array['content_css'] = Lf_Hiker_Plugin::$url . 'css/lfh-post-editor.css';
+            $init_array['content_css'] = Lf_Hiker_Plugin::$url . 'css/lfh-gpx-editor.css';
         }else{
             $version = '.'.Lf_Hiker_Plugin::VERSION;
-            $init_array['content_css'] = Lf_Hiker_Plugin::$url . 'dist/lfh-post-editor'.$version.'.css';
+            $init_array['content_css'] = Lf_Hiker_Plugin::$url . 'dist/lfh-gpx-editor'.$version.'.css';
         }
         return $init_array;
     }
