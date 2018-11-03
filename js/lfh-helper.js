@@ -292,9 +292,9 @@ String.prototype.replaceAll = function (search, replacement) {
         });
     });*/
     //no submit form
-    L.DomEvent.addListener(document.querySelector('form'), 'submit', function (e) {
-        e.preventDefault();
-    });
+    // L.DomEvent.addListener(document.querySelector('form'), 'submit', function (e) {
+    //     e.preventDefault();
+    // });
     // draggable edit marker window
     var hdrg = {
         selected: null,

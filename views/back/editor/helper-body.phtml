@@ -8,9 +8,11 @@
     <a id="lfh-add-marker" class="leaflet-buttons-control-button marker-control " title="<?=_e('Add marker', 'lfh')?>">
         <div class="lfhicon lfhicon-map-marker"></div>
     </a>
-  <!--   <a id="lfh-edit-marker" class="leaflet-buttons-control-button marker-control" title="<?=_e('Edit marker', 'lfh')?>">
+    <?php if (!isset($is_map_type)):?>
+    <a id="lfh-edit-marker" class="leaflet-buttons-control-button marker-control" title="<?=_e('Edit marker', 'lfh')?>">
         <div class="lfhicon lfhicon-edit"></div>
-    </a> --> 
+    </a> 
+    <?php endif;?>
    <?php if (isset($is_map_type)):?>
      <a id="lfh-add-gpx" class="leaflet-buttons-control-button marker-control" title="<?=_e('Add gpx', 'lfh')?>">
         <div class="lfhicon lfhicon-road"></div>
@@ -22,15 +24,15 @@
    
     
 </div>
-<?php if (!isset($is_map_type)) :?>
+<?php if (!isset($is_map_type)):?>
 <!-- banner buttons bottom right -->
-     <div id="banner" class="lfh-helper>
+     <div id="banner" class="lfh-helper">
          <input name="lfh-cancel" type="button" value="<?=_e('Cancel')?>" />
          <input name="lfh-insert" type="button" value="<?=_e('Insert shortcodes', 'lfh')?>" />
      </div>
 <?php endif;?>     
 <!-- window for edit map -->
-<?php   include 'map-form.phtml';?>
+<?php  include 'map-form.phtml';?>
 
 <?php include 'marker-form.phtml'; ?>
     
