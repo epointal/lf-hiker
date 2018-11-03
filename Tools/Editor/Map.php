@@ -11,6 +11,7 @@ Class Lfh_Tools_Editor_Map{
     private static $_lfh_mapquest_count = 0;
     private static $_lfh_marker_count = 0;
     private static $_lfh_track_count = 0;
+    
     public function __construct() {
         add_shortcode('lfh-map', array(&$this, 'map_shortcode'));
         add_shortcode('lfh-marker', array(&$this, 'marker_shortcode'));
@@ -30,7 +31,7 @@ Class Lfh_Tools_Editor_Map{
         }
     }
     public  function map_shortcode($atts, $html =null){
-        
+        global $post;
         $options = Lfh_Model_Map::filter_map_data($atts);
         
         if(self::$_lfh_map_count == 0){
@@ -40,7 +41,7 @@ Class Lfh_Tools_Editor_Map{
 //             self::enqueue_scripts( $css );
             
         }
-        self::$_lfh_map_count++;
+        self::$_lfh_map_count = $post->ID;
         self::$_lfh_marker_count = 0;
         self::$_lfh_track_count = 0;
         

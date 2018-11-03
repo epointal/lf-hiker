@@ -40,14 +40,7 @@ Class Lfh_Tools_Editor_Helper{
     }
     // scripts for helper helper.phtml
     public function load_helper_scripts() {
-//         $cdn = Lfh_Model_Option::get_option("lfh_use_cdn");
-//         if( $cdn){
-//             wp_enqueue_style( 'leaflet_css', 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/'. Lf_Hiker_Plugin::LEAFLET_VERSION .'/leaflet.css',  null, null );
-//             wp_enqueue_script('leaflet','https://cdnjs.cloudflare.com/ajax/libs/leaflet/' .Lf_Hiker_Plugin::LEAFLET_VERSION. '/leaflet.js',Array(),null, true);
-//         }else{
-//             wp_enqueue_style( 'leaflet_css', Lf_Hiker_Plugin::$url.'lib/leaflet/'. Lf_Hiker_Plugin::LEAFLET_VERSION .'/leaflet.css',  null, null );
-//             wp_enqueue_script('leaflet', Lf_Hiker_Plugin::$url.'lib/leaflet/' .Lf_Hiker_Plugin::LEAFLET_VERSION. '/leaflet.js',Array(),null, true);
-//         }
+
         Lfh_Tools_Registrer::register_leaflet();
         Lfh_Tools_Registrer::enqueue_leaflet();
         if(WP_DEBUG){
