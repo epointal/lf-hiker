@@ -1,7 +1,6 @@
 <?php
 /**
-
- * 
+ * Class to edit map 
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 

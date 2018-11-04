@@ -1,28 +1,59 @@
-<div class="lfh-container" style="width:100%;position:relative;">
-<!-- <div id="debug"  style="position:absolute;top:20px;left:400px;display:block;z-index:90000;"></div>-->
+<?php
+/**
+ * Template to edit marker parameters in helper or lfh-map post type editr 
+ * used in views/back/editor/helper.phtml and in Tools/Editor/Map.php
+ */
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+$class = 'lfh-container';
+if (isset($is_map_type)) {
+    $class = ' lfh-map-editor';
+}
+?>
+
+<div class="<?=$class?>" >
+
 <!-- control for marker on map -->
 <div id="lfh-control" class="leaflet-bar leaflet-control">
+<?php if (isset($is_map_type)):?>
   <a  id="lfh-edit-map" class="leaflet-buttons-control-button marker-control" title="<?=_e('Edit map', 'lfh')?>">
+        <div class="lfhicon lfhicon-map"></div>
+    </a>
+    <a id="lfh-add-element" class="leaflet-buttons-control-button marker-control " title="<?=_e('Add marker or gpx', 'lfh')?>">
+        <div class="lfhicon" style="position:relative;">&plus;
+        <div style="position:absolute;left:30px;top:0;">
+          <a id="lfh-add-marker" class="leaflet-buttons-control-button marker-control " title="<?=_e('Add marker', 'lfh')?>">
+             <div class="lfhicon lfhicon-map-marker"></div>
+          </a>
+          <a id="lfh-add-gpx" class="leaflet-buttons-control-button marker-control" title="<?=_e('Add gpx', 'lfh')?>">
+             <div class="lfhicon lfhicon-road"></div>
+          </a>
+        </div>
+        </div>
+  
+    </a>
+  
+
+    <a id="lfh-edit-marker" class="leaflet-buttons-control-button marker-control" title="<?=_e('Edit marker', 'lfh')?>">
+        <div class="lfhicon lfhicon-edit"></div>
+    </a> 
+    <a  id="lfh-delete-marker" class="leaflet-buttons-control-button marker-control" title="<?=_e('Delete marker', 'lfh')?>">
+        <div class="lfhicon lfhicon-trash"></div>
+    </a>
+<?php else:?> 
+ <a  id="lfh-edit-map" class="leaflet-buttons-control-button marker-control" title="<?=_e('Edit map', 'lfh')?>">
         <div class="lfhicon lfhicon-map"></div>
     </a>
     <a id="lfh-add-marker" class="leaflet-buttons-control-button marker-control " title="<?=_e('Add marker', 'lfh')?>">
         <div class="lfhicon lfhicon-map-marker"></div>
     </a>
-    <?php if (isset($is_map_type)):?>
-    <a id="lfh-add-gpx" class="leaflet-buttons-control-button marker-control" title="<?=_e('Add gpx', 'lfh')?>">
-        <div class="lfhicon lfhicon-road"></div>
-    </a>
-    <?php endif;?>
     <a id="lfh-edit-marker" class="leaflet-buttons-control-button marker-control" title="<?=_e('Edit marker', 'lfh')?>">
         <div class="lfhicon lfhicon-edit"></div>
     </a> 
-
- 
     <a  id="lfh-delete-marker" class="leaflet-buttons-control-button marker-control" title="<?=_e('Delete marker', 'lfh')?>">
         <div class="lfhicon lfhicon-trash"></div>
-    </a>
-   
-    
+    </a>  
+<?php endif;?>   
 </div>
 <?php if (!isset($is_map_type)):?>
 <!-- banner buttons bottom right -->
@@ -34,7 +65,7 @@
 <!-- window for edit map -->
 <?php  include 'map-form.phtml';?>
 
-<?php include 'marker-form.phtml'; ?>
+<?php  include 'marker-form.phtml'; ?>
     
 
     <!-- the map -->

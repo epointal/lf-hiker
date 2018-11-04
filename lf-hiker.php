@@ -116,19 +116,20 @@ class Lf_Hiker_Plugin
                     'not_found_in_trash' => __('No map found in trash', 'lfh')
                 ),
                 'public' => true,
-                'show_in_rest' => true,
+                // 'show_in_rest' => true,
                 'capability_type' => 'post',
                 // Show in this admin menu
                 'show_ui' => true,
                 // 'show_in_menu' => 'admin.php?page=lfh_info',
                 // rewrite URL
-                // 'show_in_nav_menus'   => true,
-               // 'rewrite' => array( 'slug' => 'teams' ),	
-                'rewrite' => true,
-                 'supports' => array(
+                 'show_in_nav_menus'   => true,
+                // 'rewrite' => array( 'slug' => 'teams' ),	
+                 'rewrite' => true, 
+                'supports' => array(
                          'title',
 //                         'editor',
-                         'excerpt'
+                         'excerpt',
+                         'author'
                  ),
                 // 'supports'    => false,
                 'has_archive' => true,

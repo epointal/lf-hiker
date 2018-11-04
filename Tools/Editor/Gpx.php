@@ -1,7 +1,6 @@
 <?php
 /**
- *
- * 
+ * Class to edit gpx file
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -84,9 +83,7 @@ Class Lfh_Tools_Editor_Gpx{
             return $html;
         }
     }
-    
-    
-    //Add custom field for gpx file
+    // Add custom field for gpx file
     public function gpx_attachment_field( $form_fields, $post )
     {
         
