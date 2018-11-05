@@ -143,6 +143,7 @@
 .lfhicon-fort-awesome:before { content: '\f286'; } 
 .lfhicon-shopping-bag:before { content: '\f290'; } 
 .lfhicon-first-order:before { content: '\f2b0'; } 
+.lfhicon-plus:before { content: '\002b'}
 /*
 Author: L. Voogdt
 License: MIT
@@ -510,6 +511,15 @@ body {
   padding: 2px;
   border-radius: 2px;
   cursor: pointer;
+}
+.lfh-add-list {
+  position: absolute;
+  left: 33px;
+  top: 32px;
+  display: none;
+}
+#lfh-add-element.active + div.lfh-add-list {
+  display: block;
 }
 .leaflet-control .active {
   background-color: #f0d6d7;

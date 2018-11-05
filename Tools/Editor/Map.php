@@ -123,27 +123,26 @@ Class Lfh_Tools_Editor_Map{
     }
     // data js for helper helper.phtml
     public function add_inline_script(){
-        $data = '/* <![CDATA[ */';
+        $data = '';
         $data .= 'data_helper = {
                 confirm : "'.__('Delete marker' , 'lfh').'",
                 add_description : "'.__('Add here your formated description', 'lfh').'",
                 tiles : '.json_encode(Lfh_Model_Map::$tiles).'
                 }';
-        $data .= '/* ]]> */';
+        $data .= '';
         wp_add_inline_script('lfh_map_editor', $data, 'before');
         
     }
     private function add_map_scripts($options){
-        
         $map_count = self::$_lfh_map_count;
         $images_url = Lf_Hiker_Plugin::$url .'/images/';
         $css = Lfh_Model_Option::get_values('custom_css');
         $selected_color = $css['lfh_selected_path'];
-        $data = '/* <![CDATA[ */';
-        if($map_count == 1){
-            $data .= 'if( typeof lfh == "undefined"){
+        $data = '';
+       // if($map_count == 1){
+            $data .= 'if( typeof lfh === "undefined"){
                         var lfh = {}
-                  }
+                  };
                   lfh.data = new Array();
                   lfh.ICON_URL = "' . $images_url .'";
                   lfh.tiles = '.json_encode(Lfh_Model_Map::$tiles, JSON_UNESCAPED_SLASHES).';
@@ -153,14 +152,14 @@ Class Lfh_Tools_Editor_Map{
                   lfh.DISTANCE_UNIT = ' .json_encode(Lfh_Model_Map::distance_units()). ';
                   lfh.HEIGHT_UNIT = ' .json_encode(Lfh_Model_Map::height_units());';
                 ';
-        }
+       // }
         $data .= '
         lfh.data['.$map_count.']= {
               map: '.json_encode($options, JSON_NUMERIC_CHECK ).',
               markers: new Array(),
               gpx: new Array()
         };';
-        $data .= '/* ]]> */';
+        $data .= '';
         wp_add_inline_script('lfh_map_editor', $data, 'before');
     }
     private  function add_marker_script( $options ){

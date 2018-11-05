@@ -19,21 +19,18 @@ if (isset($is_map_type)) {
   <a  id="lfh-edit-map" class="leaflet-buttons-control-button marker-control" title="<?=_e('Edit map', 'lfh')?>">
         <div class="lfhicon lfhicon-map"></div>
     </a>
-    <a id="lfh-add-element" class="leaflet-buttons-control-button marker-control " title="<?=_e('Add marker or gpx', 'lfh')?>">
-        <div class="lfhicon" style="position:relative;">&plus;
-        <div style="position:absolute;left:30px;top:0;">
-          <a id="lfh-add-marker" class="leaflet-buttons-control-button marker-control " title="<?=_e('Add marker', 'lfh')?>">
+    <a id="lfh-add-element" class="leaflet-buttons-control-button marker-control" title="<?=_e('Add marker or gpx', 'lfh')?>">
+        <div class="lfhicon-plus">&plus;</div>
+    </a>
+        <div class="lfh-add-list" >
+          <a id="lfh-add-marker" class="leaflet-buttons-control-button marker-control item-list" title="<?=_e('Add marker', 'lfh')?>">
              <div class="lfhicon lfhicon-map-marker"></div>
           </a>
-          <a id="lfh-add-gpx" class="leaflet-buttons-control-button marker-control" title="<?=_e('Add gpx', 'lfh')?>">
+          <a id="lfh-add-gpx" class="leaflet-buttons-control-button marker-control item-list" title="<?=_e('Add gpx', 'lfh')?>">
              <div class="lfhicon lfhicon-road"></div>
           </a>
-        </div>
-        </div>
-  
-    </a>
-  
-
+     </div>
+ 
     <a id="lfh-edit-marker" class="leaflet-buttons-control-button marker-control" title="<?=_e('Edit marker', 'lfh')?>">
         <div class="lfhicon lfhicon-edit"></div>
     </a> 
