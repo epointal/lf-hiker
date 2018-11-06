@@ -1,4 +1,4 @@
-(function(lfh_data){
+(function($,data){
  
 //For Adding button mode  on map control
 
@@ -13,7 +13,7 @@ var LfhControl = L.Control.extend({
     },
    
 });
-console.log(lfh_data)
+console.log(data);
 var lfh = {
         mode: "lfh-view",
         confirm : data_helper.confirm,
@@ -136,16 +136,16 @@ var lfh = {
         //change mode from node button
         set_mode: function(node){
             //unactive the active
-            if(lfh.mode != 'lfh-view'){
-                 var active = document.querySelector('.marker-control.active');
-                 active.className = active.className.replace(' active', '');
+            if(lfh.mode !== 'lfh-view'){
+                 $('.marker-control.active').removeClass('active');
+                 // active.className = active.className.replace(' active', '');
             }
             //close window edit
             var nodes = document.querySelectorAll('.lfh-form-edit');
             [].forEach.call(nodes, function(node){
                 node.style.display = 'none';
             });
-            if(node.id == lfh.mode){
+            if(node.id === lfh.mode){
                 lfh.mode = 'lfh-view';
             }else{
                 //active the mode
@@ -154,9 +154,14 @@ var lfh = {
                 //case  add see marker window
                 lfh.init_window();
             }
+            console.log(lfh.mode);
+            if(lfh.mode.indexOf('lfh-add') >=0) {
+                 $('#lfh-add-element').addClass('active');
+            }
             if(lfh.mode == 'lfh-add-marker'){
                 //show move_marker
                 lfh.move_marker.setOpacity(1);
+               
                 //show manual marker
                 document.querySelector('#window-add-marker').style.display = 'block';
             }else{
@@ -236,8 +241,8 @@ var lfh = {
             }
         },
         close_icon: function(){
-            var label = document.querySelector('#window-edit-marker .to-extend:last-child label');
-            var div = label.parentNode.querySelector("div");
+            var label = $('#window-edit-marker .to-extend label').eq(1);
+            var div = label.parent().find('> div');
             if(label.textContent == '-'){
                 label.textContent = '+';
                 div.style.display = 'none';
@@ -512,8 +517,18 @@ document.onmouseup = hdrg.destroy;
                 multiple: true,
                 button: {text: 'Insert'}
             });
-          frame.open()
+          frame.on('select', function() {
+              var first = frame.state().get('selection').first().toJSON();
+              console.log(first['meta']);
+              console.log(first['title']);
+               console.log(first['description'], '----');
+              for (attr in first) {
+                console.log(attr);
+              }
+          })
+          
       }
+      frame.open()
     })
      document.querySelector('#insert-media-button').addEventListener('click', function(e) {
       if (!frame2) {
@@ -528,7 +543,7 @@ document.onmouseup = hdrg.destroy;
     })
     lfh.init_map();
       return lfh;
-})(lfh);
+})(jQuery, lfh.data);
 String.prototype.addslashes = function()
 {return this.replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');};
 

@@ -104,9 +104,9 @@ Class Lfh_Tools_Editor_Map{
     }
     public function enqueue_scripts(){
 
-        wp_enqueue_media();
-     
+       wp_enqueue_media();
        $depends = Lfh_Tools_Registrer::register_leaflet();
+       array_push($depends, 'jquery');
        Lfh_Tools_Registrer::enqueue_leaflet();
         if(WP_DEBUG){
             wp_enqueue_style('helper_css', Lf_Hiker_Plugin::$url."css/lfh-map-editor.css",Array( 'leaflet_css'), null);

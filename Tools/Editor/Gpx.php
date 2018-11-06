@@ -78,6 +78,7 @@ Class Lfh_Tools_Editor_Gpx{
                 $filter .=  __('Add here your formated description','lfh');
             }
             $filter .= '[/lfh-gpx]<br /><br />';
+            $attachment['lfh_stroke_color'] = $color;
             return apply_filters('gpx_override_send_to_editor',  $filter , $html, $id, $attachment);
         }else{
             return $html;
@@ -177,9 +178,6 @@ Class Lfh_Tools_Editor_Gpx{
     }
     public function load_editor_scripts()
     {
-        if (get_post_type() === 'lfh-map') {
-            return;
-        }
         if(WP_DEBUG){
             wp_register_style('lfh_gpx_editor_css', Lf_Hiker_Plugin::$url .'/css/lfh-gpx-editor.css', Array(), null, false);
             wp_register_script('lfh_gpx_editor_js', Lf_Hiker_Plugin::$url . '/js/lfh-gpx-editor.js', Array('jquery'), null, false);
