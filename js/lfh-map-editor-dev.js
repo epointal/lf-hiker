@@ -1,4 +1,4 @@
-(function($,data){
+(function($,options){
  
 //For Adding button mode  on map control
 
@@ -13,12 +13,12 @@ var LfhControl = L.Control.extend({
     },
    
 });
-console.log(data);
+
+
+console.log(options.data);
 var lfh = {
         mode: "lfh-view",
-        confirm : data_helper.confirm,
-        add_description : data_helper.add_description,
-        tiles : data_helper.tiles,
+        tiles : options.tiles,
         map: null,
         center: [48.67777858405578, 2.166026472914382], //by default center = les ulis France
         zoom: 2,
@@ -30,8 +30,15 @@ var lfh = {
         tile: null, // the current L.tileLayer
         record: null, //record center and zoom when user want
         shortcode: '[lfh-map]',
+        POINT_ICON:  L.icon({
+            iconUrl: options.ICON_URL + 'markers/pointS000063.png',
+            iconSize:     [10, 10], 
+            shadowSize:   [0, 0], 
+            iconAnchor:   [5, 5], 
+            shadowAnchor: [5, 5],  
+            popupAnchor:  [5, 5]
+        }),
         init_map: function(){
-          
             lfh.map = L.map('map').setView(lfh.center, lfh.zoom);
             lfh.set_tile();
             lfh.map.addControl(new LfhControl());
@@ -64,6 +71,9 @@ var lfh = {
                 }
             });
             
+        },
+        init_data() {
+
         },
         set_tile: function(){
             var tilename = document.querySelector('select[name="lfh-form-map-tile"]').value;
@@ -169,6 +179,41 @@ var lfh = {
                 lfh.move_marker.setOpacity(0);
             }
         },
+        add_gpx: function(post) {
+            console.log(post)
+            if (lfh.gpx[post.src]) {
+                lfh.gpx[post.src].el.setStyle({
+                    color: post.color,
+                    weight: post.width
+                })
+                return;
+            }
+            var gpx = new L.GPX(
+                 post.url, 
+                {
+                    async: true,
+                    isLoaded: false,
+                    polyline_options: {
+                      color: post.color,
+                      weight: post.width
+                    }
+                    // marker_options: {
+                    //     startIcon: _data.gpx[j].width> 2 ? lfh.POINT_ICON:lfh.MINI_POINT_ICON,
+                    //     endIcon: _data.gpx[j].width> 2 ? lfh.POINT_ICON:lfh.MINI_POINT_ICON,
+                    //     //shadowUrl: 'images/pin-shadow.png'
+                    //   }
+                 }).on('loaded', function(e) {
+                      e.target.options.isLoaded = true;
+                    //   if(_auto_center){
+                    //       var bounds = e.target.getBounds();
+                    //       _latlngbounds.push([bounds.getNorth(),bounds.getEast()]);
+                    //       _latlngbounds.push([bounds.getSouth(),bounds.getWest()]);
+                    //   }
+                 }).addTo(lfh.map)
+           lfh.gpx[post.src] = {
+               el:gpx
+           }
+        },
         //get position center and zoom of the map, record and write it
         get_position_info: function(){
             lfh.record = {
@@ -272,30 +317,31 @@ var lfh = {
             shortcode += ' ] <br /> ';
             return shortcode;
         },
-        shortcode: function(name){
+        shortcode: function(){
             var shortcode = '';
-            switch(name){
-            case 'map':
-                    shortcode += lfh.shortcode_map();
-                    break;
-            case 'markers':
-                for(var i=0; i<lfh.markers.length; i++){
-                    var latlng = lfh.markers[i].getLatLng();
-                    var options = lfh.markers[i].options;
-                    var color = options.icon.options.markerColor;
-                    var icon = options.icon.options.icon;
-                    shortcode += '[lfh-marker lat='+latlng.lat +' lng=' + latlng.lng;
-                    shortcode += ' color=' + color + ' icon=' + icon;
-                    shortcode += ' title="' + options.title +'"';
-                    shortcode += ' popup="' + options.popup +'"';
-                    shortcode += ' visibility=' + options.visibility;
-                    shortcode += ' ]' ;
-                    if(options.description){
-                        shortcode += '<br />' + lfh.add_description + '<br />';
-                    }
-                    shortcode += '[/lfh-marker]<br />  ';
+            shortcode += lfh.shortcode_map();
+            for(var i=0; i<lfh.markers.length; i++){
+                var latlng = lfh.markers[i].getLatLng();
+                var options = lfh.markers[i].options;
+                var color = options.icon.options.markerColor;
+                var icon = options.icon.options.icon;
+                shortcode += '[lfh-marker lat='+latlng.lat +' lng=' + latlng.lng;
+                shortcode += ' color=' + color + ' icon=' + icon;
+                shortcode += ' title="' + options.title +'"';
+                shortcode += ' popup="' + options.popup +'"';
+                shortcode += ' visibility=' + options.visibility;
+                shortcode += ' ]' ;
+                if(options.description){
+                    shortcode +=  options.description;
                 }
-            }
+                shortcode += '[/lfh-marker]';
+           }
+           lfh.gpx.forEach(function(gpx){
+               shortocde += '[lfh-gpx src=' + gpx.src;
+               shortcode += ' color=' + gpx.color;
+               shortcode += ' width=' + gpx.width;
+               shortcode += '][/lfh-gpx]';
+           })
             return shortcode;
         }
 }
@@ -509,7 +555,9 @@ document.onmouseup = hdrg.destroy;
     });
     var frame = null;
     var frame2 = null;
+    var post = null
     document.querySelector('#lfh-add-gpx').addEventListener('click', function(e) {
+      post = null
       if (!frame) {
           frame = wp.media({
                 title: 'Insert a gpx',
@@ -518,16 +566,13 @@ document.onmouseup = hdrg.destroy;
                 button: {text: 'Insert'}
             });
           frame.on('select', function() {
-              var first = frame.state().get('selection').first().toJSON();
-              console.log(first['meta']);
-              console.log(first['title']);
-               console.log(first['description'], '----');
-              for (attr in first) {
-                console.log(attr);
-              }
+              var select = frame.state().get('selection')
+              select.forEach(function(el){
+                  lfh.add_gpx(el.toJSON())
+              })
           })
-          
       }
+
       frame.open()
     })
      document.querySelector('#insert-media-button').addEventListener('click', function(e) {
@@ -543,7 +588,7 @@ document.onmouseup = hdrg.destroy;
     })
     lfh.init_map();
       return lfh;
-})(jQuery, lfh.data);
+})(jQuery, lfh);
 String.prototype.addslashes = function()
 {return this.replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');};
 

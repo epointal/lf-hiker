@@ -46,7 +46,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         <div>
             <label for="description"><?=ucfirst(__('description', 'lfh'))?></label>
             <input type="checkbox" name="description"  tabindex="3"/>
-             <?php 
+            <div class="marker-description">
+         	<?php 
              if (isset($is_map_type)) {
                  $settings = array(
                  'quicktags' => array('buttons' => 'em,strong,link,ul,li',),
@@ -54,9 +55,11 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                  'tinymce' => false,
                  'textarea_rows' => 20
                  );
-                 wp_editor( 'description makrer',"marker-description", $settings  ); 
+                 wp_editor( '',"marker-description", $settings  ); 
              }?>
+        	</div>
         </div>
+
         <div>
             <label for="visibility"><?=_e('Visibility', 'lfh')?></label>
             <select  name="visibility" tabindex="4">

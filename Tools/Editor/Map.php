@@ -31,48 +31,38 @@ Class Lfh_Tools_Editor_Map{
     }
     public  function map_shortcode($atts, $html =null){
         global $post;
-        $options = Lfh_Model_Map::filter_map_data($atts);
-        
-        if(self::$_lfh_map_count == 0){
-            //if the first map in the page/article add a div for the fade in bottom fullscreen
-            
-//             $css = Lfh_Model_Option::get_values('custom_css');
-//             self::enqueue_scripts( $css );
-            
-        }
         self::$_lfh_map_count = $post->ID;
         self::$_lfh_marker_count = 0;
         self::$_lfh_track_count = 0;
         
-        $this->add_map_scripts( $options );
+        $this->add_map_scripts( $atts );
         return '';
     }
     
     
     public function gpx_shortcode($atts, $html=''){
-        $options = Lfh_Model_Map::filter_gpx_data($atts);
-        if(is_null($options)){
+        if (is_null($atts) || !isset($atts['src'])) {
             return '';
         }
-        if( self::$_lfh_map_count==0){
-            $content = $this->map_shortcode(array());
+        if ( self::$_lfh_map_count === 0) {
+             $this->map_shortcode(array());
         }
-        self::$_lfh_track_count++;;
-        $this->add_gpx_script($options, $html);
+        self::$_lfh_track_count++;
+        $atts['description'] = preg_replace('/"/', '&quot;', $html);
+        $this->add_gpx_script($atts);
         return '';
     }
     
     public  function marker_shortcode ( $atts, $html = '') {
-        $options = Lfh_Model_Map::filter_marker_data($atts);
-        if(is_null($options)){
+        if (!isset($atts['lat']) || !isset($atts['lng'])) {
             return '';
         }
-        if(self::$_lfh_map_count == 0){
-            $content = $this->map_shortcode(array());
+        if (self::$_lfh_map_count === 0) {
+             $this->map_shortcode(array());
         }
         self::$_lfh_marker_count++;
-        $this->add_marker_script($options, $html);
-        
+        $atts['description'] = preg_replace('/"/', '&quot;', $html);
+        $this->add_marker_script($options);
         return '';
     }
     // scripts only for edit post page
@@ -115,42 +105,30 @@ Class Lfh_Tools_Editor_Map{
             wp_enqueue_style('helper_css', Lf_Hiker_Plugin::$url."dist/lfh-map-editor.".Lf_Hiker_Plugin::VERSION.".css", Array('leaflet_css'), null, null);
         }
         if(WP_DEBUG ){
-            wp_enqueue_script('lfh_map_editor', Lf_Hiker_Plugin::$url. "js/lfh-map-editor.js", $depends, null, true);
+            wp_enqueue_script('leaflet_gpx', Lf_Hiker_Plugin::$url . "js/leaflet-gpx.js", $depends, null, true);
+            wp_enqueue_script('lfh_map_editor', Lf_Hiker_Plugin::$url. "js/lfh-map-editor-dev.js", array_merge($depends, array('leaflet_gpx')), null, true);
         }else{
             wp_enqueue_script('lfh_map_editor', Lf_Hiker_Plugin::$url. "dist/lfh-map-editor-min.".Lf_Hiker_Plugin::VERSION.".js", $depends, null, true);
         }
-        $this->add_inline_script();
-    }
-    // data js for helper helper.phtml
-    public function add_inline_script(){
-        $data = '';
-        $data .= 'data_helper = {
-                confirm : "'.__('Delete marker' , 'lfh').'",
-                add_description : "'.__('Add here your formated description', 'lfh').'",
-                tiles : '.json_encode(Lfh_Model_Map::$tiles).'
-                }';
-        $data .= '';
-        wp_add_inline_script('lfh_map_editor', $data, 'before');
-        
     }
     private function add_map_scripts($options){
         $map_count = self::$_lfh_map_count;
         $images_url = Lf_Hiker_Plugin::$url .'/images/';
         $css = Lfh_Model_Option::get_values('custom_css');
         $selected_color = $css['lfh_selected_path'];
-        $data = '';
+        $data = '/* <![CDATA[ */';
        // if($map_count == 1){
             $data .= 'if( typeof lfh === "undefined"){
                         var lfh = {}
                   };
                   lfh.data = new Array();
                   lfh.ICON_URL = "' . $images_url .'";
-                  lfh.tiles = '.json_encode(Lfh_Model_Map::$tiles, JSON_UNESCAPED_SLASHES).';
-                  lfh.tiles["mapquest"] = { max_zoom:18 };
-                  lfh.SELECTED_COLOR = "' . $selected_color .'";
-                  lfh.NUMBER_GPX_FOR_CHECK = '. Lfh_Model_Option::get_option('lfh_number_gpx_for_checkbox').';
-                  lfh.DISTANCE_UNIT = ' .json_encode(Lfh_Model_Map::distance_units()). ';
-                  lfh.HEIGHT_UNIT = ' .json_encode(Lfh_Model_Map::height_units());';
+                  lfh.tiles = ' . json_encode(Lfh_Model_Map::$tiles, JSON_UNESCAPED_SLASHES) . ';
+                  lfh.default = ' . json_encode(Lfh_Model_Map::get_default()) .';
+                  lfh.default.SELECTED_COLOR = "' . $selected_color .'";
+                  lfh.default.NUMBER_GPX_FOR_CHECK = '. Lfh_Model_Option::get_option('lfh_number_gpx_for_checkbox').';
+                  lfh.default.DISTANCE_UNIT = ' .json_encode(Lfh_Model_Map::distance_units()). ';
+                  lfh.default.HEIGHT_UNIT = ' .json_encode(Lfh_Model_Map::height_units());';
                 ';
        // }
         $data .= '
@@ -159,20 +137,24 @@ Class Lfh_Tools_Editor_Map{
               markers: new Array(),
               gpx: new Array()
         };';
-        $data .= '';
+        $data .= '/* ]]> */';
         wp_add_inline_script('lfh_map_editor', $data, 'before');
     }
     private  function add_marker_script( $options ){
         $map_count = self::$_lfh_map_count;
         $marker_count = self::$_lfh_marker_count;
-        $data = ' lfh.data[' . $map_count .'].markers['.$marker_count.'] = '.json_encode($options, JSON_NUMERIC_CHECK).';';
+        $data = '/* <![CDATA[ */';
+        $data .= ' lfh.data[' . $map_count .'].markers['.$marker_count.'] = '.json_encode($options, JSON_NUMERIC_CHECK).';';
+        $data .= '/* ]]> */';
         wp_add_inline_script('lfh_map_editor', $data, 'before');
     }
     
     private  function add_gpx_script($options ){
         $map_count = self::$_lfh_map_count;
         $track_count = self::$_lfh_track_count;
-        $data = '  lfh.data['.$map_count .'].gpx['.$track_count .'] = '.json_encode($options, JSON_NUMERIC_CHECK).';';
+        $data = '/* <![CDATA[ */';
+        $data .= '  lfh.data['.$map_count .'].gpx['.$track_count .'] = '.json_encode($options, JSON_NUMERIC_CHECK).';';
+        $data .= '/* ]]> */';
         wp_add_inline_script('lfh_map_editor', $data, 'before');
     }
     private static function enqueue_scripts_old($css){

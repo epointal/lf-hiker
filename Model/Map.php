@@ -90,7 +90,7 @@ Class Lfh_Model_Map{
                         'label' => __('foot', 'lfh'),
                         'code'  => __('ft', 'lfh')
                 ));
-    }
+   }
    public static  function map_parameters()
    {
      return   array(
@@ -217,7 +217,16 @@ Class Lfh_Model_Map{
         return stripslashes($str);
         
     }
-    
+    public static function get_default() {
+        $map = self::filter_map_data(array());
+        $gpx = self::get_default_gpx(array());
+        $marker = self::get_default_marker(array());
+        return array( 
+                'map'   => $map,
+                'gpx'   => $gpx,
+                'marker'=> $marker
+        );
+    }
     public static function filter_map_data($atts = array())
     {
         if (empty($atts)) {
@@ -231,18 +240,11 @@ Class Lfh_Model_Map{
         array_walk($first, 'Lfh_Model_Map::set_default', $args);
         return $first;
     }
-    
-    public static function filter_gpx_data($atts)
-    {
+    public static function get_default_gpx($atts) {
         if ($atts) {
             extract($atts);
         }
-        if(!isset($src) || empty($src)){
-            return null;
-        }
-
         $options = array(
-                'src'        => $src,
                 'title'      => isset($title) && !empty($title) ? $title:  strtoupper(__('no named gpx', 'lfh')),
                 'color'      => isset($color) ? $color: self::$default['stroke_color'],
                 'width'      => isset($width) ? $width: self::$default['stroke_width'],
@@ -251,7 +253,15 @@ Class Lfh_Model_Map{
                 'step_min'   => isset($step_min)? $step_min: Lfh_Model_Option::get_option('lfh_step_min'),
                 'button'     => isset($button)  ? self::to_bool($button): boolval(Lfh_Model_Option::get_option('lfh_download_gpx'))
         );
-  
+        if (isset($src)) {
+            $options['src'] = $src;
+        }
+        return $options;
+    }
+    public static function filter_gpx_data($atts = array())
+    {
+        $options = self::get_default_gpx($atts);
+
         $args = array(
                 'src'   => array(
                         'filter'    => FILTER_CALLBACK,
@@ -310,25 +320,29 @@ Class Lfh_Model_Map{
         }
         
     }
-    public static function filter_marker_data($atts)
-    {
-        if (!empty($atts)) extract($atts);
-        
-        //without position return null
-        if(!isset($lat) || !isset($lng)){
-            return null;
-        }
-
+    public static function get_default_marker($atts = array()) {
+        extract($atts);
         $options = array(
-                'lat'   => $lat,
-                'lng'   => $lng,
                 'title' => (isset($title) && !empty( $title )) ? $title : strtoupper( __('no named marker', 'lfh')),
                 'visibility' => isset($visibility) ? $visibility : 'always',
                 'color' => isset($color) ? $color : 'red',
                 'icon'  => isset($icon) ? $icon : 'circle',
                 'popup' => isset($popup) ? $popup : ""
         );
-        
+        if (isset($lat)) {
+            $options['lat'] = $lat;
+        }
+        if (isset($lng)) {
+            $options['lng'] = $lng;
+        }
+        return $options;
+    }
+    public static function filter_marker_data($atts)
+    {
+        $options = self::get_default_marker($atts);
+        if (!isset($options['lat']) || !isset($options['lng'])) {
+            return null;
+        }
         $args = array(
                 'lat'   => FILTER_VALIDATE_FLOAT,
                 'lng'   => FILTER_VALIDATE_FLOAT,

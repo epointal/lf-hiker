@@ -373,6 +373,19 @@ body {
   max-width: 165px;
   line-height: 1.4;
 }
+.lfh-helper textarea.wp-editor-area {
+  width: 100%;
+  max-width: 100%;
+  height: 100px;
+}
+.lfh-helper div.marker-description {
+  padding: 5px;
+  border: 1px 0 solid grey;
+  display: none;
+}
+.lfh-helper input[type="checkbox"]:checked + div.marker-description {
+  display: block;
+}
 .lfh-helper label,
 .lfh-helper input {
   display: inline-block;

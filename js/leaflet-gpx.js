@@ -35,7 +35,6 @@
  * can be used to display additional information about the track that is
  * rendered on the Leaflet map.
  */
-console.log( lfh.ICON_URL);
 var L = L || require('leaflet');
 
 var _MAX_POINT_INTERVAL_MS = 15000;
@@ -429,7 +428,6 @@ L.GPX = L.FeatureGroup.extend({
 
       if (last != null) {
         var dist = this._dist3d(last, ll);
-        console.log(dist);
         this._info.length += this._dist3d(last, ll);
 
         var t = ll.meta.ele - last.meta.ele;

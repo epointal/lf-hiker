@@ -98,11 +98,18 @@ gulp.task('versioning', ['lessify'], function(){
 	.pipe(minify())
 	.pipe(rename({suffix: '.'+version}))
 	.pipe(gulp.dest('dist'));
-	
+	// map editor concat files
+	gulp.src([
+		'js/leaflet-gpx.js',
+		'js/lfh-map-editor-dev.js'])
+	.pipe(concat('lfh-map-editor.js'))
+	.pipe(minify())
+	.pipe(rename({suffix: '.' + version}))
+	.pipe(gulp.dest('dist'));
+
 	// back scripts
 	gulp.src(['js/lfh-tinymce-helper.js',
 			  'js/lfh-gpx-editor.js',
-			  'js/lfh-map-editor.js',
 			  'js/lfh-helper.js'])
 	.pipe(minify())
 	.pipe(rename({suffix: '.'+version}))

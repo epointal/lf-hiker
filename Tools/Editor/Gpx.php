@@ -64,16 +64,11 @@ Class Lfh_Tools_Editor_Gpx{
     public function xml_media_send_to_editor($html, $id, $attachment)
     {
         if (isset($attachment['url']) && preg_match( "/\.gpx$/i", $attachment['url'])) {
-            
-            $color = get_post_meta($id, 'lfh_stroke_color', true);
-            $color = empty($color)? Lfh_Model_Map::$default['stroke_color'] :  $color;
-            $width = get_post_meta($id, 'lfh_stroke_width', true);
-            $width = empty($width)? Lfh_Model_Map::$default['stroke_width'] : $width;
-            $value = get_post_meta($id, 'lfh_download_gpx', true);
-            $button = empty($value) ? 'false': 'true';
+            $meta = $this->get_metadata($id);
             $filter = '';
             $filter .= '[lfh-gpx src=' . $attachment['url'] .' title="' . $attachment['post_title'] .'"';
-            $filter .= ' button='. $button .' color='. $color . ' width=' .$width . ' ]';
+            $filter .= ' button='. $meta['button'] .' color='. $meta['color'];
+            $filter .= ' width=' .$meta['width'] . ' ]';
             if($attachment['post_content']){
                 $filter .= $attachment['post_content'];
             }else{
@@ -89,16 +84,7 @@ Class Lfh_Tools_Editor_Gpx{
     // add custom fields send to editor
     public function gpx_prepare_attachment_for_js($post) {
         if ($post['subtype'] === 'gpx+xml') {
-            $id = $post['id'];
-            $color = get_post_meta($id, 'lfh_stroke_color', true);
-            $color = empty($color)? Lfh_Model_Map::$default['stroke_color'] :  $color;
-            $width = get_post_meta($id, 'lfh_stroke_width', true);
-            $width = empty($width)? Lfh_Model_Map::$default['stroke_width'] : $width;
-            $value = get_post_meta($id, 'lfh_download_gpx', true);
-            $button = empty($value) ? 'false': 'true';
-            $post['lfh_stroke_color'] = $color;
-            $post['lfh_stroke_width'] = $width;
-            $post['lfh_download_gpx'] = $button;
+            $post = array_merge($post, $this->get_metadata($post['id']));
         }
         return $post;
     }
@@ -170,7 +156,7 @@ Class Lfh_Tools_Editor_Gpx{
     }
     //add in ajax for save also custom fieds in upload page
     
-    function fields_to_save_on_upload()
+    public function fields_to_save_on_upload()
     {
         $post_id = intVal($_POST['id']);
         if(isset( $_POST['attachments'][$post_id ]['lfh_stroke_color']) ){
@@ -224,6 +210,19 @@ Class Lfh_Tools_Editor_Gpx{
         wp_add_inline_script('lfh_gpx_editor_js', $data, 'before');
         return;
         
+    }
+    private function get_metadata($id) {
+        $color = get_post_meta($id, 'lfh_stroke_color', true);
+        $color = empty($color)? Lfh_Model_Map::$default['stroke_color'] :  $color;
+        $width = get_post_meta($id, 'lfh_stroke_width', true);
+        $width = empty($width)? Lfh_Model_Map::$default['stroke_width'] : $width;
+        $value = get_post_meta($id, 'lfh_download_gpx', true);
+        $button = empty($value) ? 'false': 'true';
+        return array( 
+            'color'  => $color,
+            'width'  => $width,
+            'button'  => $button
+        );
     }
     /**
      * Create the checkbox for gpx field download button in post edition page
