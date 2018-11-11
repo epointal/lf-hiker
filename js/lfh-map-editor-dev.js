@@ -444,7 +444,7 @@ document.onmouseup = hdrg.destroy;
    //-----------------
    var node = document.querySelector('#window-edit-map input[name="lfh-form-map-autocenter"]');
    L.DomEvent.addListener(node, 'click', function(e){
-       document.querySelector('#center-map').style.display = e.target.checked ? 'none':'block';
+       document.querySelector('#center-map').style.visibility = e.target.checked ? 'collapse':'visible';
        lfh.get_position_info();
    });
    var node = document.querySelector('input[name="save-center"]');

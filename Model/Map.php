@@ -96,7 +96,7 @@ Class Lfh_Model_Map{
      return   array(
   
             'autocenter' => array(
-                'type'    => 'checkbox',
+                'type'    => 'group',
                 'label'   => __('Position auto', 'lfh'),
                 'default' => true,
                 'filter'    => FILTER_CALLBACK,
@@ -154,6 +154,7 @@ Class Lfh_Model_Map{
             'fullscreen' => array(
                 'type'      => 'checkbox',
                 'label'     => __('Fullscreen', 'lfh'),
+                'global'    => true,
                 'default'   => Lfh_Model_Option::get_option('lfh_button_fullscreen')?true:false,
                 'filter'   => FILTER_VALIDATE_BOOLEAN,
                 'options'   => 'FILTER_NULL_ON_FAILURE'
@@ -181,6 +182,7 @@ Class Lfh_Model_Map{
             'tile' => array(
                  'type'      => 'select',
                  'label'     => __('Tiles', 'lfh'),
+                 'global'    => true,
                  'default'   => Lfh_Model_Option::get_option('lfh_default_tiles'),
                  'list'      => self::get_valide_tiles(),
                  'filter'    => FILTER_CALLBACK,
@@ -189,6 +191,7 @@ Class Lfh_Model_Map{
              'open' => array( 
                  'type'      => 'checkbox',
                  'label'     => ucfirst(__('Open profile automaticaly' , 'lfh')),
+                 'global'    => true,
                  'default'   => boolval( Lfh_Model_Option::get_option('lfh_open_profile')),
                  'filter'    => FILTER_VALIDATE_BOOLEAN,
                  'flags'   => FILTER_NULL_ON_FAILURE

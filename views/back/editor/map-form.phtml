@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         <div class="lfhicon lfhicon-close"></div>
     </div>
     <form>
+    <table>
     <?php $i=0;?>
      <?php foreach( $options_map as $key => $param):?>
      <?php $i++;
@@ -19,22 +20,35 @@ if ( ! defined( 'ABSPATH' ) ) exit;
            $before = isset($param['before'])? $param['before']:'';
            $after = isset($param['after'])? $param['after']:'';
            $class = isset($param['class'])? ' class="' . $param['class'] .'"' :'';
+           $global = isset($param['global'])? 'lfh-form-global-'.$key: null;
+           $disabled = '';
+           if (!is_null($global)) {
+               $disabled = "disabled";
+           }
            $id = "lfh-form-map-" . $key;
            $label = $param['label'];
      ?>
     
      <?php switch($param['type']):
         case 'checkbox':?>
-            <div <?=$class?>>
+            <tr <?=$class?>>
+                <td>
                 <label for="<?=$id?>"><?=$param['label']?></label>
+                </td>
+                <td>
+                <?php if(!is_null($global)):?>
+                    <input type="checkbox" class="<?=$global?>" checked title="<?=__('Take the overall value', 'lfh')?>"/>
+                <?php endif;?>
+                <td>
                 <?=$before?>
                 <?php if($default):?>
-                <input type="checkbox" name="<?=$id?>" tabindex="<?=$i?>"  checked />
+                <input type="checkbox" name="<?=$id?>" tabindex="<?=$i?>" <?=$disabled?> checked />
                 <?php else :?>
-                 <input type="checkbox" name="<?=$id?>" tabindex="<?=$i?>" />
+                 <input type="checkbox" name="<?=$id?>" tabindex="<?=$i?>" <?=$disabled?> />
                 <?php endif;?>
                 <?=$after?>
-            </div>
+                </td>
+            </tr>
         <?php break;?>
         
         <?php case 'number':?>
@@ -42,19 +56,33 @@ if ( ! defined( 'ABSPATH' ) ) exit;
             $min = isset($param['options']['min_range'])? 'min="'. $param['options']['min_range'] .'"' : '';
             $max = isset($param['options']['max_range'])? 'max="'. $param['options']['max_range'] .'"' : '';
             $step = isset($param['options']['step_range'])? 'step="'. $param['options']['step_range'] .'"' : '';?>
-            <div <?=$class?>>
+            <tr <?=$class?>>
+                 <td>
                  <label for="<?=$id?>"><?=$param['label']?></label>
+                 </td>
+                 <td>
+                 </td>
+                 <td>
                  <?=$before?>
                 <input type="number" name="<?=$id?>" <?=$min?> <?=$max?> <?=$step?> tabindex="<?=$i?>" value="<?=$default?>"/>
                 <?=$after?>
-                </div>
+                </td>
+             </tr>
         <?php break; ?>
         
         <?php case 'select':?>
-            <div <?=$class?>>
+            <tr <?=$class?>>
+                <td>
                 <label for="<?=$id?>"><?=$param['label']?></label>
+                </td>
+                <td>
+                <?php if(!is_null($global)):?>
+                   <input type="checkbox" class="<?=$global?>" checked title="<?=__('Take the overall value', 'lfh')?>"/>
+                <?php endif;?>
+                </td>
+                <td>
                 <?=$before?>
-                <select name="<?=$id?>"  tabindex="<?=$i?>">
+                <select name="<?=$id?>"  tabindex="<?=$i?>" <?=$disabled?>>
                 <?php $options = $param['list']?>
                 <?php  for($j=0; $j<count($options);$j++): ?>
                 <?php 
@@ -69,12 +97,18 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                 <?php endfor;?>
                 </select>
                 <?=$after?>
-            </div>
+                </td>
+            </tr>
         <?php break;?>
         
         <?php case 'datalist':?>
-            <div <?=$class?>>
+            <tr <?=$class?>>
+                <td>
                 <label for="<?=$id?>"><?=$param['label']?></label>
+                </td>
+                <td>
+                </td>
+                <td>
                 <?=$before?>
                  <input name="<?=$id?>"  type="datalist" list="map-<?=$key?>-list" tabindex="<?=$i?>" >
                 <?php $options = $param['list']?>
@@ -84,22 +118,43 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                 <?php endfor;?>
                 </datalist>
                 <?=$after?>
-            </div>
+                </td>
+            </tr>
         <?php break;?>
-        
+        <?php case 'group':?>
+          <tr <?=$class?>>
+             <td>
+                <label for="<?=$id?>"><?=$param['label']?></label>
+             </td>
+             <td></td>
+             <td>
+                <?=$before?>
+                <?php if($default):?>
+                <input type="checkbox" name="<?=$id?>" tabindex="<?=$i?>"  checked />
+                <?php else :?>
+                 <input type="checkbox" name="<?=$id?>" tabindex="<?=$i?>" />
+                <?php endif;?>
+                <?=$after?>
+             </td>
+          </tr>
+        <?php break;?>
         <?php case "hidden": ?>
         <?php $i--;?>
+        <tr><td>
         <input type="hidden" name="<?=$id?>" value="<?=$default?>"/>
+        </td>
+        </tr>
         <?php break;?>
         
         <?php case 'custom':?>
         <?php if( $key == 'lat'): ?>
         <?php $i--;?>
-        <div id="center-map"  style="display:none;">
-            <div id="text-pan"><?=_e('Pan and zoom until find the position, and when ready save the position', 'lfh')?></div>
+        <tr id="center-map"  style="visibility:collapse;">
+        	<td><?=_e('Pan and zoom until find the position, and when ready save the position', 'lfh')?></td>
+            <td colspan="2" id="text-pan">
             <div id="map-position" >&nbsp;</div>
             <input type="button" name="save-center" value="<?=ucfirst(__('save', 'lfh'))?>"  />
-        </div>
+        </td></tr>
         <input type="hidden" name="<?=$id?>" value="<?=$default?>"/>
         <?php endif; ?>
         <?php break;?>
@@ -108,7 +163,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
         
   
     <?php endforeach;?>
-      
+      </table>
         <div>
             <label for="reset-map"></label>
             <input type ="reset"  name="reset-map" value="<?=ucfirst(__('reset' , 'lfh'))?>" />
