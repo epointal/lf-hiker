@@ -62,7 +62,7 @@ Class Lfh_Tools_Editor_Map{
         }
         self::$_lfh_marker_count++;
         $atts['description'] = preg_replace('/"/', '&quot;', $html);
-        $this->add_marker_script($options);
+        $this->add_marker_script($atts);
         return '';
     }
     // scripts only for edit post page

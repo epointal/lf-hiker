@@ -1,3 +1,6 @@
+String.prototype.stripslashes = function()
+{return this.replace(/\\(.?)/g, function (s, n1){switch (n1){case '\\':return '\\';case '0':return '\u0000';case '':return '';default:return n1;}});};
+
 (function($,options){
  
 //For Adding button mode  on map control
@@ -30,6 +33,7 @@ var lfh = {
         tile: null, // the current L.tileLayer
         record: null, //record center and zoom when user want
         shortcode: '[lfh-map]',
+        controlLayer: null,
         POINT_ICON:  L.icon({
             iconUrl: options.ICON_URL + 'markers/pointS000063.png',
             iconSize:     [10, 10], 
@@ -50,6 +54,7 @@ var lfh = {
                     e.stopPropagation();
                 });
             });
+            lfh.controlLayer = L.control.layers()
             lfh.default_icon = L.AwesomeMarkers.icon({
                 icon: 'circle',
                 prefix: 'lfhicon',
@@ -70,10 +75,25 @@ var lfh = {
                     lfh.add_marker(e);
                 }
             });
+            lfh.init_data()
             
         },
         init_data() {
-
+            var count = 0
+            options.data.forEach(function (map) {
+                if (map.markers) {
+                    map.markers.forEach(function(marker_options) {
+                        console.log('add marker')
+                        marker_options.latlng = L.latLng(marker_options.lat, marker_options.lng)
+                        marker_options.iconAwesome = L.AwesomeMarkers.icon({
+                            icon: marker_options.icon,
+                            prefix: 'lfhicon',
+                            markerColor: marker_options.color
+                        })
+                        lfh.add_marker(marker_options)
+                    })
+                }
+            })
         },
         set_tile: function(){
             var tilename = document.querySelector('select[name="lfh-form-map-tile"]').value;
@@ -98,13 +118,14 @@ var lfh = {
             lfh.current_marker = L.marker(
                     e.latlng,
                     {
-                        icon: lfh.default_icon,
+                        icon: e.iconAwesome? e.iconAwesome:lfh.default_icon,
                         draggable: true,
                         index: lfh.markers.length,
-                        title: '',
-                        popup: '',
-                        description: false,
-                        visibility: 'always'
+                        title: e.title ? e.title : '',
+                        popup: e.popup ? e.popup: '',
+                        description: e.description? true:false,
+                        content: e.description,
+                        visibility: e.visibility ? e.visibility : 'always'
                     }).addTo(lfh.map);
                 lfh.markers.push(lfh.current_marker);
                 lfh.current_marker.on('click', function(e){
@@ -245,6 +266,8 @@ var lfh = {
                 document.querySelector('#window-edit-marker input[name="title"]').value = options.title.stripslashes();
                 document.querySelector('#window-edit-marker textarea[name="popup"]').value = options.popup.stripslashes();
                 document.querySelector('#window-edit-marker input[name="description"]').checked = options.description;
+                console.log(options.content)
+                document.querySelector('#marker-description').value = options.content
                 document.querySelector('#window-edit-marker select[name="visibility"]').selectedIndex = (options.visibility == 'always')? 0:1;
                 var evt = document.createEvent('MouseEvents');
                 evt.initEvent("click", true, true);
