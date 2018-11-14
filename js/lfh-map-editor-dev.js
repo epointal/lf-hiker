@@ -16,8 +16,13 @@ var LfhControl = L.Control.extend({
     },
    
 });
-
-
+ function bool(value) {
+     if(value === 'false') {
+         return false;
+     } else {
+         return Boolean(value);
+     }
+ }
 console.log(options.data);
 var lfh = {
         mode: "lfh-view",
@@ -25,6 +30,7 @@ var lfh = {
         map: null,
         center: [48.67777858405578, 2.166026472914382], //by default center = les ulis France
         zoom: 2,
+        latlngbounds: [],
         current_marker: null, // the selected marker
         default_icon: null,
         move_marker: null, // seen when in mode add-marker
@@ -32,7 +38,8 @@ var lfh = {
         gpx: new Array(),
         tile: null, // the current L.tileLayer
         record: null, //record center and zoom when user want
-        shortcode: '[lfh-map]',
+        shortcode: {map:'[lfh-map]', gpx:'', markers: ''},
+        map_options: {},
         controlLayer: null,
         POINT_ICON:  L.icon({
             iconUrl: options.ICON_URL + 'markers/pointS000063.png',
@@ -43,6 +50,9 @@ var lfh = {
             popupAnchor:  [5, 5]
         }),
         init_map: function(){
+            var first = function(element) { return !!element }    
+            var map_data = options.data.find(first).map
+            lfh.init_map_options(map_data)
             lfh.map = L.map('map').setView(lfh.center, lfh.zoom);
             lfh.set_tile();
             lfh.map.addControl(new LfhControl());
@@ -59,7 +69,8 @@ var lfh = {
                 icon: 'circle',
                 prefix: 'lfhicon',
                 markerColor: 'red'});
-            lfh.move_marker = L.marker(lfh.center).addTo(lfh.map);
+            lfh.move_marker = L.marker(lfh.center, {interactive: false}).addTo(lfh.map);
+            console.log(lfh.move_marker.options)
             lfh.move_marker.setOpacity(0);
             //handler event
             lfh.map.on("mousemove", function(e){
@@ -71,14 +82,104 @@ var lfh = {
                 }
             });
             lfh.map.on('click', function(e){
+                console.log(e);
+                console.log(lfh.mode);
                 if(lfh.mode == 'lfh-add-marker'){
-                    lfh.add_marker(e);
+                    lfh.add_marker(e, true);
                 }
             });
             lfh.init_data()
-            
         },
-        init_data() {
+        init_map_options: function (map_data) {
+            lfh.init_listener_map_editor()
+            // set value to form and map_options
+            lfh.map_options = map_data;
+            for(var key in map_data) {
+                var node = document.querySelector('[name="lfh-form-map-' + key +'"]')
+                if (node.type === 'checkbox') {
+                    node.checked = bool(map_data[key])
+                } else {
+                    node.value = map_data[key]
+                }
+                if ( ['fullscreen', 'tile', 'open'].indexOf(key) >=0) {
+                    document.querySelector('input[name="lfh-form-global-'+ key + '"]').checked = false
+                    node.disabled = false
+                }
+            }
+        },
+        init_listener_map_editor: function () {
+            var nodes = document.querySelectorAll('#window-edit-map [name^="lfh-form-map' + '"]');
+            [].forEach.call(nodes, function (node) {
+                L.DomEvent.addListener(node, 'change', function (e) {
+                    var key = e.target.name.replace('lfh-form-map-', '');
+                    if (node.type === 'checkbox') {
+                        lfh.map_options[key] = e.target.checked;
+                    } else {
+                        lfh.map_options[key] = e.target.value
+                    }
+                   
+                    switch(key) {
+                        case 'autocenter':
+                            document.querySelector('#center-map').style.visibility = e.target.checked ? 'collapse':'visible';
+                            lfh.get_position_info();
+                        break;
+                        case 'tile':
+                            lfh.set_tile();
+                        break;
+                    }
+                    lfh.shortcode()
+                    console.log(lfh.map_options)
+                })
+                
+            })
+            // var node = document.querySelector('#window-edit-map input[name="lfh-form-map-autocenter"]');
+            // L.DomEvent.addListener(node, 'click', function(e){
+            //     document.querySelector('#center-map').style.visibility = e.target.checked ? 'collapse':'visible';
+            //     lfh.get_position_info();
+            // });
+            var node = document.querySelector('input[name="save-center"]');
+            L.DomEvent.addListener(node, 'click', function(e){
+                lfh.get_position_info();
+            });
+            // var node = document.querySelector('#window-edit-map select[name="lfh-form-map-tile"]');
+            // L.DomEvent.addListener(node, 'change', function(e){
+            //     lfh.set_tile();
+            // });
+            var nodes = document.querySelectorAll('#window-edit-map input[name^="lfh-form-global-"]');
+             [].forEach.call(nodes, function(input){
+                 L.DomEvent.addListener(input, 'click', function(event) {
+                    console.log(this.checked)
+                    var node = this.parentNode.parentNode.querySelector('[name^="lfh-form-map"]');
+                    node.disabled = this.checked
+                    if (this.checked) {
+                        // set default value
+                        var key = node.name.replace('lfh-form-map-', '')
+                         if (node.type === 'checkbox') {
+                            node.checked = bool(options.default.map[key])
+                        } else {
+                            node.value = options.default.map[key]
+                            lfh.set_tile()
+                        }
+                    }
+                 })
+             })
+            var evt = document.createEvent('MouseEvents');
+            evt.initEvent("click", true, true);
+            document.querySelector('#window-edit-map input[type="reset"]').dispatchEvent(evt); 
+
+            document.querySelector('#window-edit-map input[type="reset"]').onclick = function(){
+                document.querySelector('#center-map').style.display = 'none';
+                // disable fullscreen, tile, open
+                ['fullscreen', 'tile', 'open'].forEach(function (key) {
+                    document.querySelector('[name="lfh-form-map-'+ key + '"]').disabled = true
+                })
+                setTimeout(function(){
+                    if(lfh.tiles != null)
+                        lfh.set_tile();
+                }, 500);
+            }
+        },
+        init_data: function() {
             var count = 0
             options.data.forEach(function (map) {
                 if (map.markers) {
@@ -90,7 +191,12 @@ var lfh = {
                             prefix: 'lfhicon',
                             markerColor: marker_options.color
                         })
-                        lfh.add_marker(marker_options)
+                        lfh.add_marker(marker_options, false)
+                    })
+                }
+                if(map.gpx) {
+                    map.gpx.forEach(function (gpx_options) {
+                        lfh.add_gpx(gpx_options)
                     })
                 }
             })
@@ -102,24 +208,21 @@ var lfh = {
             if(lfh.tile != null ){
                 lfh.map.removeLayer(lfh.tile);
             }
-            if( tilename != 'mapquest'){
-                lfh.tile = L.tileLayer(tileinfo.url, {
-                        attribution: tileinfo.attribution
-                    });
-
-            }else{
-                lfh.tile =  MQ.mapLayer();
-            }
+            lfh.tile = L.tileLayer(tileinfo.url, {
+                attribution: tileinfo.attribution
+            });
             lfh.tile.addTo(lfh.map);
            // lfh.map.options.minZoom = tileinfo.min_zoom;
            // lfh.map.options.minZoom = tileinfo.max_zoom;
         },
-        add_marker: function(e){
-            lfh.current_marker = L.marker(
+        add_marker: function(e, neo){
+            var marker = L.marker(
                     e.latlng,
                     {
                         icon: e.iconAwesome? e.iconAwesome:lfh.default_icon,
                         draggable: true,
+                        interactive: true,
+                        bubblingMouseEvents: false,
                         index: lfh.markers.length,
                         title: e.title ? e.title : '',
                         popup: e.popup ? e.popup: '',
@@ -127,8 +230,10 @@ var lfh = {
                         content: e.description,
                         visibility: e.visibility ? e.visibility : 'always'
                     }).addTo(lfh.map);
-                lfh.markers.push(lfh.current_marker);
-                lfh.current_marker.on('click', function(e){
+                
+                marker.on('click', function(e){
+                    console.log('clik on marker');
+                    console.log(e);
                     switch(lfh.mode){
                         case 'lfh-edit-marker':
                             lfh.current_marker = this;
@@ -141,15 +246,20 @@ var lfh = {
                         default:
                     }
                 });
+                lfh.markers.push(marker);
+                lfh.shortcode()
                 //switch to edit mode
-                lfh.set_mode(document.querySelector('#lfh-edit-marker'));
-                return lfh.current_marker;
+                if (neo) {
+                    lfh.set_mode(document.querySelector('#lfh-edit-marker'));
+                    lfh.current_marker = marker;
+                }
+                return marker;
         },
         add_marker_from_form: function(){
             var lat = document.querySelector('#window-add-marker input[name="lfh-lat"]').value;
             var lng = document.querySelector('#window-add-marker input[name="lfh-lng"]').value;
             var latlng = {lat: lat, lng: lng}
-            lfh.add_marker({latlng: latlng});
+            lfh.add_marker({latlng: latlng}, true);
         },
         delete_marker: function(marker){
             var answer = confirm( lfh.confirm);
@@ -183,7 +293,7 @@ var lfh = {
                 lfh.mode = node.id;
                 node.className = node.className + " active";
                 //case  add see marker window
-                lfh.init_window();
+                // lfh.init_window();
             }
             console.log(lfh.mode);
             if(lfh.mode.indexOf('lfh-add') >=0) {
@@ -202,22 +312,21 @@ var lfh = {
         },
         add_gpx: function(post) {
             console.log(post)
-            if (lfh.gpx[post.src]) {
-                lfh.gpx[post.src].el.setStyle({
-                    color: post.color,
-                    weight: post.width
-                })
-                return;
-            }
+            var src = post.src? post.src : post.url
+            var color = post.color ? post.color: options.default.gpx.color
+            var width = post.width ? post.width: options.default.gpx.width
+            
             var gpx = new L.GPX(
-                 post.url, 
+                 src, 
                 {
                     async: true,
                     isLoaded: false,
+                    title: post.title,
+                    description: post.description,
                     polyline_options: {
-                      color: post.color,
-                      weight: post.width
-                    }
+                      color: color,
+                      weight: width
+                    },
                     // marker_options: {
                     //     startIcon: _data.gpx[j].width> 2 ? lfh.POINT_ICON:lfh.MINI_POINT_ICON,
                     //     endIcon: _data.gpx[j].width> 2 ? lfh.POINT_ICON:lfh.MINI_POINT_ICON,
@@ -226,14 +335,12 @@ var lfh = {
                  }).on('loaded', function(e) {
                       e.target.options.isLoaded = true;
                     //   if(_auto_center){
-                    //       var bounds = e.target.getBounds();
-                    //       _latlngbounds.push([bounds.getNorth(),bounds.getEast()]);
-                    //       _latlngbounds.push([bounds.getSouth(),bounds.getWest()]);
+                    //      var bounds = e.target.getBounds();
+                    //      lfh.latlngbounds.push([bounds.getNorth(),bounds.getEast()]);
+                    //      lfh.latlngbounds.push([bounds.getSouth(),bounds.getWest()]);
                     //   }
                  }).addTo(lfh.map)
-           lfh.gpx[post.src] = {
-               el:gpx
-           }
+           lfh.gpx.push(gpx);
         },
         //get position center and zoom of the map, record and write it
         get_position_info: function(){
@@ -249,6 +356,9 @@ var lfh = {
             content += '<b> lng</b> = ' + lfh.record.center.lng + '<br />';
             content += '<b> zoom</b> = ' + lfh.record.zoom;
             document.querySelector('#map-position').innerHTML = content;
+            lfh.map_options.lat = lfh.record.center.lat;
+            lfh.map_options.lng = lfh.record.center.lng;
+            lfh.map_options.zoom = lfh.record.zoom;
         },
         //open window with good information
         init_window: function(){
@@ -257,7 +367,7 @@ var lfh = {
                 document.querySelector('#window-edit-map').style.display = 'block';
                 break;
             case 'lfh-edit-marker':
-                if(lfh.current_marker == null ) return;
+                 if(lfh.current_marker == null ) return;
                 //init the window "edit marker" with information of current_marker
                 //from current marker to edit window
                 var options = lfh.current_marker.options;
@@ -269,10 +379,10 @@ var lfh = {
                 console.log(options.content)
                 document.querySelector('#marker-description').value = options.content
                 document.querySelector('#window-edit-marker select[name="visibility"]').selectedIndex = (options.visibility == 'always')? 0:1;
-                var evt = document.createEvent('MouseEvents');
-                evt.initEvent("click", true, true);
-                document.querySelector('#color-marker div.awesome-marker-icon-'+color).dispatchEvent(evt);
-                document.querySelector('#icon-marker div.lfhicon-'+icon).dispatchEvent(evt); 
+                //var evt = document.createEvent('MouseEvents');
+               // evt.initEvent("click", true, true);
+               // document.querySelector('#color-marker div.awesome-marker-icon-'+color).dispatchEvent(evt);
+               // document.querySelector('#icon-marker div.lfhicon-'+icon).dispatchEvent(evt); 
                 document.querySelector('#window-edit-marker').style.display = 'block';
                 break;
             }
@@ -287,6 +397,7 @@ var lfh = {
                 lfh.close_color();
                 lfh.close_icon();
                 document.querySelector('#'+id).style.display = 'none';
+                lfh.shortcode();
                 break;
             case 'window-edit-map':
                 var evt = document.createEvent('MouseEvents');
@@ -322,54 +433,74 @@ var lfh = {
         shortcode_map:function(){
             var shortcode = '';
             shortcode += '[lfh-map ';
-            if(!document.querySelector('input[name="lfh-form-map-autocenter"]').checked){
-                shortcode += ' lat=' + lfh.record.center.lat ;
-                shortcode += ' lng=' + lfh.record.center.lng ;
-                shortcode += ' zoom=' + lfh.record.zoom ;
+            for( var key in lfh.map_options) {
+                if (key === "class") {
+                    shortcode += key + '="' + lfh.map_options[key] + '" ';
+                } else {
+                    shortcode +=  key + '=' + lfh.map_options[key] + ' ';
+                }
             }
-            if(document.querySelector('input[name="lfh-form-map-class"]').value != ''){
-                shortcode += ' class="' + document.querySelector('input[name="lfh-form-map-class"]').value.replaceAll('-','\\-') +'"';
-            }
-            ['autocenter', 'fullscreen', 'reset', 'list', 'mousewheel', 'open', 'undermap'].forEach(function(key){
-                shortcode += ' '+ key + '=' + document.querySelector('input[name="lfh-form-map-' + key + '"]').checked;
-            });
-            ['width', 'height'].forEach( function(key){
-                shortcode += ' '+ key + '=' + document.querySelector('input[name="lfh-form-map-' + key + '"]').value;
-            });
-            shortcode += ' tile=' + document.querySelector('select[name="lfh-form-map-tile"]').value;
-            shortcode += ' ] <br /> ';
+            shortcode += ']'; 
+            console.log(shortcode);
             return shortcode;
+            // if(!document.querySelector('input[name="lfh-form-map-autocenter"]').checked){
+            //     shortcode += ' lat=' + lfh.record.center.lat ;
+            //     shortcode += ' lng=' + lfh.record.center.lng ;
+            //     shortcode += ' zoom=' + lfh.record.zoom ;
+            // }
+            // if(document.querySelector('input[name="lfh-form-map-class"]').value != ''){
+            //     shortcode += ' class="' + document.querySelector('input[name="lfh-form-map-class"]').value.replaceAll('-','\\-') +'"';
+            // }
+            // ['autocenter', 'fullscreen', 'reset', 'list', 'mousewheel', 'open', 'undermap'].forEach(function(key){
+            //     shortcode += ' '+ key + '=' + document.querySelector('input[name="lfh-form-map-' + key + '"]').checked;
+            // });
+            // ['width', 'height'].forEach( function(key){
+            //     shortcode += ' '+ key + '=' + document.querySelector('input[name="lfh-form-map-' + key + '"]').value;
+            // });
+            // shortcode += ' tile=' + document.querySelector('select[name="lfh-form-map-tile"]').value;
+            // shortcode += ' ] <br /> ';
+            // return shortcode;
+        },
+        shortcode_marker: function(marker) {
+            var latlng = marker.getLatLng();
+            var options = marker.options;
+            var color = options.icon.options.markerColor;
+            var icon = options.icon.options.icon;
+            var shortcode = '[lfh-marker lat='+latlng.lat +' lng=' + latlng.lng;
+            shortcode += ' color=' + color + ' icon=' + icon;
+            shortcode += ' title="' + options.title +'"';
+            shortcode += ' popup="' + options.popup +'"';
+            shortcode += ' visibility=' + options.visibility;
+            shortcode += ' ]' ;
+            if(options.description){
+                shortcode +=  options.content;
+            }
+            shortcode += '[/lfh-marker]';
+            return shortcode
+        },
+        shortcode_gpx: function (gpx) {
+               var shortcode = '[lfh-gpx src=' + gpx._gpx;
+               shortcode += ' title="' + gpx.options.title + '"';
+               shortcode += ' color=' + gpx.options.polyline_options.color;
+               shortcode += ' width=' + gpx.options.polyline_options.weight;
+               shortcode += ']'+ gpx.options.description + '[/lfh-gpx]';
+               return shortcode;
         },
         shortcode: function(){
             var shortcode = '';
             shortcode += lfh.shortcode_map();
-            for(var i=0; i<lfh.markers.length; i++){
-                var latlng = lfh.markers[i].getLatLng();
-                var options = lfh.markers[i].options;
-                var color = options.icon.options.markerColor;
-                var icon = options.icon.options.icon;
-                shortcode += '[lfh-marker lat='+latlng.lat +' lng=' + latlng.lng;
-                shortcode += ' color=' + color + ' icon=' + icon;
-                shortcode += ' title="' + options.title +'"';
-                shortcode += ' popup="' + options.popup +'"';
-                shortcode += ' visibility=' + options.visibility;
-                shortcode += ' ]' ;
-                if(options.description){
-                    shortcode +=  options.description;
-                }
-                shortcode += '[/lfh-marker]';
-           }
-           lfh.gpx.forEach(function(gpx){
-               shortocde += '[lfh-gpx src=' + gpx.src;
-               shortcode += ' color=' + gpx.color;
-               shortcode += ' width=' + gpx.width;
-               shortcode += '][/lfh-gpx]';
-           })
+            lfh.markers.forEach( function(marker) {
+                shortcode += lfh.shortcode_marker(marker);
+            })
+            console.log(lfh.gpx);
+            console.log(lfh.gpx.length);
+            lfh.gpx.forEach(function(gpx){
+               shortcode += lfh.shortcode_gpx(gpx);
+            })
+            document.querySelector('textarea[name="content"]').value = shortcode;
             return shortcode;
         }
 }
-
-
 
 //handler add when buttons control are placed on map
 /*var nodes = document.querySelectorAll('.marker-control');
@@ -420,11 +551,8 @@ var hdrg = {
     destroy:function() {
         hdrg.selected = null;
     }
-
 }
 // Bind the functions...
-
-
 document.onmousemove = hdrg.move;
 document.onmouseup = hdrg.destroy;
 
@@ -463,31 +591,8 @@ document.onmouseup = hdrg.destroy;
    // ------------------------
    var node = document.querySelector('#window-add-marker input[name="placeMarker"]');
    L.DomEvent.addListener(node, 'click', function(e){lfh.add_marker_from_form();})
-   // - for edit map
-   //-----------------
-   var node = document.querySelector('#window-edit-map input[name="lfh-form-map-autocenter"]');
-   L.DomEvent.addListener(node, 'click', function(e){
-       document.querySelector('#center-map').style.visibility = e.target.checked ? 'collapse':'visible';
-       lfh.get_position_info();
-   });
-   var node = document.querySelector('input[name="save-center"]');
-   L.DomEvent.addListener(node, 'click', function(e){
-       lfh.get_position_info();
-   });
-   var node = document.querySelector('#window-edit-map select[name="lfh-form-map-tile"]');
-   L.DomEvent.addListener(node, 'change', function(e){
-       lfh.set_tile();
-   });
-   var evt = document.createEvent('MouseEvents');
-   evt.initEvent("click", true, true);
-   document.querySelector('#window-edit-map input[type="reset"]').dispatchEvent(evt);
-//    document.querySelector('#window-edit-map form').onreset = function(){
-//        document.querySelector('#center-map').style.display = 'none';
-//        setTimeout(function(){
-//            if(lfh.tiles != null)
-//                lfh.set_tile();
-//            }, 500);
-//    }
+  
+
    // - for edit marker
     var node = document.querySelector('#window-edit-marker input[name="title"]');
     L.DomEvent.addListener(node,'change', function(e){

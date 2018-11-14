@@ -70,11 +70,11 @@ class Lf_Hiker_Plugin
       self::$path =  plugin_dir_path( __FILE__ );
       add_action( 'init', array(&$this, 'load_textdomain') );
       add_action('init', array(&$this, 'register_map_type'));
-      $truc = Lfh_Controller_Front::get_instance();
+      $front = Lfh_Controller_Front::get_instance();
       if(is_admin()){
           self::$_controller = Lfh_Controller_Back::get_instance();
       }else{
-          // self::$_controller = Lfh_Controller_Front::get_instance();
+        //  self::$_controller = Lfh_Controller_Front::get_instance();
       }
     }
     public static function autoloader( $class_name ) 
@@ -98,7 +98,7 @@ class Lf_Hiker_Plugin
     {
         load_plugin_textdomain( 'lfh', false, basename( dirname( __FILE__ ) ) . '/languages' );
     }
-    public function register_map_type() {
+    public static function register_map_type() {
         register_post_type(
             'lfh-map',
             array(
@@ -123,8 +123,8 @@ class Lf_Hiker_Plugin
                 // 'show_in_menu' => 'admin.php?page=lfh_info',
                 // rewrite URL
                  'show_in_nav_menus'   => true,
-                // 'rewrite' => array( 'slug' => 'teams' ),	
-                 'rewrite' => true, 
+                 'rewrite' => array( 'slug' => 'maps' ),	
+                 // 'rewrite' => true, 
                 'supports' => array(
                          'title',
 //                         'editor',

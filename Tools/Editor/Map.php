@@ -29,12 +29,11 @@ Class Lfh_Tools_Editor_Map{
             return new Lfh_Tools_View($controller_name);
         }
     }
-    public  function map_shortcode($atts, $html =null){
+    public  function map_shortcode($atts = array(), $html =null){
         global $post;
         self::$_lfh_map_count = $post->ID;
         self::$_lfh_marker_count = 0;
         self::$_lfh_track_count = 0;
-        
         $this->add_map_scripts( $atts );
         return '';
     }
@@ -48,6 +47,7 @@ Class Lfh_Tools_Editor_Map{
              $this->map_shortcode(array());
         }
         self::$_lfh_track_count++;
+        $atts['title'] =  preg_replace('/"/', '&quot;', $atts['title']);
         $atts['description'] = preg_replace('/"/', '&quot;', $html);
         $this->add_gpx_script($atts);
         return '';
@@ -61,6 +61,7 @@ Class Lfh_Tools_Editor_Map{
              $this->map_shortcode(array());
         }
         self::$_lfh_marker_count++;
+        $atts['title'] =  preg_replace('/"/', '&quot;', $atts['title']);
         $atts['description'] = preg_replace('/"/', '&quot;', $html);
         $this->add_marker_script($atts);
         return '';
@@ -110,7 +111,7 @@ Class Lfh_Tools_Editor_Map{
             wp_enqueue_script('lfh_map_editor', Lf_Hiker_Plugin::$url. "dist/lfh-map-editor-min.".Lf_Hiker_Plugin::VERSION.".js", $depends, null, true);
         }
     }
-    private function add_map_scripts($options){
+    private function add_map_scripts($options = array()){
         $map_count = self::$_lfh_map_count;
         $images_url = Lf_Hiker_Plugin::$url .'/images/';
         $css = Lfh_Model_Option::get_values('custom_css');
@@ -130,6 +131,11 @@ Class Lfh_Tools_Editor_Map{
                   lfh.default.HEIGHT_UNIT = ' .json_encode(Lfh_Model_Map::height_units());';
                 ';
        // }
+        if (empty($options)) {
+            $options = array('id' => $map_count);
+        } else {
+            $options['id'] = $map_count;
+        }
         $data .= '
         lfh.data['.$map_count.']= {
               map: '.json_encode($options, JSON_NUMERIC_CHECK ).',

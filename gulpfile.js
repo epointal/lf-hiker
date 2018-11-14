@@ -110,6 +110,7 @@ gulp.task('versioning', ['lessify'], function(){
 	// back scripts
 	gulp.src(['js/lfh-tinymce-helper.js',
 			  'js/lfh-gpx-editor.js',
+	//		  'js/lfh-map-editor-dev.js',
 			  'js/lfh-helper.js'])
 	.pipe(minify())
 	.pipe(rename({suffix: '.'+version}))

@@ -94,7 +94,14 @@ Class Lfh_Model_Map{
    public static  function map_parameters()
    {
      return   array(
-  
+            'id'    => array(
+                'type'    => 'hidden',
+                'label'   => 'id',
+                'filter'  => FILTER_VALIDATE_INT,
+                'options' => array(
+                    'default'   => 0
+                )
+            ),
             'autocenter' => array(
                 'type'    => 'group',
                 'label'   => __('Position auto', 'lfh'),

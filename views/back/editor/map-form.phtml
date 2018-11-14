@@ -1,6 +1,6 @@
 <?php
 /**
- * Template to edit map in helper and lfh-map post type editor
+ * Template to edit map in helper and lfh-map type editor
  * data come from array Lfh_Model_Map::map_parameters()
  * used in views/back/editor/helper-body.phtml
  */
@@ -13,6 +13,13 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     </div>
     <form>
     <table>
+    <thead>
+    <tr>
+        <th><?=__('Name', 'lfh')?></th>
+        <th> <?=__('Use default', 'lfh')?></th>
+        <th><?=__('Value', 'lfh')?></th>
+    </tr>
+    </thead>
     <?php $i=0;?>
      <?php foreach( $options_map as $key => $param):?>
      <?php $i++;
@@ -35,9 +42,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                 <td>
                 <label for="<?=$id?>"><?=$param['label']?></label>
                 </td>
-                <td>
+                <td class="lfh-center">
                 <?php if(!is_null($global)):?>
-                    <input type="checkbox" class="<?=$global?>" checked title="<?=__('Take the overall value', 'lfh')?>"/>
+                    <input type="checkbox" name="<?=$global?>" checked title="<?=__('Take the overall value', 'lfh')?>"/>
                 <?php endif;?>
                 <td>
                 <?=$before?>
@@ -75,9 +82,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                 <td>
                 <label for="<?=$id?>"><?=$param['label']?></label>
                 </td>
-                <td>
+                <td class="lfh-center">
                 <?php if(!is_null($global)):?>
-                   <input type="checkbox" class="<?=$global?>" checked title="<?=__('Take the overall value', 'lfh')?>"/>
+                   <input type="checkbox" name="<?=$global?>" checked title="<?=__('Take the overall value', 'lfh')?>"/>
                 <?php endif;?>
                 </td>
                 <td>

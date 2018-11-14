@@ -122,6 +122,8 @@ Class Lfh_Controller_Admin
                 update_option( $name, get_option( $name, $atts['value']) );
             }
         }
+        Lf_Hiker_Plugin::register_map_type();
+        flush_rewrite_rules();
         // comment cache for the moment too much trouble
         // create cache dir if not exists
         // $success = Lfh_Tools_Cache::create_cache_dir(Lfh_Model_Option::get_option('lfh_cache_parent'));
@@ -138,6 +140,7 @@ Class Lfh_Controller_Admin
     public static function deactivate(){
         Lfh_Tools_Cache::delete_cache_dir();
         insert_with_markers(get_home_path().'.htaccess', 'Lf-hiker plugin','');
+        flush_rewrite_rules();
   
     }
     public  static function uninstall () {
