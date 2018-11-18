@@ -31,7 +31,7 @@ var lfh = {
         center: [48.67777858405578, 2.166026472914382], //by default center = les ulis France
         zoom: 2,
         latlngbounds: [],
-        current_marker: null, // the selected marker
+        current_layer: null, // the selected marker
         default_icon: null,
         move_marker: null, // seen when in mode add-marker
         markers: new Array(), // array of the added markers
@@ -49,6 +49,14 @@ var lfh = {
             shadowAnchor: [5, 5],  
             popupAnchor:  [5, 5]
         }),
+        MINI_POINT_ICON: L.icon({
+            iconUrl: options.ICON_URL + 'markers/pointS6.png',
+            iconSize:     [6, 6], 
+            shadowSize:   [0, 0], 
+            iconAnchor:   [3, 3], 
+            shadowAnchor: [3, 3],  
+            popupAnchor:  [3, 3]
+        }),
         init_map: function(){
             var first = function(element) { return !!element }    
             var map_data = options.data.find(first).map
@@ -64,13 +72,13 @@ var lfh = {
                     e.stopPropagation();
                 });
             });
-            lfh.controlLayer = L.control.layers()
+            lfh.controlLayer = L.control.layers();
+            lfh.controlLayer.addTo(lfh.map);
             lfh.default_icon = L.AwesomeMarkers.icon({
                 icon: 'circle',
                 prefix: 'lfhicon',
                 markerColor: 'red'});
             lfh.move_marker = L.marker(lfh.center, {interactive: false}).addTo(lfh.map);
-            console.log(lfh.move_marker.options)
             lfh.move_marker.setOpacity(0);
             //handler event
             lfh.map.on("mousemove", function(e){
@@ -83,12 +91,13 @@ var lfh = {
             });
             lfh.map.on('click', function(e){
                 console.log(e);
-                console.log(lfh.mode);
-                if(lfh.mode == 'lfh-add-marker'){
+                switch(lfh.mode) {
+                    case 'lfh-add-marker':
                     lfh.add_marker(e, true);
-                }
+                    break;
+                } 
             });
-            lfh.init_data()
+            lfh.init_data();
         },
         init_map_options: function (map_data) {
             lfh.init_listener_map_editor()
@@ -182,6 +191,11 @@ var lfh = {
         init_data: function() {
             var count = 0
             options.data.forEach(function (map) {
+                if(map.gpx) {
+                    map.gpx.forEach(function (gpx_options) {
+                        lfh.add_gpx(gpx_options, false);
+                    })
+                }
                 if (map.markers) {
                     map.markers.forEach(function(marker_options) {
                         console.log('add marker')
@@ -194,10 +208,10 @@ var lfh = {
                         lfh.add_marker(marker_options, false)
                     })
                 }
-                if(map.gpx) {
-                    map.gpx.forEach(function (gpx_options) {
-                        lfh.add_gpx(gpx_options)
-                    })
+                // autocenter + no gpx
+                var auto_center = document.querySelector('input[name="lfh-form-map-autocenter"]').checked;
+                if(auto_center && map.gpx.length == 0 && lfh.latlngbounds.length > 1){
+                    lfh.map.fitBounds(lfh.latlngbounds);
                 }
             })
         },
@@ -227,33 +241,40 @@ var lfh = {
                         title: e.title ? e.title : '',
                         popup: e.popup ? e.popup: '',
                         description: e.description? true:false,
-                        content: e.description,
+                        content: e.description ? e.description.replace('/"/g','&quot;') : '',
                         visibility: e.visibility ? e.visibility : 'always'
-                    }).addTo(lfh.map);
+                    });
                 
-                marker.on('click', function(e){
-                    console.log('clik on marker');
-                    console.log(e);
+                marker.on('click', function(){
                     switch(lfh.mode){
                         case 'lfh-edit-marker':
-                            lfh.current_marker = this;
+                            lfh.current_layer = this;
                             lfh.init_window();
                             break;
                         case 'lfh-delete-marker':
-                            lfh.current_marker = null;
+                            lfh.current_layer = null;
                             lfh.delete_marker(this);
                             break;
                         default:
                     }
                 });
+                marker.on('moveend', function() {
+                    lfh.shortcode();
+                });
+                marker.addTo(lfh.map);
                 lfh.markers.push(marker);
-                lfh.shortcode()
+                lfh.shortcode();
+                lfh.controlLayer.addOverlay(marker, e.title ? e.title : 'unknown');
+                var auto_center = document.querySelector('input[name="lfh-form-map-autocenter"]').checked;
+                if(auto_center){
+                    lfh.latlngbounds.push(e.latlng);
+                }
                 //switch to edit mode
                 if (neo) {
+                    lfh.current_layer = marker;
                     lfh.set_mode(document.querySelector('#lfh-edit-marker'));
-                    lfh.current_marker = marker;
                 }
-                return marker;
+              //  return marker;
         },
         add_marker_from_form: function(){
             var lat = document.querySelector('#window-add-marker input[name="lfh-lat"]').value;
@@ -293,7 +314,9 @@ var lfh = {
                 lfh.mode = node.id;
                 node.className = node.className + " active";
                 //case  add see marker window
-                // lfh.init_window();
+                if (lfh.mode === 'lfh-edit-map' || lfh.mode === 'lfh-edit-marker') {
+                 lfh.init_window();
+                }
             }
             console.log(lfh.mode);
             if(lfh.mode.indexOf('lfh-add') >=0) {
@@ -310,7 +333,7 @@ var lfh = {
                 lfh.move_marker.setOpacity(0);
             }
         },
-        add_gpx: function(post) {
+        add_gpx: function(post, neo) {
             console.log(post)
             var src = post.src? post.src : post.url
             var color = post.color ? post.color: options.default.gpx.color
@@ -327,20 +350,44 @@ var lfh = {
                       color: color,
                       weight: width
                     },
-                    // marker_options: {
-                    //     startIcon: _data.gpx[j].width> 2 ? lfh.POINT_ICON:lfh.MINI_POINT_ICON,
-                    //     endIcon: _data.gpx[j].width> 2 ? lfh.POINT_ICON:lfh.MINI_POINT_ICON,
-                    //     //shadowUrl: 'images/pin-shadow.png'
-                    //   }
+                    marker_options: {
+                        startIcon: width> 2 ? lfh.POINT_ICON:lfh.MINI_POINT_ICON,
+                        endIcon: width> 2 ? lfh.POINT_ICON:lfh.MINI_POINT_ICON,
+                        //shadowUrl: 'images/pin-shadow.png'
+                      }
                  }).on('loaded', function(e) {
                       e.target.options.isLoaded = true;
-                    //   if(_auto_center){
-                    //      var bounds = e.target.getBounds();
-                    //      lfh.latlngbounds.push([bounds.getNorth(),bounds.getEast()]);
-                    //      lfh.latlngbounds.push([bounds.getSouth(),bounds.getWest()]);
-                    //   }
+                      var auto_center = document.querySelector('input[name="lfh-form-map-autocenter"]').checked;
+                      if(auto_center){
+                         var bounds = e.target.getBounds();
+                         lfh.latlngbounds.push([bounds.getNorth(),bounds.getEast()]);
+                         lfh.latlngbounds.push([bounds.getSouth(),bounds.getWest()]);
+                      }
+                      lfh.after_load();
                  }).addTo(lfh.map)
            lfh.gpx.push(gpx);
+           lfh.controlLayer.addOverlay(gpx, post.title ? post.title : 'unknown');
+           lfh.shortcode();
+            if (neo) {
+                    lfh.current_layer = gpx;
+                    lfh.set_mode(document.querySelector('#lfh-edit-marker'));
+            }
+        },
+        after_load: function() {
+             var auto_center = document.querySelector('input[name="lfh-form-map-autocenter"]').checked;
+             if(!auto_center){
+                 return;
+             }
+            // count if all gpx is loaded
+            var count = 0;
+            lfh.gpx.forEach(function (gpx) {
+                if (gpx.options.isLoaded) {
+                    count++;
+                }
+            })
+            if (count === lfh.gpx.length) {
+                lfh.map.fitBounds(lfh.latlngbounds);
+            }
         },
         //get position center and zoom of the map, record and write it
         get_position_info: function(){
@@ -367,22 +414,21 @@ var lfh = {
                 document.querySelector('#window-edit-map').style.display = 'block';
                 break;
             case 'lfh-edit-marker':
-                 if(lfh.current_marker == null ) return;
-                //init the window "edit marker" with information of current_marker
+                 if(lfh.current_layer == null ) return;
+                //init the window "edit marker" with information of current_layer
                 //from current marker to edit window
-                var options = lfh.current_marker.options;
+                var options = lfh.current_layer.options;
                 var color = options.icon.options.markerColor;
                 var icon = options.icon.options.icon;
                 document.querySelector('#window-edit-marker input[name="title"]').value = options.title.stripslashes();
                 document.querySelector('#window-edit-marker textarea[name="popup"]').value = options.popup.stripslashes();
                 document.querySelector('#window-edit-marker input[name="description"]').checked = options.description;
-                console.log(options.content)
-                document.querySelector('#marker-description').value = options.content
+                document.querySelector('#marker-description').value = options.content.replace(/\&quot\;/g,'"');
                 document.querySelector('#window-edit-marker select[name="visibility"]').selectedIndex = (options.visibility == 'always')? 0:1;
-                //var evt = document.createEvent('MouseEvents');
-               // evt.initEvent("click", true, true);
-               // document.querySelector('#color-marker div.awesome-marker-icon-'+color).dispatchEvent(evt);
-               // document.querySelector('#icon-marker div.lfhicon-'+icon).dispatchEvent(evt); 
+                var evt = document.createEvent('MouseEvents');
+                evt.initEvent("click", true, true);
+                document.querySelector('#color-marker div.awesome-marker-icon-'+color).dispatchEvent(evt);
+                document.querySelector('#icon-marker div.lfhicon-'+icon).dispatchEvent(evt); 
                 document.querySelector('#window-edit-marker').style.display = 'block';
                 break;
             }
@@ -470,10 +516,11 @@ var lfh = {
             shortcode += ' color=' + color + ' icon=' + icon;
             shortcode += ' title="' + options.title +'"';
             shortcode += ' popup="' + options.popup +'"';
+            console.log(options.visibility);
             shortcode += ' visibility=' + options.visibility;
             shortcode += ' ]' ;
             if(options.description){
-                shortcode +=  options.content;
+                shortcode +=  options.content.replace(/\&quot\;/g,'"');
             }
             shortcode += '[/lfh-marker]';
             return shortcode
@@ -596,26 +643,32 @@ document.onmouseup = hdrg.destroy;
    // - for edit marker
     var node = document.querySelector('#window-edit-marker input[name="title"]');
     L.DomEvent.addListener(node,'change', function(e){
-        lfh.current_marker.options.title = this.value.addslashes();
+        lfh.current_layer.options.title = e.target.value.addslashes();
     });
     
   
     var node = document.querySelector('#window-edit-marker textarea[name="popup"]');
     L.DomEvent.addListener(node,'change', function(e){
-        var content = this.value;
-        lfh.current_marker.options.popup = this.value.addslashes();
-        lfh.current_marker.bindPopup(content).openPopup();
+        var content = e.target.value;
+        lfh.current_layer.options.popup = e.target.value.addslashes();
+        lfh.current_layer.bindPopup(content).openPopup();
         
     });
     var node = document.querySelector("#window-edit-marker input[name='description']");
     L.DomEvent.addListener(node,'click', function(e){
-        lfh.current_marker.options.description = this.checked;
+        lfh.current_layer.options.description = e.target.checked;
         
     });
-    var node = document.querySelector("#window-edit-marker select");
+    var node = document.querySelector("#window-edit-marker select[name='visibility']");
     L.DomEvent.addListener(node,'change', function(e){
-        lfh.current_marker.options.visibility = this.value;
+        lfh.current_layer.options.visibility = e.target.value;
+        lfh.shortcode();
         
+    });
+    var node = document.querySelector('#marker-description');
+    L.DomEvent.addListener(node, 'change keypress', function(e) {
+        lfh.current_layer.options.content = node.value.replace('/"/g', '&quot;');
+        lfh.shortcode();
     });
     var nodes = document.querySelectorAll("#selected-icon , #selected-color");
     [].forEach.call(nodes, function(div){
@@ -647,7 +700,7 @@ document.onmouseup = hdrg.destroy;
             //change the marker
             var icon = document.querySelector('#selected-icon').dataset.value;
 
-            lfh.current_marker.setIcon(L.AwesomeMarkers.icon({
+            lfh.current_layer.setIcon(L.AwesomeMarkers.icon({
                 icon: icon,
                 prefix: 'lfhicon',
                 markerColor: color
@@ -673,7 +726,7 @@ document.onmouseup = hdrg.destroy;
             //change the marker
             var color = document.querySelector('#selected-color').dataset.value;
 
-            lfh.current_marker.setIcon(L.AwesomeMarkers.icon({
+            lfh.current_layer.setIcon(L.AwesomeMarkers.icon({
                 icon: icon,
                 prefix: 'lfhicon',
                 markerColor: color
@@ -696,7 +749,7 @@ document.onmouseup = hdrg.destroy;
           frame.on('select', function() {
               var select = frame.state().get('selection')
               select.forEach(function(el){
-                  lfh.add_gpx(el.toJSON())
+                  lfh.add_gpx(el.toJSON(), true);
               })
           })
       }
