@@ -16,6 +16,52 @@ var LfhControl = L.Control.extend({
     },
    
 });
+var LfhControlLayer = L.Control.Layers.extend({
+      _addItem: function (obj) {
+        console.log(obj);
+        var label = document.createElement('label'),
+            checked = this._map.hasLayer(obj.layer),
+            input;
+
+        if (obj.overlay) {
+            input = document.createElement('input');
+            input.type = 'checkbox';
+            input.className = 'leaflet-control-layers-selector';
+            input.defaultChecked = checked;
+        } else {
+            input = this._createRadioElement('leaflet-base-layers', checked);
+        }
+
+        this._layerControlInputs.push(input);
+        input.layerId = L.Util.stamp(obj.layer);
+
+        L.DomEvent.on(input, 'click', this._onInputClick, this);
+
+        var name = document.createElement('input');
+        name.type = 'button';
+        name.value = ' ' + obj.name;
+        name.setAttribute('data-index', input.layerId);
+
+        L.DomEvent.on(name, 'click', this._onNameClick, obj.layer);
+        console.log(obj.layer);
+        // Helps from preventing layer control flicker when checkboxes are disabled
+        // https://github.com/Leaflet/Leaflet/issues/2771
+        var holder = document.createElement('div');
+
+        label.appendChild(holder);
+        holder.appendChild(input);
+        holder.appendChild(name);
+
+        var container = obj.overlay ? this._overlaysList : this._baseLayersList;
+        container.appendChild(label);
+
+        this._checkDisabledLayers();
+        return label;
+    },
+    _onNameClick (layer) {
+        this.fire('click');
+    }
+});
  function bool(value) {
      if(value === 'false') {
          return false;
@@ -72,7 +118,7 @@ var lfh = {
                     e.stopPropagation();
                 });
             });
-            lfh.controlLayer = L.control.layers();
+            lfh.controlLayer = new LfhControlLayer();
             lfh.controlLayer.addTo(lfh.map);
             lfh.default_icon = L.AwesomeMarkers.icon({
                 icon: 'circle',
