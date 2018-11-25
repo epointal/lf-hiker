@@ -16,10 +16,23 @@ var LfhControl = L.Control.extend({
     },
    
 });
+L.Layer.prototype.onNameClick = function (e) {
+    if (lfh.mode === 'lfh-edit-marker')
+    this.fire('click');
+}
 var LfhControlLayer = L.Control.Layers.extend({
+      updateName(layer, name) {
+        var done = false;
+        for (var i=0; i < this._layers.length && !done; i++) {
+            if (this._layers[i].layer === layer) {
+                this._layers[i].name = name;
+                done = true;
+            }
+        }
+        this._update()
+      },
       _addItem: function (obj) {
-        console.log(obj);
-        var label = document.createElement('label'),
+        var label = document.createElement('span'),
             checked = this._map.hasLayer(obj.layer),
             input;
 
@@ -37,13 +50,10 @@ var LfhControlLayer = L.Control.Layers.extend({
 
         L.DomEvent.on(input, 'click', this._onInputClick, this);
 
-        var name = document.createElement('input');
-        name.type = 'button';
-        name.value = ' ' + obj.name;
+        var name = document.createElement('a');
+        name.innerHTML = ' ' + obj.name;
         name.setAttribute('data-index', input.layerId);
-
-        L.DomEvent.on(name, 'click', this._onNameClick, obj.layer);
-        console.log(obj.layer);
+        L.DomEvent.on(name, 'click', obj.layer.onNameClick, obj.layer);
         // Helps from preventing layer control flicker when checkboxes are disabled
         // https://github.com/Leaflet/Leaflet/issues/2771
         var holder = document.createElement('div');
@@ -57,9 +67,6 @@ var LfhControlLayer = L.Control.Layers.extend({
 
         this._checkDisabledLayers();
         return label;
-    },
-    _onNameClick (layer) {
-        this.fire('click');
     }
 });
  function bool(value) {
@@ -71,7 +78,7 @@ var LfhControlLayer = L.Control.Layers.extend({
  }
 console.log(options.data);
 var lfh = {
-        mode: "lfh-view",
+        mode: "lfh-edit-marker",
         tiles : options.tiles,
         map: null,
         center: [48.67777858405578, 2.166026472914382], //by default center = les ulis France
@@ -136,7 +143,6 @@ var lfh = {
                 }
             });
             lfh.map.on('click', function(e){
-                console.log(e);
                 switch(lfh.mode) {
                     case 'lfh-add-marker':
                     lfh.add_marker(e, true);
@@ -203,7 +209,6 @@ var lfh = {
             var nodes = document.querySelectorAll('#window-edit-map input[name^="lfh-form-global-"]');
              [].forEach.call(nodes, function(input){
                  L.DomEvent.addListener(input, 'click', function(event) {
-                    console.log(this.checked)
                     var node = this.parentNode.parentNode.querySelector('[name^="lfh-form-map"]');
                     node.disabled = this.checked
                     if (this.checked) {
@@ -320,6 +325,8 @@ var lfh = {
                     lfh.current_layer = marker;
                     lfh.set_mode(document.querySelector('#lfh-edit-marker'));
                 }
+                 // - for edit marker
+   
               //  return marker;
         },
         add_marker_from_form: function(){
@@ -344,7 +351,7 @@ var lfh = {
         //change mode from node button
         set_mode: function(node){
             //unactive the active
-            if(lfh.mode !== 'lfh-view'){
+            if(lfh.mode !== 'lfh-edit-marker'){
                  $('.marker-control.active').removeClass('active');
                  // active.className = active.className.replace(' active', '');
             }
@@ -354,13 +361,13 @@ var lfh = {
                 node.style.display = 'none';
             });
             if(node.id === lfh.mode){
-                lfh.mode = 'lfh-view';
+                lfh.mode = 'lfh-edit-marker';
             }else{
                 //active the mode
                 lfh.mode = node.id;
                 node.className = node.className + " active";
                 //case  add see marker window
-                if (lfh.mode === 'lfh-edit-map' || lfh.mode === 'lfh-edit-marker') {
+                if (lfh.mode === 'lfh-edit-map') {
                  lfh.init_window();
                 }
             }
@@ -416,7 +423,7 @@ var lfh = {
            lfh.shortcode();
             if (neo) {
                     lfh.current_layer = gpx;
-                    lfh.set_mode(document.querySelector('#lfh-edit-marker'));
+                  // lfh.set_mode(document.querySelector('#lfh-edit-marker'));
             }
         },
         after_load: function() {
@@ -455,6 +462,7 @@ var lfh = {
         },
         //open window with good information
         init_window: function(){
+            lfh.shortcode();
             switch(lfh.mode){
             case 'lfh-edit-map':
                 document.querySelector('#window-edit-map').style.display = 'block';
@@ -499,8 +507,9 @@ var lfh = {
             case 'window-add-marker':
                 document.querySelector('#' + id).style.display = 'none';
                 break;
+            default:
+                break;
             }
-           
         },
 
         close_color: function(){
@@ -690,6 +699,7 @@ document.onmouseup = hdrg.destroy;
     var node = document.querySelector('#window-edit-marker input[name="title"]');
     L.DomEvent.addListener(node,'change', function(e){
         lfh.current_layer.options.title = e.target.value.addslashes();
+        lfh.controlLayer.updateName(lfh.current_layer, e.target.value);
     });
     
   
