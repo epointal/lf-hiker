@@ -24,7 +24,6 @@ Class Lfh_Controller_Back
         add_action( 'edit_user_profile', array( &$this, 'add_infos_user') );
         add_action( 'personal_options_update', array(&$this, 'update_helper_unactive' ));
        
-        // $this->_map_block = new Lfh_Gutenberg_Map();
         if(in_array( $pagenow, array('admin-ajax.php' , 'post.php', 'post-new.php',
                                   'media-new.php', 'async-upload.php', 'upload.php'))){
             $this->_editor = new Lfh_Tools_Editor( $this->get_helper_unactive());

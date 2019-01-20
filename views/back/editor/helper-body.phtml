@@ -60,7 +60,9 @@ if (isset($is_map_type)) {
 
 <?php  include 'marker-form.phtml'; ?>
     
-
+<?php if (isset($is_map_type)):?>
+<?php include 'gpx-form.phtml';?>
+<?php endif;?>
     <!-- the map -->
     <div id="map" style="height:100vh;width:100%;"></div>
     <?php if (isset($is_map_type)):?>

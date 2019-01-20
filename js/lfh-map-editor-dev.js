@@ -76,7 +76,6 @@ var LfhControlLayer = L.Control.Layers.extend({
          return Boolean(value);
      }
  }
-console.log(options.data);
 var lfh = {
         mode: "lfh-edit-marker",
         tiles : options.tiles,
@@ -416,8 +415,13 @@ var lfh = {
                          lfh.latlngbounds.push([bounds.getNorth(),bounds.getEast()]);
                          lfh.latlngbounds.push([bounds.getSouth(),bounds.getWest()]);
                       }
+                      if (!neo) {
+                          console.log('neo');
+                      }
                       lfh.after_load();
-                 }).addTo(lfh.map)
+                 }).on('click', function(e) {
+                    console.log('click on gpx');
+                 }).addTo(lfh.map);
            lfh.gpx.push(gpx);
            lfh.controlLayer.addOverlay(gpx, post.title ? post.title : 'unknown');
            lfh.shortcode();

@@ -25,6 +25,16 @@ Class Lfh_Controller_Front
         add_shortcode('lfh-map', array(&$this, 'map_shortcode'));
         add_shortcode('lfh-marker', array(&$this, 'marker_shortcode'));
         add_shortcode('lfh-gpx', array(&$this, 'gpx_shortcode'));
+        // Gutenberg block js/svg-block
+        if (function_exists('register_block_type')) {
+            register_block_type( 'lf-hiker/gpx-block', array(
+                    'render_callback' => array(&$this, 'gpx_shortcode')
+            ) );
+            /** to display map-type post **/
+            register_block_type( 'lf-hiker/map-block', array(
+                    'render_callback' => array(&$this, 'map_block')
+            ) );
+        }
         // add_shortcode('lfh-kml', array(&$this, 'kml_shortcode'));
         if(!function_exists('shortcode_empty_paragraph_fix')){
             add_filter( 'the_content', array(&$this,'shortcode_empty_paragraph_fix' ));
@@ -194,6 +204,10 @@ Class Lfh_Controller_Front
                         'html'          => $html
                 ));
         return $content; 
+    }
+    public function map_block ($atts, $html) {
+        /* do shortcode of content of map-type where id is $atts['id'] */
+        return 'MA MAP';
     }
     public  function add_div_fadable(){
         echo '<div id="lfh-fade"></div>';
